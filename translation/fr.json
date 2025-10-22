@@ -17,5 +17,13 @@
         "my_account": "Mon compte",
         "profile": "Profil",
         "logout": "Se déconnecter"
+    },
+    "profile": {
+        "title": "Profil",
+        "language_label": "Langue préférée",
+        "language": "Français",
+        "change": "Changer",
+        "email_label": "Email",
+        "edit": "Modifier"
     }
 }

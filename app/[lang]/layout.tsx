@@ -2,6 +2,7 @@ import '../globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
+import Sidebar from '@/components/sidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,7 +26,10 @@ export default async function LangLayout({ children, params }: { children: React
         <html lang={locale}>
             <body className={inter.className}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    {children}
+                    <div className="min-h-screen flex">
+                        <Sidebar />
+                        <main className="flex-1">{children}</main>
+                    </div>
                 </NextIntlClientProvider>
             </body>
         </html>

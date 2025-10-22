@@ -17,5 +17,13 @@
         "my_account": "حسابي",
         "profile": "الملف الشخصي",
         "logout": "تسجيل الخروج"
+    },
+    "profile": {
+        "title": "الملف الشخصي",
+        "language_label": "اللغة المفضلة",
+        "language": "العربية",
+        "change": "تغيير",
+        "email_label": "البريد الإلكتروني",
+        "edit": "تعديل"
     }
 }
