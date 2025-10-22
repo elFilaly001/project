@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
+import Feed from './tabmenu/Feed';
+import NetworkWatch from './tabmenu/NetworkWatch';
+import CreatorNetwork from './tabmenu/CreatorNetwork';
+import Audience from './tabmenu/Audience';
 
-const tabs = [
-    { id: 1, label: 'Feed', content: 'This is the Feed content.' },
-    { id: 2, label: 'Network Watch', content: 'This is the Network Watch content.' },
-    { id: 3, label: 'Creator Network', content: 'This is the Creator Network content.' },
-    { id: 4, label: 'Audience', content: 'This is the Audience content.' },
+const tabs: { id: number; label: string; content: React.ReactNode }[] = [
+    { id: 1, label: 'Feed', content: <Feed /> },
+    { id: 2, label: 'Network Watch', content: <NetworkWatch /> },
+    { id: 3, label: 'Creator Network', content: <CreatorNetwork /> },
+    { id: 4, label: 'Audience', content: <Audience /> },
 ];
 
 export default function TabBar() {
@@ -17,11 +21,10 @@ export default function TabBar() {
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200 ${
-                            activeTab === tab.id
+                        className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200 ${activeTab === tab.id
                                 ? 'bg-pink-500 text-white'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
+                            }`}
                     >
                         {tab.label}
                     </button>
