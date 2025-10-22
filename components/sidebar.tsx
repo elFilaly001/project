@@ -3,6 +3,8 @@
 import { LayoutDashboard, TrendingUp, Eye, BarChart3, ServerCog, Activity, FileText, Database, MonitorSpeaker, BookOpen, HelpCircle, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +19,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function Sidebar() {
   const t = useTranslations();
+  const params = useParams();
+  const lang = (params && (params as any).lang) || 'en';
   const [activeItem, setActiveItem] = useState("dashboard");
   const [isCollapsed, setIsCollapsed] = useState(false);
 
@@ -150,9 +154,11 @@ export default function Sidebar() {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>{t('sidebar.my_account')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleProfile} className="cursor-pointer">
-              <User className="mr-2 h-4 w-4" />
-              <span className="text-sm">{t('sidebar.profile')}</span>
+            <DropdownMenuItem asChild>
+              <Link href={`/${lang}/profile`} className="flex items-center w-full text-sm">
+                <User className="mr-2 h-4 w-4" />
+                <span>{t('sidebar.profile')}</span>
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600">
