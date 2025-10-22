@@ -21,10 +21,10 @@ export default function TabBar() {
                     <button
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
-                        className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200 ${activeTab === tab.id
-                            ? 'bg-pink-500 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
+                        className={`px-8 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200 ${activeTab === tab.id
+                                ? 'bg-pink-500 text-white'
+                                : 'border text-gray-700 hover:bg-gray-200'
+                        }`}
                     >
                         {tab.label}
                     </button>

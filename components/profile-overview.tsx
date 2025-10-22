@@ -51,26 +51,28 @@ export default function ProfileOverview({
     <div className="w-full max-w-6xl mx-auto px-4">
       <div className="bg-white border border-gray-200 rounded-2xl p-6 flex gap-6 items-start">
         {/* Left: avatar + text */}
-        <div className="flex-1 min-w-0 flex gap-6">
-          <div className="flex-shrink-0">
-            <div className="w-28 h-28 rounded-full bg-yellow-400 flex items-center justify-center text-3xl font-bold text-white">
-              {/* fallback avatar initials */}
-              {avatarUrl ? (
-                <Image src={avatarUrl} alt={name} width={112} height={112} className="rounded-full object-cover" />
-              ) : (
-                <span>G</span>
-              )}
+        <div className="flex-1 min-w-0 flex flex-col gap-6">
+          <div className="flex gap-6 items-center">
+            <div className="flex-shrink-0">
+              <div className="w-28 h-28 rounded-full bg-yellow-400 flex items-center justify-center text-3xl font-bold text-white">
+                {/* fallback avatar initials */}
+                {avatarUrl ? (
+                  <Image src={avatarUrl} alt={name} width={112} height={112} className="rounded-full object-cover" />
+                ) : (
+                  <span>G</span>
+                )}
+              </div>
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <h3 className="text-gray-900 text-2xl font-semibold leading-tight">{name}</h3>
+              <p className="text-[13px] text-gray-600 mt-1">{subtitle}</p>
             </div>
           </div>
 
-          <div className="flex-1 min-w-0">
-            <h3 className="text-gray-900 text-2xl font-semibold leading-tight">{name}</h3>
-            <p className="text-[13px] text-gray-600 mt-1">{subtitle}</p>
-
-            <div className="mt-4 border-t border-gray-200 pt-4">
-              <h4 className="text-gray-900 text-lg font-medium">Profile Overview</h4>
-              <p className="text-gray-600 mt-3 text-sm leading-relaxed max-w-2xl">{description}</p>
-            </div>
+          <div className="mt-4 border-t border-gray-200 pt-4">
+            <h4 className="text-gray-900 text-lg font-medium">Profile Overview</h4>
+            <p className="text-gray-600 mt-3 text-sm leading-relaxed max-w-2xl">{description}</p>
           </div>
         </div>
 

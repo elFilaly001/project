@@ -36,7 +36,9 @@ export default async function LangLayout({ children, params }: { children: React
                         <Sidebar />
                         <div className="flex-1 flex flex-col">
                             <Header user={user} />
-                            <main className="flex-1">{children}</main>
+                            <div className="mt-4 flex-1">
+                                <main>{children}</main>
+                            </div>
                         </div>
                     </div>
                 </NextIntlClientProvider>
