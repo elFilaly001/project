@@ -2,8 +2,6 @@
     "sidebar": {
         "dashboard": "لوحة التحكم",
         "ranking": "الترتيب",
-        "social_listening": "الاستماع الاجتماعي",
-        "competitive_intel": "معلومات تنافسية",
         "reports": "التقارير",
         "data_api": "البيانات وتكامل API",
         "digital_ad_monitoring": "مراقبة الإعلانات الرقمية",

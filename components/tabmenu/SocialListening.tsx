@@ -6,6 +6,7 @@ import KeywordsBySentiment from './charts/KeywordsBySentiment';
 import CountriesBySentiment from './charts/CountriesBySentiment';
 import TopMentions from './charts/TopMentions';
 import TotalReach from './charts/TotalReach';
+import TotalMentions from './TotalMentions';
 
 export default function SocialListening() {
     return (
@@ -22,9 +23,10 @@ export default function SocialListening() {
                 </div>
             </div>
 
-            <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
                 <TopMentions />
                 <TotalReach />
+                <TotalMentions />
             </div>
         </div>
     );

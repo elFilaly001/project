@@ -2,8 +2,6 @@
     "sidebar": {
         "dashboard": "Dashboard",
         "ranking": "Ranking",
-        "social_listening": "Social listening",
-        "competitive_intel": "Competitive Intelligence",
         "reports": "Reports",
         "data_api": "Data & API Integration",
         "digital_ad_monitoring": "Digital ad monitoring",
