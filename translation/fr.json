@@ -1,0 +1,21 @@
+{
+    "sidebar": {
+        "dashboard": "Tableau de bord",
+        "ranking": "Classement",
+        "social_listening": "Écoute sociale",
+        "competitive_intel": "Renseignement concurrentiel",
+        "reports": "Rapports",
+        "data_api": "Données & Intégration API",
+        "digital_ad_monitoring": "Surveillance des publicités numériques",
+        "tutorial": "Tutoriel",
+        "support": "Support",
+        "expand": "Ouvrir la barre",
+        "collapse": "Réduire la barre",
+        "avatar_initials": "JD",
+        "user_name": "John Doe",
+        "user_email": "john@example.com",
+        "my_account": "Mon compte",
+        "profile": "Profil",
+        "logout": "Se déconnecter"
+    }
+}

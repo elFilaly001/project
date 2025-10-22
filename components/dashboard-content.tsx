@@ -1,7 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
 import { Search, Filter, Plus } from "lucide-react";
+import LanguageSelector from '@/components/language-selector';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -67,6 +69,28 @@ export default function DashboardContent() {
     { id: 5, name: "Item Epsilon", category: "Finance", status: "Active", value: "$3,200" },
   ]);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // supported locales — keep in sync with next-intl.config.ts
+  const locales = ["en", "fr", "ar"];
+
+  const currentLocale = (() => {
+    const segs = (pathname || '/').split('/').filter(Boolean);
+    if (segs.length > 0 && locales.includes(segs[0])) return segs[0];
+    return 'en';
+  })();
+
+  const changeLocale = (locale: string) => {
+    // Keep the rest of the path the same but replace or add the locale prefix
+    const segs = (pathname || '/').split('/').filter(Boolean);
+    if (segs.length > 0 && locales.includes(segs[0])) segs[0] = locale;
+    else segs.unshift(locale);
+    const newPath = '/' + segs.join('/');
+    const search = searchParams?.toString();
+    router.push(newPath + (search ? `?${search}` : ''));
+  };
 
   // Demo line chart data (could be derived dynamically)
   const lineData = [
@@ -115,9 +139,15 @@ export default function DashboardContent() {
     <>
       <div className="flex-1 bg-gray-50 overflow-auto">
         <div className="max-w-7xl mx-auto p-8">
-          <div className="mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h2>
-            <p className="text-gray-600">Manage and monitor your data</p>
+          <div className="mb-8 flex items-center justify-between gap-4">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Dashboard Overview</h2>
+              <p className="text-gray-600">Manage and monitor your data</p>
+            </div>
+
+            <div>
+              <LanguageSelector />
+            </div>
           </div>
 
           <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">

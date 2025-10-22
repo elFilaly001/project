@@ -1,7 +1,8 @@
 "use client";
 
-import { TrendingUp, Eye, BarChart3, BookOpen, HelpCircle, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
+import { LayoutDashboard, TrendingUp, Eye, BarChart3, ServerCog, Activity, FileText, Database, MonitorSpeaker, BookOpen, HelpCircle, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { useTranslations } from 'next-intl';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,17 +13,24 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
-const menuItems = [
-  { icon: TrendingUp, label: "Rankings", id: "rankings" },
-  { icon: Eye, label: "Brand Watch", id: "brand-watch" },
-  { icon: BarChart3, label: "Stock Market", id: "stock-market" },
-  { icon: BookOpen, label: "Tutorial", id: "tutorial" },
-  { icon: HelpCircle, label: "Support", id: "support" },
-];
+// menu items are defined inside the component so we can translate labels with useTranslations
 
 export default function Sidebar() {
-  const [activeItem, setActiveItem] = useState("rankings");
+  const t = useTranslations();
+  const [activeItem, setActiveItem] = useState("dashboard");
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const menuItems = [
+    { icon: LayoutDashboard, label: t('sidebar.dashboard'), id: 'dashboard' },
+    { icon: TrendingUp, label: t('sidebar.ranking'), id: 'ranking' },
+    { icon: Eye, label: t('sidebar.social_listening'), id: 'social-listening' },
+    { icon: Activity, label: t('sidebar.competitive_intel'), id: 'competitive-intel' },
+    { icon: FileText, label: t('sidebar.reports'), id: 'reports' },
+    { icon: Database, label: t('sidebar.data_api'), id: 'data-api' },
+    { icon: MonitorSpeaker, label: t('sidebar.digital_ad_monitoring'), id: 'digital-ad-monitoring' },
+    { icon: BookOpen, label: t('sidebar.tutorial'), id: 'tutorial' },
+    { icon: HelpCircle, label: t('sidebar.support'), id: 'support' },
+  ];
 
   const handleLogout = () => {
     console.log("Logging out...");
@@ -52,6 +60,7 @@ export default function Sidebar() {
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
           className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+          aria-label={isCollapsed ? t('sidebar.expand') : t('sidebar.collapse')}
         >
           {isCollapsed ? (
             <ChevronRight className="w-5 h-5 text-gray-600" />
@@ -71,8 +80,8 @@ export default function Sidebar() {
                 <button
                   onClick={() => setActiveItem(item.id)}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
-                      ? "bg-gradient-to-r from-[#F02CB9] to-[#35B9F4] text-white shadow-md"
-                      : "text-gray-700 hover:bg-gray-100"
+                    ? "bg-gradient-to-r from-[#F02CB9] to-[#35B9F4] text-white shadow-md"
+                    : "text-gray-700 hover:bg-gray-100"
                     } ${isCollapsed ? "justify-center" : ""}`}
                   title={isCollapsed ? item.label : undefined}
                 >
@@ -95,32 +104,32 @@ export default function Sidebar() {
               <Avatar className="w-8 h-8 flex-shrink-0">
                 <AvatarImage src="" />
                 <AvatarFallback className="bg-gradient-to-r from-[#F02CB9] to-[#35B9F4] text-white text-sm">
-                  JD
+                  {t('sidebar.avatar_initials')}
                 </AvatarFallback>
               </Avatar>
               {!isCollapsed && (
                 <div className="flex flex-col items-start flex-1 min-w-0">
                   <span className="font-medium text-gray-900 text-sm truncate w-full">
-                    John Doe
+                    {t('sidebar.user_name')}
                   </span>
                   <span className="text-xs text-gray-500 truncate w-full">
-                    john@example.com
+                    {t('sidebar.user_email')}
                   </span>
                 </div>
               )}
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-56">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuLabel>{t('sidebar.my_account')}</DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleProfile} className="cursor-pointer">
               <User className="mr-2 h-4 w-4" />
-              <span>Profile</span>
+              <span>{t('sidebar.profile')}</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600">
               <LogOut className="mr-2 h-4 w-4" />
-              <span>Log out</span>
+              <span>{t('sidebar.logout')}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

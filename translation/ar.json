@@ -1,0 +1,21 @@
+{
+    "sidebar": {
+        "dashboard": "لوحة التحكم",
+        "ranking": "الترتيب",
+        "social_listening": "الاستماع الاجتماعي",
+        "competitive_intel": "معلومات تنافسية",
+        "reports": "التقارير",
+        "data_api": "البيانات وتكامل API",
+        "digital_ad_monitoring": "مراقبة الإعلانات الرقمية",
+        "tutorial": "دليل",
+        "support": "الدعم",
+        "expand": "توسيع الشريط",
+        "collapse": "طي الشريط",
+        "avatar_initials": "ج د",
+        "user_name": "جون دو",
+        "user_email": "john@example.com",
+        "my_account": "حسابي",
+        "profile": "الملف الشخصي",
+        "logout": "تسجيل الخروج"
+    }
+}

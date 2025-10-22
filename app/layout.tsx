@@ -1,6 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+// Locale-specific provider will be added in app/[lang]/layout.tsx
 
 const inter = Inter({ subsets: ['latin'] });
 

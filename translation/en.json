@@ -1,0 +1,21 @@
+{
+    "sidebar": {
+        "dashboard": "Dashboard",
+        "ranking": "Ranking",
+        "social_listening": "Social listening",
+        "competitive_intel": "Competitive Intelligence",
+        "reports": "Reports",
+        "data_api": "Data & API Integration",
+        "digital_ad_monitoring": "Digital ad monitoring",
+        "tutorial": "Tutorial",
+        "support": "Support",
+        "expand": "Expand sidebar",
+        "collapse": "Collapse sidebar",
+        "avatar_initials": "JD",
+        "user_name": "John Doe",
+        "user_email": "john@example.com",
+        "my_account": "My Account",
+        "profile": "Profile",
+        "logout": "Log out"
+    }
+}

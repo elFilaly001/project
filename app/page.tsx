@@ -1,11 +1,6 @@
-import Sidebar from "@/components/sidebar";
-import DashboardContent from "@/components/dashboard-content";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <div className="flex h-screen overflow-hidden">
-      <Sidebar />
-      <DashboardContent />
-    </div>
-  );
+  // Redirect root to default locale (en)
+  redirect('/en');
 }
