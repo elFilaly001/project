@@ -20,7 +20,8 @@ export default function Sidebar() {
   const [activeItem, setActiveItem] = useState("dashboard");
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const menuItems = [
+  // Top menu items (main navigation)
+  const topMenuItems = [
     { icon: LayoutDashboard, label: t('sidebar.dashboard'), id: 'dashboard' },
     { icon: TrendingUp, label: t('sidebar.ranking'), id: 'ranking' },
     { icon: Eye, label: t('sidebar.social_listening'), id: 'social-listening' },
@@ -28,6 +29,10 @@ export default function Sidebar() {
     { icon: FileText, label: t('sidebar.reports'), id: 'reports' },
     { icon: Database, label: t('sidebar.data_api'), id: 'data-api' },
     { icon: MonitorSpeaker, label: t('sidebar.digital_ad_monitoring'), id: 'digital-ad-monitoring' },
+  ];
+
+  // Bottom menu items that should always be pinned to the bottom
+  const bottomMenuItems = [
     { icon: BookOpen, label: t('sidebar.tutorial'), id: 'tutorial' },
     { icon: HelpCircle, label: t('sidebar.support'), id: 'support' },
   ];
@@ -42,7 +47,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${isCollapsed ? "w-20" : "w-64"
+      className={`h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${isCollapsed ? "w-20" : "w-66"
         }`}
     >
       <div className="p-6 border-b border-gray-200 flex items-center justify-between">
@@ -70,9 +75,9 @@ export default function Sidebar() {
         </button>
       </div>
 
-      <nav className="flex-1 p-4">
+      <nav className="flex-1 p-4 flex flex-col">
         <ul className="space-y-2">
-          {menuItems.map((item) => {
+          {topMenuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeItem === item.id;
             return (
@@ -86,7 +91,30 @@ export default function Sidebar() {
                   title={isCollapsed ? item.label : undefined}
                 >
                   <Icon className="w-5 h-5 flex-shrink-0" />
-                  {!isCollapsed && <span className="font-medium">{item.label}</span>}
+                  {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* Bottom group - pinned to the bottom */}
+        <ul className="space-y-2 mt-auto">
+          {bottomMenuItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = activeItem === item.id;
+            return (
+              <li key={item.id}>
+                <button
+                  onClick={() => setActiveItem(item.id)}
+                  className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
+                    ? "bg-gradient-to-r from-[#F02CB9] to-[#35B9F4] text-white shadow-md"
+                    : "text-gray-700 hover:bg-gray-100"
+                    } ${isCollapsed ? "justify-center" : ""}`}
+                  title={isCollapsed ? item.label : undefined}
+                >
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  {!isCollapsed && <span className="font-medium text-sm">{item.label}</span>}
                 </button>
               </li>
             );
@@ -124,12 +152,12 @@ export default function Sidebar() {
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleProfile} className="cursor-pointer">
               <User className="mr-2 h-4 w-4" />
-              <span>{t('sidebar.profile')}</span>
+              <span className="text-sm">{t('sidebar.profile')}</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={handleLogout} className="cursor-pointer text-red-600">
               <LogOut className="mr-2 h-4 w-4" />
-              <span>{t('sidebar.logout')}</span>
+              <span className="text-sm">{t('sidebar.logout')}</span>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
