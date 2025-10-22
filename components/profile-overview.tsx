@@ -48,7 +48,7 @@ export default function ProfileOverview({
   )`;
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4">
+    <div className="w-full px-6 lg:px-12">
       <div className="bg-white border border-gray-200 rounded-2xl p-6 flex gap-6 items-start">
         {/* Left: avatar + text */}
         <div className="flex-1 min-w-0 flex flex-col gap-6">
