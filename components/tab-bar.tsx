@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import Feed from './tabmenu/Feed';
-import NetworkWatch from './tabmenu/NetworkWatch';
-import CreatorNetwork from './tabmenu/CreatorNetwork';
 import Audience from './tabmenu/Audience';
+import Posts from './tabmenu/Posts';
+import SocialListening from './tabmenu/SocialListening';
+import CompetitiveIntelligence from './tabmenu/CompetitiveIntelligence';
 
 const tabs: { id: number; label: string; content: React.ReactNode }[] = [
-    { id: 1, label: 'Feed', content: <Feed /> },
-    { id: 2, label: 'Network Watch', content: <NetworkWatch /> },
-    { id: 3, label: 'Creator Network', content: <CreatorNetwork /> },
-    { id: 4, label: 'Audience', content: <Audience /> },
+    { id: 1, label: 'Audience', content: <Audience /> },
+    { id: 2, label: 'Posts', content: <Posts /> },
+    { id: 3, label: 'Social Listening', content: <SocialListening /> },
+    { id: 4, label: 'Competitive Intelligence', content: <CompetitiveIntelligence /> },
 ];
 
 export default function TabBar() {
@@ -22,8 +22,8 @@ export default function TabBar() {
                         key={tab.id}
                         onClick={() => setActiveTab(tab.id)}
                         className={`px-4 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200 ${activeTab === tab.id
-                                ? 'bg-pink-500 text-white'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            ? 'bg-pink-500 text-white'
+                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                             }`}
                     >
                         {tab.label}
