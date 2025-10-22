@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import Sidebar from '@/components/sidebar';
+import Header from '@/components/header';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,13 +23,21 @@ export default async function LangLayout({ children, params }: { children: React
         messages = (await import(`../../translation/en.json`)).default;
     }
 
+    const user = {
+        name: 'Zakaria',
+        email: 'z.mouchtati@gmail.com',
+    };
+
     return (
         <html lang={locale}>
             <body className={inter.className}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <div className="min-h-screen flex">
                         <Sidebar />
-                        <main className="flex-1">{children}</main>
+                        <div className="flex-1 flex flex-col">
+                            <Header user={user} />
+                            <main className="flex-1">{children}</main>
+                        </div>
                     </div>
                 </NextIntlClientProvider>
             </body>
