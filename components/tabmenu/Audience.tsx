@@ -1,4 +1,13 @@
 import React, { useState } from "react";
+import FollowerCredibilityCard from "../follower-credibility-card";
+import AudienceReachabilityCard from "../audience-reachability-card";
+import GenderDistributionCard from "../gender-distribution-card";
+import AgeGenderBreakdownCard from "../age-gender-breakdown-card";
+import FollowersByCityCard from "../followers-by-city-card";
+import FollowersByCountryCard from "../followers-by-country-card";
+import LanguageDistributionCard from "../language-distribution-card";
+import BrandAffinityCard from "../brand-affinity-card";
+import InterestAffinityCard from "../interest-affinity-card";
 
 /**
  * Audience component for the TabBar.
@@ -15,16 +24,7 @@ export default function Audience() {
   const [mode, setMode] = useState("followers"); // 'followers' | 'likers'
   const platform = "instagram";
 
-  const credibility = {
-    percent: 73,
-    mood: "Bad",
-    breakdown: [
-      { label: "Mass followers", value: 14, color: "#F59E0B" }, // amber
-      { label: "Suspicious", value: 20, color: "#FB7185" }, // pink/red
-      { label: "Influencers", value: 4, color: "#7C3AED" }, // purple
-      { label: "Real", value: 63, color: "#10B981" }, // green
-    ],
-  };
+  
 
   const notable = [
     { name: "Cristiano Ronaldo", handle: "@cristiano", avatar: null },
@@ -68,68 +68,66 @@ export default function Audience() {
                 Likers
               </button>
             </div>
-
-            <div className="ml-3 text-sm text-gray-500">
-              Filter by Followers or Likers
-            </div>
-          </div>
-
-          <div className="text-sm text-gray-500">
+            <div className="text-sm text-gray-500">
             The audience data is based on{" "}
             <span className="font-medium text-indigo-600">{platform}</span>
+          </div>
+          </div>
+
+          
+        </div>
+
+        {/* Filter Bar */}
+        <div className="flex flex-col gap-2 mb-2">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              {/* Grid/List toggle */}
+              <button className="p-2 border rounded-md bg-white hover:bg-gray-100 flex items-center" title="Grid view">
+                <svg width="18" height="18" fill="none" viewBox="0 0 20 20"><rect x="3" y="3" width="5" height="5" rx="1" fill="#64748b"/><rect x="12" y="3" width="5" height="5" rx="1" fill="#64748b"/><rect x="3" y="12" width="5" height="5" rx="1" fill="#64748b"/><rect x="12" y="12" width="5" height="5" rx="1" fill="#64748b"/></svg>
+              </button>
+              {/* CSV Export */}
+              <button className="p-2 border rounded-md bg-white hover:bg-gray-100 flex items-center gap-1 text-sm font-medium" title="Export CSV">
+                <svg width="16" height="16" fill="none" viewBox="0 0 20 20"><path d="M4 13v2a2 2 0 002 2h8a2 2 0 002-2v-2" stroke="#64748b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/><path d="M7 10l3 3 3-3M10 3v10" stroke="#64748b" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                CSV Export
+              </button>
+              <div className="flex flex-wrap gap-2 items-center">
+              <select className="border rounded-md px-2 py-1 text-sm bg-white">
+                <option>All Social Medias</option>
+              </select>
+              {/* <button className="flex items-center gap-1 px-2 py-1 rounded bg-pink-100 text-pink-600 text-xs font-medium"><span role="img" aria-label="Instagram">📸</span> Instagram (107)</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-gray-100 text-gray-800 text-xs font-medium"><span role="img" aria-label="TikTok">🎵</span> TikTok (41)</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-red-100 text-red-600 text-xs font-medium"><span role="img" aria-label="YouTube">▶️</span> YouTube (53)</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-black text-white text-xs font-medium"><span>X</span> X (63)</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-blue-100 text-blue-700 text-xs font-medium"><span role="img" aria-label="LinkedIn">💼</span> LinkedIn (1)</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-yellow-100 text-yellow-700 text-xs font-medium"><span role="img" aria-label="Snapchat">👻</span> Snapchat</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-purple-100 text-purple-700 text-xs font-medium"><span role="img" aria-label="Twitch">🕹️</span> Twitch</button>
+              <button className="flex items-center gap-1 px-2 py-1 rounded bg-pink-200 text-pink-800 text-xs font-medium"><span role="img" aria-label="Pinterest">📌</span> Pinterest</button> */}
+            </div>
+            {/* Sort by dropdown */}
+            <div className="flex items-center gap-1">
+              <span className="text-xs text-gray-500">Sort by:</span>
+              <select className="border rounded-md px-2 py-1 text-sm bg-white">
+                <option>Social media</option>
+                <option>Name</option>
+                <option>Followers</option>
+              </select>
+            </div>
+            </div>
+            {/* Social media filter buttons */}
+            
           </div>
         </div>
 
         {/* Cards row */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left card: Followers credibility */}
-          <div className="bg-white rounded-xl p-5 shadow-sm border">
-            <div className="flex items-start justify-between">
-              <h3 className="text-gray-700 font-semibold">Followers credibility</h3>
-              <button
-                className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
-                title="More info"
-              >
-                ?
-              </button>
-            </div>
-
-            <div className="flex gap-6 mt-4">
-              {/* donut */}
-              <div className="w-36 h-36 flex items-center justify-center">
-                <CredibilityDonut percent={credibility.percent} mood={credibility.mood} />
-              </div>
-
-              {/* legend */}
-              <div className="flex-1">
-                <div className="w-full h-20 flex items-center justify-center">
-                  <MiniRingBreakdown items={credibility.breakdown} />
-                </div>
-
-                <ul className="mt-3 space-y-2">
-                  {credibility.breakdown.map((d) => (
-                    <li key={d.label} className="flex items-center justify-between text-sm text-gray-600">
-                      <div className="flex items-center gap-3">
-                        <span
-                          className="w-3 h-3 rounded-full inline-block"
-                          style={{ backgroundColor: d.color }}
-                        />
-                        <span>{d.label}</span>
-                      </div>
-                      <span className="font-medium">{d.value}%</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <p className="mt-4 text-xs text-gray-500">
-              Bots have been detected even though the overall audience remains mostly authentic.
-            </p>
-          </div>
+            <FollowerCredibilityCard />
+            <BrandAffinityCard />
+            <InterestAffinityCard />
+          
 
           {/* Middle card: Notable followers */}
-          <div className="bg-white rounded-xl p-5 shadow-sm border">
+          {/* <div className="bg-white rounded-xl p-5 shadow-sm border">
             <div className="flex items-center justify-between">
               <h3 className="text-gray-700 font-semibold">Notable followers</h3>
               <button className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50">?</button>
@@ -148,19 +146,16 @@ export default function Audience() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
 
           {/* Right card: Audience reachability */}
-          <div className="bg-white rounded-xl p-5 shadow-sm border">
-            <div className="flex items-center justify-between">
-              <h3 className="text-gray-700 font-semibold">Audience reachability</h3>
-              <button className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50">?</button>
-            </div>
+            <AudienceReachabilityCard />
 
-            <div className="mt-6">
-              <BarChart bars={reachability} />
-            </div>
-          </div>
+            <GenderDistributionCard />
+            <AgeGenderBreakdownCard />
+            <FollowersByCountryCard />
+            <FollowersByCityCard />
+            <LanguageDistributionCard />
         </div>
       </div>
     </div>
@@ -169,118 +164,9 @@ export default function Audience() {
 
 /* ---------- Subcomponents ---------- */
 
-function CredibilityDonut({ percent = 73, mood = "Bad" }) {
-  // Donut using SVG circle strokes
-  const size = 120;
-  const stroke = 14;
-  const radius = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const filled = (percent / 100) * circumference;
 
-  // color: red if high bot %
-  const color = percent >= 70 ? "#F43F5E" : "#10B981";
 
-  return (
-    <svg width={size} height={size} className="block">
-      <defs>
-        <linearGradient id="donutGrad" x1="0" x2="1">
-          <stop offset="0%" stopColor="#F43F5E" />
-          <stop offset="100%" stopColor="#FB7185" />
-        </linearGradient>
-      </defs>
 
-      {/* background circle */}
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        stroke="#F3F4F6"
-        strokeWidth={stroke}
-        fill="none"
-      />
 
-      {/* filled arc */}
-      <circle
-        cx={size / 2}
-        cy={size / 2}
-        r={radius}
-        stroke="url(#donutGrad)"
-        strokeWidth={stroke}
-        strokeDasharray={`${filled} ${circumference - filled}`}
-        strokeLinecap="round"
-        transform={`rotate(-90 ${size / 2} ${size / 2})`}
-        fill="none"
-      />
 
-      {/* center content */}
-      <g>
-        <circle cx={size / 2} cy={size / 2} r={radius - stroke - 2} fill="#ffffff" />
-        <text x="50%" y="46%" dominantBaseline="middle" textAnchor="middle" fontSize="18" fill="#374151" fontWeight="700">
-          {percent}%
-        </text>
-        <text x="50%" y="62%" dominantBaseline="middle" textAnchor="middle" fontSize="12" fill="#6B7280">
-          {mood}
-        </text>
-      </g>
-    </svg>
-  );
-}
-
-type MiniRingBreakdownItem = { label: string; value: number; color: string };
-function MiniRingBreakdown({ items = [] }: { items?: MiniRingBreakdownItem[] }) {
-  // Draw a small ring with segments (SVG conic-like)
-  const size = 80;
-  const center = size / 2;
-  let start = 0; // degrees
-  const total = items.reduce((s, it) => s + it.value, 0) || 100;
-
-  return (
-    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="block">
-      <g transform={`translate(${center}, ${center})`}>
-        {items.map((it, idx) => {
-          const angle = (it.value / total) * 360;
-          const large = angle > 180 ? 1 : 0;
-          const rad = Math.PI / 180;
-          const r = 28;
-          const x1 = Math.cos((start - 90) * rad) * r;
-          const y1 = Math.sin((start - 90) * rad) * r;
-          const x2 = Math.cos((start + angle - 90) * rad) * r;
-          const y2 = Math.sin((start + angle - 90) * rad) * r;
-          const path = `M ${x1} ${y1} A ${r} ${r} 0 ${large} 1 ${x2} ${y2}`;
-          start += angle;
-          return <path key={idx} d={path} stroke={it.color} strokeWidth="8" fill="none" strokeLinecap="round" />;
-        })}
-
-        {/* inner circle to create donut hole */}
-        <circle cx="0" cy="0" r="16" fill="#ffffff" />
-      </g>
-    </svg>
-  );
-}
-
-type BarChartBar = { label: string; value: number };
-function BarChart({ bars = [] }: { bars?: BarChartBar[] }) {
-  const max = Math.max(...bars.map((b) => b.value), 1);
-  return (
-    <div className="flex items-end gap-4">
-      {bars.map((b, idx) => {
-        const height = Math.round((b.value / max) * 120); // px
-        return (
-          <div key={idx} className="flex flex-col items-center">
-            <div className="w-12 h-32 flex items-end">
-              <div
-                className="w-full rounded-t-md"
-                style={{
-                  height: `${height}px`,
-                  background: "linear-gradient(180deg,#7C3AED,#A78BFA)",
-                }}
-              />
-            </div>
-            <div className="text-xs text-gray-600 mt-2">{b.label}</div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
 
