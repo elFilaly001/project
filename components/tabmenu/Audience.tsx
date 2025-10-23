@@ -22,7 +22,7 @@ import InterestAffinityCard from "../interest-affinity-card";
 
 export default function Audience() {
   const [mode, setMode] = useState("followers"); // 'followers' | 'likers'
-  const platform = "instagram";
+  // Remove static platform, use selectedSocial or All Social Medias
   const [showSocialDropdown, setShowSocialDropdown] = useState(false);
   // Default to 'All Social Medias' selected
   const [selectedSocial, setSelectedSocial] = useState<string | null>(null);
@@ -139,7 +139,9 @@ export default function Audience() {
             </div>
             <div className="text-sm text-gray-500">
             The audience data is based on{" "}
-            <span className="font-medium text-indigo-600">{platform}</span>
+            <span className="font-medium text-indigo-600">
+              {selectedSocial || allSocialOption.name}
+            </span>
           </div>
           </div>
 
