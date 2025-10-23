@@ -1,9 +1,12 @@
+import React, { useContext } from "react";
+import { AudienceModeContext } from "./tabmenu/Audience";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-export default function FollowerCredibilityCard() {
 
+export default function FollowerCredibilityCard() {
+    const mode = useContext(AudienceModeContext);
     const credibility = {
     percent: 73,
     mood: "Bad",
@@ -18,7 +21,9 @@ export default function FollowerCredibilityCard() {
     return (
         <div className="bg-white rounded-xl p-5 shadow-sm border">
             <div className="flex items-start justify-between">
-              <h3 className="text-gray-700 font-semibold">Audience Authenticity</h3>
+              <h3 className="text-gray-700 font-semibold">
+                {mode === "likers" ? "Likers Authenticity" : "Audience Authenticity"}
+              </h3>
               <div className="relative group">
                 <button
                   className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
@@ -28,11 +33,12 @@ export default function FollowerCredibilityCard() {
                 </button>
                 <div className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200"
                   style={{top: '100%'}}>
-                  To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.
+                  {mode === "likers"
+                    ? "To determine the credibility score of historical likers, we evaluate several factors such as the account’s profile picture and bio, number of followers and posts, and the follower-to-following ratio. Brands with a genuinely engaged audience typically achieve scores of 80 or higher."
+                    : "To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher."}
                 </div>
               </div>
             </div>
-
             <div className="flex gap-6 mt-4">
               {/* donut */}
               <div className="relative w-36 h-36 flex items-center justify-center">
