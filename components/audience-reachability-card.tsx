@@ -19,7 +19,7 @@ export default function AudienceReachabilityCard() {
                 </button>
                 <div className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200"
                   style={{top: '100%'}}>
-                  Shows percentage of followers that follow more than 1500 accounts, between 1000-1500, 500-1000 and below 500. Accounts following more than 1.5K accounts will most likely not see the sponsored posts.
+                  Shows the percentage of followers segmented by the number of accounts they follow, over 1,500, between 1,000-1,500, 500-1,000, and under 500. Followers who follow more than 1,500 accounts are less likely to see sponsored content.
                 </div>
               </div>
             </div>

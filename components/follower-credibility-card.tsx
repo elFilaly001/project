@@ -24,7 +24,7 @@ export default function FollowerCredibilityCard() {
                 </button>
                 <div className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200"
                   style={{top: '100%'}}>
-                  To establish the followers credibility score for historical followers we take into account factors such as an account&apos;s avatar and bio description, number of posts, number of accounts followed vs following ratio. Creators with a genuine audience will attain scores of 80 or above.
+                  To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.
                 </div>
               </div>
             </div>

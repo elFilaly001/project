@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 
-
 const genderData = [
   { label: "Male", value: 40, color: "#2563eb" },      // blue-600
   { label: "Female", value: 55, color: "#e11d48" },   // rose-600
@@ -12,24 +11,37 @@ export default function GenderDistributionCard() {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-sm border flex flex-col items-center">
-      <div className="flex items-center gap-2 mb-2 w-full justify-between">
-        <h3 className="text-gray-700 font-semibold text-lg">Gender Distribution</h3>
+    <div className="bg-white rounded-xl p-5 shadow-sm border">
+      {/* header: matches other cards */}
+      <div className="flex items-start justify-between">
+        <h3 className="text-gray-700 font-semibold">Gender Distribution</h3>
+
+        {/* tooltip: same pattern used across cards */}
         <div className="relative group">
           <button
-            className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50"
             type="button"
+            aria-describedby="gender-tooltip"
+            className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
           >
-            ?
+            <span className="sr-only">What is this?</span>?
           </button>
-          <div className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200"
-            style={{top: '100%'}}>
-            The gender split of the audience, based on analyzing the profile picture, name, text in the profile description (bio), and selfies in recent posts.
+
+          <div
+            id="gender-tooltip"
+            role="tooltip"
+            aria-hidden="true"
+            style={{ top: "100%" }}
+            className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none"
+          >
+            The audience’s gender distribution is determined by analyzing indicators such as the profile picture, name, bio text, and selfies from recent posts.
           </div>
         </div>
       </div>
-      <div className="flex flex-col items-center w-full">
+
+      {/* body */}
+      <div className="flex flex-col items-center w-full mt-4">
         <DonutChart data={genderData} hovered={hovered} setHovered={setHovered} />
+
         <div className="flex gap-6 mt-4">
           {genderData.map((g, idx) => (
             <div
@@ -38,9 +50,15 @@ export default function GenderDistributionCard() {
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(null)}
             >
-              <span className="w-3 h-3 rounded-full inline-block" style={{ backgroundColor: g.color }} />
-              <span className="text-sm font-medium text-gray-600">{g.label}</span>
-              <span className="text-sm font-semibold text-gray-700">{Math.round((g.value / total) * 100)}%</span>
+              <span
+                className="w-3 h-3 rounded-full inline-block"
+                style={{ backgroundColor: g.color }}
+                aria-hidden="true"
+              />
+              <span className="text-gray-600 text-sm font-medium">{g.label}</span>
+              <span className="text-gray-700 text-sm font-semibold min-w-[40px] text-right">
+                {Math.round((g.value / total) * 100)}%
+              </span>
             </div>
           ))}
         </div>
@@ -49,7 +67,11 @@ export default function GenderDistributionCard() {
   );
 }
 
-function DonutChart({ data, hovered, setHovered }: {
+function DonutChart({
+  data,
+  hovered,
+  setHovered,
+}: {
   data: { label: string; value: number; color: string }[];
   hovered: number | null;
   setHovered: (idx: number | null) => void;
@@ -74,13 +96,13 @@ function DonutChart({ data, hovered, setHovered }: {
 
   return (
     <div className="relative flex items-center justify-center">
-      <svg width={size} height={size} className="block">
+      <svg width={size} height={size} className="block" role="img" aria-label="Gender distribution">
         {data.map((d, idx) => {
           const percent = d.value / total;
           const arcLength = percent * circumference;
           const dashArray = `${arcLength} ${circumference - arcLength}`;
           const rotation = (start / total) * 360;
-          const style = {
+          const style: React.CSSProperties = {
             stroke: d.color,
             strokeWidth: stroke,
             strokeDasharray: dashArray,
@@ -120,3 +142,4 @@ function DonutChart({ data, hovered, setHovered }: {
     </div>
   );
 }
+
