@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import ProfileOverview from "../profile-overview";
 import TabBar from "../tab-bar";
 
-export default function ProfileClient() {
+export default function DashboardClient() {
     const t = useTranslations();
 
     // Placeholder user data; wire to real data later
