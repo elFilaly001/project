@@ -1,5 +1,7 @@
 "use client";
 
+"use client";
+
 import React, { useEffect, useRef, useState } from 'react';
 import { DayPicker } from 'react-day-picker';
 import type { DateRange } from 'react-day-picker';

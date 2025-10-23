@@ -1,7 +1,10 @@
+"use client";
+
+import React, { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+
 ChartJS.register(ArcElement, Tooltip, Legend);
-import React, { useState } from "react";
 
 const genderData = [
   { label: "Male", value: 40, color: "#2563eb" },      // blue-600

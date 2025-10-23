@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileClient from "../../../components/pages/DashboardClient";
+import ProfileClient from "../../../components/pages/ProfileClient";
 
 type Params = { lang: string };
 

@@ -1,7 +1,8 @@
+import React from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
-import React, { useState } from "react";
 
 const AGE_LABELS = ["13 - 17", "18 - 24", "25 - 34", "35 - 44", "45 - 64"];
 const GENDERS = [

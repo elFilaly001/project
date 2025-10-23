@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileClient from "../../../components/pages/DashboardClient";
+import DashboardClient from "../../../components/pages/DashboardClient";
 
 type Params = { lang: string };
 
@@ -12,6 +12,6 @@ export async function generateStaticParams(): Promise<Params[]> {
     ];
 }
 
-export default function ProfilePage({ params }: { params: Params }) {
-    return <ProfileClient />;
+export default function DashboardPage({ params }: { params: Params }) {
+    return <DashboardClient />;
 }
