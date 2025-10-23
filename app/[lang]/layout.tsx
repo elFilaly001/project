@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import Sidebar from '@/components/sidebar';
 import Header from '@/components/header';
+import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,8 +13,9 @@ export const metadata: Metadata = {
     description: 'Modern dashboard application',
 };
 
-export default async function LangLayout({ children, params }: { children: React.ReactNode; params: { lang: string } }) {
-    const locale = params.lang;
+export default async function LangLayout({ children, params }: { children: React.ReactNode; params: Promise<{ lang: string }> }): Promise<React.ReactNode> {
+    const resolvedParams = await params;
+    const locale = resolvedParams.lang;
     let messages = {};
     try {
         // dynamic import of our translation files
@@ -29,12 +31,13 @@ export default async function LangLayout({ children, params }: { children: React
     };
 
     return (
-        <html lang={locale}>
-            <body className={inter.className}>
+        <html lang={locale} className="overflow-x-hidden">
+            <body className={`${inter.className} overflow-x-hidden`}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <div className="min-h-screen flex ">
+                    <div className="min-h-screen">
                         <Sidebar />
-                        <div className="flex-1 flex flex-col">
+                        {/* Reserve space for fixed sidebar on large screens; no left padding on small screens */}
+                        <div className="flex-1 flex flex-col pl-0 lg:pl-[264px]">
                             <Header user={user} />
                             <div className="mt-4 flex-1">
                                 <main>{children}</main>

@@ -1,9 +1,12 @@
 "use client";
 
 import React from 'react';
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip } from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-const data = [
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip);
+
+const dataSource = [
     { date: '2025-10-01', reach: 1200 },
     { date: '2025-10-02', reach: 1500 },
     { date: '2025-10-03', reach: 1800 },
@@ -12,27 +15,36 @@ const data = [
 ];
 
 export default function TotalReach() {
-    const formatDate = (d: string) => {
+    const labels = dataSource.map((d) => {
         try {
-            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d));
+            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d.date));
         } catch {
-            return d;
+            return d.date;
         }
+    });
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Reach',
+                data: dataSource.map((d) => d.reach),
+                borderColor: '#35B9F4',
+                backgroundColor: 'rgba(214,244,255,0.6)',
+                fill: true,
+                tension: 0.4,
+                pointRadius: 0,
+            },
+        ],
     };
+
+    const options: any = { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } };
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="text-sm font-medium mb-2">Total Reach</div>
             <div className="h-40">
-                <ResponsiveContainer width="100%" height="100%">
-                    <AreaChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" tickFormatter={formatDate} />
-                        <YAxis />
-                        <Tooltip labelFormatter={formatDate} />
-                        <Area type="monotone" dataKey="reach" stroke="#35B9F4" fill="#D6F4FF" />
-                    </AreaChart>
-                </ResponsiveContainer>
+                <Line data={data} options={options} />
             </div>
         </div>
     );
