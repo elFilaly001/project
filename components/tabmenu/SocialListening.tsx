@@ -2,6 +2,16 @@
 
 import React from 'react';
 import dynamic from 'next/dynamic';
+import {
+    PeriodFilter,
+    SourceFilter,
+    SentimentFilter,
+    AuthorsFilter,
+    LocationFilter,
+    KeywordFilter,
+    FormatFilter,
+    LanguageFilter,
+} from './filter';
 
 // Dynamically import chart components with SSR disabled so browser-only libs (like recharts)
 // are only evaluated on the client. This prevents server-side errors after upgrading Next.
@@ -17,6 +27,18 @@ const TopKeywords = dynamic(() => import('./charts/TopKeywords'), { ssr: false }
 export default function SocialListening() {
     return (
         <div className="space-y-6">
+            <div className="text-lg font-medium">Social Listening</div>
+            {/* Filters */}
+            <section aria-label="Filters" className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+                <PeriodFilter />
+                <SourceFilter />
+                <SentimentFilter />
+                <AuthorsFilter />
+                <LocationFilter />
+                <KeywordFilter />
+                <FormatFilter />
+                <LanguageFilter />
+            </section>
             {/* Top row: Mentions volume (line) + Sentiment stacked bars */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <SentimentTrend />

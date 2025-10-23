@@ -1,0 +1,67 @@
+.react-daypicker-compact .rdp {
+    --rdp-day-size: 28px;
+    /* smaller day cells */
+    --rdp-day-font-size: 0.75rem;
+}
+
+.react-daypicker-compact .rdp-months {
+    gap: 0.4rem;
+}
+
+/* compact header */
+.react-daypicker-compact .rdp-caption {
+    padding: 0.25rem 0.5rem;
+}
+
+/* tweak selected day */
+.rdp--compact .rdp-day.rdp-day_selected {
+    background: linear-gradient(135deg, #F02CB9 0%, #35B9F4 100%);
+    color: white;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06) inset;
+}
+
+/* selected within a range (start/end) */
+.rdp--compact .rdp-day.rdp-day_range_start,
+.rdp--compact .rdp-day.rdp-day_range_end {
+    background: linear-gradient(135deg, #F02CB9 0%, #35B9F4 100%);
+    color: white;
+    border-radius: 0.25rem;
+}
+
+/* days inside the selected range */
+.rdp--compact .rdp-day.rdp-day_range_start~.rdp-day,
+.rdp--compact .rdp-day.rdp-day_in_range {
+    background-color: rgba(53, 185, 244, 0.08);
+    /* light blue tint */
+}
+
+/* hover */
+.rdp--compact .rdp-day:hover {
+    background-color: rgba(240, 44, 185, 0.06);
+    /* subtle pink tint on hover */
+}
+
+/* Override default react-day-picker blues (nav buttons, focus, today) */
+.rdp--compact .rdp-day.rdp-day_today,
+.rdp--compact .rdp-day.rdp-day_today:where(:not(.rdp-day_selected)) {
+    color: #F02CB9;
+    /* make 'today' aligned with brand pink */
+    font-weight: 600;
+}
+
+.rdp--compact .rdp-nav button {
+    color: rgba(15, 23, 42, 0.7);
+    /* dark nav icons */
+}
+
+.rdp--compact .rdp-nav button:focus {
+    outline: 2px solid rgba(240, 44, 185, 0.12);
+    outline-offset: 2px;
+}
+
+/* remove default blue focus rings on day buttons and use subtle pink ring */
+.rdp--compact .rdp-day:focus {
+    box-shadow: 0 0 0 3px rgba(240, 44, 185, 0.12);
+    border-radius: 0.25rem;
+}
