@@ -14,7 +14,9 @@
         "user_email": "john@example.com",
         "my_account": "My Account",
         "profile": "Profile",
-        "logout": "Log out"
+        "logout": "Log out",
+        "brand_watch": "Brand Watch",
+        "stock_market": "Stock Market"
     },
     "profile": {
         "title": "Profile",
