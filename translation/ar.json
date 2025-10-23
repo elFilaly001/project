@@ -14,7 +14,9 @@
         "user_email": "john@example.com",
         "my_account": "حسابي",
         "profile": "الملف الشخصي",
-        "logout": "تسجيل الخروج"
+        "logout": "تسجيل الخروج",
+        "brand_watch": "مراقبة العلامة التجارية",
+        "stock_market": "سوق الأسهم"
     },
     "profile": {
         "title": "الملف الشخصي",

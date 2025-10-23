@@ -2,6 +2,7 @@
 
 import { LayoutDashboard, TrendingUp, Eye, BarChart3, ServerCog, Activity, FileText, Database, MonitorSpeaker, BookOpen, HelpCircle, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
@@ -21,18 +22,18 @@ export default function Sidebar() {
   const t = useTranslations();
   const params = useParams();
   const lang = (params && (params as any).lang) || 'en';
+  const router = useRouter();
   const [activeItem, setActiveItem] = useState("dashboard");
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  // Top menu items (main navigation)
   const topMenuItems = [
     { icon: LayoutDashboard, label: t('sidebar.dashboard'), id: 'dashboard' },
-    { icon: TrendingUp, label: t('sidebar.ranking'), id: 'ranking' },
-    { icon: Eye, label: t('sidebar.social_listening'), id: 'social-listening' },
-    { icon: Activity, label: t('sidebar.competitive_intel'), id: 'competitive-intel' },
     { icon: FileText, label: t('sidebar.reports'), id: 'reports' },
-    { icon: Database, label: t('sidebar.data_api'), id: 'data-api' },
     { icon: MonitorSpeaker, label: t('sidebar.digital_ad_monitoring'), id: 'digital-ad-monitoring' },
+    { icon: TrendingUp, label: t('sidebar.ranking'), id: 'ranking' },
+    { icon: Eye, label: t('sidebar.brand_watch'), id: 'brand-watch' },
+    { icon: BarChart3, label: t('sidebar.stock_market'), id: 'stock-market' },
+    { icon: Database, label: t('sidebar.data_api'), id: 'data-api' },
   ];
 
   // Bottom menu items that should always be pinned to the bottom
@@ -87,7 +88,13 @@ export default function Sidebar() {
             return (
               <li key={item.id}>
                 <button
-                  onClick={() => setActiveItem(item.id)}
+                  onClick={() => {
+                    setActiveItem(item.id);
+                    // navigate to dashboard route when clicking the dashboard item
+                    if (item.id === 'dashboard') {
+                      router.push(`/${lang}/dashboard`);
+                    }
+                  }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
                     ? "bg-gradient-to-r from-[#F02CB9] to-[#35B9F4] text-white shadow-md"
                     : "text-gray-700 hover:bg-gray-100"

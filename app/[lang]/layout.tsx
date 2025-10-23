@@ -32,7 +32,7 @@ export default async function LangLayout({ children, params }: { children: React
         <html lang={locale}>
             <body className={inter.className}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <div className="min-h-screen flex">
+                    <div className="min-h-screen flex ">
                         <Sidebar />
                         <div className="flex-1 flex flex-col">
                             <Header user={user} />

@@ -1,13 +1,8 @@
-
-import DashboardContent from "@/components/dashboard-content";
-import Sidebar from "@/components/sidebar";
+import ProfileClient from "@/components/pages/ProfileClient";
     
 export default function LangIndex({ params }: { params: { lang: string } }) {
-    // simply render the same dashboard but the layout above will provide locale/messages
     return (
-        <div className="flex h-screen overflow-hidden">
-            <DashboardContent />
-        </div>
+            <ProfileClient />
     );
 }
 
