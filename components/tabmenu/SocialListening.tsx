@@ -1,15 +1,18 @@
 "use client";
 
 import React from 'react';
-import SentimentTrend from './charts/SentimentTrend';
-import KeywordsBySentiment from './charts/KeywordsBySentiment';
-import CountriesBySentiment from './charts/CountriesBySentiment';
-import TopMentions from './charts/TopMentions';
-import TotalReach from './charts/TotalReach';
-// TotalMentions component not used here
-import SourceDistribution from './charts/SourceDistribution';
-import ShareOfVoice from './charts/ShareOfVoice';
-import TopKeywords from './charts/TopKeywords';
+import dynamic from 'next/dynamic';
+
+// Dynamically import chart components with SSR disabled so browser-only libs (like recharts)
+// are only evaluated on the client. This prevents server-side errors after upgrading Next.
+const SentimentTrend = dynamic(() => import('./charts/SentimentTrend'), { ssr: false });
+const KeywordsBySentiment = dynamic(() => import('./charts/KeywordsBySentiment'), { ssr: false });
+const CountriesBySentiment = dynamic(() => import('./charts/CountriesBySentiment'), { ssr: false });
+const TopMentions = dynamic(() => import('./charts/TopMentions'), { ssr: false });
+const TotalReach = dynamic(() => import('./charts/TotalReach'), { ssr: false });
+const SourceDistribution = dynamic(() => import('./charts/SourceDistribution'), { ssr: false });
+const ShareOfVoice = dynamic(() => import('./charts/ShareOfVoice'), { ssr: false });
+const TopKeywords = dynamic(() => import('./charts/TopKeywords'), { ssr: false });
 
 export default function SocialListening() {
     return (

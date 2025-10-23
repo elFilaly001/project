@@ -51,9 +51,11 @@ export default function Sidebar() {
   };
 
   return (
+    // Make sidebar fixed on the left so it stays visible while scrolling
     <div
-      className={`h-screen bg-white border-r border-gray-200 flex flex-col transition-all duration-300 ${isCollapsed ? "w-20" : "w-66"
+      className={`fixed left-0 top-0 bottom-0 bg-white border-r border-gray-200 flex flex-col transition-all duration-300 z-40 ${isCollapsed ? "w-20" : "w-66"
         }`}
+      style={{ height: '100vh' }}
     >
       <div className="p-6 border-b border-gray-200 flex items-center justify-between">
         {/* Logo: show full when expanded, crop to left when collapsed */}

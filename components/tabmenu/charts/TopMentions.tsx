@@ -1,10 +1,21 @@
 "use client";
 
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
 
-// sample time-series mentions for top entities
-const data = [
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+
+const dataSource = [
     { date: '2025-10-01', brandA: 120, brandB: 90, influencerX: 70 },
     { date: '2025-10-02', brandA: 150, brandB: 80, influencerX: 60 },
     { date: '2025-10-03', brandA: 170, brandB: 100, influencerX: 90 },
@@ -13,29 +24,30 @@ const data = [
 ];
 
 export default function TopMentions() {
-    const formatDate = (d: string) => {
+    const labels = dataSource.map((d) => {
         try {
-            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d));
+            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d.date));
         } catch {
-            return d;
+            return d.date;
         }
+    });
+
+    const data = {
+        labels,
+        datasets: [
+            { label: 'brandA', data: dataSource.map((d) => d.brandA), borderColor: '#F02CB9', backgroundColor: 'rgba(240,44,185,0.08)', tension: 0.4, pointRadius: 2 },
+            { label: 'brandB', data: dataSource.map((d) => d.brandB), borderColor: '#35B9F4', backgroundColor: 'rgba(53,185,244,0.08)', tension: 0.4, pointRadius: 2 },
+            { label: 'influencerX', data: dataSource.map((d) => d.influencerX), borderColor: '#7B61F9', backgroundColor: 'rgba(123,97,249,0.08)', tension: 0.4, pointRadius: 2 },
+        ],
     };
+
+    const options: any = { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } };
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="text-sm font-medium mb-2">Top Mentions (over time)</div>
             <div className="h-40">
-                <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" tickFormatter={formatDate} />
-                        <YAxis />
-                        <Tooltip labelFormatter={formatDate} />
-                        <Line type="monotone" dataKey="brandA" stroke="#F02CB9" />
-                        <Line type="monotone" dataKey="brandB" stroke="#35B9F4" />
-                        <Line type="monotone" dataKey="influencerX" stroke="#7B61F9" />
-                    </LineChart>
-                </ResponsiveContainer>
+                <Line data={data} options={options} />
             </div>
         </div>
     );

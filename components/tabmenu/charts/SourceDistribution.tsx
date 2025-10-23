@@ -1,31 +1,48 @@
 "use client";
 
 import React from 'react';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
 
-const data = [
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+
+const dataSource = [
     { month: 'Jan 2024', facebook: 400, x: 300, instagram: 300 },
     { month: 'Feb 2024', facebook: 350, x: 250, instagram: 200 },
     { month: 'Mar 2024', facebook: 300, x: 450, instagram: 250 },
 ];
 
 export default function SourceDistribution() {
+    const labels = dataSource.map((d) => d.month);
+
+    const data = {
+        labels,
+        datasets: [
+            { label: 'Facebook', data: dataSource.map((d) => d.facebook), backgroundColor: '#F02CB9' },
+            { label: 'X', data: dataSource.map((d) => d.x), backgroundColor: '#35B9F4' },
+            { label: 'Instagram', data: dataSource.map((d) => d.instagram), backgroundColor: '#7B61F9' },
+        ],
+    };
+
+    const options: any = {
+        maintainAspectRatio: false,
+        plugins: { legend: { position: 'top' } },
+        scales: { x: { stacked: true }, y: { stacked: true } },
+    };
+
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="text-sm font-medium mb-2">Distribution by source</div>
             <div className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={data} margin={{ top: 8, right: 8, left: -12, bottom: 8 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="month" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Bar dataKey="facebook" stackId="a" fill="#F02CB9" />
-                        <Bar dataKey="x" stackId="a" fill="#35B9F4" />
-                        <Bar dataKey="instagram" stackId="a" fill="#7B61F9" />
-                    </BarChart>
-                </ResponsiveContainer>
+                <Bar data={data} options={options} />
             </div>
         </div>
     );

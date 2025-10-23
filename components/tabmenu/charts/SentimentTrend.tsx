@@ -1,7 +1,19 @@
 "use client";
 
 import React from 'react';
-import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, Tooltip, Legend, CartesianGrid } from 'recharts';
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Line } from 'react-chartjs-2';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const sampleData = [
     { date: '2025-10-01', positive: 40, neutral: 30, negative: 20 },
@@ -12,30 +24,66 @@ const sampleData = [
 ];
 
 export default function SentimentTrend() {
-    const formatDate = (d: string) => {
+    const labels = sampleData.map((d) => {
         try {
-            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d));
+            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d.date));
         } catch {
-            return d;
+            return d.date;
         }
+    });
+
+    const data = {
+        labels,
+        datasets: [
+            {
+                label: 'Positive',
+                data: sampleData.map((d) => d.positive),
+                borderColor: '#F02CB9',
+                backgroundColor: 'rgba(240,44,185,0.08)',
+                tension: 0.4,
+                pointRadius: 2,
+            },
+            {
+                label: 'Neutral',
+                data: sampleData.map((d) => d.neutral),
+                borderColor: '#35B9F4',
+                backgroundColor: 'rgba(53,185,244,0.08)',
+                tension: 0.4,
+                pointRadius: 2,
+            },
+            {
+                label: 'Negative',
+                data: sampleData.map((d) => d.negative),
+                borderColor: '#7B61F9',
+                backgroundColor: 'rgba(123,97,249,0.08)',
+                tension: 0.4,
+                pointRadius: 2,
+            },
+        ],
+    };
+
+    const options: any = {
+        maintainAspectRatio: false,
+        plugins: {
+            legend: { position: 'top' },
+            tooltip: { mode: 'index', intersect: false },
+        },
+        scales: {
+            x: {
+                grid: { display: false },
+            },
+            y: {
+                beginAtZero: true,
+                grid: { color: '#f3f4f6' },
+            },
+        },
     };
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="text-sm font-medium mb-2">Sentiment Trend</div>
             <div className="h-48">
-                <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={sampleData}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" tickFormatter={formatDate} />
-                        <YAxis />
-                        <Tooltip labelFormatter={formatDate} />
-                        <Legend />
-                        <Line type="monotone" dataKey="positive" stroke="#F02CB9" />
-                        <Line type="monotone" dataKey="neutral" stroke="#35B9F4" />
-                        <Line type="monotone" dataKey="negative" stroke="#7B61F9" />
-                    </LineChart>
-                </ResponsiveContainer>
+                <Line data={data} options={options} />
             </div>
         </div>
     );
