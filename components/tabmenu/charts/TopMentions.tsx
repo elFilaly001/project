@@ -1,19 +1,6 @@
 "use client";
 
 import React from 'react';
-import {
-    Chart as ChartJS,
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const dataSource = [
     { date: '2025-10-01', brandA: 120, brandB: 90, influencerX: 70 },
@@ -23,32 +10,22 @@ const dataSource = [
     { date: '2025-10-05', brandA: 180, brandB: 95, influencerX: 85 },
 ];
 
+function formatCompact(n: number) {
+    if (n >= 1_000_000_000) return `${Math.round(n / 1_000_000_000)}B`;
+    if (n >= 1_000_000) return `${Math.round(n / 1_000_000)}M`;
+    if (n >= 1_000) return `${Math.round(n / 1_000)}k`;
+    return String(n);
+}
+
 export default function TopMentions() {
-    const labels = dataSource.map((d) => {
-        try {
-            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d.date));
-        } catch {
-            return d.date;
-        }
-    });
-
-    const data = {
-        labels,
-        datasets: [
-            { label: 'brandA', data: dataSource.map((d) => d.brandA), borderColor: '#F02CB9', backgroundColor: 'rgba(240,44,185,0.08)', tension: 0.4, pointRadius: 2 },
-            { label: 'brandB', data: dataSource.map((d) => d.brandB), borderColor: '#35B9F4', backgroundColor: 'rgba(53,185,244,0.08)', tension: 0.4, pointRadius: 2 },
-            { label: 'influencerX', data: dataSource.map((d) => d.influencerX), borderColor: '#7B61F9', backgroundColor: 'rgba(123,97,249,0.08)', tension: 0.4, pointRadius: 2 },
-        ],
-    };
-
-    const options: any = { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } };
+    // compute total mentions across all series and dates
+    const total = dataSource.reduce((sum, row) => sum + row.brandA + row.brandB + row.influencerX, 0);
 
     return (
-        <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Top Mentions (over time)</div>
-            <div className="h-40">
-                <Line data={data} options={options} />
-            </div>
+        <div className="p-3 bg-white border rounded-md shadow-sm h-full flex flex-col items-start justify-center">
+            <div className="text-xs text-gray-500">Total Mentions</div>
+            <div className="text-4xl font-extrabold text-gray-900 mt-2">{formatCompact(total)}</div>
+            <div className="text-sm text-gray-500 mt-1">Last 14 days</div>
         </div>
     );
 }
