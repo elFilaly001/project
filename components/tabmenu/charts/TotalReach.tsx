@@ -1,10 +1,6 @@
 "use client";
 
 import React from 'react';
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip } from 'chart.js';
-import { Line } from 'react-chartjs-2';
-
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip);
 
 const dataSource = [
     { date: '2025-10-01', reach: 1200 },
@@ -14,38 +10,21 @@ const dataSource = [
     { date: '2025-10-05', reach: 2000 },
 ];
 
+function formatCompact(n: number) {
+    if (n >= 1_000_000_000) return `${Math.round(n / 1_000_000_000)}B`;
+    if (n >= 1_000_000) return `${Math.round(n / 1_000_000)}M`;
+    if (n >= 1_000) return `${Math.round(n / 1_000)}k`;
+    return String(n);
+}
+
 export default function TotalReach() {
-    const labels = dataSource.map((d) => {
-        try {
-            return new Intl.DateTimeFormat('en', { month: 'short', day: 'numeric' }).format(new Date(d.date));
-        } catch {
-            return d.date;
-        }
-    });
-
-    const data = {
-        labels,
-        datasets: [
-            {
-                label: 'Reach',
-                data: dataSource.map((d) => d.reach),
-                borderColor: '#35B9F4',
-                backgroundColor: 'rgba(214,244,255,0.6)',
-                fill: true,
-                tension: 0.4,
-                pointRadius: 0,
-            },
-        ],
-    };
-
-    const options: any = { maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { grid: { display: false } } } };
+    const totalReach = dataSource.reduce((sum, r) => sum + r.reach, 0);
 
     return (
-        <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Total Reach</div>
-            <div className="h-40">
-                <Line data={data} options={options} />
-            </div>
+        <div className="p-3 bg-white border rounded-md shadow-sm h-full flex flex-col items-start justify-center">
+            <div className="text-xs text-gray-500">Total keywords</div>
+            <div className="text-4xl font-extrabold text-gray-900 mt-2">{formatCompact(totalReach)}</div>
+            <div className="text-sm text-gray-500 mt-1">Last 14 days</div>
         </div>
     );
 }

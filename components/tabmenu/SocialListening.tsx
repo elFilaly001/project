@@ -29,6 +29,10 @@ export default function SocialListening() {
                 <ShareOfVoice />
                 <TopKeywords />
             </div>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <TopMentions />
+                <TotalReach />
+            </div>
         </div>
     );
 }

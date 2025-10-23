@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -31,7 +31,10 @@ export default function ShareOfVoice() {
                     return (
                         <div key={i} className="flex flex-col items-center">
                             <div className="relative w-24 h-24">
-                                <Pie data={data} options={options} />
+                                <Doughnut data={data} options={{
+                                    ...options,
+                                    cutout: '60%'
+                                }} />
                                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                                     <div className="text-lg font-bold text-gray-800">{v}%</div>
                                 </div>
