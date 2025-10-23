@@ -1,3 +1,6 @@
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 export default function AudienceReachabilityCard() {
   const reachability = [
     { label: "< 500", value: 60 },
@@ -5,6 +8,41 @@ export default function AudienceReachabilityCard() {
     { label: "1k - 5k", value: 8 },
     { label: "> 5k", value: 12 },
   ];
+
+  const data = {
+    labels: reachability.map((r) => r.label),
+    datasets: [
+      {
+        label: 'Audience %',
+        data: reachability.map((r) => r.value),
+        backgroundColor: 'linear-gradient(180deg,#7C3AED,#A78BFA)',
+        borderRadius: 6,
+        borderSkipped: false,
+        maxBarThickness: 40,
+      },
+    ],
+  };
+
+  const options = {
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true },
+    },
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: '#6B7280', font: { size: 12 } },
+      },
+      y: {
+        grid: { color: '#F3F4F6' },
+        beginAtZero: true,
+        ticks: { color: '#6B7280', font: { size: 12 }, stepSize: 20 },
+        max: 100,
+      },
+    },
+  };
 
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border">
@@ -24,51 +62,10 @@ export default function AudienceReachabilityCard() {
               </div>
             </div>
 
-            <div className="mt-6">
-              <BarChart bars={reachability} />
+            <div className="mt-6" style={{ minHeight: 180 }}>
+              <Bar data={data} options={options} height={180} />
             </div>
           </div>
   );
 }
 
-
-type BarChartBar = { label: string; value: number };
-import React, { useState } from "react";
-
-function BarChart({ bars = [] }: { bars?: BarChartBar[] }) {
-  const [hovered, setHovered] = useState<number | null>(null);
-  const max = Math.max(...bars.map((b) => b.value), 1);
-  const total = bars.reduce((sum, b) => sum + b.value, 0);
-  return (
-    <div className="flex items-end gap-4 relative">
-      {bars.map((b, idx) => {
-        const height = Math.round((b.value / max) * 120); // px
-        const percent = total ? Math.round((b.value / total) * 100) : 0;
-        return (
-          <div key={idx} className="flex flex-col items-center relative"
-            onMouseEnter={() => setHovered(idx)}
-            onMouseLeave={() => setHovered(null)}
-          >
-            <div className="w-12 h-32 flex items-end">
-              <div
-                className="w-full rounded-t-md cursor-pointer"
-                style={{
-                  height: `${height}px`,
-                  background: "linear-gradient(180deg,#7C3AED,#A78BFA)",
-                }}
-              />
-              {/* Tooltip */}
-              {hovered === idx && (
-                <div className="absolute left-1/2 -translate-x-1/2 -top-14 z-30 bg-white text-gray-900 text-sm rounded-xl px-4 py-2 shadow-lg border border-gray-200 flex flex-col items-center min-w-[60px]">
-                  <span className="font-medium">{b.label}</span>
-                  <span className="font-semibold">{percent}%</span>
-                </div>
-              )}
-            </div>
-            <div className="text-xs text-gray-600 mt-2">{b.label}</div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}

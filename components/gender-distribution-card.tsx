@@ -1,3 +1,6 @@
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+ChartJS.register(ArcElement, Tooltip, Legend);
 import React, { useState } from "react";
 
 const genderData = [
@@ -9,6 +12,27 @@ const genderData = [
 export default function GenderDistributionCard() {
   const total = genderData.reduce((sum, g) => sum + g.value, 0);
   const [hovered, setHovered] = useState<number | null>(null);
+
+  const pieData = {
+    labels: genderData.map((g) => g.label),
+    datasets: [
+      {
+        data: genderData.map((g) => g.value),
+        backgroundColor: genderData.map((g) => g.color),
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  const pieOptions = {
+    cutout: '70%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: true },
+    },
+    maintainAspectRatio: false,
+    events: [], // disables all events for Pie chart itself
+  };
 
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border">
@@ -40,9 +64,19 @@ export default function GenderDistributionCard() {
 
       {/* body */}
       <div className="flex flex-col items-center w-full mt-4">
-        <DonutChart data={genderData} hovered={hovered} setHovered={setHovered} />
-
-        <div className="flex gap-6 mt-4">
+        <div className="relative w-36 h-36 flex items-center justify-center">
+          <Pie data={pieData} options={pieOptions} width={144} height={144} />
+          {/* Center content */}
+          <div className="absolute flex flex-col items-center justify-center w-36 h-36 pointer-events-none">
+            <span className="text-xl font-bold text-gray-800">
+              {hovered !== null && genderData[hovered] ? `${Math.round((genderData[hovered].value / total) * 100)}%` : '100%'}
+            </span>
+            <span className="text-xs text-gray-500">
+              {hovered !== null && genderData[hovered] ? genderData[hovered].label : 'Gender'}
+            </span>
+          </div>
+        </div>
+        <div className="flex gap-6 mt-4 flex-wrap justify-center">
           {genderData.map((g, idx) => (
             <div
               key={g.label}
@@ -63,82 +97,6 @@ export default function GenderDistributionCard() {
           ))}
         </div>
       </div>
-    </div>
-  );
-}
-
-function DonutChart({
-  data,
-  hovered,
-  setHovered,
-}: {
-  data: { label: string; value: number; color: string }[];
-  hovered: number | null;
-  setHovered: (idx: number | null) => void;
-}) {
-  const size = 120;
-  const stroke = 16;
-  const radius = (size - stroke) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const total = data.reduce((sum, d) => sum + d.value, 0);
-  let start = 0;
-
-  // Center text
-  let centerLabel = "";
-  let centerPercent = "";
-  if (hovered !== null && data[hovered]) {
-    centerLabel = data[hovered].label;
-    centerPercent = `${Math.round((data[hovered].value / total) * 100)}%`;
-  } else {
-    centerLabel = "Gender";
-    centerPercent = "100%";
-  }
-
-  return (
-    <div className="relative flex items-center justify-center">
-      <svg width={size} height={size} className="block" role="img" aria-label="Gender distribution">
-        {data.map((d, idx) => {
-          const percent = d.value / total;
-          const arcLength = percent * circumference;
-          const dashArray = `${arcLength} ${circumference - arcLength}`;
-          const rotation = (start / total) * 360;
-          const style: React.CSSProperties = {
-            stroke: d.color,
-            strokeWidth: stroke,
-            strokeDasharray: dashArray,
-            fill: "none",
-            opacity: hovered === null || hovered === idx ? 1 : 0.3,
-            cursor: "pointer",
-            transition: "opacity 0.2s",
-          };
-          const eventHandlers = {
-            onMouseEnter: () => setHovered(idx),
-            onMouseLeave: () => setHovered(null),
-          };
-          start += d.value;
-          return (
-            <circle
-              key={d.label}
-              cx={size / 2}
-              cy={size / 2}
-              r={radius}
-              style={style}
-              strokeLinecap="round"
-              transform={`rotate(${rotation - 90} ${size / 2} ${size / 2})`}
-              {...eventHandlers}
-            />
-          );
-        })}
-        {/* inner circle for donut hole */}
-        <circle cx={size / 2} cy={size / 2} r={radius - stroke} fill="#fff" />
-        {/* Center text */}
-        <text x="50%" y="48%" textAnchor="middle" fontSize="18" fontWeight="700" fill="#334155">
-          {centerPercent}
-        </text>
-        <text x="50%" y="62%" textAnchor="middle" fontSize="13" fontWeight="500" fill="#64748b">
-          {centerLabel}
-        </text>
-      </svg>
     </div>
   );
 }

@@ -1,8 +1,13 @@
+// Type for socialBreakdown
+type SocialBreakdownItem = { name: string; percent: number; color: string };
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import { Pie } from 'react-chartjs-2';
+ChartJS.register(ArcElement, Tooltip, Legend);
 // ProfileOverview.jsx
 // Next.js / React component (single-file) using Tailwind CSS
 // Drop this into your components folder and import it on any page.
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 
 /**
@@ -24,6 +29,16 @@ export default function ProfileOverview({
   followers = 111100,
   platform = 'instagram' as 'instagram' | 'twitter' | 'facebook',
   ringPercent = 75,
+  socialBreakdown = [
+    { name: 'Instagram', percent: 40, color: '#E1306C' },
+    { name: 'TikTok', percent: 20, color: '#010101' },
+    { name: 'YouTube', percent: 15, color: '#FF0000' },
+    { name: 'X', percent: 10, color: '#000000' },
+    { name: 'LinkedIn', percent: 5, color: '#0077B5' },
+    { name: 'Snapchat', percent: 5, color: '#FFFC00' },
+    { name: 'Twitch', percent: 3, color: '#9147FF' },
+    { name: 'Pinterest', percent: 2, color: '#E60023' },
+  ],
 }: {
   name?: string;
   subtitle?: string;
@@ -32,6 +47,7 @@ export default function ProfileOverview({
   followers?: number;
   platform?: 'instagram' | 'twitter' | 'facebook';
   ringPercent?: number;
+  socialBreakdown?: SocialBreakdownItem[];
 }) {
   // compute a short formatted followers string
   function formatFollowers(n: number): string {
@@ -40,12 +56,137 @@ export default function ProfileOverview({
     return String(n);
   }
 
-  // donut style (conic gradient) using ringPercent
-  const angle = Math.max(0, Math.min(100, ringPercent)) * 3.6; // percent -> degrees
-  const gradient = `conic-gradient(
-    rgba(236,72,153,1) 0deg ${angle}deg,
-    rgba(59,130,246,0.12) ${angle}deg 360deg
-  )`;
+  // Pie chart data for all social media percentages
+  const pieData = {
+    labels: socialBreakdown.map((s) => s.name),
+    datasets: [
+      {
+        data: socialBreakdown.map((s) => s.percent),
+        backgroundColor: socialBreakdown.map((s) => s.color),
+        borderWidth: 0,
+      },
+    ],
+  };
+
+  // State for hovered segment
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  const pieOptions = {
+    cutout: '78%',
+    plugins: {
+      legend: { display: false },
+      tooltip: { enabled: false },
+    },
+    maintainAspectRatio: false,
+    onHover: (_event: any, elements: any[]) => {
+      if (elements && elements.length > 0) {
+        setHoveredIndex(elements[0].index);
+      } else {
+        setHoveredIndex(null);
+      }
+    },
+    events: [
+      'mousemove',
+      'mouseout',
+      'touchstart',
+      'touchmove',
+      'touchend',
+    ] as Array<
+      | 'mousemove'
+      | 'mouseout'
+      | 'touchstart'
+      | 'touchmove'
+      | 'touchend'
+      | 'fullscreenchange'
+      | 'fullscreenerror'
+      | 'abort'
+      | 'animationcancel'
+      | 'animationend'
+      | 'animationiteration'
+      | 'auxclick'
+      | 'beforeinput'
+      | 'blur'
+      | 'cancel'
+      | 'canplay'
+      | 'canplaythrough'
+      | 'change'
+      | 'click'
+      | 'close'
+      | 'compositionend'
+      | 'compositionstart'
+      | 'compositionupdate'
+      | 'contextmenu'
+      | 'copy'
+      | 'cuechange'
+      | 'cut'
+      | 'dblclick'
+      | 'drag'
+      | 'dragend'
+      | 'dragenter'
+      | 'dragleave'
+      | 'dragover'
+      | 'dragstart'
+      | 'drop'
+      | 'durationchange'
+      | 'emptied'
+      | 'ended'
+      | 'error'
+      | 'focus'
+      | 'focusin'
+      | 'focusout'
+      | 'formdata'
+      | 'gotpointercapture'
+      | 'input'
+      | 'invalid'
+      | 'keydown'
+      | 'keypress'
+      | 'keyup'
+      | 'load'
+      | 'loadeddata'
+      | 'loadedmetadata'
+      | 'loadstart'
+      | 'lostpointercapture'
+      | 'mousedown'
+      | 'mouseenter'
+      | 'mouseleave'
+      | 'mousemove'
+      | 'mouseout'
+      | 'mouseover'
+      | 'mouseup'
+      | 'paste'
+      | 'pause'
+      | 'play'
+      | 'playing'
+      | 'pointercancel'
+      | 'pointerdown'
+      | 'pointerenter'
+      | 'pointerleave'
+      | 'pointermove'
+      | 'pointerout'
+      | 'pointerover'
+      | 'pointerup'
+      | 'progress'
+      | 'ratechange'
+      | 'reset'
+      | 'resize'
+      | 'scroll'
+      | 'securitypolicyviolation'
+      | 'seeked'
+      | 'seeking'
+      | 'select'
+      | 'selectionchange'
+      | 'selectstart'
+      | 'stalled'
+      | 'submit'
+      | 'suspend'
+      | 'timeupdate'
+      | 'toggle'
+      | 'volumechange'
+      | 'waiting'
+      | 'wheel'
+      | undefined
+    >,
+  };
 
   return (
     <div className="w-full px-6 lg:px-12">
@@ -76,41 +217,38 @@ export default function ProfileOverview({
           </div>
         </div>
 
-        {/* Right: followers donut */}
-        <div className="w-48 flex-shrink-0 flex flex-col items-center">
+        {/* Right: followers donut (multi-platform) */}
+        <div className="w-60 flex-shrink-0 flex flex-col items-center">
           <div className="text-sm text-gray-600 mb-4">Followers Dispatch</div>
-
-          <div className="relative w-36 h-36 rounded-full" aria-hidden>
-            {/* outer ring using conic gradient */}
-            <div
-              className="w-36 h-36 rounded-full p-2"
-              style={{ background: gradient }}
-            >
-              {/* inner circle to create donut hole */}
-              <div className="w-full h-full bg-white rounded-full flex items-center justify-center">
-                <div className="flex flex-col items-center">
-                  {/* small platform icon placeholder */}
-                  <div className="text-xs text-gray-600 mb-1 flex items-center gap-2">
-                    <PlatformBadge platform={platform} />
-                    <span className="font-medium text-gray-900">{formatFollowers(followers)}</span>
-                  </div>
-                </div>
-              </div>
+          <div className="relative w-52 h-52 flex items-center justify-center">
+            <Pie data={pieData} options={pieOptions} width={208} height={208} />
+            {/* Center content: show hovered platform or total */}
+            <div className="absolute flex flex-col items-center justify-center w-52 h-52 pointer-events-none select-none">
+              {hoveredIndex !== null && socialBreakdown[hoveredIndex] ? (
+                <>
+                  <span className="text-lg font-bold text-gray-900">{socialBreakdown[hoveredIndex].percent}%</span>
+                  <span className="text-xs font-medium mt-1" style={{ color: socialBreakdown[hoveredIndex].color }}>{socialBreakdown[hoveredIndex].name}</span>
+                </>
+              ) : (
+                <>
+                  <span className="text-lg font-bold text-gray-900">{formatFollowers(followers)}</span>
+                  <span className="text-xs text-gray-500">Total</span>
+                </>
+              )}
             </div>
           </div>
-
           {/* legend or small label */}
-          <div className="mt-3 text-xs text-gray-500 text-center">Shown on {platform}</div>
+          <div className="mt-3 text-xs text-gray-500 text-center">All Social Platforms</div>
         </div>
       </div>
     </div>
   );
 }
 
-function PlatformBadge({ platform }: { platform: 'instagram' | 'twitter' | 'facebook' }) {
-  const size = 18;
-  if (platform === 'instagram') {
-    // small instagram-like gradient circle with camera icon (svg)
+// PlatformBadge now supports all platforms
+function PlatformBadge({ platform, size = 18 }: { platform: string; size?: number }) {
+  // SVGs or icons for each platform
+  if (platform === 'Instagram') {
     return (
       <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center" aria-hidden>
         <svg viewBox="0 0 24 24" width={size} height={size} fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,9 +265,58 @@ function PlatformBadge({ platform }: { platform: 'instagram' | 'twitter' | 'face
       </div>
     );
   }
-  // default placeholder
+  if (platform === 'TikTok') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-black" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M16.5 3v10.38a4.12 4.12 0 11-4.12-4.12" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/><circle cx="12.38" cy="17.5" r="1.5" fill="#fff"/></svg>
+      </div>
+    );
+  }
+  if (platform === 'YouTube') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#FF0000]" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#FF0000"/><polygon points="10,8 16,12 10,16" fill="#fff"/></svg>
+      </div>
+    );
+  }
+  if (platform === 'X') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-black" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><path d="M7 7l10 10M7 17L17 7" stroke="#fff" strokeWidth="2" strokeLinecap="round"/></svg>
+      </div>
+    );
+  }
+  if (platform === 'LinkedIn') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#0077B5]" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#0077B5"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">in</text></svg>
+      </div>
+    );
+  }
+  if (platform === 'Snapchat') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#FFFC00]" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#FFFC00"/><circle cx="12" cy="12" r="6" stroke="#000" strokeWidth="2" fill="none"/></svg>
+      </div>
+    );
+  }
+  if (platform === 'Twitch') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#9147FF]" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#9147FF"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">T</text></svg>
+      </div>
+    );
+  }
+  if (platform === 'Pinterest') {
+    return (
+      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#E60023]" aria-hidden>
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#E60023"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">P</text></svg>
+      </div>
+    );
+  }
+  // fallback
   return (
-    <div className="w-4 h-4 bg-gray-500 rounded-full" />
+    <div style={{ width: size, height: size }} className="rounded-full bg-gray-400" />
   );
 }
 
