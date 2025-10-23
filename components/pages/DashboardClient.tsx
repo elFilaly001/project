@@ -2,8 +2,6 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 import ProfileOverview from "../profile-overview";
 import TabBar from "../tab-bar";
 
