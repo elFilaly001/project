@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useSidebar } from '@/components/sidebar-context';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,8 +24,8 @@ export default function Sidebar() {
   const params = useParams();
   const lang = (params && (params as any).lang) || 'en';
   const router = useRouter();
+  const { isCollapsed, setIsCollapsed } = useSidebar();
   const [activeItem, setActiveItem] = useState("dashboard");
-  const [isCollapsed, setIsCollapsed] = useState(false);
 
   const topMenuItems = [
     { icon: LayoutDashboard, label: t('sidebar.dashboard'), id: 'dashboard' },

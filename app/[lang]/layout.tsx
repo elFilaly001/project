@@ -2,8 +2,7 @@ import '../globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
-import Sidebar from '@/components/sidebar';
-import Header from '@/components/header';
+import LayoutContent from '@/components/layout-content';
 import React from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -34,16 +33,9 @@ export default async function LangLayout({ children, params }: { children: React
         <html lang={locale} className="overflow-x-hidden">
             <body className={`${inter.className} overflow-x-hidden`}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <div className="min-h-screen">
-                        <Sidebar />
-                        {/* Reserve space for fixed sidebar on large screens; no left padding on small screens */}
-                        <div className="flex-1 flex flex-col pl-0 lg:pl-[264px]">
-                            <Header user={user} />
-                            <div className="mt-4 flex-1">
-                                <main>{children}</main>
-                            </div>
-                        </div>
-                    </div>
+                    <LayoutContent user={user}>
+                        {children}
+                    </LayoutContent>
                 </NextIntlClientProvider>
             </body>
         </html>
