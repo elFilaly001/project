@@ -2,6 +2,7 @@
 
 import React from 'react';
 import AvatarWithBadge from './common/AvatarWithBadge';
+import BannerWithAvatar from './common/BannerWithAvatar';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -14,8 +15,8 @@ export default function AccountTab() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
                     <div className="flex flex-col items-center md:items-start md:col-span-1">
-                        <AvatarWithBadge badge={<>✓</>} />
-                        <p className="text-sm text-gray-500 mt-2">Profile Photo</p>
+                        <BannerWithAvatar avatarSize={112} badge={<>✓</>} />
+                        {/* <p className="text-sm text-gray-500 mt-2">Profile Photo</p> */}
                     </div>
 
                     <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
