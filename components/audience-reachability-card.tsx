@@ -5,8 +5,8 @@ export default function AudienceReachabilityCard() {
   const reachability = [
     { label: "< 500", value: 60 },
     { label: "500 - 1k", value: 20 },
-    { label: "1k - 5k", value: 8 },
-    { label: "> 5k", value: 12 },
+    { label: "1k - 1.5k", value: 8 },
+    { label: "> 1.5k", value: 12 },
   ];
 
   const data = {

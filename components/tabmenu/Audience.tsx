@@ -10,6 +10,7 @@ import FollowersByCountryCard from "../followers-by-country-card";
 import LanguageDistributionCard from "../language-distribution-card";
 import BrandAffinityCard from "../brand-affinity-card";
 import InterestAffinityCard from "../interest-affinity-card";
+import AllDataTable from "../all-data-table";
 
 /**
  * Audience component for the TabBar.
@@ -99,18 +100,59 @@ export default function Audience() {
     text: "white",
   };
 
-  const notable = [
-    { name: "Cristiano Ronaldo", handle: "@cristiano", avatar: null },
-    { name: "Ariana Grande", handle: "@arianagrande", avatar: null },
-    { name: "Jennifer Lopez", handle: "@jlo", avatar: null },
-    // add more...
-  ];
-
-  const reachability = [
-    { label: "< 500", value: 60 },
-    { label: "500 - 1k", value: 20 },
-    { label: "1k - 1.5k", value: 8 },
-    { label: "> 1.5k", value: 12 },
+  const mockData = [
+    {
+      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
+      name: "IShowSpeed",
+      score: "99.7/100",
+      followers: "41.7M",
+      growth: "+2.53%",
+      lastActivity: "This week",
+      activity: "5 Posts / month",
+      engRate: "5.31%",
+      avgEng: "2.2M",
+      avgViews: "43M",
+      postingHabits: "once a week at 11PM",
+    },
+    {
+      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg",
+      name: "IShowSpeed",
+      score: "98.8/100",
+      followers: "42.4M",
+      growth: "+2.58%",
+      lastActivity: "12 days ago",
+      activity: "0.6 Videos / week",
+      engRate: "17.24%",
+      avgEng: "7.3M",
+      avgViews: "60.4M",
+      postingHabits: "once a week at 11PM",
+    },
+    {
+      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
+      name: "Speed⭐",
+      score: "96.8/100",
+      followers: "3.7M",
+      growth: "+0.69%",
+      lastActivity: "This week",
+      activity: "1.3 Tweets / week",
+      engRate: "6.06%",
+      avgEng: "226.9K",
+      avgViews: "8.4M",
+      postingHabits: "once a week at 10PM",
+    },
+    {
+      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
+      name: "IShowSpeed",
+      score: "96.7/100",
+      followers: "45M",
+      growth: "+1.53%",
+      lastActivity: "This week",
+      activity: "2.9 Videos / month",
+      engRate: "0.22%",
+      avgEng: "101.1K",
+      avgViews: "2.5M",
+      postingHabits: "once a week at 1AM",
+    },
   ];
 
   return (
@@ -356,6 +398,7 @@ export default function Audience() {
               </div>
             </div>
           </div>
+          <AllDataTable data={mockData} />
 
           {/* Cards row */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
