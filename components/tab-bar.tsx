@@ -9,9 +9,9 @@ import CompetitiveIntelligence from './tabmenu/CompetitiveIntelligence';
 type Tab = { id: number; label: string; content: React.ReactNode };
 
 const defaultTabs: Tab[] = [
+    { id: 3, label: 'Social Listening', content: <SocialListening /> },
     { id: 1, label: 'Audience', content: <Audience /> },
     { id: 2, label: 'Posts', content: <Posts /> },
-    { id: 3, label: 'Social Listening', content: <SocialListening /> },
     { id: 4, label: 'Competitive Intelligence', content: <CompetitiveIntelligence /> },
 ];
 

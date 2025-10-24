@@ -21,7 +21,7 @@ export default function PreferenceTab() {
                     </div>
 
                     <div>
-                        <label className="text-sm font-medium">Multi Brand Management</label>
+                        <label className="text-sm font-medium">Brand Management</label>
                         <p className="text-sm text-gray-500 mt-2">Manage brands and access for your account.</p>
                         <div className="mt-2">
                             <Button variant="gradient" className="px-4 py-2">Manage Brands</Button>
@@ -41,16 +41,16 @@ export default function PreferenceTab() {
                         <label className="text-sm font-medium">Manage Subscription</label>
                         <p className="text-sm text-gray-500 mt-2">Change or view subscription details.</p>
                         <div className="mt-2">
-                            <Button variant="gradient" className="px-4 py-2">Manage Subscription</Button>
+                            <Button variant="gradient" className="px-4 py-2">Upgrade Subscription</Button>
                         </div>
                     </div>
 
                     <div>
-                        <label className="text-sm font-medium">Theme</label>
+                        {/* <label className="text-sm font-medium">Theme</label>
                         <div className="mt-2 flex gap-2">
                             <button className="px-3 py-2 border rounded-md">Light</button>
                             <button className="px-3 py-2 border rounded-md">Dark</button>
-                        </div>
+                        </div> */}
                     </div>
 
                     <div>

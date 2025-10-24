@@ -9,7 +9,6 @@ export default function ProfileClient() {
     const tabs = [
         { id: 1, label: 'Account', content: <AccountTab /> },
         { id: 2, label: 'Preference & Settings', content: <PreferenceTab /> },
-        { id: 3, label: 'Integration', content: <IntegrationTab /> },
         { id: 4, label: 'Subscription & Billing', content: <BillingTab /> },
     ];
 
