@@ -13,13 +13,13 @@ export default function AccountTab() {
             <section className="bg-white p-4 rounded-lg border">
                 <h4 className="text-lg font-medium mb-4">My personal information</h4>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
-                    <div className="flex flex-col items-center md:items-start md:col-span-1">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start ">
+                    {/* <div className="flex flex-col items-center md:items-start md:col-span-1">
                         <BannerWithAvatar avatarSize={112} badge={<>✓</>} />
-                        {/* <p className="text-sm text-gray-500 mt-2">Profile Photo</p> */}
-                    </div>
+                        <p className="text-sm text-gray-500 mt-2">Profile Photo</p>
+                    </div> */}
 
-                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-4 mx-auto w-full">
                         <div>
                             <label className="text-sm font-medium text-gray-700">Full name</label>
                             <Input className="mt-1" defaultValue="John Doe" />

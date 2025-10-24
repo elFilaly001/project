@@ -40,10 +40,12 @@ export default function SourceDistribution() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Distribution by source</div>
+            <div className="text-sm font-medium mb-2">Mentions Distribution by source</div>
             <div className="h-48">
                 <Bar data={data} options={options} />
             </div>
+
+            <p>AI text generation capabilities are transforming the way we create content.</p>
         </div>
     );
 }

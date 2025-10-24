@@ -34,7 +34,7 @@ export default function BillingTab() {
                     <div>
                         <label className="text-sm font-medium">Manage Subscription</label>
                         <div className="mt-2">
-                            <Button variant="gradient" className="px-4 py-2">Manage</Button>
+                            <Button variant="gradient" className="px-4 py-2">Upgrade</Button>
                         </div>
                     </div>
 

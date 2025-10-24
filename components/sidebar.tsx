@@ -66,7 +66,7 @@ export default function Sidebar() {
           <img
             src="/logo-intalks.png"
             alt="In-talks"
-            className="block h-8 w-[60px]"
+            className="block h-8 w-full"
             draggable={false}
           />
         </div>

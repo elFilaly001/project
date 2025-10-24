@@ -47,7 +47,7 @@ export default function BannerWithAvatar({
                     {avatarSrc ? (
                         <img src={avatarSrc} alt={alt} className="w-full h-full object-cover" />
                     ) : (
-                        <div className="w-full h-full flex items-center justify-center text-gray-400">Avatar</div>
+                        <div className="w-full h-full flex items-center justify-center text-gray-400">Logo</div>
                     )}
                 </div>
 
