@@ -1,25 +1,13 @@
 // Type for socialBreakdown
-type SocialBreakdownItem = { name: string; percent: number; color: string };
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Pie } from 'react-chartjs-2';
-ChartJS.register(ArcElement, Tooltip, Legend);
-// ProfileOverview.jsx
-// Next.js / React component (single-file) using Tailwind CSS
-// Drop this into your components folder and import it on any page.
-
 import React, { useState } from 'react';
-import Image from 'next/image';
 
-/**
- * Props:
- * - name: string
- * - subtitle: string
- * - description: string
- * - avatarUrl: string (optional)
- * - followers: number
- * - platform: 'instagram' | 'twitter' | 'facebook' (used for small badge)
- * - ringPercent: number (0-100) how full the donut is
- */
+type SocialBreakdownItem = { 
+  name: string; 
+  percent: number; 
+  color: string; 
+  logo?: string;
+  gradient?: string;
+};
 
 export default function ProfileOverview({
   name = 'Glovo Maroc',
@@ -30,14 +18,37 @@ export default function ProfileOverview({
   platform = 'instagram' as 'instagram' | 'twitter' | 'facebook',
   ringPercent = 75,
   socialBreakdown = [
-    { name: 'Instagram', percent: 40, color: '#E1306C' },
-    { name: 'TikTok', percent: 20, color: '#010101' },
-    { name: 'YouTube', percent: 15, color: '#FF0000' },
-    { name: 'X', percent: 10, color: '#000000' },
-    { name: 'LinkedIn', percent: 5, color: '#0077B5' },
-    { name: 'Snapchat', percent: 5, color: '#FFFC00' },
-    { name: 'Twitch', percent: 3, color: '#9147FF' },
-    { name: 'Pinterest', percent: 2, color: '#E60023' },
+    {
+      name: "Instagram",
+      percent: 40,
+      color: "#E1306C",
+      gradient: "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #FD1D1D 100%)",
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
+    },
+    {
+      name: "TikTok",
+      percent: 20,
+      color: "#010101",
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg",
+    },
+    {
+      name: "YouTube",
+      percent: 15,
+      color: "#FF0000",
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
+    },
+    {
+      name: "X",
+      percent: 10,
+      color: "#000000",
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
+    },
+    {
+      name: "LinkedIn",
+      percent: 5,
+      color: "#0077B5",
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg",
+    },
   ],
 }: {
   name?: string;
@@ -49,144 +60,15 @@ export default function ProfileOverview({
   ringPercent?: number;
   socialBreakdown?: SocialBreakdownItem[];
 }) {
-  // compute a short formatted followers string
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
   function formatFollowers(n: number): string {
     if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M';
     if (n >= 1_000) return (n / 1_000).toFixed(1) + 'K';
     return String(n);
   }
 
-  // Pie chart data for all social media percentages
-  const pieData = {
-    labels: socialBreakdown.map((s) => s.name),
-    datasets: [
-      {
-        data: socialBreakdown.map((s) => s.percent),
-        backgroundColor: socialBreakdown.map((s) => s.color),
-        borderWidth: 0,
-      },
-    ],
-  };
-
-  // State for hovered segment
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-
-  const pieOptions = {
-    cutout: '78%',
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: false },
-    },
-    maintainAspectRatio: false,
-    onHover: (_event: any, elements: any[]) => {
-      if (elements && elements.length > 0) {
-        setHoveredIndex(elements[0].index);
-      } else {
-        setHoveredIndex(null);
-      }
-    },
-    events: [
-      'mousemove',
-      'mouseout',
-      'touchstart',
-      'touchmove',
-      'touchend',
-    ] as Array<
-      | 'mousemove'
-      | 'mouseout'
-      | 'touchstart'
-      | 'touchmove'
-      | 'touchend'
-      | 'fullscreenchange'
-      | 'fullscreenerror'
-      | 'abort'
-      | 'animationcancel'
-      | 'animationend'
-      | 'animationiteration'
-      | 'auxclick'
-      | 'beforeinput'
-      | 'blur'
-      | 'cancel'
-      | 'canplay'
-      | 'canplaythrough'
-      | 'change'
-      | 'click'
-      | 'close'
-      | 'compositionend'
-      | 'compositionstart'
-      | 'compositionupdate'
-      | 'contextmenu'
-      | 'copy'
-      | 'cuechange'
-      | 'cut'
-      | 'dblclick'
-      | 'drag'
-      | 'dragend'
-      | 'dragenter'
-      | 'dragleave'
-      | 'dragover'
-      | 'dragstart'
-      | 'drop'
-      | 'durationchange'
-      | 'emptied'
-      | 'ended'
-      | 'error'
-      | 'focus'
-      | 'focusin'
-      | 'focusout'
-      | 'formdata'
-      | 'gotpointercapture'
-      | 'input'
-      | 'invalid'
-      | 'keydown'
-      | 'keypress'
-      | 'keyup'
-      | 'load'
-      | 'loadeddata'
-      | 'loadedmetadata'
-      | 'loadstart'
-      | 'lostpointercapture'
-      | 'mousedown'
-      | 'mouseenter'
-      | 'mouseleave'
-      | 'mousemove'
-      | 'mouseout'
-      | 'mouseover'
-      | 'mouseup'
-      | 'paste'
-      | 'pause'
-      | 'play'
-      | 'playing'
-      | 'pointercancel'
-      | 'pointerdown'
-      | 'pointerenter'
-      | 'pointerleave'
-      | 'pointermove'
-      | 'pointerout'
-      | 'pointerover'
-      | 'pointerup'
-      | 'progress'
-      | 'ratechange'
-      | 'reset'
-      | 'resize'
-      | 'scroll'
-      | 'securitypolicyviolation'
-      | 'seeked'
-      | 'seeking'
-      | 'select'
-      | 'selectionchange'
-      | 'selectstart'
-      | 'stalled'
-      | 'submit'
-      | 'suspend'
-      | 'timeupdate'
-      | 'toggle'
-      | 'volumechange'
-      | 'waiting'
-      | 'wheel'
-      | undefined
-    >,
-  };
+  const total = socialBreakdown.reduce((sum, item) => sum + item.percent, 0);
 
   return (
     <div className="w-full px-6 lg:px-12">
@@ -196,9 +78,8 @@ export default function ProfileOverview({
           <div className="flex gap-6 items-center">
             <div className="flex-shrink-0">
               <div className="w-28 h-28 rounded-full bg-yellow-400 flex items-center justify-center text-3xl font-bold text-white">
-                {/* fallback avatar initials */}
                 {avatarUrl ? (
-                  <Image src={avatarUrl} alt={name} width={112} height={112} className="rounded-full object-cover" />
+                  <img src={avatarUrl} alt={name} className="w-full h-full rounded-full object-cover" />
                 ) : (
                   <span>G</span>
                 )}
@@ -217,33 +98,157 @@ export default function ProfileOverview({
           </div>
         </div>
 
-        {/* Right: followers donut (multi-platform) */}
-        <div className="w-60 flex-shrink-0 flex flex-col items-center">
-          <div className="text-sm text-gray-600 mb-4">Followers Dispatch</div>
-          <div className="relative w-52 h-52 flex items-center justify-center">
-            <Pie data={pieData} options={pieOptions} width={208} height={208} />
-            {/* Center content: show hovered platform or total */}
-            <div className="absolute flex flex-col items-center justify-center w-52 h-52 pointer-events-none select-none">
-              {hoveredIndex !== null && socialBreakdown[hoveredIndex] ? (
-                <>
-                  <span className="text-lg font-bold text-gray-900">{socialBreakdown[hoveredIndex].percent}%</span>
-                  <span className="text-xs font-medium mt-1" style={{ color: socialBreakdown[hoveredIndex].color }}>{socialBreakdown[hoveredIndex].name}</span>
-                </>
-              ) : (
-                <>
-                  <span className="text-lg font-bold text-gray-900">{formatFollowers(followers)}</span>
-                  <span className="text-xs text-gray-500">Total</span>
-                </>
-              )}
-            </div>
+        {/* Right: followers pie chart */}
+        <div className="w-72 flex-shrink-0 flex flex-col items-center">
+          <div className="text-sm text-gray-600 mb-4 font-medium">Followers Dispatch</div>
+          
+          <div className="relative w-64 h-64 flex items-center justify-center">
+            <svg width="256" height="256" viewBox="0 0 256 256" className="transform -rotate-90">
+              <defs>
+                <linearGradient id="instagramGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#833AB4" />
+                  <stop offset="50%" stopColor="#E1306C" />
+                  <stop offset="100%" stopColor="#FD1D1D" />
+                </linearGradient>
+              </defs>
+              
+              {socialBreakdown.map((platform, index) => {
+                const startAngle = socialBreakdown.slice(0, index).reduce((sum, item) => sum + (item.percent / total) * 360, 0);
+                const endAngle = startAngle + (platform.percent / total) * 360;
+                
+                const startRad = (startAngle * Math.PI) / 180;
+                const endRad = (endAngle * Math.PI) / 180;
+                
+                const radius = 100;
+                const centerX = 128;
+                const centerY = 128;
+                
+                const x1 = centerX + radius * Math.cos(startRad);
+                const y1 = centerY + radius * Math.sin(startRad);
+                const x2 = centerX + radius * Math.cos(endRad);
+                const y2 = centerY + radius * Math.sin(endRad);
+                
+                const largeArcFlag = endAngle - startAngle > 180 ? 1 : 0;
+                
+                const pathData = [
+                  `M ${centerX} ${centerY}`,
+                  `L ${x1} ${y1}`,
+                  `A ${radius} ${radius} 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+                  'Z'
+                ].join(' ');
+                
+                return (
+                  <path
+                    key={index}
+                    d={pathData}
+                    fill={platform.name === "Instagram" ? "url(#instagramGradient)" : platform.color}
+                    stroke="white"
+                    strokeWidth="2"
+                    style={{
+                      cursor: 'pointer',
+                      opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.6,
+                      transition: 'opacity 0.2s'
+                    }}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                  />
+                );
+              })}
+            </svg>
+            
+            {/* Platform logos / dots */}
+            {socialBreakdown.map((platform, index) => {
+              const startAngle = socialBreakdown.slice(0, index).reduce((sum, item) => sum + (item.percent / total) * 360, 0);
+              const endAngle = startAngle + (platform.percent / total) * 360;
+              const midAngle = (startAngle + endAngle) / 2 - 90;
+
+              // --- NEW: compute logo size (10..28px) based on percent ---
+              // small slices -> smaller icons
+              const computedSize = Math.round(10 + (platform.percent / Math.max(1, total)) * 18); // 10..28
+              const logoSize = Math.max(10, Math.min(28, computedSize));
+
+              // --- NEW: push very small slices further out so they don't collide ---
+              // base radius for icons
+              const baseRadius = 68;
+              // if percent is small (<6) push out more (the smaller the percent, the larger the push)
+              const pushMultiplier = Math.max(0, (6 - platform.percent)); // e.g. percent=2 -> 4
+              const extraPush = pushMultiplier * 6; // tweak this multiplier to taste
+              const iconRadius = baseRadius + extraPush;
+
+              const x = iconRadius * Math.cos((midAngle * Math.PI) / 180);
+              const y = iconRadius * Math.sin((midAngle * Math.PI) / 180);
+
+              // --- NEW: fallback for extremely small slices: render a small colored dot instead of logo ---
+              const shouldRenderDot = platform.percent < 3; // threshold (tweak as needed)
+
+              return (
+                <div
+                  key={index}
+                  className="absolute bg-white rounded-full p-1 shadow-sm pointer-events-none"
+                  style={{
+                    top: `calc(50% + ${y}px)`,
+                    left: `calc(50% + ${x}px)`,
+                    transform: 'translate(-50%, -50%)',
+                    opacity: hoveredIndex === null || hoveredIndex === index ? 1 : 0.6,
+                    transition: 'opacity 0.2s, transform 0.12s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    // reduce container size slightly to avoid overlap while centering
+                    width: `${logoSize + 8}px`,
+                    height: `${logoSize + 8}px`,
+                    padding: 0,
+                    borderRadius: '999px',
+                  }}
+                >
+                  {shouldRenderDot ? (
+                    // small colored dot instead of logo for extremely tiny segments
+                    <div
+                      style={{
+                        width: `${Math.max(6, Math.round(logoSize * 0.6))}px`,
+                        height: `${Math.max(6, Math.round(logoSize * 0.6))}px`,
+                        borderRadius: '50%',
+                        background: platform.color,
+                        boxShadow: '0 1px 2px rgba(0,0,0,0.15)',
+                      }}
+                      title={`${platform.name}: ${platform.percent}%`}
+                    />
+                  ) : (
+                    <img
+                      src={platform.logo}
+                      alt={platform.name}
+                      className="block"
+                      style={{
+                        width: `${logoSize}px`,
+                        height: `${logoSize}px`,
+                        objectFit: 'contain',
+                        filter: platform.color === '#010101' ? 'brightness(0) invert(1)' : undefined,
+                      }}
+                    />
+                  )}
+
+                  {hoveredIndex === index && (
+                    <div className="absolute bg-gray-800 text-white text-xs rounded px-2 py-1" style={{
+                      top: '-30px',
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      whiteSpace: 'nowrap'
+                    }}>
+                      {platform.name}: {platform.percent}%
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-          {/* legend or small label */}
+          
           <div className="mt-3 text-xs text-gray-500 text-center">All Social Platforms</div>
         </div>
       </div>
     </div>
   );
 }
+
 
 // PlatformBadge now supports all platforms
 function PlatformBadge({ platform, size = 18 }: { platform: string; size?: number }) {
@@ -290,27 +295,6 @@ function PlatformBadge({ platform, size = 18 }: { platform: string; size?: numbe
     return (
       <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#0077B5]" aria-hidden>
         <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#0077B5"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">in</text></svg>
-      </div>
-    );
-  }
-  if (platform === 'Snapchat') {
-    return (
-      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#FFFC00]" aria-hidden>
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#FFFC00"/><circle cx="12" cy="12" r="6" stroke="#000" strokeWidth="2" fill="none"/></svg>
-      </div>
-    );
-  }
-  if (platform === 'Twitch') {
-    return (
-      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#9147FF]" aria-hidden>
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#9147FF"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">T</text></svg>
-      </div>
-    );
-  }
-  if (platform === 'Pinterest') {
-    return (
-      <div style={{ width: size, height: size }} className="rounded-full flex items-center justify-center bg-[#E60023]" aria-hidden>
-        <svg width={size} height={size} viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="12" fill="#E60023"/><text x="12" y="16" textAnchor="middle" fontSize="10" fill="#fff">P</text></svg>
       </div>
     );
   }
