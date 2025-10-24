@@ -41,3 +41,12 @@ export default async function LangLayout({ children, params }: { children: React
         </html>
     );
 }
+
+// required for `output: 'export'` so Next can prerender all language routes
+export function generateStaticParams() {
+    return [
+        { lang: 'en' },
+        { lang: 'fr' },
+        { lang: 'ar' },
+    ];
+}

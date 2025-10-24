@@ -27,7 +27,7 @@ export default function TabBar({ tabs = defaultTabs, initialActiveId }: { tabs?:
                             key={tab.id}
                             onClick={() => setActiveTab(tab.id)}
                             className={`px-6 py-2 rounded-md text-sm font-medium focus:outline-none transition-colors duration-200 ${activeTab === tab.id
-                                ? 'bg-pink-500 text-white'
+                                ? 'bg-gradient-to-r from-[#F02CB9] to-[#FF70C9] text-white shadow-sm'
                                 : 'text-gray-700 hover:bg-gray-200'
                                 }`}
                         >

@@ -5,11 +5,3 @@ export default function LangIndex({ params }: { params: { lang: string } }) {
         <ProfileClient />
     );
 }
-
-export function generateStaticParams() {
-    return [
-        { lang: 'en' },
-        { lang: 'fr' },
-        { lang: 'ar' }
-    ];
-}
