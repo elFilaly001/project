@@ -6,6 +6,10 @@ import TikTokPostCard from './posts/tiktok-post-card';
 import YouTubePostCard from './posts/youtube-post-card';
 import XPostCard from './posts/x-post-card';
 import LinkedInPostCard from './posts/linkedin-post-card';
+import SnapchatPostCard from './posts/snapchat-post-card';
+import TwitchPostCard from './posts/twitch-post-card';
+import PinterestPostCard from './posts/pinterest-post-card';
+import KickPostCard from './posts/kick-post-card';
 
 type InstagramPost = {
   username: string;
@@ -23,12 +27,21 @@ type YouTubePost = InstagramPost;
 type XPost = InstagramPost & { retweets: string };
 type LinkedInPost = InstagramPost & { reposts: string };
 
+type SnapchatPost = InstagramPost;
+type TwitchPost = InstagramPost;
+type PinterestPost = InstagramPost;
+type KickPost = InstagramPost;
+
 type PostsData = {
   Instagram: InstagramPost[];
   TikTok: TikTokPost[];
   YouTube: YouTubePost[];
   X: XPost[];
   LinkedIn: LinkedInPost[];
+  Snapchat: SnapchatPost[];
+  Twitch: TwitchPost[];
+  Pinterest: PinterestPost[];
+  Kick: KickPost[];
 };
 
 export default function Posts() {
@@ -171,6 +184,58 @@ export default function Posts() {
         comments: '148',
         reposts: '148',
         postUrl: 'https://linkedin.com/posts/xyz',
+      },
+    ],
+    Snapchat: [
+      {
+        username: 'snapstar',
+        userAvatar: 'https://i.pravatar.cc/150?img=62',
+        postDate: '2 Oct 25',
+        postImage: 'https://picsum.photos/seed/snapchat1/600/400',
+        postText: 'Check out my latest Snap!',
+        views: '1.2M',
+        likes: '12K',
+        comments: '1.1K',
+        postUrl: 'https://snapchat.com/add/snapstar',
+      },
+    ],
+    Twitch: [
+      {
+        username: 'twitchpro',
+        userAvatar: 'https://i.pravatar.cc/150?img=72',
+        postDate: '15 Sep 25',
+        postImage: 'https://picsum.photos/seed/twitch1/600/400',
+        postText: 'Streaming live now! Come join the chat.',
+        views: '800K',
+        likes: '9.2K',
+        comments: '2.3K',
+        postUrl: 'https://twitch.tv/twitchpro',
+      },
+    ],
+    Pinterest: [
+      {
+        username: 'pinterestqueen',
+        userAvatar: 'https://i.pravatar.cc/150?img=82',
+        postDate: '7 Aug 25',
+        postImage: 'https://picsum.photos/seed/pinterest1/600/400',
+        postText: 'My favorite home decor ideas for fall 🍂',
+        views: '2.1M',
+        likes: '18.7K',
+        comments: '900',
+        postUrl: 'https://pinterest.com/pin/xyz',
+      },
+    ],
+    Kick: [
+      {
+        username: 'kickstreamer',
+        userAvatar: 'https://i.pravatar.cc/150?img=92',
+        postDate: '29 Jun 25',
+        postImage: 'https://picsum.photos/seed/kick1/600/400',
+        postText: 'Just went live on Kick! 🚀',
+        views: '350K',
+        likes: '4.1K',
+        comments: '300',
+        postUrl: 'https://kick.com/kickstreamer',
       },
     ],
   };
@@ -422,6 +487,14 @@ export default function Posts() {
                 return <XPostCard key={idx} {...post as XPost} />;
               case 'LinkedIn':
                 return <LinkedInPostCard key={idx} {...post as LinkedInPost} />;
+              case 'Snapchat':
+                return <SnapchatPostCard key={idx} {...post as SnapchatPost} />;
+              case 'Twitch':
+                return <TwitchPostCard key={idx} {...post as TwitchPost} />;
+              case 'Pinterest':
+                return <PinterestPostCard key={idx} {...post as PinterestPost} />;
+              case 'Kick':
+                return <KickPostCard key={idx} {...post as KickPost} />;
               default:
                 return null;
             }
@@ -439,6 +512,14 @@ export default function Posts() {
                   return <XPostCard key={platform + idx} {...post as XPost} />;
                 case 'LinkedIn':
                   return <LinkedInPostCard key={platform + idx} {...post as LinkedInPost} />;
+                case 'Snapchat':
+                  return <SnapchatPostCard key={platform + idx} {...post as SnapchatPost} />;
+                case 'Twitch':
+                  return <TwitchPostCard key={platform + idx} {...post as TwitchPost} />;
+                case 'Pinterest':
+                  return <PinterestPostCard key={platform + idx} {...post as PinterestPost} />;
+                case 'Kick':
+                  return <KickPostCard key={platform + idx} {...post as KickPost} />;
                 default:
                   return null;
               }
@@ -487,6 +568,22 @@ export default function Posts() {
                 case 'LinkedIn':
                   iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg';
                   label = 'LinkedIn';
+                  break;
+                case 'Snapchat':
+                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg';
+                  label = 'Snapchat';
+                  break;
+                case 'Twitch':
+                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg';
+                  label = 'Twitch';
+                  break;
+                case 'Pinterest':
+                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pinterest.svg';
+                  label = 'Pinterest';
+                  break;
+                case 'Kick':
+                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kick.svg';
+                  label = 'Kick';
                   break;
                 default:
                   iconUrl = '';
