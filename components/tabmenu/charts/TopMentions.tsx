@@ -60,7 +60,7 @@ export default function TopMentions() {
                         </svg>
                     </div>
                     <div className="flex-1">
-                        <div className="text-sm font-medium mb-1">AI interpretation</div>
+                        <div className="text-sm font-medium mb-1">AI-powered insight</div>
                         <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
                             {interpretationSentences.map((s, i) => (
                                 <p key={i} className="mb-1">{s}</p>
