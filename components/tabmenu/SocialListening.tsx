@@ -51,9 +51,11 @@ export default function SocialListening() {
             </div>
 
             {/* Bottom area: Source distribution, Share of voice donuts, Top keywords */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" >
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" >
                 <SourceDistribution />
                 <ShareOfVoice />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-1 gap-6" >
                 <TopKeywords />
             </div>
         </div>

@@ -80,7 +80,7 @@ export default function ShareOfVoice() {
                         </svg>
                     </div>
                     <div className="flex-1">
-                        <div className="text-sm font-medium mb-1">AI interpretation</div>
+                        <div className="text-sm font-medium mb-1">AI-powered insight</div>
                         <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
                             <p className="mb-1">{`Top category is ${dataLabels[maxIndex]} with ${topPct}% of the share of voice.`}</p>
                             <p className="mb-1">{`Other categories: ${dataLabels.map((l, i) => `${l} ${slicePercentages[i]}%`).join(', ')}.`}</p>
