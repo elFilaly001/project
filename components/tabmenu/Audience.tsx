@@ -11,6 +11,7 @@ import LanguageDistributionCard from "../language-distribution-card";
 import BrandAffinityCard from "../brand-affinity-card";
 import InterestAffinityCard from "../interest-affinity-card";
 import AllDataTable from "../all-data-table";
+import SocialDropdown, { SocialPlatform } from "../ui/SocialDropdown";
 
 /**
  * Audience component for the TabBar.
@@ -33,7 +34,7 @@ export default function Audience() {
   const [selectedSocial, setSelectedSocial] = useState<string | null>(null);
 
   // Social platforms (without 'All Social Medias')
-  const socialPlatforms = [
+  const socialPlatforms: SocialPlatform[] = [
     {
       name: "Instagram",
       count: 107,
@@ -70,29 +71,22 @@ export default function Audience() {
       text: "white",
     },
     {
+      name: "Facebook",
+      count: null,
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
+      color: "#1877F3",
+      text: "white",
+    },
+    {
       name: "Snapchat",
       count: null,
       logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg",
       color: "#FFFC00",
       text: "black",
     },
-    {
-      name: "Twitch",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg",
-      color: "#9147FF",
-      text: "white",
-    },
-    {
-      name: "Pinterest",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pinterest.svg",
-      color: "#E60023",
-      text: "white",
-    },
   ];
   // All Social Medias option (with its own logo)
-  const allSocialOption = {
+  const allSocialOption: SocialPlatform = {
     name: "All Social Medias",
     count: null,
     logo: "https://cdn.jsdelivr.net/gh/feathericons/feather/icons/globe.svg", // Example globe icon
@@ -102,7 +96,7 @@ export default function Audience() {
 
   const mockData = [
     {
-      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/2/21/Instagram_Glyph_Gradient_RGB_logo.svg",
       name: "IShowSpeed",
       score: "99.7/100",
       followers: "41.7M",
@@ -115,7 +109,7 @@ export default function Audience() {
       postingHabits: "once a week at 11PM",
     },
     {
-      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg",
       name: "IShowSpeed",
       score: "98.8/100",
       followers: "42.4M",
@@ -128,7 +122,7 @@ export default function Audience() {
       postingHabits: "once a week at 11PM",
     },
     {
-      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg",
       name: "Speed⭐",
       score: "96.8/100",
       followers: "3.7M",
@@ -141,7 +135,7 @@ export default function Audience() {
       postingHabits: "once a week at 10PM",
     },
     {
-      icon: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
+      icon: "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
       name: "IShowSpeed",
       score: "96.7/100",
       followers: "45M",
@@ -188,10 +182,6 @@ export default function Audience() {
                   CSV Export
                 </button>
               </div>
-              {/* Social media filter buttons */}
-              <div className="flex flex-wrap gap-2 items-center">
-                {/* Custom Social Media Dropdown */}
-              </div>
               <div className="flex items-center gap-2">
                 <div className="bg-white border rounded-md shadow-sm flex items-center h-10">
                   <button
@@ -217,178 +207,13 @@ export default function Audience() {
                     Likers
                   </button>
                 </div>
-                <div className="relative">
-                  <button
-                    className="h-10 border rounded-md px-2 text-sm bg-white flex items-center min-w-[160px] pr-8 relative"
-                    style={{ minHeight: 40 }}
-                    onClick={() => setShowSocialDropdown((v: boolean) => !v)}
-                    type="button"
-                  >
-                    {selectedSocial ? (
-                      <>
-                        <img
-                          src={
-                            socialPlatforms.find(
-                              (s) => s.name === selectedSocial
-                            )?.logo || allSocialOption.logo
-                          }
-                          alt={selectedSocial}
-                          className="w-5 h-5 mr-1"
-                          style={{
-                            display: "inline-block",
-                            verticalAlign: "middle",
-                          }}
-                        />
-                        <span>{selectedSocial}</span>
-                      </>
-                    ) : (
-                      <>
-                        <img
-                          src={allSocialOption.logo}
-                          alt="All Social Medias"
-                          className="w-5 h-5 mr-1"
-                          style={{
-                            display: "inline-block",
-                            verticalAlign: "middle",
-                          }}
-                        />
-                        <span>All Social Medias</span>
-                      </>
-                    )}
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg
-                        width="16"
-                        height="16"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M6 8l4 4 4-4"
-                          stroke="#64748b"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                  {showSocialDropdown && (
-                    <div className="absolute left-0 mt-2 z-20 bg-white border rounded-md shadow-lg w-full min-w-[180px]">
-                      {socialPlatforms.map((platform) => {
-                        const isSelected = selectedSocial === platform.name;
-                        // Show white logo only when selected or hovered (black bg), otherwise grayscale (for TikTok/X)
-                        const needsWhiteLogo =
-                          (platform.name === "TikTok" ||
-                            platform.name === "X") &&
-                          isSelected;
-                        return (
-                          <button
-                            key={platform.name}
-                            className={`flex items-center gap-2 px-2 py-2 w-full rounded text-xs font-medium transition group`}
-                            style={
-                              isSelected
-                                ? {
-                                    background: platform.color,
-                                    color: platform.text,
-                                  }
-                                : {}
-                            }
-                            onClick={() => {
-                              setSelectedSocial(platform.name);
-                              setShowSocialDropdown(false);
-                            }}
-                            onMouseEnter={(e) => {
-                              if (!isSelected) {
-                                e.currentTarget.style.background =
-                                  platform.color;
-                                e.currentTarget.style.color = platform.text;
-                                // For TikTok/X, force white logo on hover
-                                const img =
-                                  e.currentTarget.querySelector("img");
-                                if (
-                                  img &&
-                                  (platform.name === "TikTok" ||
-                                    platform.name === "X")
-                                ) {
-                                  img.style.filter = "brightness(0) invert(1)";
-                                }
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (!isSelected) {
-                                e.currentTarget.style.background = "";
-                                e.currentTarget.style.color = "";
-                                // For TikTok/X, revert logo on mouse leave
-                                const img =
-                                  e.currentTarget.querySelector("img");
-                                if (
-                                  img &&
-                                  (platform.name === "TikTok" ||
-                                    platform.name === "X")
-                                ) {
-                                  img.style.filter = "grayscale(1)";
-                                }
-                              }
-                            }}
-                          >
-                            <img
-                              src={platform.logo}
-                              alt={platform.name}
-                              className="w-5 h-5 mr-1"
-                              style={{
-                                filter:
-                                  platform.name === "TikTok" ||
-                                  platform.name === "X"
-                                    ? isSelected
-                                      ? "brightness(0) invert(1)"
-                                      : "grayscale(1)"
-                                    : isSelected
-                                    ? "none"
-                                    : "grayscale(1)",
-                              }}
-                            />
-                            {platform.name}
-                            {platform.count !== null && (
-                              <span className="ml-auto text-xs font-semibold opacity-80">
-                                ({platform.count})
-                              </span>
-                            )}
-                          </button>
-                        );
-                      })}
-                      {/* All Social Medias option at the end */}
-                      <button
-                        className={`flex items-center gap-2 px-2 py-2 w-full rounded text-xs font-medium transition ${
-                          !selectedSocial
-                            ? "bg-indigo-600 text-white"
-                            : "hover:bg-gray-100 text-gray-800"
-                        }`}
-                        style={
-                          !selectedSocial
-                            ? {
-                                background: allSocialOption.color,
-                                color: allSocialOption.text,
-                              }
-                            : {}
-                        }
-                        onClick={() => {
-                          setSelectedSocial(null);
-                          setShowSocialDropdown(false);
-                        }}
-                      >
-                        <img
-                          src={allSocialOption.logo}
-                          alt="All Social Medias"
-                          className="w-5 h-5 mr-1"
-                          style={{
-                            filter: !selectedSocial ? "none" : "grayscale(1)",
-                          }}
-                        />
-                        All Social Medias
-                      </button>
-                    </div>
-                  )}
-                </div>
+              {/* Social media filter buttons */}
+                <SocialDropdown
+                  socialPlatforms={socialPlatforms}
+                  allSocialOption={allSocialOption}
+                  selectedSocial={selectedSocial}
+                  setSelectedSocial={setSelectedSocial}
+                />
                 <div className="text-sm text-gray-500">
                   The audience data is based on{" "}
                   <span className="font-medium text-indigo-600">

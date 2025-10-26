@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { FaThList, FaThLarge } from "react-icons/fa";
 import InstagramPostCard from './posts/instagram-post-card';
@@ -7,9 +6,8 @@ import YouTubePostCard from './posts/youtube-post-card';
 import XPostCard from './posts/x-post-card';
 import LinkedInPostCard from './posts/linkedin-post-card';
 import SnapchatPostCard from './posts/snapchat-post-card';
-import TwitchPostCard from './posts/twitch-post-card';
-import PinterestPostCard from './posts/pinterest-post-card';
-import KickPostCard from './posts/kick-post-card';
+import SocialDropdown, { SocialPlatform } from "../ui/SocialDropdown";
+import SocialPostsTable from "../SocialPostsTable";
 
 type InstagramPost = {
   username: string;
@@ -28,9 +26,7 @@ type XPost = InstagramPost & { retweets: string };
 type LinkedInPost = InstagramPost & { reposts: string };
 
 type SnapchatPost = InstagramPost;
-type TwitchPost = InstagramPost;
-type PinterestPost = InstagramPost;
-type KickPost = InstagramPost;
+type FacebookPost = InstagramPost;
 
 type PostsData = {
   Instagram: InstagramPost[];
@@ -39,18 +35,16 @@ type PostsData = {
   X: XPost[];
   LinkedIn: LinkedInPost[];
   Snapchat: SnapchatPost[];
-  Twitch: TwitchPost[];
-  Pinterest: PinterestPost[];
-  Kick: KickPost[];
+  Facebook: InstagramPost[];
 };
 
 export default function Posts() {
   const [showSocialDropdown, setShowSocialDropdown] = useState(false);
   const [selectedSocial, setSelectedSocial] = useState<string | null>(null);
   const [mode, setMode] = useState<"followers" | "likers">("followers");
-  const [view, setView] = useState<'list' | 'grid'>('list');
+  const [view, setView] = useState<'list' | 'grid'>('grid');
 
-  const socialPlatforms = [
+  const socialPlatforms: SocialPlatform[] = [
     {
       name: "Instagram",
       count: 107,
@@ -87,28 +81,21 @@ export default function Posts() {
       text: "white",
     },
     {
+      name: "Facebook",
+      count: null,
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
+      color: "#1877F3",
+      text: "white",
+    },
+    {
       name: "Snapchat",
       count: null,
       logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg",
       color: "#FFFC00",
       text: "black",
-    },
-    {
-      name: "Twitch",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg",
-      color: "#9147FF",
-      text: "white",
-    },
-    {
-      name: "Pinterest",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pinterest.svg",
-      color: "#E60023",
-      text: "white",
-    },
+    }
   ];
-  const allSocialOption = {
+  const allSocialOption: SocialPlatform = {
     name: "All Social Medias",
     count: null,
     logo: "https://cdn.jsdelivr.net/gh/feathericons/feather/icons/globe.svg",
@@ -199,45 +186,19 @@ export default function Posts() {
         postUrl: 'https://snapchat.com/add/snapstar',
       },
     ],
-    Twitch: [
+    Facebook: [
       {
-        username: 'twitchpro',
-        userAvatar: 'https://i.pravatar.cc/150?img=72',
-        postDate: '15 Sep 25',
-        postImage: 'https://picsum.photos/seed/twitch1/600/400',
-        postText: 'Streaming live now! Come join the chat.',
-        views: '800K',
-        likes: '9.2K',
-        comments: '2.3K',
-        postUrl: 'https://twitch.tv/twitchpro',
-      },
-    ],
-    Pinterest: [
-      {
-        username: 'pinterestqueen',
+        username: 'selenagomez',
         userAvatar: 'https://i.pravatar.cc/150?img=82',
-        postDate: '7 Aug 25',
-        postImage: 'https://picsum.photos/seed/pinterest1/600/400',
-        postText: 'My favorite home decor ideas for fall 🍂',
-        views: '2.1M',
-        likes: '18.7K',
-        comments: '900',
-        postUrl: 'https://pinterest.com/pin/xyz',
+        postDate: '1 Jan 25',
+        postImage: 'https://picsum.photos/seed/facebook1/600/400',
+        postText: 'Happy New Year! 🎉 Wishing you all love, joy, and peace in 2025. Grateful for all the memories we created in 2024. Let’s make more...',
+        views: '2.3M',
+        likes: '150K',
+        comments: '1.2K',
+        postUrl: 'https://facebook.com/selenagomez/posts/xyz',
       },
-    ],
-    Kick: [
-      {
-        username: 'kickstreamer',
-        userAvatar: 'https://i.pravatar.cc/150?img=92',
-        postDate: '29 Jun 25',
-        postImage: 'https://picsum.photos/seed/kick1/600/400',
-        postText: 'Just went live on Kick! 🚀',
-        views: '350K',
-        likes: '4.1K',
-        comments: '300',
-        postUrl: 'https://kick.com/kickstreamer',
-      },
-    ],
+    ]
   };
 
   return (
@@ -246,200 +207,12 @@ export default function Posts() {
         {/* Filter Bar */}
         <div className="flex flex-col gap-2 mb-2">
           <div className="flex flex-wrap items-center justify-between gap-2">
-            <div className="flex items-center gap-2">
-            {/* List/Grid Toggler */}
-            <div className="flex items-center gap-1 ml-2">
+            {/* Left group: CSV Export + List/Grid Toggler */}
+            <div className="flex items-center gap-3">
               <button
-                className={`p-2 rounded-md border ${view === 'list' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
-                onClick={() => setView('list')}
-                title="List view"
-                type="button"
-              >
-                <FaThList size={16} />
-              </button>
-              <button
-                className={`p-2 rounded-md border ${view === 'grid' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
-                onClick={() => setView('grid')}
-                title="Grid view"
-                type="button"
-              >
-                <FaThLarge size={16} />
-              </button>
-            </div>
-              <div className="flex flex-wrap gap-2 items-center">
-                {/* Custom Social Media Dropdown */}
-                <div className="relative">
-                  <button
-                    className="border rounded-md px-2 py-1 text-sm bg-white flex items-center min-w-[160px] pr-8 relative"
-                    onClick={() => setShowSocialDropdown((v) => !v)}
-                    type="button"
-                  >
-                    {selectedSocial ? (
-                      <>
-                        <img
-                          src={
-                            socialPlatforms.find(
-                              (s) => s.name === selectedSocial
-                            )?.logo || allSocialOption.logo
-                          }
-                          alt={selectedSocial}
-                          className="w-5 h-5 mr-1"
-                          style={{
-                            display: "inline-block",
-                            verticalAlign: "middle",
-                          }}
-                        />
-                        <span>{selectedSocial}</span>
-                      </>
-                    ) : (
-                      <>
-                        <img
-                          src={allSocialOption.logo}
-                          alt="All Social Medias"
-                          className="w-5 h-5 mr-1"
-                          style={{
-                            display: "inline-block",
-                            verticalAlign: "middle",
-                          }}
-                        />
-                        <span>All Social Medias</span>
-                      </>
-                    )}
-                    <span className="absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none">
-                      <svg
-                        width="16"
-                        height="16"
-                        fill="none"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M6 8l4 4 4-4"
-                          stroke="#64748b"
-                          strokeWidth="1.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </span>
-                  </button>
-                  {showSocialDropdown && (
-                    <div className="absolute left-0 mt-2 z-20 bg-white border rounded-md shadow-lg w-full min-w-[180px]">
-                      {socialPlatforms.map((platform) => {
-                        const isSelected = selectedSocial === platform.name;
-                        return (
-                          <button
-                            key={platform.name}
-                            className={`flex items-center gap-2 px-2 py-2 w-full rounded text-xs font-medium transition group`}
-                            style={
-                              isSelected
-                                ? {
-                                    background: platform.color,
-                                    color: platform.text,
-                                  }
-                                : {}
-                            }
-                            onClick={() => {
-                              setSelectedSocial(platform.name);
-                              setShowSocialDropdown(false);
-                            }}
-                            onMouseEnter={(e) => {
-                              if (!isSelected) {
-                                e.currentTarget.style.background =
-                                  platform.color || "";
-                                e.currentTarget.style.color =
-                                  platform.text || "";
-                                // For TikTok/X, force white logo on hover
-                                const img =
-                                  e.currentTarget.querySelector("img");
-                                if (
-                                  img &&
-                                  (platform.name === "TikTok" ||
-                                    platform.name === "X")
-                                ) {
-                                  img.style.filter = "brightness(0) invert(1)";
-                                }
-                              }
-                            }}
-                            onMouseLeave={(e) => {
-                              if (!isSelected) {
-                                e.currentTarget.style.background = "";
-                                e.currentTarget.style.color = "";
-                                // For TikTok/X, revert logo on mouse leave
-                                const img =
-                                  e.currentTarget.querySelector("img");
-                                if (
-                                  img &&
-                                  (platform.name === "TikTok" ||
-                                    platform.name === "X")
-                                ) {
-                                  img.style.filter = "grayscale(1)";
-                                }
-                              }
-                            }}
-                          >
-                            <img
-                              src={platform.logo}
-                              alt={platform.name}
-                              className="w-5 h-5 mr-1"
-                              style={{
-                                filter:
-                                  platform.name === "TikTok" ||
-                                  platform.name === "X"
-                                    ? isSelected
-                                      ? "brightness(0) invert(1)"
-                                      : "grayscale(1)"
-                                    : isSelected
-                                    ? "none"
-                                    : "grayscale(1)",
-                              }}
-                            />
-                            {platform.name}
-                            {platform.count !== null && (
-                              <span className="ml-auto text-xs font-semibold opacity-80">
-                                ({platform.count})
-                              </span>
-                            )}
-                          </button>
-                        );
-                      })}
-                      {/* All Social Medias option at the end */}
-                      <button
-                        className={`flex items-center gap-2 px-2 py-2 w-full rounded text-xs font-medium transition ${
-                          !selectedSocial
-                            ? "bg-indigo-600 text-white"
-                            : "hover:bg-gray-100 text-gray-800"
-                        }`}
-                        style={
-                          !selectedSocial
-                            ? {
-                                background: allSocialOption.color,
-                                color: allSocialOption.text,
-                              }
-                            : {}
-                        }
-                        onClick={() => {
-                          setSelectedSocial(null);
-                          setShowSocialDropdown(false);
-                        }}
-                      >
-                        <img
-                          src={allSocialOption.logo}
-                          alt="All Social Medias"
-                          className="w-5 h-5 mr-1"
-                          style={{
-                            filter: !selectedSocial ? "none" : "grayscale(1)",
-                          }}
-                        />
-                        All Social Medias
-                      </button>
-                    </div>
-                  )}
-                </div>
-              </div>
-              {/* CSV Export */}
-              <button
-                className="p-2 border rounded-md bg-white hover:bg-gray-100 flex items-center gap-1 text-sm font-medium"
+                className="h-10 p-2 border rounded-md bg-white hover:bg-gray-100 flex items-center gap-1 text-sm font-medium"
                 title="Export CSV"
+                style={{ minHeight: 40 }}
               >
                 <svg width="16" height="16" fill="none" viewBox="0 0 20 20">
                   <path
@@ -459,18 +232,51 @@ export default function Posts() {
                 </svg>
                 CSV Export
               </button>
-              {/* Sort by dropdown */}
+              <div className="flex items-center gap-1 ml-2">
+                <button
+                  className={`h-10 p-2 rounded-md border ${view === 'list' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                  onClick={() => setView('list')}
+                  title="List view"
+                  type="button"
+                  style={{ minHeight: 40 }}
+                >
+                  <FaThList size={16} />
+                </button>
+                <button
+                  className={`h-10 p-2 rounded-md border ${view === 'grid' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                  onClick={() => setView('grid')}
+                  title="Grid view"
+                  type="button"
+                  style={{ minHeight: 40 }}
+                >
+                  <FaThLarge size={16} />
+                </button>
+              </div>
+            </div>
+            {/* Right group: Sort by + Social Dropdown + Data note */}
+            <div className="flex flex-wrap gap-3 items-center">
               <div className="flex items-center gap-1">
                 <span className="text-xs text-gray-500">Sort by:</span>
-                <select className="border rounded-md px-2 py-1 text-sm bg-white">
+                <select className="h-10 border rounded-md px-2 py-1 text-sm bg-white" style={{ minHeight: 40 }}>
                   <option>Social media</option>
                   <option>Name</option>
                   <option>Followers</option>
                 </select>
               </div>
+              <SocialDropdown
+                socialPlatforms={socialPlatforms}
+                allSocialOption={allSocialOption}
+                selectedSocial={selectedSocial}
+                setSelectedSocial={setSelectedSocial}
+              />
+              <div className="text-sm text-gray-500 h-10 flex items-center" style={{ minHeight: 40 }}>
+                The audience data is based on{" "}
+                <span className="font-medium text-indigo-600">
+                  {selectedSocial || allSocialOption.name}
+                </span>
+              </div>
             </div>
           </div>
-          {/* Social media filter buttons */}
         </div>
   {view === 'grid' ? (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-4">
@@ -489,12 +295,6 @@ export default function Posts() {
                 return <LinkedInPostCard key={idx} {...post as LinkedInPost} />;
               case 'Snapchat':
                 return <SnapchatPostCard key={idx} {...post as SnapchatPost} />;
-              case 'Twitch':
-                return <TwitchPostCard key={idx} {...post as TwitchPost} />;
-              case 'Pinterest':
-                return <PinterestPostCard key={idx} {...post as PinterestPost} />;
-              case 'Kick':
-                return <KickPostCard key={idx} {...post as KickPost} />;
               default:
                 return null;
             }
@@ -514,12 +314,6 @@ export default function Posts() {
                   return <LinkedInPostCard key={platform + idx} {...post as LinkedInPost} />;
                 case 'Snapchat':
                   return <SnapchatPostCard key={platform + idx} {...post as SnapchatPost} />;
-                case 'Twitch':
-                  return <TwitchPostCard key={platform + idx} {...post as TwitchPost} />;
-                case 'Pinterest':
-                  return <PinterestPostCard key={platform + idx} {...post as PinterestPost} />;
-                case 'Kick':
-                  return <KickPostCard key={platform + idx} {...post as KickPost} />;
                 default:
                   return null;
               }
@@ -528,106 +322,7 @@ export default function Posts() {
       }
     </div>
   ) : (
-    <div className="overflow-x-auto mt-4">
-      <table className="min-w-full bg-white border rounded-xl text-sm">
-        <thead>
-          <tr className="bg-gray-50 text-gray-700">
-            <th className="py-2 px-3 text-left font-semibold">Post</th>
-            <th className="py-2 px-3 text-left font-semibold">Social</th>
-            <th className="py-2 px-3 text-right font-semibold">Likes</th>
-            <th className="py-2 px-3 text-right font-semibold">Comments</th>
-            <th className="py-2 px-3 text-right font-semibold">Shares</th>
-            <th className="py-2 px-3 text-right font-semibold">Views</th>
-            <th className="py-2 px-3 text-right font-semibold">Eng. rate</th>
-            <th className="py-2 px-3 text-right font-semibold">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {(selectedSocial ? [selectedSocial] : Object.keys(postsData)).map((platform) =>
-            (postsData as any)[platform].map((post: any, idx: number) => {
-              // Platform icon and label
-              let iconUrl = '';
-              let label = platform;
-              switch (platform) {
-                case 'Instagram':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg';
-                  label = 'Instagram';
-                  break;
-                case 'TikTok':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg';
-                  label = 'TikTok';
-                  break;
-                case 'YouTube':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg';
-                  label = 'YouTube';
-                  break;
-                case 'X':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg';
-                  label = 'X';
-                  break;
-                case 'LinkedIn':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg';
-                  label = 'LinkedIn';
-                  break;
-                case 'Snapchat':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg';
-                  label = 'Snapchat';
-                  break;
-                case 'Twitch':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/twitch.svg';
-                  label = 'Twitch';
-                  break;
-                case 'Pinterest':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/pinterest.svg';
-                  label = 'Pinterest';
-                  break;
-                case 'Kick':
-                  iconUrl = 'https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/kick.svg';
-                  label = 'Kick';
-                  break;
-                default:
-                  iconUrl = '';
-                  label = platform;
-              }
-              // Shares/reposts/retweets column
-              let sharesValue = '-';
-              if ('shares' in post && post.shares) sharesValue = post.shares;
-              else if ('reposts' in post && post.reposts) sharesValue = post.reposts;
-              else if ('retweets' in post && post.retweets) sharesValue = post.retweets;
-              // Likes/comments/views/date are common, fallback to dash
-              return (
-                <tr key={platform + idx} className="border-b hover:bg-gray-50 transition text-sm">
-                  {/* Post cell: avatar + text */}
-                  <td className="py-2 px-3 flex items-center gap-2 w-[320px]">
-                    <img src={post.userAvatar} alt={post.username} className="w-8 h-8 rounded-full object-cover" />
-                    <span className="break-words">{post.postText || '-'}</span>
-                  </td>
-                  {/* Social cell: icon + label */}
-                  <td className="py-2 px-3">
-                    <div className="flex items-center gap-1">
-                      {iconUrl && <img src={iconUrl} alt={label} className="w-5 h-5" />}
-                      <span className="text-xs text-gray-700">{label}</span>
-                    </div>
-                  </td>
-                  {/* Likes */}
-                  <td className="py-2 px-3 text-right">{post.likes || '-'}</td>
-                  {/* Comments */}
-                  <td className="py-2 px-3 text-right">{post.comments || '-'}</td>
-                  {/* Shares/reposts/retweets */}
-                  <td className="py-2 px-3 text-right">{sharesValue}</td>
-                  {/* Views */}
-                  <td className="py-2 px-3 text-right">{post.views || '-'}</td>
-                  {/* Engagement rate (placeholder, not in props) */}
-                  <td className="py-2 px-3 text-right">9.9%</td>
-                  {/* Date */}
-                  <td className="py-2 px-3 text-right whitespace-nowrap">{post.postDate || '-'}</td>
-                </tr>
-              );
-            })
-          )}
-        </tbody>
-      </table>
-    </div>
+    <SocialPostsTable postsData={postsData} selectedSocial={selectedSocial} />
   )}
       </div>
     </div>
