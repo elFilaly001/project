@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Header({ user }: { user: { name: string; email: string } }) {
     return (
-        <header className="flex items-center justify-between bg-white border-b border-gray-200 p-4 shadow-sm">
+        <header className="flex items-center justify-between bg-white border-b border-gray-200 p-5 shadow-sm">
             {/* <div className="flex items-center gap-4">
                 <input
                     type="text"

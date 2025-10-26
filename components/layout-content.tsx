@@ -16,7 +16,7 @@ function InnerLayoutContent({ children, user }: LayoutContentProps) {
   return (
     <div className="min-h-screen">
       <Sidebar />
-      <div className={`flex-1 flex flex-col transition-all duration-300 ${isCollapsed ? 'pl-0 lg:pl-20' : 'pl-0 lg:pl-[264px]'}`}>
+      <div className={`flex-1 flex flex-col transition-all duration-300 ${isCollapsed ? 'pl-0 lg:pl-20' : 'pl-0 lg:pl-[244px]'}`}>
         <Header user={user} />
         <div className="mt-4 flex-1">
           <main>{children}</main>

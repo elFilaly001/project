@@ -58,7 +58,7 @@ export default function Sidebar() {
         }`}
       style={{ height: '100vh' }}
     >
-      <div className="p-6 border-b border-gray-200 flex items-center justify-between">
+  <div className="h-20 border-b border-gray-200 flex items-center justify-between px-5">
         {/* Logo: show full when expanded, crop to left when collapsed */}
         <div
           className={`flex items-center overflow-hidden transition-all duration-300 `}
