@@ -3,6 +3,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -48,7 +49,15 @@ export default function ShareOfVoice() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Share of voice</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">Share of voice</div>
+                <ExplainButton
+                    title="Share of voice"
+                    description={
+                        "Displays how conversation is shared between categories (or competitors). It highlights the largest contributor to the overall share and helps assess relative visibility."
+                    }
+                />
+            </div>
             <div className="flex items-center justify-center h-44 gap-6">
                 <div className="relative w-40 h-40">
                     <Doughnut data={data} options={{ ...options, cutout: '60%' }} />

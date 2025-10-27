@@ -11,6 +11,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -40,7 +41,15 @@ export default function SourceDistribution() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Mentions Distribution by source</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">Mentions Distribution by source</div>
+                <ExplainButton
+                    title="Mentions by source"
+                    description={
+                        "Breakdown of mentions across different sources (e.g., Facebook, X, Instagram) over time. Use this to see which channels drive the most conversation."
+                    }
+                />
+            </div>
             <div className="h-48">
                 <Bar data={data} options={options} />
             </div>

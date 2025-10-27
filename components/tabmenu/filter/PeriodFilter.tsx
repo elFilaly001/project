@@ -22,13 +22,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calendar } from "@/components/ui/calendar";
 
 const presets = [
-  { key: "last_30", label: "30 derniers jours" },
-  { key: "last_7", label: "7 derniers jours" },
-  { key: "last_14", label: "14 derniers jours" },
-  { key: "this_month", label: "Ce mois-ci" },
-  { key: "last_month", label: "Dernier mois" },
-  { key: "today", label: "Aujourd'hui" },
-  { key: "yesterday", label: "Hier" },
+  { key: "last_30", label: "Last 30 days" },
+  { key: "last_7", label: "Last 7 days" },
+  { key: "last_14", label: "Last 14 days" },
+  { key: "this_month", label: "This month" },
+  { key: "last_month", label: "Last month" },
+  { key: "today", label: "Today" },
+  { key: "yesterday", label: "Yesterday" },
 ];
 
 function presetToRange(key: string) {
@@ -94,10 +94,10 @@ export default function PeriodFilter() {
   return (
     <div className="bg-white/60 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700 rounded-lg p-4 shadow-sm relative">
       <label className="text-sm font-medium text-slate-700 dark:text-slate-200">
-        Par période
+        By period
       </label>
       <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-        Analyser une période précise ou comparer deux périodes
+        Analyze a specific period or compare two periods
       </p>
 
       <div className="mt-3">
@@ -108,7 +108,7 @@ export default function PeriodFilter() {
               className="w-full justify-between text-left"
             >
               <span className="text-sm text-slate-700 dark:text-slate-200">
-                {displayValue || "Sélectionner une période"}
+                {displayValue || "Select a period"}
               </span>
             </Button>
           </PopoverTrigger>
@@ -148,22 +148,22 @@ export default function PeriodFilter() {
 
               <div className="mt-2 w-full flex items-center justify-between gap-2">
                 <div className="flex flex-col">
-                  <div className="text-sm font-medium">Aperçu</div>
+                  <div className="text-sm font-medium">Preview</div>
                   <div className="text-xs text-slate-500 mt-2">
-                    {displayValue || "Aucune période sélectionnée"}
+                    {displayValue || "No period selected"}
                   </div>
                 </div>
 
                 <div className="flex items-center gap-2">
                   <Button variant="outline" size="sm" onClick={clear}>
-                    Effacer
+                    Clear
                   </Button>
                   <Button
                     size="sm"
                     className="bg-purple-500 text-white"
                     onClick={() => setOpen(false)}
                   >
-                    Mettre à jour
+                    Update
                   </Button>
                 </div>
               </div>

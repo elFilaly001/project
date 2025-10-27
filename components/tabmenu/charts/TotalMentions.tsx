@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import AiInsightSection from '@/components/AiInsightSection';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip);
 
@@ -109,7 +110,12 @@ export default function TotalMentions() {
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="flex items-start justify-between">
                 <h3 className="text-sm font-medium mb-2">Total Mentions</h3>
-                <div className="text-xs text-gray-400">{/* placeholder for actions */}</div>
+                <ExplainButton
+                    title="Total Mentions"
+                    description={
+                        "Shows the total number of mentions over the selected period and quick growth metrics. Use this to monitor volume changes and spot spikes or drops in attention."
+                    }
+                />
             </div>
 
             <div className="grid grid-cols-1 gap-3">

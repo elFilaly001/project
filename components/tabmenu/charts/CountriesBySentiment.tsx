@@ -11,6 +11,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -41,7 +42,15 @@ export default function CountriesBySentiment() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Top Countries by Sentiment</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">Top Countries by Sentiment</div>
+                <ExplainButton
+                    title="Top countries by sentiment"
+                    description={
+                        "Shows which countries contribute the most to each sentiment bucket. Useful to locate regional differences in sentiment."
+                    }
+                />
+            </div>
             <div className="h-48">
                 <Bar data={data} options={options} />
             </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 const dataSource = [
     { date: '2025-10-01', reach: 1200 },
@@ -36,7 +37,15 @@ export default function TotalReach() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full flex flex-col items-start justify-center">
-            <div className="text-xs text-gray-500">Total keywords</div>
+            <div className="flex items-start justify-between w-full">
+                <div className="text-xs text-gray-500">Total keywords</div>
+                <ExplainButton
+                    title="Total reach"
+                    description={
+                        "Displays total reach across the selected sample (sum of estimated audience reach). Useful to understand overall visibility and compare periods."
+                    }
+                />
+            </div>
             <div className="text-4xl font-extrabold text-gray-900 mt-2">{formatCompact(totalReach)}</div>
             <div className="text-sm text-gray-500 mt-1">Last 14 days</div>
 
@@ -45,8 +54,8 @@ export default function TotalReach() {
                 <div className="flex items-start gap-3">
                     <div className="flex-shrink-0">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-9 h-9 text-indigo-600">
-                            <path d="M12 3c-1.657 0-3 1.343-3 3v1H8a3 3 0 0 0-3 3v1H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4h1v1a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-1h1a4 4 0 0 0 4-4v-1a1 1 0 0 0-1-1h-1v-1a3 3 0 0 0-3-3h-1V6c0-1.657-1.343-3-3-3z" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M8 9h.01M16 9h.01M12 6v.01M10 15h4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M12 3c-1.657 0-3 1.343-3 3v1H8a3 3 0 0 0-3 3v1H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4h1v1a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-1h1a4 4 0 0 0 4-4v-1a1 1 0 0 0-1-1h-1v-1a3 3 0 0 0-3-3h-1V6c0-1.657-1.343-3-3-3z" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M8 9h.01M16 9h.01M12 6v.01M10 15h4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                     </div>
                     <div className="flex-1">

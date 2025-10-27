@@ -9,6 +9,7 @@ import {
 } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import AiInsightSection from '@/components/AiInsightSection';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -71,7 +72,15 @@ export default function SentimentTrend() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Sentiment Trend</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">Sentiment Trend</div>
+                <ExplainButton
+                    title="Sentiment Trend"
+                    description={
+                        "Shows the overall sentiment breakdown (positive/neutral/negative) for the selected period and highlights the dominant sentiment. Helpful to track shifts in how people feel about the topic."
+                    }
+                />
+            </div>
 
             <div className="flex items-center justify-center h-48 gap-6">
                 <div className="relative w-40 h-40">

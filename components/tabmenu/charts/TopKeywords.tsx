@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 type Props = {
     limit?: number; // total keywords to show
@@ -62,7 +63,15 @@ export default function TopKeywords({ limit = 6, data }: Props) {
 
     return (
         <div className="p-4 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-3">Nuage de mots</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-3">Nuage de mots</div>
+                <ExplainButton
+                    title="Top keywords"
+                    description={
+                        "A visual layout of the top keywords; size indicates prominence. Useful to quickly scan common themes and surface the most-mentioned terms."
+                    }
+                />
+            </div>
 
             <div className="relative w-full h-56 md:h-72 lg:h-80 bg-transparent overflow-hidden">
                 {limited.map((kw, idx) => {

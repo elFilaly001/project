@@ -2,6 +2,7 @@
 
 import AiInsightSection from '@/components/AiInsightSection';
 import React from 'react';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 const dataSource = [
     { date: '2025-10-01', brandA: 120, brandB: 90, influencerX: 70 },
@@ -47,7 +48,15 @@ export default function TopMentions() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full flex flex-col items-start justify-center">
-            <div className="text-xs text-gray-500">Total Mentions</div>
+            <div className="flex items-start justify-between w-full">
+                <div className="text-xs text-gray-500">Total Mentions</div>
+                <ExplainButton
+                    title="Total mentions summary"
+                    description={
+                        "A compact summary card showing the total number of mentions in the sample and a short AI-generated insight pointing to the top sources."
+                    }
+                />
+            </div>
             <div className="text-4xl font-extrabold text-gray-900 mt-2">{formatCompact(total)}</div>
             <div className="text-sm text-gray-500 mt-1">Last 14 days</div>
 

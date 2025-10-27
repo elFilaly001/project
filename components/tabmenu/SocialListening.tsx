@@ -31,7 +31,6 @@ export default function SocialListening() {
             <div className="text-lg font-medium">Social Listening</div>
 
             {/* Overview metrics (tiles + small charts) */}
-            <SocialListeningOverview />
             {/* Filters */}
             <section aria-label="Filters" className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <PeriodFilter />
@@ -39,14 +38,11 @@ export default function SocialListening() {
                 <SentimentFilter />
                 <AuthorsFilter />
                 <LocationFilter />
-                <KeywordFilter />
+                {/* <KeywordFilter /> */}
                 <FormatFilter />
                 <LanguageFilter />
             </section>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <TopMentions />
-                <TotalReach />
-            </div>
+            <SocialListeningOverview />
             {/* Top row: Mentions volume (line) + Sentiment stacked bars */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <TotalMentions />
