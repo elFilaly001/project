@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ExplainButton from '@/components/ui/ExplainButton';
+import { useTranslations } from 'next-intl';
 
 type Props = {
     limit?: number; // total keywords to show
@@ -30,6 +31,7 @@ const positions: Array<{ top: string; left: string; rotate?: number }> = [
 ];
 
 export default function TopKeywords({ limit = 6, data }: Props) {
+    const t = useTranslations();
     const defaultList = Object.values(defaultGroups).flat();
     const list = data && data.length ? data : defaultList;
     const limited = list.slice(0, limit);
@@ -50,12 +52,10 @@ export default function TopKeywords({ limit = 6, data }: Props) {
     return (
         <div className="p-4 bg-white border rounded-md shadow-sm h-full">
             <div className="flex items-start justify-between">
-                <div className="text-sm font-medium mb-3">Nuage de mots</div>
+                <div className="text-sm font-medium mb-3">{t('social_listening.charts.top_keywords.title')}</div>
                 <ExplainButton
-                    title="Top keywords"
-                    description={
-                        "A visual layout of the top keywords; size indicates prominence. Useful to quickly scan common themes and surface the most-mentioned terms."
-                    }
+                    title={t('social_listening.charts.top_keywords.title')}
+                    description={t('social_listening.charts.top_keywords.description')}
                 />
             </div>
 
@@ -84,7 +84,7 @@ export default function TopKeywords({ limit = 6, data }: Props) {
                                             key={kw}
                                             type="button"
                                             title={kw}
-                                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
+                                            aria-label={t('social_listening.charts.top_keywords.keyword_aria', { kw, rank: idx + 1 })}
                                             className={`w-full h-20 md:h-24 lg:h-28 flex items-center justify-center gap-3 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-4`}
                                         >
                                                                     {/* Badge styled to match keyword text (no bg), slightly smaller */}
@@ -108,7 +108,7 @@ export default function TopKeywords({ limit = 6, data }: Props) {
                                             key={kw}
                                             type="button"
                                             title={kw}
-                                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
+                                            aria-label={t('social_listening.charts.top_keywords.keyword_aria', { kw, rank: idx + 1 })}
                                             className={`flex-1 h-14 md:h-16 flex items-center justify-center gap-3 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-3`}
                                         >
                                             <span className={`${colorClass} text-sm md:text-base font-semibold mr-2`} aria-hidden>
@@ -131,7 +131,7 @@ export default function TopKeywords({ limit = 6, data }: Props) {
                                             key={kw}
                                             type="button"
                                             title={kw}
-                                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
+                                            aria-label={t('social_listening.charts.top_keywords.keyword_aria', { kw, rank: idx + 1 })}
                                             className={`flex-1 h-10 flex items-center justify-center gap-2 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-2`}
                                         >
                                             <span className={`${colorClass} text-xs md:text-sm font-semibold mr-2`} aria-hidden>

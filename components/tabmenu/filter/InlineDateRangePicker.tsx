@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from 'next-intl';
 import {
   format,
   subDays,
@@ -22,13 +23,13 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Calendar } from "@/components/ui/calendar";
 
 const presets = [
-  { key: "last_30", label: "30 derniers jours" },
-  { key: "last_7", label: "7 derniers jours" },
-  { key: "last_14", label: "14 derniers jours" },
-  { key: "this_month", label: "Ce mois-ci" },
-  { key: "last_month", label: "Dernier mois" },
-  { key: "today", label: "Aujourd'hui" },
-  { key: "yesterday", label: "Hier" },
+  { key: "last_30", labelKey: "social_listening.filters.period.presets.last_30" },
+  { key: "last_7", labelKey: "social_listening.filters.period.presets.last_7" },
+  { key: "last_14", labelKey: "social_listening.filters.period.presets.last_14" },
+  { key: "this_month", labelKey: "social_listening.filters.period.presets.this_month" },
+  { key: "last_month", labelKey: "social_listening.filters.period.presets.last_month" },
+  { key: "today", labelKey: "social_listening.filters.period.presets.today" },
+  { key: "yesterday", labelKey: "social_listening.filters.period.presets.yesterday" },
 ];
 
 function presetToRange(key: string) {
@@ -57,6 +58,7 @@ function presetToRange(key: string) {
 }
 
 export default function InlineDateRangePicker() {
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
   const [preset, setPreset] = useState<string>("last_30");
   const triggerRef = useRef<HTMLButtonElement | null>(null);
@@ -112,15 +114,15 @@ export default function InlineDateRangePicker() {
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-          title="Filter by period — Select a date range or preset"
+          title={t('social_listening.filters.period.title_attr')}
           ref={triggerRef}
           variant="outline"
           className="w-full justify-between text-left"
           >
             <span className="text-sm text-slate-700 dark:text-slate-200">
-              {displayValue || "Sélectionner une période"}
+              {displayValue || t('social_listening.filters.period.select_a_period')}
             </span>
-            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">Period</span>
+            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">{t('social_listening.filters.period.badge')}</span>
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -141,7 +143,7 @@ export default function InlineDateRangePicker() {
                     value={p.key}
                     className="text-cyan-500 focus:ring-cyan-500 checked:bg-cyan-500 checked:border-cyan-500"
                   />
-                  <span className="text-sm">{p.label}</span>
+                  <span className="text-sm">{t(p.labelKey)}</span>
                 </label>
               ))}
             </RadioGroup>
@@ -164,14 +166,14 @@ export default function InlineDateRangePicker() {
           {/* Action buttons: absolute right bottom, no margin, extra padding in container */}
           <div className="absolute right-4 bottom-2 flex items-center gap-2">
             <Button variant="outline" size="sm" onClick={clear}>
-              Effacer
+              {t('social_listening.filters.period.clear')}
             </Button>
             <Button
               size="sm"
               className="bg-slate-700 text-white hover:bg-slate-800"
               onClick={() => setOpen(false)}
             >
-              Mettre à jour
+              {t('social_listening.filters.period.apply')}
             </Button>
           </div>
         </PopoverContent>

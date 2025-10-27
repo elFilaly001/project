@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { useTranslations } from 'next-intl';
 import TotalMentions from "./charts/TotalMentions";
 import TotalReach from "./charts/TotalReach";
 import { HiOutlineChat, HiOutlineSpeakerphone, HiOutlineChartBar, HiOutlineEmojiHappy, HiOutlineEmojiSad } from "react-icons/hi";
@@ -28,6 +29,7 @@ function MetricCard({ icon, title, value, subtitle, accentBg, iconColor, accentB
 }
 
 export default function SocialListeningOverview() {
+    const t = useTranslations();
     // placeholder values (you can wire real data later)
     const mentions = 11780;
     const reach = "81M";
@@ -50,9 +52,9 @@ export default function SocialListeningOverview() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <MetricCard
                     icon={<HiOutlineChat />}
-                    title="Total Mentions"
+                    title={t('social_listening.overview.total_mentions')}
                     value={mentions.toLocaleString()}
-                    subtitle="period total"
+                    subtitle={t('social_listening.overview.period_total')}
                     accentBg="bg-gradient-to-tr from-pink-50 to-pink-100"
                     iconColor="text-pink-600"
                     accentBorder="border-l-4 border-pink-200 dark:border-pink-700/40"
@@ -60,9 +62,9 @@ export default function SocialListeningOverview() {
 
                 <MetricCard
                     icon={<HiOutlineSpeakerphone />}
-                    title="Social Reach"
+                    title={t('social_listening.overview.social_reach')}
                     value={reach}
-                    subtitle="total reach"
+                    subtitle={t('social_listening.overview.total_reach')}
                     accentBg="bg-gradient-to-tr from-sky-50 to-sky-100"
                     iconColor="text-sky-600"
                     accentBorder="border-l-4 border-sky-200 dark:border-sky-700/40"
@@ -70,9 +72,9 @@ export default function SocialListeningOverview() {
 
                 <MetricCard
                     icon={<HiOutlineChartBar />}
-                    title="Social Engagement"
+                    title={t('social_listening.overview.social_engagement')}
                     value={engagement}
-                    subtitle="total engagements"
+                    subtitle={t('social_listening.overview.total_engagements')}
                     accentBg="bg-gradient-to-tr from-orange-50 to-orange-100"
                     iconColor="text-orange-600"
                     accentBorder="border-l-4 border-orange-200 dark:border-orange-700/40"
@@ -84,14 +86,14 @@ export default function SocialListeningOverview() {
                     </div>
 
                     <div className="flex-1">
-                        <div className="text-xs text-gray-500">Sentiment Analysis</div>
+                        <div className="text-xs text-gray-500">{t('social_listening.overview.sentiment_analysis')}</div>
                         <div className="flex items-baseline gap-3">
                             <div className="text-xl font-semibold text-gray-900">{sentimentPositive}</div>
-                            <div className={`text-sm ${sentimentPositiveLabelClass}`}>positive</div>
+                            <div className={`text-sm ${sentimentPositiveLabelClass}`}>{t('social_listening.overview.positive')}</div>
                         </div>
                         <div className="flex items-baseline gap-3 mt-1">
                             <div className="text-sm font-medium text-gray-700">{sentimentNegative}</div>
-                            <div className={`text-sm ${sentimentNegativeLabelClass}`}>negative</div>
+                            <div className={`text-sm ${sentimentNegativeLabelClass}`}>{t('social_listening.overview.negative')}</div>
                         </div>
                     </div>
                 </div>

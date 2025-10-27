@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -22,6 +23,7 @@ const dataSource = [
 ];
 
 export default function SourceDistribution() {
+    const t = useTranslations();
     const labels = dataSource.map((d) => d.month);
 
     const data = {
@@ -42,12 +44,10 @@ export default function SourceDistribution() {
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="flex items-start justify-between">
-                <div className="text-sm font-medium mb-2">Mentions Distribution by source</div>
+                <div className="text-sm font-medium mb-2">{t('social_listening.charts.source_distribution.title')}</div>
                 <ExplainButton
-                    title="Mentions by source"
-                    description={
-                        "Breakdown of mentions across different sources (e.g., Facebook, X, Instagram) over time. Use this to see which channels drive the most conversation."
-                    }
+                    title={t('social_listening.charts.source_distribution.title')}
+                    description={t('social_listening.charts.source_distribution.description')}
                 />
             </div>
             <div className="h-48">
@@ -64,7 +64,7 @@ export default function SourceDistribution() {
                         </svg>
                     </div>
                     <div className="flex-1">
-                        <div className="text-sm font-medium mb-1">AI-powered insight</div>
+                        <div className="text-sm font-medium mb-1">{t('social_listening.labels.ai_powered_insight')}</div>
                         <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
                             {(() => {
                                 const totals = dataSource.reduce((acc, r) => {
@@ -82,8 +82,8 @@ export default function SourceDistribution() {
                                 const top = entries.reduce((a, b) => (b.val > a.val ? b : a), entries[0]);
                                 const topPct = totalAll ? Math.round((top.val / totalAll) * 100) : 0;
                                 return [
-                                    `Across ${labels.length} periods, ${top.label} contributed the largest share (${topPct}%).`,
-                                    `Total mentions by source: ${entries.map(e => `${e.label} ${e.val}`).join(', ')}.`,
+                                    t('social_listening.charts.source_distribution.interpretation_top', { periods: labels.length, top: top.label, pct: topPct }),
+                                    t('social_listening.charts.source_distribution.interpretation_totals', { totals: entries.map(e => `${e.label} ${e.val}`).join(', ') }),
                                 ];
                             })().map((s, i) => <p key={i} className="mb-1">{s}</p>)}
                         </div>

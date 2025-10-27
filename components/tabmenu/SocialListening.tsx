@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import dynamic from 'next/dynamic';
+import { useTranslations } from 'next-intl';
 import {
     PeriodFilter,
     SourceFilter,
@@ -26,13 +27,14 @@ const TopKeywords = dynamic(() => import('./charts/TopKeywords'), { ssr: false }
 const TotalMentions = dynamic(() => import('./charts/TotalMentions'), { ssr: false });
 
 export default function SocialListening() {
+    const t = useTranslations();
     return (
         <div className="space-y-6">
-            <div className="text-lg font-medium">Social Listening</div>
+            <div className="text-lg font-medium">{t('tabs.social_listening')}</div>
 
             {/* Overview metrics (tiles + small charts) */}
             {/* Filters */}
-            <section aria-label="Filters" className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <section aria-label={t('social_listening.filters')} className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <PeriodFilter />
                 <SourceFilter />
                 <SentimentFilter />

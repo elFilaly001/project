@@ -34,4 +34,179 @@
         "posts": "Posts",
         "competitive_intelligence": "Competitive Intelligence"
     }
+    ,
+    "social_listening": {
+        "overview": {
+            "total_mentions": "Total Mentions",
+            "period_total": "period total",
+            "social_reach": "Social Reach",
+            "total_reach": "total reach",
+            "social_engagement": "Social Engagement",
+            "total_engagements": "total engagements",
+            "sentiment_analysis": "Sentiment Analysis",
+            "positive": "Positive",
+            "negative": "Negative"
+        },
+        "filters": {
+            "period": {
+                "title_attr": "Filter by period — Select a date range or preset",
+                "by_period": "By period",
+                "select_a_period": "Select a period",
+                "badge": "Period",
+                "presets": {
+                    "last_30": "Last 30 days",
+                    "last_7": "Last 7 days",
+                    "last_14": "Last 14 days",
+                    "this_month": "This month",
+                    "last_month": "Last month",
+                    "today": "Today",
+                    "yesterday": "Yesterday"
+                },
+                "selected_label": "Selected:",
+                "no_period_selected": "No period selected",
+                "clear": "Clear",
+                "apply": "Apply"
+            },
+            "source": {
+                "all_social_medias": "All Social Medias",
+                "title_attr": "Filter by source — Isolate results by network",
+                "by_source": "By source",
+                "badge": "Source",
+                "description": "Isolate results by network"
+            },
+            "sentiment": {
+                "by_sentiment": "By sentiment",
+                "title_attr": "Filter by sentiment — Positive, Neutral or Negative",
+                "badge": "Sentiment",
+                "choose_sentiment": "Choose sentiment",
+                "positive": "Positive",
+                "neutral": "Neutral",
+                "negative": "Negative"
+            },
+            "authors": {
+                "all": "All",
+                "general_public": "General public",
+                "influencers": "Influencers",
+                "media": "Media",
+                "competitors": "Competitors",
+                "title_attr": "Filter by author — General public, influencers, media, competitors",
+                "by_author": "By author",
+                "badge": "Author",
+                "description": "General public, influencers, media, competitors"
+            },
+            "location": {
+                "all": "All",
+                "title_attr": "Filter by city — Choose a city to filter results",
+                "by_city": "By city",
+                "badge": "City",
+                "description": "Choose a city to filter results",
+                "cities": {
+                    "casablanca": "Casablanca",
+                    "rabat": "Rabat",
+                    "marrakesh": "Marrakesh",
+                    "tanger": "Tangier",
+                    "agadir": "Agadir"
+                }
+            },
+            "keyword": {
+                "title_attr": "Filter by keyword — Brand name, product or campaign",
+                "by_keyword": "By keyword",
+                "add_a_keyword": "Add a keyword",
+                "badge": "Keyword",
+                "description": "Brand name, product or campaign",
+                "aria": "Keyword"
+            },
+            "format": {
+                "title_attr": "Filter by format — Video, post, story, comment, article",
+                "by_format": "By format",
+                "badge": "Format",
+                "description": "Video, post, story, comment, article",
+                "all": "All",
+                "video": "Video",
+                "post": "Post",
+                "story": "Story",
+                "comment": "Comment",
+                "article": "Article"
+            },
+            "language": {
+                "all": "All",
+                "ar": "Arabic",
+                "fr": "French",
+                "en": "English",
+                "title_attr": "Filter by language — Arabic, French, English",
+                "by_language": "By language",
+                "badge": "Language",
+                "description": "Arabic, French, English"
+            }
+        },
+        "cards": {
+            "total_mentions_heading": "Total Mentions"
+        },
+        "labels": {
+            "across_selected_period": "across selected period",
+            "ai_powered_insight": "AI-powered insight"
+        },
+        "charts": {
+            "sentiment": {
+                "title": "Sentiment Trend",
+                "description": "Shows the overall sentiment breakdown (positive/neutral/negative) for the selected period and highlights the dominant sentiment. Helpful to track shifts in how people feel about the topic.",
+                "positive": "Positive",
+                "neutral": "Neutral",
+                "negative": "Negative",
+                "interpretation_1": "Sentiment distribution shows {{sentiment}} as the largest share ({{pct}}%).",
+                "interpretation_2": "Out of {{total}} total mentions, {{pct}}% are {{sentiment}}.",
+                "interpretation_3": "Monitor changes to sentiment mix over time — a shift of more than 5% may indicate a meaningful trend."
+            },
+            "keywords_by_sentiment": {
+                "title": "Top Keywords by Sentiment",
+                "description": "Top keywords grouped by sentiment. Helps identify which terms are driving positive, neutral or negative conversations."
+            },
+            "countries_by_sentiment": {
+                "title": "Top Countries by Sentiment",
+                "description": "Shows which countries contribute the most to each sentiment bucket. Useful to locate regional differences in sentiment."
+            },
+            "top_mentions": {
+                "heading": "Total Mentions",
+                "title": "Total mentions summary",
+                "description": "A compact summary card showing the total number of mentions in the sample and a short AI-generated insight pointing to the top sources.",
+                "interpretation_total": "Total mentions across the sample: {{total}}.",
+                "interpretation_top": "{{label}} generated the most mentions ({{val}}, {{pct}}%).",
+                "interpretation_action": "Consider reviewing content from {{label}} to understand drivers of reach.",
+                "last_n_days": "Last {{days}} days"
+            },
+            "total_reach": {
+                "heading": "Total Reach",
+                "title": "Total reach",
+                "description": "Displays total reach across the selected sample (sum of estimated audience reach). Useful to understand overall visibility and compare periods.",
+                "last_n_days": "Last {{days}} days",
+                "ai": {
+                    "total_reach": "Total reach across the sample: <strong>{{total}}</strong>.",
+                    "avg_reach": "Average reach per period: <strong>{{avg}}</strong>.",
+                    "peak": "Peak on {{date}} with {{reach}} reach."
+                }
+            },
+            "source_distribution": {
+                "title": "Mentions Distribution by source",
+                "description": "Breakdown of mentions across different sources (e.g., Facebook, X, Instagram) over time. Use this to see which channels drive the most conversation.",
+                "interpretation_top": "Across {{periods}} periods, {{top}} contributed the largest share ({{pct}}%).",
+                "interpretation_totals": "Total mentions by source: {{totals}}."
+            },
+            "share_of_voice": {
+                "title": "Share of voice",
+                "description": "Displays how conversation is shared between categories (or competitors). It highlights the largest contributor to the overall share and helps assess relative visibility.",
+                "other": "Other",
+                "interpretation_top": "Top category is {{top}} with {{pct}}% of the share of voice.",
+                "interpretation_others": "Other categories: {{others}}."
+            },
+            "top_keywords": {
+                "title": "Top keywords",
+                "description": "A visual layout of the top keywords; size indicates prominence. Useful to quickly scan common themes and surface the most-mentioned terms.",
+                "keyword_aria": "Keyword {{kw}}, rank {{rank}}"
+            },
+            "total_mentions": {
+                "title": "Total Mentions",
+                "description": "Shows the total number of mentions over the selected period and quick growth metrics. Use this to monitor volume changes and spot spikes or drops in attention."
+            }
+        }
+    }
 }

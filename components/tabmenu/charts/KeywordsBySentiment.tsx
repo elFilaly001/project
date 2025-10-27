@@ -12,6 +12,7 @@ import {
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import ExplainButton from '@/components/ui/ExplainButton';
+import { useTranslations } from 'next-intl';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -22,23 +23,24 @@ const dataSource = [
 ];
 
 export default function KeywordsBySentiment() {
+    const t = useTranslations();
     const labels = dataSource.map((d) => d.field);
 
     const data = {
         labels,
         datasets: [
             {
-                label: 'Positive',
+                label: t('social_listening.charts.sentiment.positive'),
                 data: dataSource.map((d) => d.positive),
                 backgroundColor: '#F02CB9',
             },
             {
-                label: 'Neutral',
+                label: t('social_listening.charts.sentiment.neutral'),
                 data: dataSource.map((d) => d.neutral),
                 backgroundColor: '#35B9F4',
             },
             {
-                label: 'Negative',
+                label: t('social_listening.charts.sentiment.negative'),
                 data: dataSource.map((d) => d.negative),
                 backgroundColor: '#7B61F9',
             },
@@ -58,12 +60,10 @@ export default function KeywordsBySentiment() {
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="flex items-start justify-between">
-                <div className="text-sm font-medium mb-2">Top Keywords by Sentiment</div>
+                <div className="text-sm font-medium mb-2">{t('social_listening.charts.keywords_by_sentiment.title')}</div>
                 <ExplainButton
-                    title="Top keywords by sentiment"
-                    description={
-                        "Top keywords grouped by sentiment. Helps identify which terms are driving positive, neutral or negative conversations."
-                    }
+                    title={t('social_listening.charts.keywords_by_sentiment.title')}
+                    description={t('social_listening.charts.keywords_by_sentiment.description')}
                 />
             </div>
             <div className="h-48">

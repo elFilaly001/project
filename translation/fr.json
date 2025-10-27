@@ -34,4 +34,179 @@
         "posts": "Publications",
         "competitive_intelligence": "Veille concurrentielle"
     }
+    ,
+    "social_listening": {
+        "overview": {
+            "total_mentions": "Total des mentions",
+            "period_total": "total de la période",
+            "social_reach": "Portée sociale",
+            "total_reach": "portée totale",
+            "social_engagement": "Engagement social",
+            "total_engagements": "engagements totaux",
+            "sentiment_analysis": "Analyse du sentiment",
+            "positive": "Positif",
+            "negative": "Négatif"
+        },
+        "filters": {
+            "period": {
+                "title_attr": "Filtrer par période — Sélectionnez une plage de dates ou un préréglage",
+                "by_period": "Par période",
+                "select_a_period": "Sélectionner une période",
+                "badge": "Période",
+                "presets": {
+                    "last_30": "30 derniers jours",
+                    "last_7": "7 derniers jours",
+                    "last_14": "14 derniers jours",
+                    "this_month": "Ce mois-ci",
+                    "last_month": "Le mois dernier",
+                    "today": "Aujourd'hui",
+                    "yesterday": "Hier"
+                },
+                "selected_label": "Sélectionné:",
+                "no_period_selected": "Aucune période sélectionnée",
+                "clear": "Effacer",
+                "apply": "Appliquer"
+            },
+            "source": {
+                "all_social_medias": "Tous les réseaux sociaux",
+                "title_attr": "Filtrer par source — Isoler les résultats par réseau",
+                "by_source": "Par source",
+                "badge": "Source",
+                "description": "Isoler les résultats par réseau"
+            },
+            "sentiment": {
+                "by_sentiment": "Par sentiment",
+                "title_attr": "Filtrer par sentiment — Positif, Neutre ou Négatif",
+                "badge": "Sentiment",
+                "choose_sentiment": "Choisir le sentiment",
+                "positive": "Positif",
+                "neutral": "Neutre",
+                "negative": "Négatif"
+            },
+            "authors": {
+                "all": "Tous",
+                "general_public": "Grand public",
+                "influencers": "Influenceurs",
+                "media": "Médias",
+                "competitors": "Concurrents",
+                "title_attr": "Filtrer par auteur — Grand public, influenceurs, médias, concurrents",
+                "by_author": "Par auteur",
+                "badge": "Auteur",
+                "description": "Grand public, influenceurs, médias, concurrents"
+            },
+            "location": {
+                "all": "Tous",
+                "title_attr": "Filtrer par ville — Choisissez une ville pour filtrer les résultats",
+                "by_city": "Par ville",
+                "badge": "Ville",
+                "description": "Choisissez une ville pour filtrer les résultats",
+                "cities": {
+                    "casablanca": "Casablanca",
+                    "rabat": "Rabat",
+                    "marrakesh": "Marrakech",
+                    "tanger": "Tanger",
+                    "agadir": "Agadir"
+                }
+            },
+            "keyword": {
+                "title_attr": "Filtrer par mot-clé — Nom de la marque, produit ou campagne",
+                "by_keyword": "Par mot-clé",
+                "add_a_keyword": "Ajouter un mot-clé",
+                "badge": "Mot-clé",
+                "description": "Nom de la marque, produit ou campagne",
+                "aria": "Mot-clé"
+            },
+            "format": {
+                "title_attr": "Filtrer par format — Vidéo, publication, story, commentaire, article",
+                "by_format": "Par format",
+                "badge": "Format",
+                "description": "Vidéo, publication, story, commentaire, article",
+                "all": "Tous",
+                "video": "Vidéo",
+                "post": "Publication",
+                "story": "Story",
+                "comment": "Commentaire",
+                "article": "Article"
+            },
+            "language": {
+                "all": "Tous",
+                "ar": "Arabe",
+                "fr": "Français",
+                "en": "Anglais",
+                "title_attr": "Filtrer par langue — Arabe, Français, Anglais",
+                "by_language": "Par langue",
+                "badge": "Langue",
+                "description": "Arabe, Français, Anglais"
+            }
+        },
+        "cards": {
+            "total_mentions_heading": "Total des mentions"
+        },
+        "labels": {
+            "across_selected_period": "sur la période sélectionnée",
+            "ai_powered_insight": "Insight IA"
+        },
+        "charts": {
+            "sentiment": {
+                "title": "Tendance du sentiment",
+                "description": "Affiche la répartition générale des sentiments (positif/neutre/négatif) pour la période sélectionnée et met en évidence le sentiment dominant. Utile pour suivre les changements d'opinion.",
+                "positive": "Positif",
+                "neutral": "Neutre",
+                "negative": "Négatif",
+                "interpretation_1": "La répartition des sentiments montre {{sentiment}} comme la part la plus importante ({{pct}}%).",
+                "interpretation_2": "Sur {{total}} mentions au total, {{pct}}% sont {{sentiment}}.",
+                "interpretation_3": "Surveillez les changements dans la composition des sentiments — un déplacement de plus de 5% peut indiquer une tendance significative."
+            },
+            "keywords_by_sentiment": {
+                "title": "Principaux mots-clés par sentiment",
+                "description": "Mots-clés principaux regroupés par sentiment. Aide à identifier quels termes génèrent des conversations positives, neutres ou négatives."
+            },
+            "countries_by_sentiment": {
+                "title": "Principaux pays par sentiment",
+                "description": "Montre quels pays contribuent le plus à chaque catégorie de sentiment. Utile pour repérer les différences régionales de sentiment."
+            },
+            "top_mentions": {
+                "heading": "Total des mentions",
+                "title": "Résumé des mentions",
+                "description": "Une carte récapitulative compacte montrant le nombre total de mentions dans l'échantillon et un court insight généré par l'IA pointant vers les principales sources.",
+                "interpretation_total": "Total des mentions dans l'échantillon : {{total}}.",
+                "interpretation_top": "{{label}} a généré le plus de mentions ({{val}}, {{pct}}%).",
+                "interpretation_action": "Envisagez d'examiner le contenu de {{label}} pour comprendre les moteurs de la portée.",
+                "last_n_days": "Derniers {{days}} jours"
+            },
+            "total_reach": {
+                "heading": "Portée totale",
+                "title": "Portée totale",
+                "description": "Affiche la portée totale sur l'échantillon sélectionné (somme de la portée estimée). Utile pour comprendre la visibilité globale et comparer les périodes.",
+                "last_n_days": "Derniers {{days}} jours",
+                "ai": {
+                    "total_reach": "Portée totale sur l'échantillon : <strong>{{total}}</strong>.",
+                    "avg_reach": "Portée moyenne par période : <strong>{{avg}}</strong>.",
+                    "peak": "Pic le {{date}} avec {{reach}} de portée."
+                }
+            },
+            "source_distribution": {
+                "title": "Répartition des mentions par source",
+                "description": "Répartition des mentions entre différentes sources (par ex. Facebook, X, Instagram) au fil du temps. Utilisez ceci pour voir quels canaux génèrent le plus de conversation.",
+                "interpretation_top": "Sur {{periods}} périodes, {{top}} a contribué à la plus grande part ({{pct}}%).",
+                "interpretation_totals": "Mentions totales par source : {{totals}}."
+            },
+            "share_of_voice": {
+                "title": "Part de voix",
+                "description": "Affiche comment la conversation est répartie entre les catégories (ou concurrents). Il met en évidence le contributeur le plus important à la part globale et aide à évaluer la visibilité relative.",
+                "other": "Autre",
+                "interpretation_top": "La catégorie principale est {{top}} avec {{pct}}% de la part de voix.",
+                "interpretation_others": "Autres catégories : {{others}}."
+            },
+            "top_keywords": {
+                "title": "Mots-clés principaux",
+                "description": "Une disposition visuelle des meilleurs mots-clés ; la taille indique la proéminence. Utile pour repérer rapidement les thèmes courants et faire émerger les termes les plus mentionnés.",
+                "keyword_aria": "Mot-clé {{kw}}, rang {{rank}}"
+            },
+            "total_mentions": {
+                "title": "Total des mentions",
+                "description": "Affiche le nombre total de mentions sur la période sélectionnée et des métriques de croissance rapides. Utilisez ceci pour surveiller les variations de volume et repérer les pic ou chutes d'attention."
+            }
+        }
+    }
 }

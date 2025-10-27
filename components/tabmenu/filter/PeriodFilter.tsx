@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useTranslations } from 'next-intl';
 import {
   format,
   subDays,
@@ -23,13 +24,13 @@ import { Calendar } from "@/components/ui/calendar";
 import { CalendarDays } from "lucide-react";
 
 const presets = [
-  { key: "last_30", label: "Last 30 days" },
-  { key: "last_7", label: "Last 7 days" },
-  { key: "last_14", label: "Last 14 days" },
-  { key: "this_month", label: "This month" },
-  { key: "last_month", label: "Last month" },
-  { key: "today", label: "Today" },
-  { key: "yesterday", label: "Yesterday" },
+  { key: "last_30", labelKey: "social_listening.filters.period.presets.last_30" },
+  { key: "last_7", labelKey: "social_listening.filters.period.presets.last_7" },
+  { key: "last_14", labelKey: "social_listening.filters.period.presets.last_14" },
+  { key: "this_month", labelKey: "social_listening.filters.period.presets.this_month" },
+  { key: "last_month", labelKey: "social_listening.filters.period.presets.last_month" },
+  { key: "today", labelKey: "social_listening.filters.period.presets.today" },
+  { key: "yesterday", labelKey: "social_listening.filters.period.presets.yesterday" },
 ];
 
 function presetToRange(key: string) {
@@ -58,6 +59,7 @@ function presetToRange(key: string) {
 }
 
 export default function PeriodFilter() {
+  const t = useTranslations();
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement | null>(null);
   const [minWidthPx, setMinWidthPx] = useState<number | undefined>(undefined);
@@ -110,7 +112,7 @@ export default function PeriodFilter() {
     <div className="rounded-lg shadow-sm border bg-white dark:bg-slate-800 ring-1 ring-slate-100 dark:ring-slate-700">
       <Popover open={open} onOpenChange={setOpen}>
           <PopoverTrigger asChild>
-          <button title="Filter by period — Select a date range or preset" ref={triggerRef} className="w-full px-4 py-3 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors rounded-lg group">
+              <button title={t('social_listening.filters.period.title_attr')} ref={triggerRef} className="w-full px-4 py-3 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors rounded-lg group">
             {/* Icon */}
             <div className="w-9 h-9 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors">
               <CalendarDays className="w-5 h-5 text-slate-700 dark:text-slate-300" />
@@ -119,15 +121,15 @@ export default function PeriodFilter() {
             {/* Content */}
             <div className="flex-1 text-left min-w-0">
               <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                By period
+                {t('social_listening.filters.period.by_period')}
               </div>
               <div className="text-xs text-slate-600 dark:text-slate-400 truncate">
-                {displayValue || "Select a period"}
+                {displayValue || t('social_listening.filters.period.select_a_period')}
               </div>
             </div>
 
             {/* Badge */}
-            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">Period</span>
+            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">{t('social_listening.filters.period.badge')}</span>
             {/* Arrow */}
             <svg 
               className="w-4 h-4 text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors flex-shrink-0" 
@@ -154,7 +156,7 @@ export default function PeriodFilter() {
               {presets.map((p) => (
                 <label key={p.key} className="flex items-center gap-2 cursor-pointer">
                   <RadioGroupItem value={p.key} className="text-purple-500 focus:ring-purple-500" />
-                  <span className="text-sm">{p.label}</span>
+                  <span className="text-sm">{t(p.labelKey)}</span>
                 </label>
               ))}
             </RadioGroup>
@@ -174,22 +176,22 @@ export default function PeriodFilter() {
 
               <div className="mt-4 flex items-center justify-between pt-3 border-t border-slate-200 dark:border-slate-700">
               <div className="text-sm">
-                <span className="text-slate-500 dark:text-slate-400">Selected: </span>
+                <span className="text-slate-500 dark:text-slate-400">{t('social_listening.filters.period.selected_label')} </span>
                 <span className="font-medium text-slate-900 dark:text-slate-100">
-                  {displayValue || "No period selected"}
+                  {displayValue || t('social_listening.filters.period.no_period_selected')}
                 </span>
               </div>
 
               <div className="flex items-center gap-2">
                 <Button variant="outline" size="sm" onClick={clear}>
-                  Clear
+                  {t('social_listening.filters.period.clear')}
                 </Button>
                 <Button
                   size="sm"
                   className="bg-purple-600 text-white hover:bg-purple-700"
                   onClick={() => setOpen(false)}
                 >
-                  Apply
+                  {t('social_listening.filters.period.apply')}
                 </Button>
               </div>
             </div>
