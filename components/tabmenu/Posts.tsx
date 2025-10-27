@@ -60,6 +60,13 @@ export default function Posts() {
       text: "white",
     },
     {
+      name: "Facebook",
+      count: null,
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
+      color: "#1877F3",
+      text: "white",
+    },
+    {
       name: "YouTube",
       count: 53,
       logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
@@ -80,20 +87,6 @@ export default function Posts() {
       color: "#0077B5",
       text: "white",
     },
-    {
-      name: "Facebook",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
-      color: "#1877F3",
-      text: "white",
-    },
-    {
-      name: "Snapchat",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg",
-      color: "#FFFC00",
-      text: "black",
-    }
   ];
   const allSocialOption: SocialPlatform = {
     name: "All Social Medias",
