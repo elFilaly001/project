@@ -16,7 +16,8 @@
         "profile": "Profile",
         "logout": "Log out",
         "brand_watch": "Brand Watch",
-        "stock_market": "Stock Market"
+        "stock_market": "Stock Market",
+        "language": "Language"
     },
     "profile": {
         "title": "Profile",
@@ -25,5 +26,12 @@
         "change": "Change",
         "email_label": "Email",
         "edit": "Edit"
+    }
+    ,
+    "tabs": {
+        "social_listening": "Social Listening",
+        "audience": "Audience",
+        "posts": "Posts",
+        "competitive_intelligence": "Competitive Intelligence"
     }
 }

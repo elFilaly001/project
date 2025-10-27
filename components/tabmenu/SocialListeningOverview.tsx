@@ -5,11 +5,17 @@ import TotalMentions from "./charts/TotalMentions";
 import TotalReach from "./charts/TotalReach";
 import { HiOutlineChat, HiOutlineSpeakerphone, HiOutlineChartBar, HiOutlineEmojiHappy, HiOutlineEmojiSad } from "react-icons/hi";
 
-function MetricCard({ icon, title, value, subtitle, accent }: { icon: React.ReactNode; title: string; value: React.ReactNode; subtitle?: string; accent?: string }) {
+function MetricCard({ icon, title, value, subtitle, accentBg, iconColor, accentBorder }: { icon: React.ReactNode; title: string; value: React.ReactNode; subtitle?: string; accentBg?: string; iconColor?: string; accentBorder?: string }) {
+    // accentBg, iconColor and accentBorder are small utility classes passed from caller
+    // to keep Tailwind classes explicit where possible. Example accentBg: "bg-gradient-to-tr from-pink-50 to-pink-100"
+    const bg = accentBg ?? "bg-gradient-to-tr from-indigo-50 to-indigo-100";
+    const iconCls = iconColor ?? "text-indigo-600";
+    const borderCls = accentBorder ?? "border-transparent";
+
     return (
-        <div className="bg-white border rounded-md shadow-sm p-3 flex items-center gap-4">
-            <div className={"p-3 rounded-md flex items-center justify-center " + (accent ?? "bg-indigo-50")}>
-                <div className="text-indigo-600 text-2xl">{icon}</div>
+        <div className={`bg-white border ${borderCls} rounded-md shadow-sm p-3 flex items-center gap-4`}>
+            <div className={`${bg} p-3 rounded-md flex items-center justify-center flex-shrink-0`}> 
+                <div className={`${iconCls} text-2xl`}>{icon}</div>
             </div>
 
             <div className="flex-1">
@@ -33,7 +39,8 @@ export default function SocialListeningOverview() {
     const sentimentScore = sentimentPositive - sentimentNegative; // positive >0 means net positive
     const sentimentIsPositive = sentimentScore >= 0;
     const sentimentIcon = sentimentIsPositive ? <HiOutlineEmojiHappy /> : <HiOutlineEmojiSad />;
-    const sentimentAccent = sentimentIsPositive ? 'bg-green-50' : 'bg-red-50';
+    const sentimentAccentBg = sentimentIsPositive ? 'bg-gradient-to-tr from-green-50 to-green-100' : 'bg-gradient-to-tr from-red-50 to-red-100';
+    const sentimentIconColor = sentimentIsPositive ? 'text-green-600' : 'text-red-600';
     const sentimentPositiveLabelClass = sentimentIsPositive ? 'text-green-600' : 'text-gray-500';
     const sentimentNegativeLabelClass = sentimentIsPositive ? 'text-gray-500' : 'text-red-600';
 
@@ -46,7 +53,9 @@ export default function SocialListeningOverview() {
                     title="Total Mentions"
                     value={mentions.toLocaleString()}
                     subtitle="period total"
-                    accent="bg-pink-50"
+                    accentBg="bg-gradient-to-tr from-pink-50 to-pink-100"
+                    iconColor="text-pink-600"
+                    accentBorder="border-l-4 border-pink-200 dark:border-pink-700/40"
                 />
 
                 <MetricCard
@@ -54,7 +63,9 @@ export default function SocialListeningOverview() {
                     title="Social Reach"
                     value={reach}
                     subtitle="total reach"
-                    accent="bg-sky-50"
+                    accentBg="bg-gradient-to-tr from-sky-50 to-sky-100"
+                    iconColor="text-sky-600"
+                    accentBorder="border-l-4 border-sky-200 dark:border-sky-700/40"
                 />
 
                 <MetricCard
@@ -62,12 +73,14 @@ export default function SocialListeningOverview() {
                     title="Social Engagement"
                     value={engagement}
                     subtitle="total engagements"
-                    accent="bg-orange-50"
+                    accentBg="bg-gradient-to-tr from-orange-50 to-orange-100"
+                    iconColor="text-orange-600"
+                    accentBorder="border-l-4 border-orange-200 dark:border-orange-700/40"
                 />
 
-                <div className="bg-white border rounded-md shadow-sm p-3 flex items-center gap-4">
-                    <div className={`p-3 rounded-md ${sentimentAccent} flex items-center justify-center`}>
-                        <div className={`text-2xl ${sentimentIsPositive ? 'text-green-600' : 'text-red-600'}`}>{sentimentIcon}</div>
+                <div className={`bg-white border ${sentimentIsPositive ? 'border-l-4 border-green-200 dark:border-green-700/40' : 'border-l-4 border-red-200 dark:border-red-700/40'} rounded-md shadow-sm p-3 flex items-center gap-4`}>
+                    <div className={`p-3 rounded-md ${sentimentAccentBg} flex items-center justify-center flex-shrink-0`}>
+                        <div className={`text-2xl ${sentimentIconColor}`}>{sentimentIcon}</div>
                     </div>
 
                     <div className="flex-1">

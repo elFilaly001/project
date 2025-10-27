@@ -16,7 +16,8 @@
         "profile": "الملف الشخصي",
         "logout": "تسجيل الخروج",
         "brand_watch": "مراقبة العلامة التجارية",
-        "stock_market": "سوق الأسهم"
+        "stock_market": "سوق الأسهم",
+        "language": "اللغة"
     },
     "profile": {
         "title": "الملف الشخصي",
@@ -25,5 +26,12 @@
         "change": "تغيير",
         "email_label": "البريد الإلكتروني",
         "edit": "تعديل"
+    }
+    ,
+    "tabs": {
+        "social_listening": "الاستماع الاجتماعي",
+        "audience": "الجمهور",
+        "posts": "المنشورات",
+        "competitive_intelligence": "التحليل التنافسي"
     }
 }

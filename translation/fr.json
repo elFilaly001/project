@@ -3,20 +3,21 @@
         "dashboard": "Tableau de bord",
         "ranking": "Classement",
         "reports": "Rapports",
-        "data_api": "Données & Intégration API",
-        "digital_ad_monitoring": "Surveillance des publicités numériques",
+        "data_api": "Données & API",
+        "digital_ad_monitoring": "Suivi pubs",
         "tutorial": "Tutoriel",
         "support": "Support",
-        "expand": "Ouvrir la barre",
-        "collapse": "Réduire la barre",
+        "expand": "Ouvrir",
+        "collapse": "Fermer",
         "avatar_initials": "JD",
         "user_name": "John Doe",
         "user_email": "john@example.com",
         "my_account": "Mon compte",
         "profile": "Profil",
         "logout": "Se déconnecter",
-        "brand_watch": "Brand Watch",
-        "stock_market": "Marché boursier"
+        "brand_watch": "Veille",
+        "stock_market": "Bourse",
+        "language": "Langue"
     },
     "profile": {
         "title": "Profil",
@@ -25,5 +26,12 @@
         "change": "Changer",
         "email_label": "Email",
         "edit": "Modifier"
+    }
+    ,
+    "tabs": {
+        "social_listening": "Écoute sociale",
+        "audience": "Audience",
+        "posts": "Publications",
+        "competitive_intelligence": "Veille concurrentielle"
     }
 }

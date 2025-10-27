@@ -1,21 +1,24 @@
 "use client";
 
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import Audience from './tabmenu/Audience';
 import Posts from './tabmenu/Posts';
 import SocialListening from './tabmenu/SocialListening';
 import CompetitiveIntelligence from './tabmenu/CompetitiveIntelligence';
 
-type Tab = { id: number; label: string; content: React.ReactNode };
+type Tab = { id: number; label: string | React.ReactNode; content: React.ReactNode };
 
+// Default tabs use translation keys. Add corresponding keys to your locale files (e.g. translation/en.json).
 const defaultTabs: Tab[] = [
-    { id: 3, label: 'Social Listening', content: <SocialListening /> },
-    { id: 1, label: 'Audience', content: <Audience /> },
-    { id: 2, label: 'Posts', content: <Posts /> },
-    { id: 4, label: 'Competitive Intelligence', content: <CompetitiveIntelligence /> },
+    { id: 3, label: 'tabs.social_listening', content: <SocialListening /> },
+    { id: 1, label: 'tabs.audience', content: <Audience /> },
+    { id: 2, label: 'tabs.posts', content: <Posts /> },
+    { id: 4, label: 'tabs.competitive_intelligence', content: <CompetitiveIntelligence /> },
 ];
 
 export default function TabBar({ tabs = defaultTabs, initialActiveId }: { tabs?: Tab[]; initialActiveId?: number }) {
+    const t = useTranslations();
     const [activeTab, setActiveTab] = useState<number>(initialActiveId ?? (tabs[0]?.id ?? 1));
 
     return (
@@ -31,7 +34,7 @@ export default function TabBar({ tabs = defaultTabs, initialActiveId }: { tabs?:
                                 : 'text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
-                            {tab.label}
+                            {typeof tab.label === 'string' ? t(tab.label) : tab.label}
                         </button>
                     ))}
                 </nav>

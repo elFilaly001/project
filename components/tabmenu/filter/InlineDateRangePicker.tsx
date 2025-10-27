@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import {
   format,
   subDays,
@@ -59,6 +59,8 @@ function presetToRange(key: string) {
 export default function InlineDateRangePicker() {
   const [open, setOpen] = useState(false);
   const [preset, setPreset] = useState<string>("last_30");
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const [minWidthPx, setMinWidthPx] = useState<number | undefined>(undefined);
   const initial = presetToRange("last_30");
   const [from, setFrom] = useState<Date | undefined>(initial.from);
   const [to, setTo] = useState<Date | undefined>(initial.to);
@@ -92,22 +94,39 @@ export default function InlineDateRangePicker() {
   const prev = new Date(current);
   prev.setMonth(current.getMonth() - 1);
 
+  useEffect(() => {
+    function updateMinWidth() {
+      const w = triggerRef.current?.getBoundingClientRect().width;
+      if (w) setMinWidthPx(Math.round(w));
+    }
+
+    if (open) {
+      updateMinWidth();
+      window.addEventListener("resize", updateMinWidth);
+      return () => window.removeEventListener("resize", updateMinWidth);
+    }
+  }, [open]);
+
   return (
     <div className="bg-white/60 dark:bg-slate-800/60 rounded-lg relative">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-            variant="outline"
-            className="w-full justify-between text-left"
+          title="Filter by period — Select a date range or preset"
+          ref={triggerRef}
+          variant="outline"
+          className="w-full justify-between text-left"
           >
             <span className="text-sm text-slate-700 dark:text-slate-200">
               {displayValue || "Sélectionner une période"}
             </span>
+            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">Period</span>
           </Button>
         </PopoverTrigger>
         <PopoverContent
           align="start"
           className="w-[820px] grid grid-cols-4 gap-4 relative pb-12"
+          style={minWidthPx ? { minWidth: `${minWidthPx}px` } : undefined}
         >
           {/* Left presets */}
           <div className="col-span-1">
@@ -149,7 +168,7 @@ export default function InlineDateRangePicker() {
             </Button>
             <Button
               size="sm"
-              className="bg-purple-500 text-white hover:bg-purple-700"
+              className="bg-slate-700 text-white hover:bg-slate-800"
               onClick={() => setOpen(false)}
             >
               Mettre à jour

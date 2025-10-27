@@ -33,23 +33,9 @@ export default function TopKeywords({ limit = 6, data }: Props) {
     const defaultList = Object.values(defaultGroups).flat();
     const list = data && data.length ? data : defaultList;
     const limited = list.slice(0, limit);
-
-    // Map index to a position; if out of range, scatter them with small offsets
-    const getPosStyle = (i: number) => {
-        const p = positions[i] || { top: `${10 + i * 6}%`, left: `${10 + (i % 5) * 18}%`, rotate: (i % 2 === 0 ? -4 : 4) };
-        const translate = i === 0 ? '-50%, -50%' : '-50%, -50%';
-        return {
-            position: 'absolute' as const,
-            top: p.top,
-            left: p.left,
-            transform: `translate(${translate}) rotate(${p.rotate ?? 0}deg)`,
-            whiteSpace: 'nowrap' as const,
-        } as React.CSSProperties;
-    };
-
-    // size by rank: first is large, next two medium, rest small
+    // sizes and colors by rank: first is large, next two medium, rest small
     const fontSizeByIndex = (i: number) => {
-        if (i === 0) return 'text-3xl md:text-4xl lg:text-5xl font-extrabold';
+        if (i === 0) return 'text-2xl md:text-3xl lg:text-4xl font-extrabold';
         if (i === 1 || i === 2) return 'text-lg md:text-xl font-semibold';
         return 'text-sm md:text-base';
     };
@@ -73,25 +59,92 @@ export default function TopKeywords({ limit = 6, data }: Props) {
                 />
             </div>
 
-            <div className="relative w-full h-56 md:h-72 lg:h-80 bg-transparent overflow-hidden">
-                {limited.map((kw, idx) => {
-                    const isCenter = idx === 0;
-                    const sizeClass = fontSizeByIndex(idx);
-                    const colorClass = colorByIndex(idx);
+            {/* Flex layout matching the sketch:
+                Row 1: 1 item (index 0) full width
+                Row 2: 2 items (indexes 1-2)
+                Row 3: 3 items (indexes 3-5)
+                Uses flex instead of grid per request. */}
+            <div className="w-full space-y-3">
+                {/* prepare rows from the limited list */}
+                {(() => {
+                    const row1 = limited.slice(0, 1);
+                    const row2 = limited.slice(1, 3);
+                    const row3 = limited.slice(3, 6);
 
                     return (
-                        <button
-                            key={kw}
-                            type="button"
-                            title={kw}
-                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
-                            className={`transition-transform transform hover:scale-110 focus:outline-none ${isCenter ? '' : ''}`}
-                            style={getPosStyle(idx)}
-                        >
-                            <span className={`${sizeClass} ${colorClass} bg-white/0 px-1`}>{kw}</span>
-                        </button>
+                        <>
+                            {/* Row 1: single, full-width */}
+                            <div className="flex w-full">
+                                {row1.map((kw, i) => {
+                                    const idx = i; // 0
+                                    const sizeClass = fontSizeByIndex(idx);
+                                    const colorClass = colorByIndex(idx);
+                                    return (
+                                        <button
+                                            key={kw}
+                                            type="button"
+                                            title={kw}
+                                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
+                                            className={`w-full h-20 md:h-24 lg:h-28 flex items-center justify-center gap-3 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-4`}
+                                        >
+                                                                    {/* Badge styled to match keyword text (no bg), slightly smaller */}
+                                                                    <span className={`${colorClass} ${idx === 0 ? 'text-xl md:text-2xl' : 'text-sm md:text-base'} font-semibold mr-2`} aria-hidden>
+                                                                        {`${idx + 1}#`}
+                                                                    </span>
+                                                                    <span className={`${sizeClass} ${colorClass} truncate`}>{kw}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Row 2: two medium items */}
+                            <div className="flex w-full gap-3">
+                                {row2.map((kw, j) => {
+                                    const idx = 1 + j; // 1,2
+                                    const sizeClass = fontSizeByIndex(idx);
+                                    const colorClass = colorByIndex(idx);
+                                    return (
+                                        <button
+                                            key={kw}
+                                            type="button"
+                                            title={kw}
+                                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
+                                            className={`flex-1 h-14 md:h-16 flex items-center justify-center gap-3 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-3`}
+                                        >
+                                            <span className={`${colorClass} text-sm md:text-base font-semibold mr-2`} aria-hidden>
+                                                {`${idx + 1}#`}
+                                            </span>
+                                            <span className={`${sizeClass} ${colorClass} truncate`}>{kw}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+
+                            {/* Row 3: three small items */}
+                            <div className="flex w-full gap-3">
+                                {row3.map((kw, j) => {
+                                    const idx = 3 + j; // 3,4,5
+                                    const sizeClass = fontSizeByIndex(idx);
+                                    const colorClass = colorByIndex(idx);
+                                    return (
+                                        <button
+                                            key={kw}
+                                            type="button"
+                                            title={kw}
+                                            aria-label={`Mot-clé ${kw}, rang ${idx + 1}`}
+                                            className={`flex-1 h-10 flex items-center justify-center gap-2 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-2`}
+                                        >
+                                            <span className={`${colorClass} text-xs md:text-sm font-semibold mr-2`} aria-hidden>
+                                                {`${idx + 1}#`}
+                                            </span>
+                                            <span className={`${sizeClass} ${colorClass} truncate`}>{kw}</span>
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </>
                     );
-                })}
+                })()}
             </div>
         </div>
     );
