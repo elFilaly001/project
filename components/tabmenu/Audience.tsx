@@ -188,8 +188,8 @@ export default function Audience() {
                     onClick={() => setMode("followers")}
                     className={`h-10 px-4 rounded-md text-sm font-medium transition ${
                       mode === "followers"
-                        ? "bg-indigo-600 text-white shadow"
-                        : "text-gray-600 hover:bg-gray-100"
+                        ? "bg-cyan-500 text-white shadow"
+                        : "text-gray-600 hover:bg-cyan-100"
                     }`}
                     style={{ minHeight: 40 }}
                   >
@@ -199,8 +199,8 @@ export default function Audience() {
                     onClick={() => setMode("likers")}
                     className={`h-10 px-4 rounded-md text-sm font-medium transition ${
                       mode === "likers"
-                        ? "bg-indigo-600 text-white shadow"
-                        : "text-gray-600 hover:bg-gray-100"
+                        ? "bg-cyan-500 text-white shadow"
+                        : "text-gray-600 hover:bg-cyan-100"
                     }`}
                     style={{ minHeight: 40 }}
                   >
@@ -216,7 +216,7 @@ export default function Audience() {
                 />
                 <div className="text-sm text-gray-500">
                   The audience data is based on{" "}
-                  <span className="font-medium text-indigo-600">
+                  <span className="font-medium text-cyan-600">
                     {selectedSocial || allSocialOption.name}
                   </span>
                 </div>
