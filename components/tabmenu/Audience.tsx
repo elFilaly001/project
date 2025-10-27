@@ -50,6 +50,13 @@ export default function Audience() {
       text: "white",
     },
     {
+      name: "Facebook",
+      count: null,
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
+      color: "#1877F3",
+      text: "white",
+    },
+    {
       name: "YouTube",
       count: 53,
       logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
@@ -70,20 +77,6 @@ export default function Audience() {
       color: "#0077B5",
       text: "white",
     },
-    {
-      name: "Facebook",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
-      color: "#1877F3",
-      text: "white",
-    },
-    {
-      name: "Snapchat",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg",
-      color: "#FFFC00",
-      text: "black",
-    },
   ];
   // All Social Medias option (with its own logo)
   const allSocialOption: SocialPlatform = {
@@ -97,6 +90,7 @@ export default function Audience() {
   const mockData = [
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/2/21/Instagram_Glyph_Gradient_RGB_logo.svg",
+      userAvatar: "https://randomuser.me/api/portraits/women/1.jpg",
       name: "IShowSpeed",
       score: "99.7/100",
       followers: "41.7M",
@@ -110,6 +104,7 @@ export default function Audience() {
     },
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg",
+      userAvatar: "https://randomuser.me/api/portraits/women/2.jpg",
       name: "IShowSpeed",
       score: "98.8/100",
       followers: "42.4M",
@@ -123,6 +118,7 @@ export default function Audience() {
     },
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg",
+      userAvatar: "https://randomuser.me/api/portraits/women/3.jpg",
       name: "Speed⭐",
       score: "96.8/100",
       followers: "3.7M",
@@ -136,10 +132,11 @@ export default function Audience() {
     },
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
+      userAvatar: "https://randomuser.me/api/portraits/women/4.jpg",
       name: "IShowSpeed",
       score: "96.7/100",
       followers: "45M",
-      growth: "+1.53%",
+      growth: "-1.53%",
       lastActivity: "This week",
       activity: "2.9 Videos / month",
       engRate: "0.22%",
@@ -188,8 +185,8 @@ export default function Audience() {
                     onClick={() => setMode("followers")}
                     className={`h-10 px-4 rounded-md text-sm font-medium transition ${
                       mode === "followers"
-                        ? "bg-indigo-600 text-white shadow"
-                        : "text-gray-600 hover:bg-gray-100"
+                        ? "bg-cyan-500 text-white shadow"
+                        : "text-gray-600 hover:bg-cyan-100"
                     }`}
                     style={{ minHeight: 40 }}
                   >
@@ -199,8 +196,8 @@ export default function Audience() {
                     onClick={() => setMode("likers")}
                     className={`h-10 px-4 rounded-md text-sm font-medium transition ${
                       mode === "likers"
-                        ? "bg-indigo-600 text-white shadow"
-                        : "text-gray-600 hover:bg-gray-100"
+                        ? "bg-cyan-500 text-white shadow"
+                        : "text-gray-600 hover:bg-cyan-100"
                     }`}
                     style={{ minHeight: 40 }}
                   >
@@ -216,7 +213,7 @@ export default function Audience() {
                 />
                 <div className="text-sm text-gray-500">
                   The audience data is based on{" "}
-                  <span className="font-medium text-indigo-600">
+                  <span className="font-medium text-cyan-600">
                     {selectedSocial || allSocialOption.name}
                   </span>
                 </div>

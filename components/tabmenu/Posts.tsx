@@ -60,6 +60,13 @@ export default function Posts() {
       text: "white",
     },
     {
+      name: "Facebook",
+      count: null,
+      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
+      color: "#1877F3",
+      text: "white",
+    },
+    {
       name: "YouTube",
       count: 53,
       logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
@@ -80,20 +87,6 @@ export default function Posts() {
       color: "#0077B5",
       text: "white",
     },
-    {
-      name: "Facebook",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg",
-      color: "#1877F3",
-      text: "white",
-    },
-    {
-      name: "Snapchat",
-      count: null,
-      logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg",
-      color: "#FFFC00",
-      text: "black",
-    }
   ];
   const allSocialOption: SocialPlatform = {
     name: "All Social Medias",
@@ -234,7 +227,7 @@ export default function Posts() {
               </button>
               <div className="flex items-center gap-1 ml-2">
                 <button
-                  className={`h-10 p-2 rounded-md border ${view === 'list' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                  className={`h-10 p-2 rounded-md border ${view === 'list' ? 'bg-cyan-500 text-white' : 'bg-white text-gray-600 hover:bg-cyan-100'}`}
                   onClick={() => setView('list')}
                   title="List view"
                   type="button"
@@ -243,7 +236,7 @@ export default function Posts() {
                   <FaThList size={16} />
                 </button>
                 <button
-                  className={`h-10 p-2 rounded-md border ${view === 'grid' ? 'bg-indigo-600 text-white' : 'bg-white text-gray-600 hover:bg-gray-100'}`}
+                  className={`h-10 p-2 rounded-md border ${view === 'grid' ? 'bg-cyan-500 text-white' : 'bg-white text-gray-600 hover:bg-cyan-100'}`}
                   onClick={() => setView('grid')}
                   title="Grid view"
                   type="button"
@@ -271,7 +264,7 @@ export default function Posts() {
               />
               <div className="text-sm text-gray-500 h-10 flex items-center" style={{ minHeight: 40 }}>
                 The audience data is based on{" "}
-                <span className="font-medium text-indigo-600">
+                <span className="font-medium text-cyan-600">
                   {selectedSocial || allSocialOption.name}
                 </span>
               </div>

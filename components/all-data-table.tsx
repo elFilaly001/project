@@ -21,18 +21,35 @@ export default function AllDataTable({ data }: { data: any[] }) {
         <tbody>
           {data.map((row, idx) => (
             <tr key={idx} className="border-b hover:bg-gray-50 transition text-sm">
-              <td className="py-2 px-3 flex items-center gap-2">
-                <img src={row.icon} alt={row.name} className="w-8 h-8 rounded-full object-cover" />
+              <td className="py-2 px-3 flex items-center gap-3">
+                {/* Social media logo in square placeholder */}
+                <div className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-md overflow-hidden">
+                  <img src={row.icon} alt="logo" className="w-6 h-6 object-contain" />
+                </div>
+                {/* Profile picture in rounded placeholder */}
+                {row.userAvatar && (
+                  <div className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-full overflow-hidden">
+                    <img src={row.userAvatar} alt={row.name} className="w-7 h-7 rounded-full object-cover" />
+                  </div>
+                )}
                 <span className="break-words">{row.name}</span>
               </td>
               <td className="py-2 px-3 text-left">{row.score}</td>
               <td className="py-2 px-3 text-right">{row.followers}</td>
-              <td className="py-2 px-3 text-right">{row.growth}</td>
+              <td
+                className={`py-2 px-3 text-right ${row.growth && row.growth.trim().startsWith('-')
+                  ? 'text-red-500'
+                  : row.growth && row.growth.trim().startsWith('+')
+                  ? 'text-green-600'
+                  : ''}`}
+              >
+                {row.growth}
+              </td>
               <td className="py-2 px-3 text-right">{row.lastActivity}</td>
               <td className="py-2 px-3 text-right">{row.activity}</td>
-              <td className="py-2 px-3 text-right">{row.engRate}</td>
-              <td className="py-2 px-3 text-right">{row.avgEng}</td>
-              <td className="py-2 px-3 text-right">{row.avgViews}</td>
+              <td className="py-2 px-3 text-right text-green-600">{row.engRate}</td>
+              <td className="py-2 px-3 text-right text-green-600">{row.avgEng}</td>
+              <td className="py-2 px-3 text-right text-green-600">{row.avgViews}</td>
               <td className="py-2 px-3 text-right">{row.postingHabits}</td>
             </tr>
           ))}
