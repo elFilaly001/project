@@ -125,7 +125,7 @@ export default function PeriodFilter() {
               >
                 {presets.map((p) => (
                   <label key={p.key} className="flex items-center gap-2">
-                    <RadioGroupItem value={p.key} />
+                    <RadioGroupItem value={p.key} className="text-cyan-500 focus:ring-cyan-500 checked:bg-cyan-500 checked:border-cyan-500" />
                     <span className="text-sm">{p.label}</span>
                   </label>
                 ))}
@@ -143,24 +143,23 @@ export default function PeriodFilter() {
                   setPreset("");
                 }}
                 numberOfMonths={2}
-                month={prev}
               />
 
-              <div className="mt-2 w-full flex items-center justify-between gap-2">
-                <div className="flex flex-col">
+              <div className="mt-2 w-full flex items-center">
+                <div className="flex flex-col w-1/2 text-left">
                   <div className="text-sm font-medium">Aperçu</div>
                   <div className="text-xs text-slate-500 mt-2">
                     {displayValue || "Aucune période sélectionnée"}
                   </div>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex w-1/2 justify-end items-center gap-2">
                   <Button variant="outline" size="sm" onClick={clear}>
                     Effacer
                   </Button>
                   <Button
                     size="sm"
-                    className="bg-purple-500 text-white"
+                    className="bg-purple-500 text-white hover:bg-purple-700"
                     onClick={() => setOpen(false)}
                   >
                     Mettre à jour

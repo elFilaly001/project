@@ -12,6 +12,7 @@ import BrandAffinityCard from "../brand-affinity-card";
 import InterestAffinityCard from "../interest-affinity-card";
 import AllDataTable from "../all-data-table";
 import SocialDropdown, { SocialPlatform } from "../ui/SocialDropdown";
+import InlineDateRangePicker from "./filter/InlineDateRangePicker";
 
 /**
  * Audience component for the TabBar.
@@ -23,6 +24,7 @@ import SocialDropdown, { SocialPlatform } from "../ui/SocialDropdown";
  *
  * Replace static data with props or fetch as needed.
  */
+
 
 export const AudienceModeContext = createContext<string>("followers");
 
@@ -204,6 +206,7 @@ export default function Audience() {
                     Likers
                   </button>
                 </div>
+                <InlineDateRangePicker />
               {/* Social media filter buttons */}
                 <SocialDropdown
                   socialPlatforms={socialPlatforms}
