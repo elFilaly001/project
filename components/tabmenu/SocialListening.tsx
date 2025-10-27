@@ -1,5 +1,4 @@
 "use client";
-
 import React from 'react';
 import dynamic from 'next/dynamic';
 import {
@@ -12,6 +11,7 @@ import {
     FormatFilter,
     LanguageFilter,
 } from './filter';
+import SocialListeningOverview from './SocialListeningOverview';
 
 // Dynamically import chart components with SSR disabled so browser-only libs (like recharts)
 // are only evaluated on the client. This prevents server-side errors after upgrading Next.
@@ -29,6 +29,9 @@ export default function SocialListening() {
     return (
         <div className="space-y-6">
             <div className="text-lg font-medium">Social Listening</div>
+
+            {/* Overview metrics (tiles + small charts) */}
+            <SocialListeningOverview />
             {/* Filters */}
             <section aria-label="Filters" className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
                 <PeriodFilter />
@@ -61,4 +64,5 @@ export default function SocialListening() {
         </div>
     );
 }
+
 
