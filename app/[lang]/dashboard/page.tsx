@@ -13,5 +13,13 @@ export async function generateStaticParams(): Promise<Params[]> {
 }
 
 export default function DashboardPage({ params }: { params: Params }) {
-    return <DashboardClient />;
+    return (
+        <React.Suspense
+            fallback={
+                <div className="min-h-[200px] flex items-center justify-center">Loading...</div>
+            }
+        >
+            <DashboardClient />
+        </React.Suspense>
+    );
 }
