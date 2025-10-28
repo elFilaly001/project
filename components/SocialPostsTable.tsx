@@ -16,7 +16,7 @@ export type TikTokPost = InstagramPost & { shares: string };
 export type YouTubePost = InstagramPost;
 export type XPost = InstagramPost & { retweets: string };
 export type LinkedInPost = InstagramPost & { reposts: string };
-export type SnapchatPost = InstagramPost;
+export type FacebookPost = InstagramPost & { shares?: string };
 
 export type SocialPostsTableProps = {
   postsData: {
@@ -25,8 +25,7 @@ export type SocialPostsTableProps = {
     YouTube: YouTubePost[];
     X: XPost[];
     LinkedIn: LinkedInPost[];
-    Snapchat: SnapchatPost[];
-    Facebook: InstagramPost[];
+    Facebook: FacebookPost[];
   };
   selectedSocial: string | null;
 };
