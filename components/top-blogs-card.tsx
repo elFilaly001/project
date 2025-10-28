@@ -37,8 +37,8 @@ export default function TopBlogsCard() {
         </div>
       </div>
       <div className="flex items-center mb-4 justify-between">
-        <span className="text-xs text-blue-600 font-semibold border-b-2 border-blue-400 pb-1">Blog URL</span>
-        <span className="text-xs text-blue-600 font-semibold border border-blue-400 rounded px-2 py-1">Mentions</span>
+        <span className="text-xs text-gray-600 pb-1">Blog URL</span>
+        <span className="text-xs text-gray-600 px-2 py-1">Mentions</span>
       </div>
       <div className="divide-y divide-gray-100">
         {blogsData.map((blog) => (

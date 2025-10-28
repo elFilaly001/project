@@ -41,11 +41,7 @@ export default function MentionsByLocationCard() {
           </div>
         </div>
       </div>
-      <div className="flex items-center mb-4">
-        <span className="text-xs text-gray-500 mr-2">City</span>
-        <svg width="16" height="16" fill="none" className="text-gray-400"><path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-        <svg width="16" height="16" fill="none" className="ml-2 text-gray-400"><circle cx="8" cy="8" r="7" stroke="currentColor" strokeWidth="2"/></svg>
-      </div>
+      
       <div className="space-y-2">
         {locationsData.map((loc) => (
           <div key={loc.city} className="flex items-center group">
