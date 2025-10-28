@@ -13,6 +13,7 @@ export type SocialDropdownProps = {
   allSocialOption: SocialPlatform;
   selectedSocial: string | null;
   setSelectedSocial: (name: string | null) => void;
+  fullWidth?: boolean;
 };
 
 const SocialDropdown: React.FC<SocialDropdownProps> = ({
@@ -20,13 +21,15 @@ const SocialDropdown: React.FC<SocialDropdownProps> = ({
   allSocialOption,
   selectedSocial,
   setSelectedSocial,
+  fullWidth = false,
 }) => {
   const [showSocialDropdown, setShowSocialDropdown] = React.useState(false);
 
   return (
     <div className="relative">
       <button
-        className="h-10 border rounded-md px-2 text-sm bg-white flex items-center min-w-[160px] pr-8 relative"
+        className={`h-10 border rounded-md px-2 text-sm bg-white flex items-center pr-8 relative ${fullWidth ? "w-full" : "min-w-[160px]"
+          }`}
         style={{ minHeight: 40 }}
         onClick={() => setShowSocialDropdown((v) => !v)}
         type="button"
@@ -79,9 +82,9 @@ const SocialDropdown: React.FC<SocialDropdownProps> = ({
                 style={
                   isSelected
                     ? {
-                        background: platform.color,
-                        color: platform.text,
-                      }
+                      background: platform.color,
+                      color: platform.text,
+                    }
                     : {}
                 }
                 onClick={() => {
@@ -128,8 +131,8 @@ const SocialDropdown: React.FC<SocialDropdownProps> = ({
                           ? "brightness(0) invert(1)"
                           : "grayscale(1)"
                         : isSelected
-                        ? "none"
-                        : "grayscale(1)",
+                          ? "none"
+                          : "grayscale(1)",
                   }}
                 />
                 {platform.name}
@@ -143,17 +146,16 @@ const SocialDropdown: React.FC<SocialDropdownProps> = ({
           })}
           {/* All Social Medias option at the end */}
           <button
-            className={`flex items-center gap-2 px-2 py-2 w-full rounded text-xs font-medium transition ${
-              !selectedSocial
+            className={`flex items-center gap-2 px-2 py-2 w-full rounded text-xs font-medium transition ${!selectedSocial
                 ? "bg-indigo-600 text-white"
                 : "hover:bg-gray-100 text-gray-800"
-            }`}
+              }`}
             style={
               !selectedSocial
                 ? {
-                    background: allSocialOption.color,
-                    color: allSocialOption.text,
-                  }
+                  background: allSocialOption.color,
+                  color: allSocialOption.text,
+                }
                 : {}
             }
             onClick={() => {

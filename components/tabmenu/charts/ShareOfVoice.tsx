@@ -1,8 +1,10 @@
 "use client";
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -11,8 +13,9 @@ const values = [29, 31, 35];
 const colors = ['#F02CB9', '#35B9F4', '#7B61F9'];
 
 export default function ShareOfVoice() {
+    const t = useTranslations();
     // Use sentiment labels (Positive / Neutral / Negative)
-    const sentimentLabels = ['Positive', 'Neutral', 'Negative'];
+    const sentimentLabels = [t('social_listening.charts.sentiment.positive'), t('social_listening.charts.sentiment.neutral'), t('social_listening.charts.sentiment.negative')];
 
     const dataValues = [...values];
     const dataLabels = [...sentimentLabels];
@@ -22,7 +25,7 @@ export default function ShareOfVoice() {
     const rest = Math.max(0, 100 - sum);
     if (rest > 0) {
         dataValues.push(rest);
-        dataLabels.push('Other');
+        dataLabels.push(t('social_listening.charts.share_of_voice.other'));
         palette.push('#eef2f7');
     }
 
@@ -48,7 +51,13 @@ export default function ShareOfVoice() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Share of voice</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">{t('social_listening.charts.share_of_voice.title')}</div>
+                <ExplainButton
+                    title={t('social_listening.charts.share_of_voice.title')}
+                    description={t('social_listening.charts.share_of_voice.description')}
+                />
+            </div>
             <div className="flex items-center justify-center h-44 gap-6">
                 <div className="relative w-40 h-40">
                     <Doughnut data={data} options={{ ...options, cutout: '60%' }} />
@@ -80,10 +89,10 @@ export default function ShareOfVoice() {
                         </svg>
                     </div>
                     <div className="flex-1">
-                        <div className="text-sm font-medium mb-1">AI-powered insight</div>
+                        <div className="text-sm font-medium mb-1">{t('social_listening.labels.ai_powered_insight')}</div>
                         <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
-                            <p className="mb-1">{`Top category is ${dataLabels[maxIndex]} with ${topPct}% of the share of voice.`}</p>
-                            <p className="mb-1">{`Other categories: ${dataLabels.map((l, i) => `${l} ${slicePercentages[i]}%`).join(', ')}.`}</p>
+                            <p className="mb-1">{t('social_listening.charts.share_of_voice.interpretation_top', { top: dataLabels[maxIndex], pct: topPct })}</p>
+                            <p className="mb-1">{t('social_listening.charts.share_of_voice.interpretation_others', { others: dataLabels.map((l, i) => `${l} ${slicePercentages[i]}%`).join(', ') })}</p>
                         </div>
                     </div>
                 </div>

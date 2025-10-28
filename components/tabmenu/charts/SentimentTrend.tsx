@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import {
     Chart as ChartJS,
     ArcElement,
@@ -9,6 +10,7 @@ import {
 } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import AiInsightSection from '@/components/AiInsightSection';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -21,6 +23,7 @@ const sampleData = [
 ];
 
 export default function SentimentTrend() {
+    const t = useTranslations();
     // Aggregate sentiment totals across the sample
     const totals = sampleData.reduce(
         (acc, cur) => {
@@ -33,7 +36,7 @@ export default function SentimentTrend() {
     );
 
     const data = {
-        labels: ['Positive', 'Neutral', 'Negative'],
+        labels: [t('social_listening.charts.sentiment.positive'), t('social_listening.charts.sentiment.neutral'), t('social_listening.charts.sentiment.negative')],
         datasets: [
             {
                 data: [totals.positive, totals.neutral, totals.negative],
@@ -64,21 +67,27 @@ export default function SentimentTrend() {
     const topSentiment = labels[maxIndex];
     const topPct = slicePercentages[maxIndex];
     const interpretationSentences = [
-        `Sentiment distribution shows ${topSentiment.toLowerCase()} as the largest share (${topPct}%).`,
-        `Out of ${totalMentions} total mentions, ${topPct}% are ${topSentiment.toLowerCase()}.`,
-        `Monitor changes to sentiment mix over time — a shift of more than 5% may indicate a meaningful trend.`,
+        t('social_listening.charts.sentiment.interpretation_1', { sentiment: topSentiment.toLowerCase(), pct: topPct }),
+        t('social_listening.charts.sentiment.interpretation_2', { total: totalMentions, pct: topPct, sentiment: topSentiment.toLowerCase() }),
+        t('social_listening.charts.sentiment.interpretation_3'),
     ];
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Sentiment Trend</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">{t('social_listening.charts.sentiment.title')}</div>
+                <ExplainButton
+                    title={t('social_listening.charts.sentiment.title')}
+                    description={t('social_listening.charts.sentiment.description')}
+                />
+            </div>
 
             <div className="flex items-center justify-center h-48 gap-6">
                 <div className="relative w-40 h-40">
                     <Doughnut data={data} options={{ ...options, cutout: '60%' }} />
                     <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
                         <div className="text-lg font-bold text-gray-800">{positivePct}%</div>
-                        <div className="text-xs text-gray-500">Positive</div>
+                        <div className="text-xs text-gray-500">{t('social_listening.charts.sentiment.positive')}</div>
                     </div>
                 </div>
 

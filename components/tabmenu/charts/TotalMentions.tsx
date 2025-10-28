@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -12,6 +13,7 @@ import {
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import AiInsightSection from '@/components/AiInsightSection';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Filler, Tooltip);
 
@@ -19,6 +21,7 @@ const labels = ['Dec 20', 'Dec 21', 'Dec 22', 'Dec 23', 'Dec 24', 'Dec 25', 'Dec
 const dataPoints = [350, 50, 50, 319, 30, 20, 20]; // sums to 839
 
 export default function TotalMentions() {
+    const t = useTranslations();
     const total = dataPoints.reduce((s, v) => s + v, 0);
     const dailyAvg = Math.round(total / labels.length);
 
@@ -108,8 +111,11 @@ export default function TotalMentions() {
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
             <div className="flex items-start justify-between">
-                <h3 className="text-sm font-medium mb-2">Total Mentions</h3>
-                <div className="text-xs text-gray-400">{/* placeholder for actions */}</div>
+                <h3 className="text-sm font-medium mb-2">{t('social_listening.charts.total_mentions.title')}</h3>
+                <ExplainButton
+                    title={t('social_listening.charts.total_mentions.title')}
+                    description={t('social_listening.charts.total_mentions.description')}
+                />
             </div>
 
             <div className="grid grid-cols-1 gap-3">

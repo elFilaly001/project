@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useTranslations } from 'next-intl';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,6 +12,7 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -21,14 +23,15 @@ const dataSource = [
 ];
 
 export default function CountriesBySentiment() {
+    const t = useTranslations();
     const labels = dataSource.map((d) => d.country);
 
     const data = {
         labels,
         datasets: [
-            { label: 'Positive', data: dataSource.map((d) => d.positive), backgroundColor: '#F02CB9' },
-            { label: 'Neutral', data: dataSource.map((d) => d.neutral), backgroundColor: '#35B9F4' },
-            { label: 'Negative', data: dataSource.map((d) => d.negative), backgroundColor: '#7B61F9' },
+            { label: t('social_listening.charts.sentiment.positive'), data: dataSource.map((d) => d.positive), backgroundColor: '#F02CB9' },
+            { label: t('social_listening.charts.sentiment.neutral'), data: dataSource.map((d) => d.neutral), backgroundColor: '#35B9F4' },
+            { label: t('social_listening.charts.sentiment.negative'), data: dataSource.map((d) => d.negative), backgroundColor: '#7B61F9' },
         ],
     };
 
@@ -41,7 +44,13 @@ export default function CountriesBySentiment() {
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
-            <div className="text-sm font-medium mb-2">Top Countries by Sentiment</div>
+            <div className="flex items-start justify-between">
+                <div className="text-sm font-medium mb-2">{t('social_listening.charts.countries_by_sentiment.title')}</div>
+                <ExplainButton
+                    title={t('social_listening.charts.countries_by_sentiment.title')}
+                    description={t('social_listening.charts.countries_by_sentiment.description')}
+                />
+            </div>
             <div className="h-48">
                 <Bar data={data} options={options} />
             </div>
