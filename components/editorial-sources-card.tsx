@@ -39,8 +39,8 @@ export default function EditorialSourcesCard() {
         </div>
       </div>
       <div className="flex items-center mb-4 justify-between">
-        <span className="text-xs text-yellow-600 font-semibold border-b-2 border-yellow-400 pb-1">Publication</span>
-        <span className="text-xs text-gray-700 font-semibold border border-gray-400 rounded px-2 py-1">Mentions</span>
+        <span className="text-xs text-gray-700 pb-1">Publication</span>
+        <span className="text-xs text-gray-700 px-2 py-1">Mentions</span>
       </div>
       <div className="divide-y divide-gray-100">
         {sourcesData.map((src) => (

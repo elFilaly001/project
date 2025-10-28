@@ -72,8 +72,8 @@ export default function MentionsByTrendCard() {
         <Doughnut data={data} options={options} height={220} />
         {/* Central total number overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-4xl font-bold text-black border-4 border-red-500 rounded-full px-6 py-2 bg-white">{totalMentions}</span>
-          <span className="text-lg text-red-600 font-semibold mt-2">Total des mentions</span>
+          <span className="text-4xl font-bold text-black rounded-full px-6 py-2">{totalMentions}</span>
+          
         </div>
       </div>
       {/* AI interpretation */}

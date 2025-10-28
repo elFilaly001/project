@@ -1,7 +1,24 @@
 import AiInsightSection from "./AiInsightSection";
 
-// Example data for word cloud and themes
-const themes = [
+
+// Example data for theme groups
+const emergingThemes = [
+  { name: "#CHANELFallWinter", pct: 90.4 },
+  { name: "#CHANELGroundControl", pct: 67.1 },
+  { name: "#louisvuitton", pct: 40.9 },
+  { name: "#dior", pct: 16.3 },
+];
+const decreasingThemes = [
+  { name: "#PFW", pct: 15 },
+  { name: "Whatsapp", pct: 5.7 },
+];
+const newThemes = [
+  { name: "Frank" },
+  { name: "Ocean" },
+];
+
+// Word cloud data (can reuse previous themes)
+const wordCloudThemes = [
   { name: "Market", count: 120 },
   { name: "Report", count: 95 },
   { name: "Growth", count: 80 },
@@ -38,42 +55,100 @@ export default function TopMentionsCard() {
           </div>
         </div>
       </div>
-      <div className="flex items-center mb-4 justify-between">
-        <span className="text-xs text-purple-600 font-semibold border-b-2 border-purple-400 pb-1">Themes</span>
-        <span className="text-xs text-purple-600 font-semibold border border-purple-400 rounded px-2 py-1">Word Cloud</span>
-      </div>
-      <div className="flex gap-6">
-        {/* Themes list */}
-        <div className="flex-1 space-y-2">
-          {themes.map((theme, idx) => (
-            <div key={theme.name} className="flex items-center group">
-              <span className="w-32 truncate text-sm text-gray-700">{theme.name}</span>
-              <div className="flex-1 mx-2 relative">
-                <div
-                  className="h-4 rounded bg-purple-400 group-hover:bg-purple-500 transition-all duration-150"
-                  style={{ width: `${(theme.count / themes[0].count) * 100}%` }}
-                  title={`${theme.count} mentions`}
-                ></div>
-              </div>
-              <span className="text-sm text-gray-700 font-semibold">{theme.count}</span>
+      {/* Themes section */}
+      <div className="flex-1 flex flex-col gap-4">
+        <div className="flex flex-row gap-8 flex-wrap justify-center">
+          {/* Emerging themes group */}
+          <div className="flex-1 min-w-[160px] flex flex-col items-center">
+            <span className="block text-base font-semibold text-blue-700 mb-2 text-center">Emerging themes</span>
+            <div className="flex flex-wrap justify-center gap-x-2 gap-y-1">
+              {emergingThemes.map((theme) => (
+                <div key={theme.name} className="flex items-center gap-2 mb-1">
+                  <span className="text-sm text-gray-700">{theme.name}</span>
+                  <span className="flex items-center gap-1 text-green-600 font-semibold">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 12V4M8 4l-4 4M8 4l4 4" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    {theme.pct}%
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+          {/* Decreasing themes group */}
+          <div className="flex-1 min-w-[160px] flex flex-col items-center">
+            <span className="block text-base font-semibold text-blue-700 mb-2 text-center">Decreasing themes</span>
+            <div className="flex flex-wrap justify-center gap-x-2 gap-y-1">
+              {decreasingThemes.map((theme) => (
+                <div key={theme.name} className="flex items-center gap-2 mb-1">
+                  <span className="text-sm text-gray-700">{theme.name}</span>
+                  <span className="flex items-center gap-1 text-red-600 font-semibold">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 16 16"><path d="M8 4v8M8 12l-4-4M8 12l4-4" stroke="#EF4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    {theme.pct}%
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        {/* Word cloud (simple text-based) */}
-        <div className="flex-1 flex flex-wrap items-center justify-center gap-2 p-4 bg-purple-50 rounded-lg min-h-[120px]">
-          {themes.map((theme, idx) => (
+        {/* New themes group below */}
+        <div className="flex flex-col items-center mt-2">
+          <span className="block text-base font-semibold text-blue-700 mb-2 text-center">New themes</span>
+          <div className="flex flex-wrap justify-center gap-x-2 gap-y-1">
+            {newThemes.map((theme) => (
+              <div key={theme.name} className="flex items-center gap-2 mb-1">
+                <span className="text-sm text-gray-700">{theme.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      {/* Word cloud (randomized style, only themes from sections) */}
+      <div className="w-full relative bg-purple-50 rounded-lg min-h-[180px] mt-6" style={{height: '180px', overflow: 'hidden'}}>
+        {[
+          ...emergingThemes.map(t => ({...t, type: 'emerging'})),
+          ...decreasingThemes.map(t => ({...t, type: 'decreasing'})),
+          ...newThemes.map(t => ({...t, type: 'new'})),
+        ].map((theme, idx) => {
+          // Color and size based on type
+          let color = 'text-purple-700';
+          let baseSize = 16;
+          let styleColor = undefined;
+          if (theme.type === 'emerging') {
+            color = 'text-green-600';
+            baseSize = 18;
+          } else if (theme.type === 'decreasing') {
+            color = 'text-red-500';
+            baseSize = 15;
+          } else if (theme.type === 'new') {
+            // Random purple shade for new themes
+            const purples = ['#7c3aed', '#a78bfa', '#c4b5fd', '#6d28d9'];
+            styleColor = purples[Math.floor(Math.random() * purples.length)];
+          }
+          // Randomize size and position
+          const fontSize = baseSize + Math.floor(Math.random() * 18);
+          const top = Math.floor(Math.random() * 120) + 10;
+          const left = Math.floor(Math.random() * 70) + idx * 10;
+          return (
             <span
               key={theme.name}
-              className={`text-purple-700 font-bold`}
-              style={{ fontSize: `${16 + theme.count / 4}px` }}
-              title={`${theme.count} mentions`}
+              className={`absolute select-none ${color} font-bold`}
+              style={{
+                fontSize: `${fontSize}px`,
+                top: `${top}px`,
+                left: `${left}%`,
+                color: styleColor || undefined,
+                zIndex: 2,
+                whiteSpace: 'nowrap',
+                cursor: 'default',
+                textShadow: '0 2px 8px rgba(139,92,246,0.10)'
+              }}
+              title={'pct' in theme ? `${(theme as any).pct}%` : 'New theme'}
             >
               {theme.name}
             </span>
-          ))}
-        </div>
+          );
+        })}
       </div>
-      {/* AI interpretation */}
+      {/* AI interpretation directly under themes section */}
       <AiInsightSection sentences={interpretationSentences} />
     </div>
   );

@@ -14,12 +14,17 @@ export default function Mentions() {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <MentionsByTrendCard />
                 <MentionsByLocationCard />
-                <EditorialSourcesCard />
-                <TopSharedLinksCard />
                 <TopBlogsCard />
-                <TopMentionsCard />
-                <MentionsBySentimentCard />
-                <MentionsByGenderCard />
+
+                <TopSharedLinksCard />
+                <EditorialSourcesCard />
+                    <MentionsByGenderCard />
+                <div className="col-span-1 lg:col-span-3">
+                    <TopMentionsCard />
+                </div>
+                <div className="col-span-1 lg:col-span-3">
+                    <MentionsBySentimentCard />
+                </div>
             </div>
         </div>
         </div>

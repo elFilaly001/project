@@ -39,8 +39,8 @@ export default function TopSharedLinksCard() {
         </div>
       </div>
       <div className="flex items-center mb-4 justify-between">
-        <span className="text-xs text-red-600 font-semibold border-b-2 border-red-500 pb-1">Links</span>
-        <span className="text-xs text-orange-600 font-semibold border border-orange-400 rounded px-2 py-1">Mentions</span>
+        <span className="text-xs text-gray-600 pb-1">Links</span>
+        <span className="text-xs text-gray-600 px-2 py-1">Mentions</span>
       </div>
       <div className="divide-y divide-gray-100">
         {linksData.map((link) => (
