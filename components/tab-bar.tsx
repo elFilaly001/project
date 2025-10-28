@@ -5,6 +5,9 @@ import Audience from './tabmenu/Audience';
 import Posts from './tabmenu/Posts';
 import SocialListening from './tabmenu/SocialListening';
 import CompetitiveIntelligence from './tabmenu/CompetitiveIntelligence';
+import Mentions from './tabmenu/mentions';
+import Sentiment from './tabmenu/sentiment';
+import Keyword from './tabmenu/keyword';
 
 type Tab = { id: number; label: string; content: React.ReactNode };
 
@@ -13,6 +16,9 @@ const defaultTabs: Tab[] = [
     { id: 1, label: 'Audience', content: <Audience /> },
     { id: 2, label: 'Posts', content: <Posts /> },
     { id: 4, label: 'Competitive Intelligence', content: <CompetitiveIntelligence /> },
+    { id: 5, label: 'Mentions', content: <Mentions /> },
+    { id: 6, label: 'Sentiment', content: <Sentiment /> },
+    { id: 7, label: 'Keywords', content: <Keyword /> },
 ];
 
 export default function TabBar({ tabs = defaultTabs, initialActiveId }: { tabs?: Tab[]; initialActiveId?: number }) {
