@@ -31,7 +31,10 @@
         "social_listening": "Social Listening",
         "audience": "Audience",
         "posts": "Posts",
-        "competitive_intelligence": "Competitive Intelligence"
+        "competitive_intelligence": "Competitive Intelligence",
+        "mentions": "Mentions",
+        "sentiment": "Sentiment",
+        "keywords": "Keywords"
     },
     "social_listening": {
         "overview": {
@@ -196,6 +199,29 @@
                 "other": "Other",
                 "interpretation_top": "Top category is {top} with {pct}% of the share of voice.",
                 "interpretation_others": "Other categories: {others}."
+            },
+            "share_of_voice_by_source": {
+                "title": "Share of Voice by Source Type",
+                "description": "Distribution of topics across source types.",
+                "insight": "Certain topics dominate specific source types; for example, Pinterest shows strong interest in charging and range.",
+                "topics": {
+                    "acceleration": "EV & Acceleration",
+                    "battery": "EV Battery Life",
+                    "range": "EV Driving Range",
+                    "autonomous": "EV Autonomous Driving",
+                    "charging": "EV Charging Speed"
+                }
+            },
+            "share_of_voice_donut": {
+                "title": "Share of Voice by Mentions",
+                "description": "Breakdown of mentions across topics.",
+                "last_period": "Last 7 days",
+                "insight": "Autonomous driving and charging speed are the dominant topics in mentions."
+            },
+            "mentions_trend": {
+                "title": "Mentions Trend by Source Type",
+                "description": "Trend of mentions over time by source type.",
+                "insight": "Mentions trended highest on News and WeChat over the period."
             },
             "top_keywords": {
                 "title": "Top keywords",

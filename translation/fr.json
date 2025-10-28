@@ -31,7 +31,10 @@
         "social_listening": "Écoute sociale",
         "audience": "Audience",
         "posts": "Publications",
-        "competitive_intelligence": "Veille concurrentielle"
+        "competitive_intelligence": "Veille concurrentielle",
+        "mentions": "Mentions",
+        "sentiment": "Sentiment",
+        "keywords": "Mots-clés"
     },
     "social_listening": {
         "overview": {
@@ -196,6 +199,29 @@
                 "other": "Autre",
                 "interpretation_top": "La catégorie principale est {top} avec {pct}% de la part de voix.",
                 "interpretation_others": "Autres catégories : {others}."
+            },
+            "share_of_voice_by_source": {
+                "title": "Part de voix par type de source",
+                "description": "Répartition des sujets par type de source.",
+                "insight": "Certains sujets dominent des types de sources spécifiques; par exemple, Pinterest montre un fort intérêt pour la charge et l'autonomie.",
+                "topics": {
+                    "acceleration": "EV & Accélération",
+                    "battery": "Autonomie de la batterie EV",
+                    "range": "Autonomie de conduite EV",
+                    "autonomous": "Conduite autonome EV",
+                    "charging": "Vitesse de charge EV"
+                }
+            },
+            "share_of_voice_donut": {
+                "title": "Part de voix par mentions",
+                "description": "Répartition des mentions par sujet.",
+                "last_period": "Derniers 7 jours",
+                "insight": "La conduite autonome et la vitesse de charge sont les sujets dominants dans les mentions."
+            },
+            "mentions_trend": {
+                "title": "Tendance des mentions par type de source",
+                "description": "Tendance des mentions au fil du temps par type de source.",
+                "insight": "Les mentions ont été les plus nombreuses sur News et WeChat pendant la période."
             },
             "top_keywords": {
                 "title": "Mots-clés principaux",
