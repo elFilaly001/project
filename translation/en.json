@@ -26,15 +26,13 @@
         "change": "Change",
         "email_label": "Email",
         "edit": "Edit"
-    }
-    ,
+    },
     "tabs": {
         "social_listening": "Social Listening",
         "audience": "Audience",
         "posts": "Posts",
         "competitive_intelligence": "Competitive Intelligence"
-    }
-    ,
+    },
     "social_listening": {
         "overview": {
             "total_mentions": "Total Mentions",
@@ -48,6 +46,7 @@
             "negative": "Negative"
         },
         "filters": {
+            "label": "Filters",
             "period": {
                 "title_attr": "Filter by period — Select a date range or preset",
                 "by_period": "By period",
@@ -153,8 +152,8 @@
                 "positive": "Positive",
                 "neutral": "Neutral",
                 "negative": "Negative",
-                "interpretation_1": "Sentiment distribution shows {{sentiment}} as the largest share ({{pct}}%).",
-                "interpretation_2": "Out of {{total}} total mentions, {{pct}}% are {{sentiment}}.",
+                "interpretation_1": "Sentiment distribution shows {sentiment} as the largest share ({pct}%).",
+                "interpretation_2": "Out of {total} total mentions, {pct}% are {sentiment}.",
                 "interpretation_3": "Monitor changes to sentiment mix over time — a shift of more than 5% may indicate a meaningful trend."
             },
             "keywords_by_sentiment": {
@@ -169,39 +168,39 @@
                 "heading": "Total Mentions",
                 "title": "Total mentions summary",
                 "description": "A compact summary card showing the total number of mentions in the sample and a short AI-generated insight pointing to the top sources.",
-                "interpretation_total": "Total mentions across the sample: {{total}}.",
-                "interpretation_top": "{{label}} generated the most mentions ({{val}}, {{pct}}%).",
-                "interpretation_action": "Consider reviewing content from {{label}} to understand drivers of reach.",
-                "last_n_days": "Last {{days}} days"
+                "interpretation_total": "Total mentions across the sample: {total}.",
+                "interpretation_top": "{label} generated the most mentions ({val}, {pct}%).",
+                "interpretation_action": "Consider reviewing content from {label} to understand drivers of reach.",
+                "last_n_days": "Last {days} days"
             },
             "total_reach": {
                 "heading": "Total Reach",
                 "title": "Total reach",
                 "description": "Displays total reach across the selected sample (sum of estimated audience reach). Useful to understand overall visibility and compare periods.",
-                "last_n_days": "Last {{days}} days",
+                "last_n_days": "Last {days} days",
                 "ai": {
-                    "total_reach": "Total reach across the sample: <strong>{{total}}</strong>.",
-                    "avg_reach": "Average reach per period: <strong>{{avg}}</strong>.",
-                    "peak": "Peak on {{date}} with {{reach}} reach."
+                    "total_reach": "Total reach across the sample: <strong>{total}</strong>.",
+                    "avg_reach": "Average reach per period: <strong>{avg}</strong>.",
+                    "peak": "Peak on {date} with {reach} reach."
                 }
             },
             "source_distribution": {
                 "title": "Mentions Distribution by source",
                 "description": "Breakdown of mentions across different sources (e.g., Facebook, X, Instagram) over time. Use this to see which channels drive the most conversation.",
-                "interpretation_top": "Across {{periods}} periods, {{top}} contributed the largest share ({{pct}}%).",
-                "interpretation_totals": "Total mentions by source: {{totals}}."
+                "interpretation_top": "Across {periods} periods, {top} contributed the largest share ({pct}%).",
+                "interpretation_totals": "Total mentions by source: {totals}."
             },
             "share_of_voice": {
                 "title": "Share of voice",
                 "description": "Displays how conversation is shared between categories (or competitors). It highlights the largest contributor to the overall share and helps assess relative visibility.",
                 "other": "Other",
-                "interpretation_top": "Top category is {{top}} with {{pct}}% of the share of voice.",
-                "interpretation_others": "Other categories: {{others}}."
+                "interpretation_top": "Top category is {top} with {pct}% of the share of voice.",
+                "interpretation_others": "Other categories: {others}."
             },
             "top_keywords": {
                 "title": "Top keywords",
                 "description": "A visual layout of the top keywords; size indicates prominence. Useful to quickly scan common themes and surface the most-mentioned terms.",
-                "keyword_aria": "Keyword {{kw}}, rank {{rank}}"
+                "keyword_aria": "Keyword {kw}, rank {rank}"
             },
             "total_mentions": {
                 "title": "Total Mentions",

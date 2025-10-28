@@ -34,7 +34,7 @@ export default function SocialListening() {
 
             {/* Overview metrics (tiles + small charts) */}
             {/* Filters */}
-            <section aria-label={t('social_listening.filters')} className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+            <section aria-label={t('social_listening.filters.label')} className="flex flex-wrap items-center gap-3">
                 <PeriodFilter />
                 <SourceFilter />
                 <SentimentFilter />
