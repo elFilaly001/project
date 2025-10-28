@@ -15,7 +15,7 @@ function MetricCard({ icon, title, value, subtitle, accentBg, iconColor, accentB
 
     return (
         <div className={`bg-white border ${borderCls} rounded-md shadow-sm p-3 flex items-center gap-4`}>
-            <div className={`${bg} p-3 rounded-md flex items-center justify-center flex-shrink-0`}> 
+            <div className={`${bg} p-3 rounded-md flex items-center justify-center flex-shrink-0`}>
                 <div className={`${iconCls} text-2xl`}>{icon}</div>
             </div>
 
@@ -53,7 +53,7 @@ export default function SocialListeningOverview() {
                 <MetricCard
                     icon={<HiOutlineChat />}
                     title={t('social_listening.overview.total_mentions')}
-                    value={mentions.toLocaleString()}
+                    value={new Intl.NumberFormat('en-US').format(mentions)}
                     subtitle={t('social_listening.overview.period_total')}
                     accentBg="bg-gradient-to-tr from-pink-50 to-pink-100"
                     iconColor="text-pink-600"

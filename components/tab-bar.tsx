@@ -14,13 +14,13 @@ type Tab = { id: number; label: string | React.ReactNode; content: React.ReactNo
 
 // Default tabs use translation keys. Add corresponding keys to your locale files (e.g. translation/en.json).
 const defaultTabs: Tab[] = [
-    { id: 3, label: 'Social Listening', content: <SocialListening /> },
-    { id: 1, label: 'Audience', content: <Audience /> },
-    { id: 2, label: 'Posts', content: <Posts /> },
-    { id: 4, label: 'Competitive Intelligence', content: <CompetitiveIntelligence /> },
-    { id: 5, label: 'Mentions', content: <Mentions /> },
-    { id: 6, label: 'Sentiment', content: <Sentiment /> },
-    { id: 7, label: 'Keywords', content: <Keyword /> },
+    { id: 3, label: 'tabs.social_listening', content: <SocialListening /> },
+    { id: 1, label: 'tabs.audience', content: <Audience /> },
+    { id: 2, label: 'tabs.posts', content: <Posts /> },
+    { id: 4, label: 'tabs.competitive_intelligence', content: <CompetitiveIntelligence /> },
+    { id: 5, label: 'tabs.mentions', content: <Mentions /> },
+    { id: 6, label: 'tabs.sentiment', content: <Sentiment /> },
+    { id: 7, label: 'tabs.keywords', content: <Keyword /> },
 ];
 
 export default function TabBar({ tabs = defaultTabs, initialActiveId }: { tabs?: Tab[]; initialActiveId?: number }) {

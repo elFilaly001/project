@@ -31,7 +31,10 @@
         "social_listening": "الاستماع الاجتماعي",
         "audience": "الجمهور",
         "posts": "المنشورات",
-        "competitive_intelligence": "التحليل التنافسي"
+        "competitive_intelligence": "التحليل التنافسي",
+        "mentions": "الإشارات",
+        "sentiment": "المشاعر",
+        "keywords": "الكلمات المفتاحية"
     },
     "social_listening": {
         "overview": {
@@ -196,6 +199,29 @@
                 "other": "أخرى",
                 "interpretation_top": "الفئة الأولى هي {top} بنسبة {pct}% من حصة الصوت.",
                 "interpretation_others": "الفئات الأخرى: {others}."
+            },
+            "share_of_voice_by_source": {
+                "title": "حصة الصوت حسب نوع المصدر",
+                "description": "توزيع الموضوعات عبر أنواع المصادر.",
+                "insight": "تسيطر بعض الموضوعات على أنواع مصادر معينة؛ على سبيل المثال، تُظهر Pinterest اهتمامًا قويًا بالشحن والمدى.",
+                "topics": {
+                    "acceleration": "EV والتسارع",
+                    "battery": "عمر بطارية EV",
+                    "range": "مدى القيادة EV",
+                    "autonomous": "القيادة الذاتية EV",
+                    "charging": "سرعة شحن EV"
+                }
+            },
+            "share_of_voice_donut": {
+                "title": "حصة الصوت حسب الإشارات",
+                "description": "تفصيل الإشارات حسب الموضوع.",
+                "last_period": "آخر 7 أيام",
+                "insight": "القيادة الذاتية وسرعة الشحن هما الموضوعان المهيمنان في الإشارات."
+            },
+            "mentions_trend": {
+                "title": "اتجاه الإشارات حسب نوع المصدر",
+                "description": "اتجاه الإشارات عبر الوقت حسب نوع المصدر.",
+                "insight": "كانت أعلى الإشارات على News و WeChat خلال الفترة."
             },
             "top_keywords": {
                 "title": "أهم الكلمات المفتاحية",

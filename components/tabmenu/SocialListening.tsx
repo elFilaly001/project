@@ -30,7 +30,7 @@ export default function SocialListening() {
     const t = useTranslations();
     return (
         <div className="space-y-6">
-            <div className="text-lg font-medium">{t('tabs.social_listening')}</div>
+            {/* <div className="text-lg font-medium">{t('tabs.social_listening')}</div> */}
 
             {/* Overview metrics (tiles + small charts) */}
             {/* Filters */}
