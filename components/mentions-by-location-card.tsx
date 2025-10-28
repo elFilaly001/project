@@ -1,4 +1,8 @@
 import AiInsightSection from "./AiInsightSection";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const locationsData = [
   { city: "London", count: 192 },
@@ -10,7 +14,7 @@ const locationsData = [
   { city: "Kew East", count: 19 },
   { city: "Eveleigh", count: 18 },
   { city: "Stanmore", count: 18 },
-  { city: "Sydney Central Business District", count: 15 },
+  { city: "Sydney", count: 15 },
 ];
 
 const totalLocations = 35;
@@ -30,7 +34,7 @@ export default function MentionsByLocationCard() {
         <h3 className="text-gray-700 font-semibold">Top Locations</h3>
         <div className="relative group">
           <button
-            className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50"
+            className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
             type="button"
           >
             ?
@@ -42,20 +46,55 @@ export default function MentionsByLocationCard() {
         </div>
       </div>
       
-      <div className="space-y-2">
-        {locationsData.map((loc) => (
-          <div key={loc.city} className="flex items-center group">
-            <span className="w-44 truncate text-sm text-gray-700">{loc.city}</span>
-            <div className="flex-1 mx-2 relative">
-              <div
-                className="h-4 rounded bg-yellow-400 group-hover:bg-yellow-500 transition-all duration-150"
-                style={{ width: `${(loc.count / locationsData[0].count) * 100}%` }}
-                title={`${loc.count} mentions`}
-              ></div>
-            </div>
-            <span className="text-sm text-gray-700 font-semibold">{loc.count}</span>
-          </div>
-        ))}
+      {/* Replace manual bars with a horizontal Bar chart so Chart.js tooltips are used */}
+      <div className="relative" style={{ minHeight: locationsData.length * 44 }}>
+        {
+          (() => {
+            const labels = locationsData.map((l) => l.city);
+            const counts = locationsData.map((l) => l.count);
+            const total = counts.reduce((s, v) => s + v, 0) || 1;
+            const data = {
+              labels,
+              datasets: [
+                {
+                  data: counts,
+                  backgroundColor: locationsData.map(() => '#F59E0B'),
+                  borderRadius: 6,
+                  barThickness: 12,
+                },
+              ],
+            };
+
+            const options = {
+              indexAxis: 'y' as const,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  enabled: true,
+                  callbacks: {
+                    label: function (context: any) {
+                      const value = context.parsed.x ?? context.parsed;
+                      const pct = total ? ((value / total) * 100).toFixed(1) : '0';
+                      return `${value} mentions (${pct}%)`;
+                    },
+                  },
+                },
+              },
+              maintainAspectRatio: false,
+              scales: {
+                x: {
+                  beginAtZero: true,
+                  ticks: { color: '#6b7280' },
+                },
+                y: {
+                  ticks: { color: '#374151' },
+                },
+              },
+            };
+
+            return <Bar data={data} options={options} height={locationsData.length * 44} />;
+          })()
+        }
       </div>
       <div className="flex items-center justify-between text-xs text-gray-500 mt-4">
         <span>{`${(currentPage - 1) * pageSize + 1}-${currentPage * pageSize} of ${totalLocations} Locations`}</span>

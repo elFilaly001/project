@@ -8,10 +8,21 @@ export default function Sentiment() {
         <div className="w-full">
         <div className="flex flex-col gap-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">  
-                    <SentimentTrendCard />
-                    <KeywordsWithSentimentCard />
-                    <LocationWithSentimentCard />
-                    <SentimentBySourceCard />
+                    <div className="lg:col-span-2">
+                        <SentimentTrendCard />
+                    </div>
+
+                    <div>
+                        <KeywordsWithSentimentCard />
+                    </div>
+
+                    <div className="lg:col-span-2">
+                        <SentimentBySourceCard />
+                    </div>
+
+                    <div>
+                        <LocationWithSentimentCard />
+                    </div>
             </div>
         </div>
         </div>

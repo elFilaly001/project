@@ -110,7 +110,6 @@ export default function SentimentBySourceCard() {
       <div className="flex items-center justify-between mb-2">
         <div>
           <h3 className="text-gray-700 font-semibold">Sentiment by Source Type</h3>
-          <span className="text-xs text-gray-500">Last 7 days</span>
         </div>
         <div className="relative group">
           <button

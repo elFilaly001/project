@@ -12,8 +12,12 @@ export default function Keyword() {
                     <KeywordByLocationCard />
                     <KeywordByAgeCard />
                     <KeywordTopLanguagesCard />
-                    <KeywordTopInterestsCard />
-                    <KeywordTopOccupationsCard />
+                    <div className="lg:col-span-3">
+                        <KeywordTopInterestsCard />
+                    </div>
+                    <div className="lg:col-span-3">
+                        <KeywordTopOccupationsCard />
+                    </div>
             </div>
         </div>
         </div>

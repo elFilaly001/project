@@ -1,12 +1,9 @@
 import AiInsightSection from "./AiInsightSection";
+import { FaMale, FaFemale } from 'react-icons/fa';
 
 const genderData = [
-  { label: "Male", value: 59, color: "#06B6D4", icon: (
-    <svg width="48" height="48" fill="none" viewBox="0 0 48 48"><circle cx="24" cy="14" r="8" fill="#06B6D4"/><rect x="16" y="24" width="16" height="18" rx="8" fill="#06B6D4"/></svg>
-  ) },
-  { label: "Female", value: 41, color: "#EF4444", icon: (
-    <svg width="48" height="48" fill="none" viewBox="0 0 48 48"><circle cx="24" cy="14" r="8" fill="#EF4444"/><rect x="16" y="24" width="16" height="12" rx="8" fill="#EF4444"/><rect x="22" y="36" width="4" height="8" rx="2" fill="#EF4444"/></svg>
-  ) },
+  { label: "Male", value: 59, color: "#06B6D4", icon: (<FaMale size={48} color="#06B6D4" />) },
+  { label: "Female", value: 41, color: "#EF4444", icon: (<FaFemale size={48} color="#EF4444" />) },
 ];
 
 const interpretationSentences = [
@@ -19,8 +16,7 @@ export default function MentionsByGenderCard() {
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border flex flex-col items-center">
       <div className="w-full flex items-center justify-between mb-2">
-        <span className="text-xs text-gray-500 font-semibold">NUMBER OF MENTIONS</span>
-        <span className="text-xs text-gray-400">29 AUG - 29 SEP</span>
+        <h3 className="text-gray-700 font-semibold">Number Of Mentions</h3>
         <div className="relative group">
           <button
             className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50"
