@@ -30,8 +30,8 @@ export default async function LangLayout({ children, params }: { children: React
     };
 
     return (
-        <html lang={locale} className="overflow-x-hidden">
-            <body className={`${inter.className} overflow-x-hidden`}>
+        <html lang={locale} className="overflow-x-hidden" suppressHydrationWarning={true}>
+            <body className={`${inter.className} overflow-x-hidden`} suppressHydrationWarning={true}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
                     <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
                         <LayoutContent user={user}>

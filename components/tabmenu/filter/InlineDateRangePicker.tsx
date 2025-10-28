@@ -114,15 +114,15 @@ export default function InlineDateRangePicker() {
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
-          title={t('social_listening.filters.period.title_attr')}
-          ref={triggerRef}
-          variant="outline"
-          className="w-full justify-between text-left"
+            title={t('social_listening.filters.period.title_attr')}
+            ref={triggerRef}
+            variant="outline"
+            className="w-full justify-between text-left"
           >
             <span className="text-sm text-slate-700 dark:text-slate-200">
               {displayValue || t('social_listening.filters.period.select_a_period')}
             </span>
-            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">{t('social_listening.filters.period.badge')}</span>
+            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium text-slate-700 dark:text-slate-300">{t('social_listening.filters.period.badge')}</span>
           </Button>
         </PopoverTrigger>
         <PopoverContent

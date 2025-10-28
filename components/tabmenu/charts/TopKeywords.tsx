@@ -2,6 +2,7 @@
 
 import React from 'react';
 import ExplainButton from '@/components/ui/ExplainButton';
+import AiInsightSection from '@/components/AiInsightSection';
 import { useTranslations } from 'next-intl';
 
 type Props = {
@@ -35,6 +36,17 @@ export default function TopKeywords({ limit = 6, data }: Props) {
     const defaultList = Object.values(defaultGroups).flat();
     const list = data && data.length ? data : defaultList;
     const limited = list.slice(0, limit);
+    // AI interpretation: generate a few short sentences from the limited keywords
+    const interpretationSentences = (() => {
+        if (!limited || limited.length === 0) return ['No keyword data available.'];
+        const top = limited[0];
+        const others = limited.slice(1);
+        return [
+            `Top keywords: ${limited.join(', ')}.`,
+            top ? `${top} is the most prominent keyword and likely driving conversations.` : 'No dominant keyword identified.',
+            top ? `Consider reviewing posts containing "${top}" to uncover context and sentiment.` : 'No action suggested.',
+        ];
+    })();
     // sizes and colors by rank: first is large, next two medium, rest small
     const fontSizeByIndex = (i: number) => {
         if (i === 0) return 'text-2xl md:text-3xl lg:text-4xl font-extrabold';
@@ -87,11 +99,11 @@ export default function TopKeywords({ limit = 6, data }: Props) {
                                             aria-label={t('social_listening.charts.top_keywords.keyword_aria', { kw, rank: idx + 1 })}
                                             className={`w-full h-20 md:h-24 lg:h-28 flex items-center justify-center gap-3 transition-transform transform hover:scale-105 focus:outline-none bg-white border rounded-md px-4`}
                                         >
-                                                                    {/* Badge styled to match keyword text (no bg), slightly smaller */}
-                                                                    <span className={`${colorClass} ${idx === 0 ? 'text-xl md:text-2xl' : 'text-sm md:text-base'} font-semibold mr-2`} aria-hidden>
-                                                                        {`${idx + 1}#`}
-                                                                    </span>
-                                                                    <span className={`${sizeClass} ${colorClass} truncate`}>{kw}</span>
+                                            {/* Badge styled to match keyword text (no bg), slightly smaller */}
+                                            <span className={`${colorClass} ${idx === 0 ? 'text-xl md:text-2xl' : 'text-sm md:text-base'} font-semibold mr-2`} aria-hidden>
+                                                {`${idx + 1}#`}
+                                            </span>
+                                            <span className={`${sizeClass} ${colorClass} truncate`}>{kw}</span>
                                         </button>
                                     );
                                 })}
@@ -146,6 +158,9 @@ export default function TopKeywords({ limit = 6, data }: Props) {
                     );
                 })()}
             </div>
+
+            {/* AI interpretation */}
+            <AiInsightSection sentences={interpretationSentences} />
         </div>
     );
 }

@@ -111,34 +111,26 @@ export default function PeriodFilter() {
   return (
     <div className="rounded-lg shadow-sm border bg-white dark:bg-slate-800 ring-1 ring-slate-100 dark:ring-slate-700">
       <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-              <button title={t('social_listening.filters.period.title_attr')} ref={triggerRef} className="w-full px-4 py-3 flex items-center gap-3 hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors rounded-lg group">
-            {/* Icon */}
-            <div className="w-9 h-9 bg-slate-100 dark:bg-slate-700 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-slate-200 dark:group-hover:bg-slate-600 transition-colors">
-              <CalendarDays className="w-5 h-5 text-slate-700 dark:text-slate-300" />
+        <PopoverTrigger asChild>
+          <button
+            title={t('social_listening.filters.period.title_attr')}
+            ref={triggerRef}
+            className="inline-flex items-center gap-2 px-2 h-9 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700/50 transition-colors group"
+          >
+            {/* Compact badge + caret */}
+            <div className="flex items-center gap-2">
+              <span className="inline-flex items-center justify-center h-7 min-w-[72px] px-2 text-sm font-medium rounded-full text-slate-700 dark:text-slate-300">
+                {t('social_listening.filters.period.badge')}
+              </span>
+              <svg
+                className="w-4 h-4 text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors flex-shrink-0"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              </svg>
             </div>
-            
-            {/* Content */}
-            <div className="flex-1 text-left min-w-0">
-              <div className="text-sm font-medium text-slate-900 dark:text-slate-100">
-                {t('social_listening.filters.period.by_period')}
-              </div>
-              <div className="text-xs text-slate-600 dark:text-slate-400 truncate">
-                {displayValue || t('social_listening.filters.period.select_a_period')}
-              </div>
-            </div>
-
-            {/* Badge */}
-            <span className="ml-2 inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-300">{t('social_listening.filters.period.badge')}</span>
-            {/* Arrow */}
-            <svg 
-              className="w-4 h-4 text-slate-400 group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors flex-shrink-0" 
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
           </button>
         </PopoverTrigger>
         <PopoverContent
@@ -174,7 +166,7 @@ export default function PeriodFilter() {
               numberOfMonths={2}
             />
 
-              <div className="mt-4 flex items-center justify-between pt-3 border-t border-slate-200 dark:border-slate-700">
+            <div className="mt-4 flex items-center justify-between pt-3 border-t border-slate-200 dark:border-slate-700">
               <div className="text-sm">
                 <span className="text-slate-500 dark:text-slate-400">{t('social_listening.filters.period.selected_label')} </span>
                 <span className="font-medium text-slate-900 dark:text-slate-100">

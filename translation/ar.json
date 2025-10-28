@@ -26,15 +26,13 @@
         "change": "تغيير",
         "email_label": "البريد الإلكتروني",
         "edit": "تعديل"
-    }
-    ,
+    },
     "tabs": {
         "social_listening": "الاستماع الاجتماعي",
         "audience": "الجمهور",
         "posts": "المنشورات",
         "competitive_intelligence": "التحليل التنافسي"
-    }
-    ,
+    },
     "social_listening": {
         "overview": {
             "total_mentions": "إجمالي الإشارات",
@@ -48,6 +46,7 @@
             "negative": "سلبي"
         },
         "filters": {
+            "label": "مرشحات",
             "period": {
                 "title_attr": "تصفية حسب الفترة — اختر نطاقًا زمنيًا أو إعدادًا مسبقًا",
                 "by_period": "حسب الفترة",
@@ -153,8 +152,8 @@
                 "positive": "إيجابي",
                 "neutral": "محايد",
                 "negative": "سلبي",
-                "interpretation_1": "يُظهر توزيع المشاعر أن {{sentiment}} هي الحصة الأكبر ({{pct}}%).",
-                "interpretation_2": "من أصل {{total}} إشارة، {{pct}}% هي {{sentiment}}.",
+                "interpretation_1": "يُظهر توزيع المشاعر أن {sentiment} هي الحصة الأكبر ({pct}%).",
+                "interpretation_2": "من أصل {total} إشارة، {pct}% هي {sentiment}.",
                 "interpretation_3": "راقب التغيرات في مزيج المشاعر بمرور الوقت — قد يشير تحرك أكثر من 5% إلى اتجاه ذي دلالة."
             },
             "keywords_by_sentiment": {
@@ -169,39 +168,39 @@
                 "heading": "إجمالي الإشارات",
                 "title": "ملخص الإشارات",
                 "description": "ملخص مضغوط يظهر العدد الإجمالي للإشارات في العينة ونظرة قصيرة تم إنشاؤها بواسطة الذكاء الاصطناعي تشير إلى المصادر الرئيسية.",
-                "interpretation_total": "إجمالي الإشارات في العينة: {{total}}.",
-                "interpretation_top": "{{label}} أنتج أكبر عدد من الإشارات ({{val}}, {{pct}}%).",
-                "interpretation_action": "فكر في مراجعة محتوى {{label}} لفهم دوافع الوصول.",
-                "last_n_days": "آخر {{days}} يومًا"
+                "interpretation_total": "إجمالي الإشارات في العينة: {total}.",
+                "interpretation_top": "{label} أنتج أكبر عدد من الإشارات ({val}, {pct}%).",
+                "interpretation_action": "فكر في مراجعة محتوى {label} لفهم دوافع الوصول.",
+                "last_n_days": "آخر {days} يومًا"
             },
             "total_reach": {
                 "heading": "إجمالي الوصول",
                 "title": "إجمالي الوصول",
                 "description": "يعرض إجمالي الوصول عبر العينة المحددة (مجموع الوصول التقديري للجمهور). مفيد لفهم الرؤية العامة ومقارنة الفترات.",
-                "last_n_days": "آخر {{days}} يومًا",
+                "last_n_days": "آخر {days} يومًا",
                 "ai": {
-                    "total_reach": "إجمالي الوصول في العينة: <strong>{{total}}</strong>.",
-                    "avg_reach": "متوسط الوصول لكل فترة: <strong>{{avg}}</strong>.",
-                    "peak": "الذروة في {{date}} مع وصول {{reach}}."
+                    "total_reach": "إجمالي الوصول في العينة: <strong>{total}</strong>.",
+                    "avg_reach": "متوسط الوصول لكل فترة: <strong>{avg}</strong>.",
+                    "peak": "الذروة في {date} مع وصول {reach}."
                 }
             },
             "source_distribution": {
                 "title": "توزيع الإشارات حسب المصدر",
                 "description": "تفصيل الإشارات عبر مصادر مختلفة (مثل Facebook و X و Instagram) عبر الزمن. استخدم هذا لمعرفة القنوات التي تولد أكبر قدر من الحديث.",
-                "interpretation_top": "عبر {{periods}} فترات، ساهم {{top}} بأكبر حصة ({{pct}}%).",
-                "interpretation_totals": "إجمالي الإشارات حسب المصدر: {{totals}}."
+                "interpretation_top": "عبر {periods} فترات، ساهم {top} بأكبر حصة ({pct}%).",
+                "interpretation_totals": "إجمالي الإشارات حسب المصدر: {totals}."
             },
             "share_of_voice": {
                 "title": "حصة الصوت",
                 "description": "يعرض كيفية تقاسم الحديث بين الفئات (أو المنافسين). يبرز المساهم الأكبر في الحصة الكلية ويساعد في تقييم الرؤية النسبية.",
                 "other": "أخرى",
-                "interpretation_top": "الفئة الأولى هي {{top}} بنسبة {{pct}}% من حصة الصوت.",
-                "interpretation_others": "الفئات الأخرى: {{others}}."
+                "interpretation_top": "الفئة الأولى هي {top} بنسبة {pct}% من حصة الصوت.",
+                "interpretation_others": "الفئات الأخرى: {others}."
             },
             "top_keywords": {
                 "title": "أهم الكلمات المفتاحية",
                 "description": "تخطيط بصري لأهم الكلمات المفتاحية؛ يشير الحجم إلى الأهمية. مفيد لفحص السمات الشائعة وإبراز أكثر المصطلحات المذكورة.",
-                "keyword_aria": "كلمة مفتاحية {{kw}}، الترتيب {{rank}}"
+                "keyword_aria": "كلمة مفتاحية {kw}، الترتيب {rank}"
             },
             "total_mentions": {
                 "title": "إجمالي الإشارات",

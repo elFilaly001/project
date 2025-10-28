@@ -5,20 +5,23 @@ import { useTranslations } from 'next-intl';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import ExplainButton from '@/components/ui/ExplainButton';
+import AiInsightSection from '@/components/AiInsightSection';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// values correspond to sentiment counts/percents: [positive, neutral, negative]
+// sample counts/percents mapped from sentiment buckets (positive, neutral, negative)
+// These match the original Share of Voice example: [positive, neutral, negative]
 const values = [29, 31, 35];
 const colors = ['#F02CB9', '#35B9F4', '#7B61F9'];
 
 export default function ShareOfVoice() {
     const t = useTranslations();
-    // Use sentiment labels (Positive / Neutral / Negative)
-    const sentimentLabels = [t('social_listening.charts.sentiment.positive'), t('social_listening.charts.sentiment.neutral'), t('social_listening.charts.sentiment.negative')];
+    // Map sentiment buckets to keyword labels (positive -> Keyword A, neutral -> Keyword B, negative -> Keyword C)
+    // TODO: replace these sample keywords with dynamic data or props when available
+    const keywordLabels = ['Keyword A', 'Keyword B', 'Keyword C'];
 
     const dataValues = [...values];
-    const dataLabels = [...sentimentLabels];
+    const dataLabels = [...keywordLabels];
     const palette = [...colors];
 
     const sum = dataValues.reduce((s, v) => s + v, 0);
@@ -48,6 +51,11 @@ export default function ShareOfVoice() {
     const slicePercentages = data.datasets[0].data.map((v: number) => (total ? Math.round((v / total) * 100) : 0));
 
     const options: any = { maintainAspectRatio: false, plugins: { legend: { display: false } } };
+
+    const interpretationSentences = [
+        t('social_listening.charts.share_of_voice.interpretation_top', { top: dataLabels[maxIndex], pct: topPct }),
+        t('social_listening.charts.share_of_voice.interpretation_others', { others: dataLabels.map((l, i) => `${l} ${slicePercentages[i]}%`).join(', ') }),
+    ];
 
     return (
         <div className="p-3 bg-white border rounded-md shadow-sm h-full">
@@ -80,23 +88,7 @@ export default function ShareOfVoice() {
                 </div>
             </div>
             {/* AI interpretation */}
-            <div className="pt-3">
-                <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" className="w-9 h-9 text-indigo-600">
-                            <path d="M12 3c-1.657 0-3 1.343-3 3v1H8a3 3 0 0 0-3 3v1H4a1 1 0 0 0-1 1v1a4 4 0 0 0 4 4h1v1a3 3 0 0 0 3 3h2a3 3 0 0 0 3-3v-1h1a4 4 0 0 0 4-4v-1a1 1 0 0 0-1-1h-1v-1a3 3 0 0 0-3-3h-1V6c0-1.657-1.343-3-3-3z" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
-                            <path d="M8 9h.01M16 9h.01M12 6v.01M10 15h4" stroke="currentColor" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </div>
-                    <div className="flex-1">
-                        <div className="text-sm font-medium mb-1">{t('social_listening.labels.ai_powered_insight')}</div>
-                        <div className="text-sm text-gray-700 bg-gray-50 p-3 rounded-md">
-                            <p className="mb-1">{t('social_listening.charts.share_of_voice.interpretation_top', { top: dataLabels[maxIndex], pct: topPct })}</p>
-                            <p className="mb-1">{t('social_listening.charts.share_of_voice.interpretation_others', { others: dataLabels.map((l, i) => `${l} ${slicePercentages[i]}%`).join(', ') })}</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <AiInsightSection sentences={interpretationSentences} />
         </div>
     );
 }
