@@ -5,23 +5,23 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 // Example data for sentiment over time
 const sentimentData = [
-  { date: '2022-07-25', positive: 120, neutral: 65, negative: 75, mixed: 15 },
-  { date: '2022-07-26', positive: 100, neutral: 80, negative: 60, mixed: 10 },
-  { date: '2022-07-27', positive: 140, neutral: 90, negative: 70, mixed: 20 },
-  { date: '2022-07-28', positive: 110, neutral: 60, negative: 80, mixed: 15 },
-  { date: '2022-07-29', positive: 160, neutral: 100, negative: 90, mixed: 25 },
-  { date: '2022-07-30', positive: 180, neutral: 120, negative: 100, mixed: 30 },
-  { date: '2022-07-31', positive: 200, neutral: 130, negative: 110, mixed: 35 },
-  { date: '2022-08-01', positive: 220, neutral: 140, negative: 120, mixed: 40 },
-  { date: '2022-08-02', positive: 210, neutral: 135, negative: 115, mixed: 38 },
-  { date: '2022-08-03', positive: 190, neutral: 125, negative: 105, mixed: 32 },
-  { date: '2022-08-04', positive: 170, neutral: 115, negative: 95, mixed: 28 },
-  { date: '2022-08-05', positive: 160, neutral: 110, negative: 90, mixed: 25 },
-  { date: '2022-08-06', positive: 180, neutral: 120, negative: 100, mixed: 30 },
-  { date: '2022-08-07', positive: 200, neutral: 130, negative: 110, mixed: 35 },
-  { date: '2022-08-08', positive: 220, neutral: 140, negative: 120, mixed: 40 },
-  { date: '2022-08-09', positive: 210, neutral: 135, negative: 115, mixed: 38 },
-  { date: '2022-08-10', positive: 190, neutral: 125, negative: 105, mixed: 32 },
+  { date: '2022-07-25', positive: 120, neutral: 65, negative: 75 },
+  { date: '2022-07-26', positive: 100, neutral: 80, negative: 60 },
+  { date: '2022-07-27', positive: 140, neutral: 90, negative: 70 },
+  { date: '2022-07-28', positive: 110, neutral: 60, negative: 80 },
+  { date: '2022-07-29', positive: 160, neutral: 100, negative: 90 },
+  { date: '2022-07-30', positive: 180, neutral: 120, negative: 100 },
+  { date: '2022-07-31', positive: 200, neutral: 130, negative: 110 },
+  { date: '2022-08-01', positive: 220, neutral: 140, negative: 120 },
+  { date: '2022-08-02', positive: 210, neutral: 135, negative: 115 },
+  { date: '2022-08-03', positive: 190, neutral: 125, negative: 105 },
+  { date: '2022-08-04', positive: 170, neutral: 115, negative: 95 },
+  { date: '2022-08-05', positive: 160, neutral: 110, negative: 90 },
+  { date: '2022-08-06', positive: 180, neutral: 120, negative: 100 },
+  { date: '2022-08-07', positive: 200, neutral: 130, negative: 110 },
+  { date: '2022-08-08', positive: 220, neutral: 140, negative: 120 },
+  { date: '2022-08-09', positive: 210, neutral: 135, negative: 115 },
+  { date: '2022-08-10', positive: 190, neutral: 125, negative: 105 },
 ];
 
 const data = {
@@ -51,14 +51,6 @@ const data = {
       barPercentage: 0.7,
       categoryPercentage: 0.7,
     },
-    {
-      label: 'Mixed',
-      data: sentimentData.map((d) => d.mixed),
-      backgroundColor: '#A3A3A3',
-      stack: 'sentiment',
-      barPercentage: 0.7,
-      categoryPercentage: 0.7,
-    },
   ],
 };
 
@@ -74,13 +66,13 @@ const options = {
         label: function (context: import('chart.js').TooltipItem<'bar'>) {
           const label = context.dataset.label || '';
           const value = context.parsed.y || 0;
-          const total = sentimentData[context.dataIndex].positive + sentimentData[context.dataIndex].neutral + sentimentData[context.dataIndex].negative + sentimentData[context.dataIndex].mixed;
+          const total = sentimentData[context.dataIndex].positive + sentimentData[context.dataIndex].neutral + sentimentData[context.dataIndex].negative;
           const pct = total ? ((value / total) * 100).toFixed(1) : '0';
           return `${label}: ${value} (${pct}%)`;
         },
         afterBody: function (context: import('chart.js').TooltipItem<'bar'>[]) {
           const idx = context[0].dataIndex;
-          const total = sentimentData[idx].positive + sentimentData[idx].neutral + sentimentData[idx].negative + sentimentData[idx].mixed;
+          const total = sentimentData[idx].positive + sentimentData[idx].neutral + sentimentData[idx].negative;
           return [`Total mentions: ${total}`];
         },
       },
@@ -106,7 +98,7 @@ const options = {
 const interpretationSentences = [
   `Positive sentiment dominates most days, with notable spikes in neutral and negative mentions.`,
   `Monitor sentiment trends to identify periods of increased negative feedback or positive engagement.`,
-  `Mixed sentiment remains low, indicating clear audience opinions most of the time.`
+  `Clear sentiment distribution helps in understanding audience reactions over time.`
 ];
 
 export default function MentionsBySentimentCard() {

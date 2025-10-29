@@ -5,16 +5,16 @@ import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 const locationsData = [
-  { city: "London", count: 192 },
-  { city: "Toronto", count: 50 },
-  { city: "Vancouver", count: 47 },
-  { city: "Subiaco", count: 30 },
-  { city: "Mount Macedon", count: 25 },
-  { city: "Québec", count: 19 },
-  { city: "Kew East", count: 19 },
-  { city: "Eveleigh", count: 18 },
-  { city: "Stanmore", count: 18 },
-  { city: "Sydney", count: 15 },
+  { city: "Casablanca", count: 192 },
+  { city: "Rabat", count: 50 },
+  { city: "Marrakech", count: 47 },
+  { city: "Fez", count: 30 },
+  { city: "Tangier", count: 25 },
+  { city: "Agadir", count: 19 },
+  { city: "Meknes", count: 19 },
+  { city: "Oujda", count: 18 },
+  { city: "Kenitra", count: 18 },
+  { city: "Tetouan", count: 15 },
 ];
 
 const totalLocations = 35;
@@ -22,8 +22,8 @@ const currentPage = 1;
 const pageSize = 10;
 
 const interpretationSentences = [
-  `London leads with ${locationsData[0].count} mentions, indicating a strong audience presence in this city.`,
-  `Toronto and Vancouver follow, suggesting key engagement hubs.`,
+  `Casablanca leads with ${locationsData[0].count} mentions, indicating a strong audience presence in this city.`,
+  `Rabat and Marrakech follow, suggesting key engagement hubs.`,
   `Targeting top cities can help maximize reach and local impact.`
 ];
 
