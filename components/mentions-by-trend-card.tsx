@@ -1,52 +1,63 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import FollowersDispatch, { SocialBreakdownItem } from './followers-dispatch';
 import AiInsightSection from './AiInsightSection';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-const mentionsData = [
-  { label: 'Instagram', value: 910, color: '#A78BFA' },
-  { label: 'Facebook', value: 220, color: '#60A5FA' },
-  { label: 'LinkedIn', value: 290, color: '#38BDF8' },
-  { label: 'X', value: 130, color: '#FBBF24' },
-  { label: 'Threads', value: 80, color: '#A3A3A3' },
+const socialBreakdown: SocialBreakdownItem[] = [
+  {
+    name: "Instagram",
+    percent: 40,
+    followersCount: 4300.32,
+    color: "#E1306C",
+    gradient:
+      "linear-gradient(135deg, #833AB4 0%, #E1306C 50%, #FD1D1D 100%)",
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/instagram.svg",
+    coloredLogo:
+      "https://upload.wikimedia.org/wikipedia/commons/2/21/Instagram_Glyph_Gradient_RGB_logo.svg",
+  },
+  {
+    name: "TikTok",
+    percent: 20,
+    followersCount: 2100,
+    color: "#010101",
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/tiktok.svg",
+    coloredLogo:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg",
+  },
+  {
+    name: "YouTube",
+    percent: 15,
+    followersCount: 1380,
+    color: "#FF0000",
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/youtube.svg",
+    coloredLogo:
+      "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
+  },
+  {
+    name: "X",
+    percent: 10,
+    followersCount: 890.33,
+    color: "#000000",
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/x.svg",
+    coloredLogo:
+      "https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg",
+  },
+  {
+    name: "LinkedIn",
+    percent: 5,
+    followersCount: 500,
+    color: "#0077B5",
+    logo: "https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg",
+    coloredLogo:
+      "https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg",
+  },
 ];
 
-const totalMentions = mentionsData.reduce((sum, m) => sum + m.value, 0);
-
-const data = {
-  labels: mentionsData.map((m) => m.label),
-  datasets: [
-    {
-      data: mentionsData.map((m) => m.value),
-      backgroundColor: mentionsData.map((m) => m.color),
-      borderWidth: 2,
-      borderColor: '#fff',
-    },
-  ],
-};
-
-const options = {
-  plugins: {
-    legend: { display: false },
-    tooltip: {
-      enabled: true,
-      callbacks: {
-        label: function (context: import('chart.js').TooltipItem<'doughnut'>) {
-          const label = context.label || '';
-          const value = context.parsed || 0;
-          const pct = totalMentions ? ((value / totalMentions) * 100).toFixed(2) : '0';
-          return `${label}: ${value} (${pct}%)`;
-        },
-      },
-    },
-  },
-  cutout: '70%',
-  maintainAspectRatio: false,
-};
+const totalMentions = socialBreakdown.reduce((sum, item) => sum + item.followersCount, 0);
 
 const interpretationSentences = [
-  `Instagram leads with ${mentionsData[0].value} mentions, representing ${(mentionsData[0].value / totalMentions * 100).toFixed(1)}% of total mentions.`,
-  `Facebook, LinkedIn, X, and Threads follow with lower shares, indicating platform-specific trends.`,
+  `Instagram leads with ${socialBreakdown[0].followersCount} mentions, representing ${(socialBreakdown[0].followersCount / totalMentions * 100).toFixed(1)}% of total mentions.`,
+  `TikTok, YouTube, X, and LinkedIn follow with lower shares, indicating platform-specific trends.`,
   `Focus your engagement strategy on platforms with the highest mention rates for maximum impact.`
 ];
 
@@ -69,12 +80,7 @@ export default function MentionsByTrendCard() {
         </div>
       </div>
       <div className="relative flex items-center justify-center mt-6" style={{ minHeight: 220 }}>
-        <Doughnut data={data} options={options} height={220} />
-        {/* Central total number overlay */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-4xl font-bold text-black rounded-full px-6 py-2">{totalMentions}</span>
-          
-        </div>
+        <FollowersDispatch socialBreakdown={socialBreakdown} showTitle={false} showInsights={false} />
       </div>
       {/* AI interpretation */}
       <AiInsightSection sentences={interpretationSentences} />
