@@ -1,7 +1,7 @@
 "use client";
 
 import { LayoutDashboard, TrendingUp, Eye, BarChart3, FileText, Database, MonitorSpeaker, BookOpen, HelpCircle, User, LogOut, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useParams, usePathname, useSearchParams } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
@@ -28,10 +28,34 @@ export default function Sidebar() {
   const router = useRouter();
   const { isCollapsed, setIsCollapsed } = useSidebar();
   const [activeItem, setActiveItem] = useState("dashboard");
-
-  // path utilities for changing language while preserving the rest of the URL
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  // Determine active sidebar item from current pathname
+  const determineActiveFromPath = (p?: string) => {
+    const path = (p || "") as string;
+    // check known routes and return the matching menu id
+    if (path.includes("/dashboard")) return "dashboard";
+    if (path.includes("/reports")) return "reports";
+    if (path.includes("/digital-ad-monitoring")) return "digital-ad-monitoring";
+    if (path.includes("/ranking")) return "ranking";
+    if (path.includes("/brand-watch")) return "brand-watch";
+    if (path.includes("/stock-market")) return "stock-market";
+    // API might be under /api or /{lang}/api
+    if (path === "/api" || path.includes("/api")) return "data-api";
+    if (path.includes("/tutorial")) return "tutorial";
+    if (path.includes("/support")) return "support";
+    return undefined;
+  };
+
+  useEffect(() => {
+    try {
+      const id = determineActiveFromPath(pathname);
+      if (id) setActiveItem(id);
+    } catch (e) {
+      // ignore and keep current active item
+    }
+  }, [pathname]);
 
   const topMenuItems = [
     { icon: LayoutDashboard, label: t('sidebar.dashboard'), id: 'dashboard' },
@@ -67,7 +91,7 @@ export default function Sidebar() {
         }`}
       style={{ height: '100vh' }}
     >
-  <div className="h-20 border-b border-gray-200 flex items-center justify-between px-5">
+      <div className="h-20 border-b border-gray-200 flex items-center justify-between px-5">
         {/* Logo: show full when expanded, crop to left when collapsed */}
         <div
           className={`flex items-center overflow-hidden transition-all duration-300 `}
@@ -105,9 +129,21 @@ export default function Sidebar() {
                 <button
                   onClick={() => {
                     setActiveItem(item.id);
-                    // navigate to dashboard route when clicking the dashboard item
-                    if (item.id === 'dashboard') {
-                      router.push(`/${lang}/dashboard`);
+                    // navigate based on selected item
+                    switch (item.id) {
+                      case 'dashboard':
+                        router.push(`/${lang}/dashboard`);
+                        break;
+                      case 'data-api':
+                        // open the API page at root /api
+                        router.push(`/${lang}/api`);
+                        break;
+                      case 'reports':
+                        router.push(`/${lang}/reports`);
+                        break;
+                      default:
+                        // no navigation for other items (keep behavior unchanged)
+                        break;
                     }
                   }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
@@ -132,7 +168,19 @@ export default function Sidebar() {
             return (
               <li key={item.id}>
                 <button
-                  onClick={() => setActiveItem(item.id)}
+                  onClick={() => {
+                    setActiveItem(item.id);
+                    switch (item.id) {
+                      case 'tutorial':
+                        router.push(`/${lang}/tutorial`);
+                        break;
+                      case 'support':
+                        router.push(`/${lang}/support`);
+                        break;
+                      default:
+                        break;
+                    }
+                  }}
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${isActive
                     ? "bg-gradient-to-r from-[#F02CB9] to-[#35B9F4] text-white shadow-md"
                     : "text-gray-700 hover:bg-gray-100"

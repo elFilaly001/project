@@ -342,5 +342,20 @@
         "action": "Envisagez des stratégies pour engager d'autres segments de genre afin d'élargir la portée."
       }
     }
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "a11y": {
+      "price_slider": "Glissez horizontalement pour basculer entre les prix mensuels et annuels"
+    },
+    "labels": {
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
+    },
+    "plans": {
+      "basic": "Basique",
+      "pro": "Pro",
+      "enterprise": "Entreprise"
+    }
   }
 }

@@ -342,5 +342,20 @@
                 "action": "Consider strategies to engage other gender segments for broader reach."
             }
         }
+    },
+    "pricing": {
+        "title": "Pricing",
+        "a11y": {
+            "price_slider": "Slide horizontally to switch between monthly and yearly prices"
+        },
+        "labels": {
+            "monthly": "Monthly",
+            "yearly": "Yearly"
+        },
+        "plans": {
+            "basic": "Basic",
+            "pro": "Pro",
+            "enterprise": "Enterprise"
+        }
     }
 }
