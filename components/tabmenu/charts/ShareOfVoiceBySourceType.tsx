@@ -18,29 +18,25 @@ import AiInsightSection from '@/components/AiInsightSection';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const data = [
-    { source: 'News', Acceleration: 10, EV_Battery_Life: 5, Driving_Range: 7, Autonomous_Driving: 3, Charging_Speed: 8 },
-    { source: 'X', Acceleration: 2, EV_Battery_Life: 1, Driving_Range: 5, Autonomous_Driving: 4, Charging_Speed: 3 },
-    { source: 'Broadcast', Acceleration: 6, EV_Battery_Life: 4, Driving_Range: 8, Autonomous_Driving: 6, Charging_Speed: 5 },
-    { source: 'Reddit', Acceleration: 4, EV_Battery_Life: 3, Driving_Range: 6, Autonomous_Driving: 2, Charging_Speed: 4 },
-    { source: 'Podcasts', Acceleration: 3, EV_Battery_Life: 2, Driving_Range: 3, Autonomous_Driving: 1, Charging_Speed: 2 },
-    { source: 'Forums', Acceleration: 5, EV_Battery_Life: 2, Driving_Range: 4, Autonomous_Driving: 2, Charging_Speed: 3 },
-    { source: 'Blogs', Acceleration: 7, EV_Battery_Life: 6, Driving_Range: 5, Autonomous_Driving: 3, Charging_Speed: 6 },
-    { source: 'WeChat', Acceleration: 8, EV_Battery_Life: 7, Driving_Range: 6, Autonomous_Driving: 5, Charging_Speed: 9 },
-    { source: 'Comments', Acceleration: 4, EV_Battery_Life: 3, Driving_Range: 4, Autonomous_Driving: 2, Charging_Speed: 3 },
-    { source: 'Sina Weibo', Acceleration: 6, EV_Battery_Life: 5, Driving_Range: 7, Autonomous_Driving: 4, Charging_Speed: 8 },
-    { source: 'Pinterest', Acceleration: 9, EV_Battery_Life: 8, Driving_Range: 8, Autonomous_Driving: 6, Charging_Speed: 10 },
+    { source: 'Instagram', Acceleration: 4, EV_Battery_Life: 3, Driving_Range: 5, Autonomous_Driving: 2, Charging_Speed: 3 },
+    { source: 'Facebook', Acceleration: 3, EV_Battery_Life: 2, Driving_Range: 4, Autonomous_Driving: 1, Charging_Speed: 2 },
+    { source: 'X', Acceleration: 6, EV_Battery_Life: 5, Driving_Range: 7, Autonomous_Driving: 4, Charging_Speed: 6 },
+    { source: 'TikTok', Acceleration: 5, EV_Battery_Life: 3, Driving_Range: 6, Autonomous_Driving: 2, Charging_Speed: 4 },
+    { source: 'YouTube', Acceleration: 8, EV_Battery_Life: 7, Driving_Range: 9, Autonomous_Driving: 6, Charging_Speed: 8 },
+    { source: 'LinkedIn', Acceleration: 2, EV_Battery_Life: 1, Driving_Range: 3, Autonomous_Driving: 1, Charging_Speed: 2 },
 ];
 
 export default function ShareOfVoiceBySourceType() {
     const t = useTranslations();
 
     const labels = data.map((d) => d.source);
+    // Use generic competitor labels instead of topic-specific labels
     const datasets = [
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.acceleration', { default: 'EV & Acceleration' }), data: data.map((d) => d.Acceleration), backgroundColor: '#0ea5a4' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.battery', { default: 'EV Battery Life' }), data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#f02cb9' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.range', { default: 'EV Driving Range' }), data: data.map((d) => d.Driving_Range), backgroundColor: '#ef4444' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.autonomous', { default: 'EV Autonomous Driving' }), data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#f59e0b' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.charging', { default: 'EV Charging Speed' }), data: data.map((d) => d.Charging_Speed), backgroundColor: '#06b6d4' },
+        { label: 'Competitor A', data: data.map((d) => d.Acceleration), backgroundColor: '#0ea5a4' },
+        { label: 'Competitor B', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#f02cb9' },
+        { label: 'Competitor C', data: data.map((d) => d.Driving_Range), backgroundColor: '#ef4444' },
+        { label: 'Competitor D', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#f59e0b' },
+        { label: 'Competitor E', data: data.map((d) => d.Charging_Speed), backgroundColor: '#06b6d4' },
     ];
 
     const chartData = { labels, datasets };

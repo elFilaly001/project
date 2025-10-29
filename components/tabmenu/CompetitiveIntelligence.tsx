@@ -5,7 +5,6 @@ import CompetitiveTable from './CompetitiveTable';
 // Dynamically import charts with SSR disabled to avoid hydration mismatches
 const ShareOfVoiceBySourceType = dynamic(() => import('./charts/ShareOfVoiceBySourceType'), { ssr: false });
 const ShareOfVoiceByMentionsDonut = dynamic(() => import('./charts/ShareOfVoiceByMentionsDonut'), { ssr: false });
-const MentionsTrendBySourceType = dynamic(() => import('./charts/MentionsTrendBySourceType'), { ssr: false });
 
 export default function CompetitiveIntelligence() {
     return (
@@ -16,13 +15,10 @@ export default function CompetitiveIntelligence() {
             {/* Charts below the table - full width, naturally sized vertically */}
             <div className="flex flex-col gap-4 w-full">
                 <div className="w-full">
-                    <ShareOfVoiceBySourceType />
-                </div>
-                <div className="w-full">
-                    <MentionsTrendBySourceType />
-                </div>
-                <div className="w-full">
                     <ShareOfVoiceByMentionsDonut />
+                </div>
+                <div className="w-full">
+                    <ShareOfVoiceBySourceType />
                 </div>
             </div>
         </div>

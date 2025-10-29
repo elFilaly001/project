@@ -107,7 +107,18 @@
           "rabat": "Rabat",
           "marrakesh": "Marrakech",
           "tanger": "Tanger",
-          "agadir": "Agadir"
+          "agadir": "Agadir",
+          "fes": "Fès",
+          "meknes": "Meknès",
+          "oujda": "Oujda",
+          "tetouan": "Tétouan",
+          "kenitra": "Kénitra",
+          "nador": "Nador",
+          "mohammedia": "Mohammédia",
+          "sale": "Salé",
+          "safi": "Safi",
+          "essaouira": "Essaouira",
+          "ouarzazate": "Ouarzazate"
         }
       },
       "keyword": {
@@ -216,7 +227,10 @@
         "title": "Part de voix par mentions",
         "description": "Répartition des mentions par sujet.",
         "last_period": "Derniers 7 jours",
-        "insight": "La conduite autonome et la vitesse de charge sont les sujets dominants dans les mentions."
+        "insight": "La conduite autonome et la vitesse de charge sont les sujets dominants dans les mentions.",
+        "positive": "Part des positifs",
+        "negative": "Part des négatifs",
+        "neutral": "Part des neutres"
       },
       "mentions_trend": {
         "title": "Tendance des mentions par type de source",
@@ -250,8 +264,7 @@
       "avg_eng": "Moy. Eng. (30 jours)",
       "avg_views": "Moy. Vues (30 jours)",
       "posting_habits": "Habitudes de publication"
-    }
-    ,
+    },
     "credibility": {
       "title_followers": "Authenticité de l'audience",
       "title_likers": "Authenticité des personnes ayant aimé",
@@ -268,8 +281,7 @@
         "top": "{label} est le segment le plus important ({value}%, {pct}%).",
         "action": "Concentrez-vous sur l'augmentation de la proportion d'abonnés 'Réels' pour une meilleure crédibilité."
       }
-    }
-    ,
+    },
     "interest_affinity": {
       "title": "Affinité d'intérêt de l'audience",
       "tooltip_aria": "ما هي Affinité؟",
@@ -286,8 +298,7 @@
         "tailor": "Envisagez d'adapter le contenu pour correspondre à cet intérêt et augmenter l'engagement.",
         "diversify": "Diversifier le contenu peut aider à atteindre d'autres segments également."
       }
-    }
-    ,
+    },
     "reachability": {
       "title": "Répartition de la portée du public",
       "tooltip": "Affiche le pourcentage d'abonnés segmentés par le nombre de comptes qu'ils suivent : plus de 1 500, entre 1 000-1 500, 500-1 000 et moins de 500. Les abonnés qui suivent plus de 1 500 comptes sont moins susceptibles de voir du contenu sponsorisé.",
@@ -330,6 +341,21 @@
         "tailor": "Adapter le contenu à ce groupe peut augmenter l'engagement.",
         "action": "Envisagez des stratégies pour engager d'autres segments de genre afin d'élargir la portée."
       }
+    }
+  },
+  "pricing": {
+    "title": "Tarifs",
+    "a11y": {
+      "price_slider": "Glissez horizontalement pour basculer entre les prix mensuels et annuels"
+    },
+    "labels": {
+      "monthly": "Mensuel",
+      "yearly": "Annuel"
+    },
+    "plans": {
+      "basic": "Basique",
+      "pro": "Pro",
+      "enterprise": "Entreprise"
     }
   }
 }

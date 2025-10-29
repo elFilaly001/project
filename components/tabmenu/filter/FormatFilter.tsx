@@ -52,7 +52,6 @@ export default function FormatFilter() {
                                 { v: 'all', labelKey: 'social_listening.filters.format.all' },
                                 { v: 'video', labelKey: 'social_listening.filters.format.video' },
                                 { v: 'post', labelKey: 'social_listening.filters.format.post' },
-                                { v: 'story', labelKey: 'social_listening.filters.format.story' },
                                 { v: 'comment', labelKey: 'social_listening.filters.format.comment' },
                                 { v: 'article', labelKey: 'social_listening.filters.format.article' },
                             ].map((opt) => (

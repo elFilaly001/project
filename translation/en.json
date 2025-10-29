@@ -107,7 +107,18 @@
                     "rabat": "Rabat",
                     "marrakesh": "Marrakesh",
                     "tanger": "Tangier",
-                    "agadir": "Agadir"
+                    "agadir": "Agadir",
+                    "fes": "Fes",
+                    "meknes": "Meknes",
+                    "oujda": "Oujda",
+                    "tetouan": "Tetouan",
+                    "kenitra": "Kenitra",
+                    "nador": "Nador",
+                    "mohammedia": "Mohammedia",
+                    "sale": "Salé",
+                    "safi": "Safi",
+                    "essaouira": "Essaouira",
+                    "ouarzazate": "Ouarzazate"
                 }
             },
             "keyword": {
@@ -216,7 +227,10 @@
                 "title": "Share of Voice by Mentions",
                 "description": "Breakdown of mentions across topics.",
                 "last_period": "Last 7 days",
-                "insight": "Autonomous driving and charging speed are the dominant topics in mentions."
+                "insight": "Autonomous driving and charging speed are the dominant topics in mentions.",
+                "positive": "Share of Positive",
+                "negative": "Share of Negative",
+                "neutral": "Share of Neutral"
             },
             "mentions_trend": {
                 "title": "Mentions Trend by Source Type",
@@ -239,7 +253,7 @@
         "followers": "Followers",
         "likers": "Likers",
         "audience_data_based": "The audience data is based on {source}",
-            "table": {
+        "table": {
             "social_media": "Social media",
             "score": "Score",
             "followers": "Followers",
@@ -250,86 +264,98 @@
             "avg_eng": "Avg. Eng. (30 days)",
             "avg_views": "Avg. Views (30 days)",
             "posting_habits": "Posting Habits"
-        }
-            ,
-            "credibility": {
-                "title_followers": "Audience Authenticity",
-                "title_likers": "Likers Authenticity",
-                "tooltip_followers": "To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.",
-                "tooltip_likers": "To determine the credibility score of historical likers, we evaluate several factors such as the account’s profile picture and bio, number of followers and posts, and the follower-to-following ratio. Brands with a genuinely engaged audience typically achieve scores of 80 or higher.",
-                "breakdown": {
-                    "mass_followers": "Mass followers",
-                    "suspicious": "Suspicious",
-                    "influencers": "Influencers",
-                    "real": "Real"
-                },
-                "interpretation": {
-                    "total": "Total audience analyzed: {total}.",
-                    "top": "{label} is the largest segment ({value}%, {pct}%).",
-                    "action": "Focus on increasing the proportion of 'Real' followers for better credibility."
-                }
+        },
+        "credibility": {
+            "title_followers": "Audience Authenticity",
+            "title_likers": "Likers Authenticity",
+            "tooltip_followers": "To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher.",
+            "tooltip_likers": "To determine the credibility score of historical likers, we evaluate several factors such as the account’s profile picture and bio, number of followers and posts, and the follower-to-following ratio. Brands with a genuinely engaged audience typically achieve scores of 80 or higher.",
+            "breakdown": {
+                "mass_followers": "Mass followers",
+                "suspicious": "Suspicious",
+                "influencers": "Influencers",
+                "real": "Real"
+            },
+            "interpretation": {
+                "total": "Total audience analyzed: {total}.",
+                "top": "{label} is the largest segment ({value}%, {pct}%).",
+                "action": "Focus on increasing the proportion of 'Real' followers for better credibility."
             }
-                    ,
-                    "interest_affinity": {
-                        "title": "Audience interest affinity",
-                        "tooltip_aria": "What is interest affinity?",
-                        "tooltip": "What the audience is interested in, based on analyzing posts for caption texts, @mentions, #hashtags and location tags.",
-                        "list": {
-                            "friends": "Friends, Family & Relationships",
-                            "clothes": "Clothes, Shoes, Handbags & Accessories",
-                            "toys": "Toys, Children & Baby",
-                            "restaurants": "Restaurants, Food & Grocery",
-                            "camera": "Camera & Photography"
-                        },
-                        "interpretation": {
-                            "top": "Top audience interest: {label} ({percent}%).",
-                            "tailor": "Consider tailoring content to match this interest for higher engagement.",
-                            "diversify": "Diversifying content may help reach other segments as well."
-                        }
-                    }
-                        ,
-                        "reachability": {
-                            "title": "Audience Reach Distribution",
-                            "tooltip": "Shows the percentage of followers segmented by the number of accounts they follow, over 1,500, between 1,000-1,500, 500-1,000, and under 500. Followers who follow more than 1,500 accounts are less likely to see sponsored content.",
-                            "dataset_label": "Audience %",
-                            "labels": {
-                                "lt500": "< 500",
-                                "500_1k": "500 - 1k",
-                                "1k_1_5k": "1k - 1.5k",
-                                "gt1_5k": "> 1.5k"
-                            },
-                            "interpretation": {
-                                "top": "Most followers ({value}%) are in {label}, representing {pct}% of the audience.",
-                                "visibility": "Followers with fewer connections are more likely to see your content.",
-                                "action": "Consider targeting this segment for higher reach and engagement."
-                            }
+        },
+        "interest_affinity": {
+            "title": "Audience interest affinity",
+            "tooltip_aria": "What is interest affinity?",
+            "tooltip": "What the audience is interested in, based on analyzing posts for caption texts, @mentions, #hashtags and location tags.",
+            "list": {
+                "friends": "Friends, Family & Relationships",
+                "clothes": "Clothes, Shoes, Handbags & Accessories",
+                "toys": "Toys, Children & Baby",
+                "restaurants": "Restaurants, Food & Grocery",
+                "camera": "Camera & Photography"
             },
-            "followers_by_country": {
-                "title": "Followers by Country",
-                "tooltip_aria": "What is this?",
-                "tooltip": "The audience location by country.",
-                "undetermined": "Undetermined",
-                "interpretation": {
-                    "top": "{country} is the largest audience country ({value}%).",
-                    "tailor": "Content tailored to this country may increase engagement.",
-                    "action": "Consider strategies to engage audiences in other countries for broader reach."
-                }
+            "interpretation": {
+                "top": "Top audience interest: {label} ({percent}%).",
+                "tailor": "Consider tailoring content to match this interest for higher engagement.",
+                "diversify": "Diversifying content may help reach other segments as well."
+            }
+        },
+        "reachability": {
+            "title": "Audience Reach Distribution",
+            "tooltip": "Shows the percentage of followers segmented by the number of accounts they follow, over 1,500, between 1,000-1,500, 500-1,000, and under 500. Followers who follow more than 1,500 accounts are less likely to see sponsored content.",
+            "dataset_label": "Audience %",
+            "labels": {
+                "lt500": "< 500",
+                "500_1k": "500 - 1k",
+                "1k_1_5k": "1k - 1.5k",
+                "gt1_5k": "> 1.5k"
             },
-            "gender_distribution": {
-                                    "title": "Gender Distribution",
-                                    "tooltip_aria": "What is gender distribution?",
-                                    "tooltip": "The audience’s gender distribution is determined by analyzing indicators such as the profile picture, name, bio text, and selfies from recent posts.",
-                                    "center_label": "Gender",
-                                    "labels": {
-                                        "male": "Male",
-                                        "female": "Female",
-                                        "unknown": "Unknown"
-                                    },
-                                    "interpretation": {
-                                        "top": "{label} is the largest gender group ({value}%, {pct}%).",
-                                        "tailor": "Tailoring content to this group may increase engagement.",
-                                        "action": "Consider strategies to engage other gender segments for broader reach."
-                                    }
-                                }
+            "interpretation": {
+                "top": "Most followers ({value}%) are in {label}, representing {pct}% of the audience.",
+                "visibility": "Followers with fewer connections are more likely to see your content.",
+                "action": "Consider targeting this segment for higher reach and engagement."
+            }
+        },
+        "followers_by_country": {
+            "title": "Followers by Country",
+            "tooltip_aria": "What is this?",
+            "tooltip": "The audience location by country.",
+            "undetermined": "Undetermined",
+            "interpretation": {
+                "top": "{country} is the largest audience country ({value}%).",
+                "tailor": "Content tailored to this country may increase engagement.",
+                "action": "Consider strategies to engage audiences in other countries for broader reach."
+            }
+        },
+        "gender_distribution": {
+            "title": "Gender Distribution",
+            "tooltip_aria": "What is gender distribution?",
+            "tooltip": "The audience’s gender distribution is determined by analyzing indicators such as the profile picture, name, bio text, and selfies from recent posts.",
+            "center_label": "Gender",
+            "labels": {
+                "male": "Male",
+                "female": "Female",
+                "unknown": "Unknown"
+            },
+            "interpretation": {
+                "top": "{label} is the largest gender group ({value}%, {pct}%).",
+                "tailor": "Tailoring content to this group may increase engagement.",
+                "action": "Consider strategies to engage other gender segments for broader reach."
+            }
+        }
+    },
+    "pricing": {
+        "title": "Pricing",
+        "a11y": {
+            "price_slider": "Slide horizontally to switch between monthly and yearly prices"
+        },
+        "labels": {
+            "monthly": "Monthly",
+            "yearly": "Yearly"
+        },
+        "plans": {
+            "basic": "Basic",
+            "pro": "Pro",
+            "enterprise": "Enterprise"
+        }
     }
 }
