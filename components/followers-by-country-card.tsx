@@ -1,5 +1,6 @@
 import React from "react";
 import AiInsightSection from "./AiInsightSection";
+import { useTranslations } from 'next-intl';
 
 const countryData = [
   { label: "Morocco", value: 57.45, code: "ma" },
@@ -12,21 +13,22 @@ const countryData = [
 ];
 
 export default function FollowersByCountryCard() {
+  const t = useTranslations('audience.followers_by_country');
   const max = Math.max(...countryData.map((c) => c.value));
 
   // AI interpretation logic
   const topCountry = countryData.reduce((a, b) => (b.value > a.value ? b : a), countryData[0]);
   const interpretationSentences = [
-    `${topCountry.label} is the largest audience country (${topCountry.value.toFixed(2)}%).`,
-    `Content tailored to this country may increase engagement.`,
-    `Consider strategies to engage audiences in other countries for broader reach.`
+    t('interpretation.top', { country: topCountry.label, value: topCountry.value.toFixed(2) }),
+    t('interpretation.tailor'),
+    t('interpretation.action'),
   ];
 
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border">
       {/* Header matching other cards */}
       <div className="flex items-start justify-between">
-        <h3 className="text-gray-700 font-semibold">Followers by Country</h3>
+        <h3 className="text-gray-700 font-semibold">{t('title')}</h3>
 
         {/* Tooltip: same pattern as other cards */}
         <div className="relative group">
@@ -35,7 +37,7 @@ export default function FollowersByCountryCard() {
             aria-describedby="followers-country-tooltip"
             className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
           >
-            <span className="sr-only">What is this?</span>?
+            <span className="sr-only">{t('tooltip_aria') || 'What is this?'}</span>?
           </button>
 
           <div
@@ -45,7 +47,7 @@ export default function FollowersByCountryCard() {
             style={{ top: "100%" }}
             className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none"
           >
-            The audience location by country. 
+            {t('tooltip')}
           </div>
         </div>
       </div>
@@ -63,7 +65,7 @@ export default function FollowersByCountryCard() {
                   loading="lazy"
                 />
               ) : null}
-              <span className="text-gray-600 text-sm font-medium">{c.label}</span>
+              <span className="text-gray-600 text-sm font-medium">{c.label === 'undetermined' ? t('undetermined') : c.label}</span>
             </div>
 
             <div className="flex-1 mx-2">

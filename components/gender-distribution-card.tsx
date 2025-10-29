@@ -4,21 +4,23 @@ import React, { useState } from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import AiInsightSection from './AiInsightSection';
+import { useTranslations } from 'next-intl';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const genderData = [
-  { label: "Male", value: 40, color: "#2563eb" },      // blue-600
-  { label: "Female", value: 55, color: "#e11d48" },   // rose-600
-  { label: "Unknown", value: 5, color: "#6b7280" },   // gray-500
+  { id: 'male', value: 40, color: '#2563eb' }, // blue-600
+  { id: 'female', value: 55, color: '#e11d48' }, // rose-600
+  { id: 'unknown', value: 5, color: '#6b7280' }, // gray-500
 ];
 
 export default function GenderDistributionCard() {
+  const t = useTranslations();
   const total = genderData.reduce((sum, g) => sum + g.value, 0);
   const [hovered, setHovered] = useState<number | null>(null);
 
   const pieData = {
-    labels: genderData.map((g) => g.label),
+    labels: genderData.map((g) => t(`audience.gender_distribution.labels.${g.id}`)),
     datasets: [
       {
         data: genderData.map((g) => g.value),
@@ -35,23 +37,27 @@ export default function GenderDistributionCard() {
       tooltip: { enabled: true },
     },
     maintainAspectRatio: false,
-    events: [], // disables all events for Pie chart itself
+    events: [], // disables events for the Pie chart itself
   };
 
   // AI interpretation logic
   const top = genderData.reduce((a, b) => (b.value > a.value ? b : a), genderData[0]);
   const topPct = total ? Math.round((top.value / total) * 100) : 0;
   const interpretationSentences = [
-    `${top.label} is the largest gender group (${top.value}%, ${topPct}%).`,
-    `Tailoring content to this group may increase engagement.`,
-    `Consider strategies to engage other gender segments for broader reach.`
+    t('audience.gender_distribution.interpretation.top', {
+      label: t(`audience.gender_distribution.labels.${top.id}`),
+      value: top.value,
+      pct: topPct,
+    }),
+    t('audience.gender_distribution.interpretation.tailor'),
+    t('audience.gender_distribution.interpretation.action'),
   ];
 
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border">
       {/* header: matches other cards */}
       <div className="flex items-start justify-between">
-        <h3 className="text-gray-700 font-semibold">Gender Distribution</h3>
+        <h3 className="text-gray-700 font-semibold">{t('audience.gender_distribution.title')}</h3>
 
         {/* tooltip: same pattern used across cards */}
         <div className="relative group">
@@ -60,17 +66,17 @@ export default function GenderDistributionCard() {
             aria-describedby="gender-tooltip"
             className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
           >
-            <span className="sr-only">What is this?</span>?
+            <span className="sr-only">{t('audience.gender_distribution.tooltip_aria')}</span>?
           </button>
 
           <div
             id="gender-tooltip"
             role="tooltip"
             aria-hidden="true"
-            style={{ top: "100%" }}
+            style={{ top: '100%' }}
             className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity duration-200 pointer-events-none"
           >
-            The audience’s gender distribution is determined by analyzing indicators such as the profile picture, name, bio text, and selfies from recent posts.
+            {t('audience.gender_distribution.tooltip')}
           </div>
         </div>
       </div>
@@ -82,17 +88,21 @@ export default function GenderDistributionCard() {
           {/* Center content */}
           <div className="absolute flex flex-col items-center justify-center w-36 h-36 pointer-events-none">
             <span className="text-xl font-bold text-gray-800">
-              {hovered !== null && genderData[hovered] ? `${Math.round((genderData[hovered].value / total) * 100)}%` : '100%'}
+              {hovered !== null && genderData[hovered]
+                ? `${Math.round((genderData[hovered].value / total) * 100)}%`
+                : '100%'}
             </span>
             <span className="text-xs text-gray-500">
-              {hovered !== null && genderData[hovered] ? genderData[hovered].label : 'Gender'}
+              {hovered !== null && genderData[hovered]
+                ? t(`audience.gender_distribution.labels.${genderData[hovered].id}`)
+                : t('audience.gender_distribution.center_label')}
             </span>
           </div>
         </div>
         <div className="flex gap-6 mt-4 flex-wrap justify-center">
           {genderData.map((g, idx) => (
             <div
-              key={g.label}
+              key={g.id}
               className="flex items-center gap-2 cursor-pointer"
               onMouseEnter={() => setHovered(idx)}
               onMouseLeave={() => setHovered(null)}
@@ -102,7 +112,7 @@ export default function GenderDistributionCard() {
                 style={{ backgroundColor: g.color }}
                 aria-hidden="true"
               />
-              <span className="text-gray-600 text-sm font-medium">{g.label}</span>
+              <span className="text-gray-600 text-sm font-medium">{t(`audience.gender_distribution.labels.${g.id}`)}</span>
               <span className="text-gray-700 text-sm font-semibold min-w-[40px] text-right">
                 {Math.round((g.value / total) * 100)}%
               </span>
