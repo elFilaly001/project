@@ -1,21 +1,23 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 export default function AllDataTable({ data }: { data: any[] }) {
+  const t = useTranslations();
   return (
     <div className="overflow-x-auto mt-4">
       <table className="min-w-full bg-white border rounded-xl text-sm">
         <thead>
           <tr className="bg-gray-50 text-gray-700">
-            <th className="py-2 px-3 text-left font-semibold">Social-media</th>
-            <th className="py-2 px-3 text-left font-semibold">Score</th>
-            <th className="py-2 px-3 text-right font-semibold">Followers</th>
-            <th className="py-2 px-3 text-right font-semibold">Growth (30 days)</th>
-            <th className="py-2 px-3 text-right font-semibold">Last Activity</th>
-            <th className="py-2 px-3 text-right font-semibold">Activity (30 days)</th>
-            <th className="py-2 px-3 text-right font-semibold">Eng. Rate (30 days)</th>
-            <th className="py-2 px-3 text-right font-semibold">Avg. Eng. (30 days)</th>
-            <th className="py-2 px-3 text-right font-semibold">Avg. Views (30 days)</th>
-            <th className="py-2 px-3 text-right font-semibold">Posting Habits</th>
+            <th className="py-2 px-3 text-left font-semibold">{t('audience.table.social_media')}</th>
+            <th className="py-2 px-3 text-left font-semibold">{t('audience.table.score')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.followers')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.growth')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.last_activity')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.activity')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.eng_rate')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.avg_eng')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.avg_views')}</th>
+            <th className="py-2 px-3 text-right font-semibold">{t('audience.table.posting_habits')}</th>
           </tr>
         </thead>
         <tbody>

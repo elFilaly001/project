@@ -3,37 +3,47 @@ import { AudienceModeContext } from "./tabmenu/Audience";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import AiInsightSection from "./AiInsightSection";
+import { useTranslations } from 'next-intl';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function FollowerCredibilityCard() {
     const mode = useContext(AudienceModeContext);
+    const t = useTranslations();
+
     const credibility = {
     percent: 73,
     mood: "Bad",
+    // Use ids for breakdown so labels can be translated via i18n keys
     breakdown: [
-      { label: "Mass followers", value: 14, color: "#F59E0B" }, // amber
-      { label: "Suspicious", value: 20, color: "#FB7185" }, // pink/red
-      { label: "Influencers", value: 4, color: "#7C3AED" }, // purple
-      { label: "Real", value: 63, color: "#10B981" }, // green
+      { id: 'mass_followers', value: 14, color: "#F59E0B" }, // amber
+      { id: 'suspicious', value: 20, color: "#FB7185" }, // pink/red
+      { id: 'influencers', value: 4, color: "#7C3AED" }, // purple
+      { id: 'real', value: 63, color: "#10B981" }, // green
     ],
   };
 
-    // AI interpretation logic
+    // AI interpretation logic (use translations)
     const total = credibility.breakdown.reduce((sum, d) => sum + d.value, 0);
     const top = credibility.breakdown.reduce((a, b) => (b.value > a.value ? b : a), credibility.breakdown[0]);
     const topPct = total ? Math.round((top.value / total) * 100) : 0;
     const interpretationSentences = [
-      `Total audience analyzed: ${total}.`,
-      `${top.label} is the largest segment (${top.value}%, ${topPct}%).`,
-      `Focus on increasing the proportion of 'Real' followers for better credibility.`,
+      t('audience.credibility.interpretation.total', { total }),
+      t('audience.credibility.interpretation.top', {
+        label: t(`audience.credibility.breakdown.${top.id}`),
+        value: top.value,
+        pct: topPct,
+      }),
+      t('audience.credibility.interpretation.action'),
     ];
 
     return (
         <div className="bg-white rounded-xl p-5 shadow-sm border">
             <div className="flex items-start justify-between">
               <h3 className="text-gray-700 font-semibold">
-                {mode === "likers" ? "Likers Authenticity" : "Audience Authenticity"}
+                {mode === "likers"
+                  ? t('audience.credibility.title_likers')
+                  : t('audience.credibility.title_followers')}
               </h3>
               <div className="relative group">
                 <button
@@ -45,8 +55,8 @@ export default function FollowerCredibilityCard() {
                 <div className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200"
                   style={{top: '100%'}}>
                   {mode === "likers"
-                    ? "To determine the credibility score of historical likers, we evaluate several factors such as the account’s profile picture and bio, number of followers and posts, and the follower-to-following ratio. Brands with a genuinely engaged audience typically achieve scores of 80 or higher."
-                    : "To determine the followers credibility score for historical accounts, we evaluate several factors, including the presence of a profile picture and bio, the number of posts, and the ratio between followers and following. Brands with an authentic audience typically achieve scores of 80 or higher."}
+                    ? t('audience.credibility.tooltip_likers')
+                    : t('audience.credibility.tooltip_followers')}
                 </div>
               </div>
             </div>
@@ -55,7 +65,7 @@ export default function FollowerCredibilityCard() {
               <div className="relative w-36 h-36 flex items-center justify-center">
                 <Pie
                   data={{
-                    labels: credibility.breakdown.map((d) => d.label),
+                    labels: credibility.breakdown.map((d) => t(`audience.credibility.breakdown.${d.id}`)),
                     datasets: [
                       {
                         data: credibility.breakdown.map((d) => d.value),
@@ -86,13 +96,13 @@ export default function FollowerCredibilityCard() {
               <div className="flex-1">
                 <ul className="mt-3 space-y-2">
                   {credibility.breakdown.map((d) => (
-                    <li key={d.label} className="flex items-center justify-between text-sm text-gray-600">
+                    <li key={d.id} className="flex items-center justify-between text-sm text-gray-600">
                       <div className="flex items-center gap-3">
                         <span
                           className="w-3 h-3 rounded-full inline-block"
                           style={{ backgroundColor: d.color }}
                         />
-                        <span>{d.label}</span>
+                        <span>{t(`audience.credibility.breakdown.${d.id}`)}</span>
                       </div>
                       <span className="font-medium">{d.value}%</span>
                     </li>

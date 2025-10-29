@@ -1,4 +1,8 @@
 import AiInsightSection from "./AiInsightSection";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 // Example data for keywords with sentiment
 const keywordsData = [
@@ -35,37 +39,59 @@ export default function KeywordsWithSentimentCard() {
           </div>
         </div>
       </div>
-      <div className="flex items-center mb-4 justify-between">
-        <span className="text-xs text-green-600 font-semibold border-b-2 border-green-400 pb-1">Keyword</span>
-        <span className="text-xs text-green-600 font-semibold border border-green-400 rounded px-2 py-1">Sentiment</span>
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-xs text-gray-600 pb-1">Keyword</span>
+        <span className="text-xs text-gray-600 px-2 py-1">Sentiment</span>
       </div>
-      <div className="space-y-2">
-        {keywordsData.map((kw) => {
-          const total = kw.positive + kw.neutral + kw.negative;
-          return (
-            <div key={kw.keyword} className="flex items-center group">
-              <span className="w-32 truncate text-sm text-gray-700">{kw.keyword}</span>
-              <div className="flex-1 mx-2 flex h-5 rounded overflow-hidden">
-                <div
-                  className="bg-green-400 group-hover:bg-green-500 transition-all duration-150"
-                  style={{ width: `${(kw.positive / total) * 100}%` }}
-                  title={`Positive: ${kw.positive}`}
-                ></div>
-                <div
-                  className="bg-gray-300 group-hover:bg-gray-400 transition-all duration-150"
-                  style={{ width: `${(kw.neutral / total) * 100}%` }}
-                  title={`Neutral: ${kw.neutral}`}
-                ></div>
-                <div
-                  className="bg-red-400 group-hover:bg-red-500 transition-all duration-150"
-                  style={{ width: `${(kw.negative / total) * 100}%` }}
-                  title={`Negative: ${kw.negative}`}
-                ></div>
-              </div>
-              <span className="text-xs text-green-600 font-semibold ml-2">{total} mentions</span>
-            </div>
-          );
-        })}
+
+      {/* Replace manual stacked bars with a stacked horizontal Chart.js bar so tooltips show sentiment counts + pct */}
+      <div className="relative" style={{ minHeight: keywordsData.length * 44 }}>
+        {
+          (() => {
+            const labels = keywordsData.map((k) => k.keyword);
+            const positives = keywordsData.map((k) => k.positive);
+            const neutrals = keywordsData.map((k) => k.neutral);
+            const negatives = keywordsData.map((k) => k.negative);
+            const totals = keywordsData.map((k) => k.positive + k.neutral + k.negative || 1);
+
+            const data = {
+              labels,
+              datasets: [
+                { label: 'Positive', data: positives, backgroundColor: '#34D399', borderRadius: 6, barThickness: 12 },
+                { label: 'Neutral', data: neutrals, backgroundColor: '#D1D5DB', borderRadius: 6, barThickness: 12 },
+                { label: 'Negative', data: negatives, backgroundColor: '#F87171', borderRadius: 6, barThickness: 12 },
+              ],
+            };
+
+            const options = {
+              indexAxis: 'y' as const,
+              plugins: {
+                legend: { position: 'top' as const, labels: { boxWidth: 12 } },
+                tooltip: {
+                  enabled: true,
+                  callbacks: {
+                    label: function (context: any) {
+                      const datasetLabel = context.dataset.label || '';
+                      const value = context.parsed.x ?? context.parsed;
+                      const idx = context.dataIndex;
+                      const total = totals[idx] || 1;
+                      const pct = total ? ((value / total) * 100).toFixed(1) : '0';
+                      return `${datasetLabel}: ${value} (${pct}%)`;
+                    },
+                  },
+                },
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: { stacked: true, beginAtZero: true, ticks: { color: '#6b7280' } },
+                y: { stacked: true, ticks: { color: '#374151' } },
+              },
+            };
+
+            return <Bar data={data} options={options} height={keywordsData.length * 44} />;
+          })()
+        }
       </div>
       {/* AI interpretation */}
       <AiInsightSection sentences={interpretationSentences} />

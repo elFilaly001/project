@@ -1,20 +1,22 @@
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import AiInsightSection from './AiInsightSection';
+import { useTranslations } from 'next-intl';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 export default function AudienceReachabilityCard() {
+  const t = useTranslations();
   const reachability = [
-    { label: "< 500", value: 60 },
-    { label: "500 - 1k", value: 20 },
-    { label: "1k - 1.5k", value: 8 },
-    { label: "> 1.5k", value: 12 },
+    { id: 'lt500', value: 60 },
+    { id: '500_1k', value: 20 },
+    { id: '1k_1_5k', value: 8 },
+    { id: 'gt1_5k', value: 12 },
   ];
 
   const data = {
-    labels: reachability.map((r) => r.label),
+    labels: reachability.map((r) => t(`audience.reachability.labels.${r.id}`)),
     datasets: [
       {
-        label: 'Audience %',
+        label: t('audience.reachability.dataset_label'),
         data: reachability.map((r) => r.value),
         backgroundColor: 'linear-gradient(180deg,#7C3AED,#A78BFA)',
         borderRadius: 6,
@@ -50,15 +52,19 @@ export default function AudienceReachabilityCard() {
   const total = reachability.reduce((sum, r) => sum + r.value, 0);
   const topPct = total ? Math.round((top.value / total) * 100) : 0;
   const interpretationSentences = [
-    `Most followers (${top.value}%) follow fewer than 500 accounts, representing ${topPct}% of the audience.`,
-    `Followers with fewer connections are more likely to see your content.`,
-    `Consider targeting this segment for higher reach and engagement.`
+    t('audience.reachability.interpretation.top', {
+      value: top.value,
+      pct: topPct,
+      label: t(`audience.reachability.labels.${top.id}`),
+    }),
+    t('audience.reachability.interpretation.visibility'),
+    t('audience.reachability.interpretation.action'),
   ];
 
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border">
       <div className="flex items-center justify-between">
-        <h3 className="text-gray-700 font-semibold">Audience Reach Distribution</h3>
+        <h3 className="text-gray-700 font-semibold">{t('audience.reachability.title')}</h3>
         <div className="relative group">
           <button
             className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50"
@@ -68,7 +74,7 @@ export default function AudienceReachabilityCard() {
           </button>
           <div className="absolute left-1/2 z-20 -translate-x-1/2 mt-2 w-80 bg-slate-800 text-white text-sm rounded-xl px-4 py-3 shadow-lg opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-200"
             style={{top: '100%'}}>
-            Shows the percentage of followers segmented by the number of accounts they follow, over 1,500, between 1,000-1,500, 500-1,000, and under 500. Followers who follow more than 1,500 accounts are less likely to see sponsored content.
+            {t('audience.reachability.tooltip')}
           </div>
         </div>
       </div>

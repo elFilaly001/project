@@ -1,4 +1,8 @@
 import AiInsightSection from "./AiInsightSection";
+import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Tooltip, Legend } from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 // Example data for locations with sentiment
 const locationsData = [
@@ -30,7 +34,7 @@ export default function LocationWithSentimentCard() {
         </div>
         <div className="relative group">
           <button
-            className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50"
+            className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
             type="button"
           >
             ?
@@ -44,38 +48,56 @@ export default function LocationWithSentimentCard() {
       <div className="flex items-center mb-4">
         <span className="text-xs text-gray-500 font-semibold">Mentions</span>
       </div>
-      <div className="space-y-2">
-        {locationsData.map((loc) => {
-          const total = loc.positive + loc.neutral + loc.notRated + loc.negative;
-          return (
-            <div key={loc.location} className="flex items-center group">
-              <span className="w-48 truncate text-sm text-gray-700">{loc.location}</span>
-              <div className="flex-1 mx-2 flex h-5 rounded overflow-hidden">
-                <div
-                  className="bg-green-500 group-hover:bg-green-600 transition-all duration-150"
-                  style={{ width: `${(loc.positive / total) * 100}%` }}
-                  title={`Positive: ${loc.positive}`}
-                ></div>
-                <div
-                  className="bg-gray-300 group-hover:bg-gray-400 transition-all duration-150"
-                  style={{ width: `${(loc.neutral / total) * 100}%` }}
-                  title={`Neutral: ${loc.neutral}`}
-                ></div>
-                <div
-                  className="bg-gray-400 group-hover:bg-gray-500 transition-all duration-150"
-                  style={{ width: `${(loc.notRated / total) * 100}%` }}
-                  title={`Not rated: ${loc.notRated}`}
-                ></div>
-                <div
-                  className="bg-red-500 group-hover:bg-red-600 transition-all duration-150"
-                  style={{ width: `${(loc.negative / total) * 100}%` }}
-                  title={`Negative: ${loc.negative}`}
-                ></div>
-              </div>
-              <span className="text-xs text-gray-700 font-semibold ml-2">{total}</span>
-            </div>
-          );
-        })}
+      {/* Use a stacked horizontal Bar chart so Chart.js tooltips show counts and percentages */}
+      <div className="relative" style={{ minHeight: locationsData.length * 44 }}>
+        {
+          (() => {
+            const labels = locationsData.map((l) => l.location);
+            const positives = locationsData.map((l) => l.positive);
+            const neutrals = locationsData.map((l) => l.neutral);
+            const notRated = locationsData.map((l) => l.notRated);
+            const negatives = locationsData.map((l) => l.negative);
+            const totals = locationsData.map((l) => l.positive + l.neutral + l.notRated + l.negative || 1);
+
+            const data = {
+              labels,
+              datasets: [
+                { label: 'Positive', data: positives, backgroundColor: '#10B981', borderRadius: 6, barThickness: 12 },
+                { label: 'Neutral', data: neutrals, backgroundColor: '#D1D5DB', borderRadius: 6, barThickness: 12 },
+                { label: 'Not rated', data: notRated, backgroundColor: '#9CA3AF', borderRadius: 6, barThickness: 12 },
+                { label: 'Negative', data: negatives, backgroundColor: '#EF4444', borderRadius: 6, barThickness: 12 },
+              ],
+            };
+
+            const options = {
+              indexAxis: 'y' as const,
+              plugins: {
+                legend: { display: false },
+                tooltip: {
+                  enabled: true,
+                  callbacks: {
+                    label: function (context: any) {
+                      const label = context.dataset.label || '';
+                      const value = context.parsed.x ?? context.parsed;
+                      const idx = context.dataIndex;
+                      const total = totals[idx] || 1;
+                      const pct = total ? ((value / total) * 100).toFixed(1) : '0';
+                      return `${label}: ${value} (${pct}%)`;
+                    },
+                  },
+                },
+              },
+              responsive: true,
+              maintainAspectRatio: false,
+              scales: {
+                x: { stacked: true, beginAtZero: true, ticks: { color: '#6b7280' } },
+                y: { stacked: true, ticks: { color: '#374151' } },
+              },
+            };
+
+            return <Bar data={data} options={options} height={locationsData.length * 44} />;
+          })()
+        }
       </div>
       <div className="flex items-center gap-6 mt-4 text-sm">
         <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-green-500 inline-block"></span> Positive</span>

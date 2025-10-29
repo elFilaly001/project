@@ -57,7 +57,7 @@ export default function MentionsByTrendCard() {
         <h3 className="text-gray-700 font-semibold">Mentions by Trend</h3>
         <div className="relative group">
           <button
-            className="text-gray-400 text-xs px-2 py-1 rounded hover:bg-gray-50"
+            className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"
             type="button"
           >
             ?

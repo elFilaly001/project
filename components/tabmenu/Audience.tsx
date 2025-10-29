@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, createContext } from "react";
+import { useTranslations } from 'next-intl';
 import FollowerCredibilityCard from "../follower-credibility-card";
 import AudienceReachabilityCard from "../audience-reachability-card";
 import GenderDistributionCard from "../gender-distribution-card";
@@ -34,6 +35,8 @@ export default function Audience() {
   const [showSocialDropdown, setShowSocialDropdown] = useState(false);
   // Default to 'All Social Medias' selected
   const [selectedSocial, setSelectedSocial] = useState<string | null>(null);
+
+  const t = useTranslations();
 
   // Social platforms (without 'All Social Medias')
   const socialPlatforms: SocialPlatform[] = [
@@ -82,7 +85,7 @@ export default function Audience() {
   ];
   // All Social Medias option (with its own logo)
   const allSocialOption: SocialPlatform = {
-    name: "All Social Medias",
+    name: t('social_listening.filters.source.all_social_medias'),
     count: null,
     logo: "https://cdn.jsdelivr.net/gh/feathericons/feather/icons/globe.svg", // Example globe icon
     color: "#6366f1", // Indigo-500
@@ -160,7 +163,7 @@ export default function Audience() {
                 <button
                   className="h-10 px-3 border rounded-md bg-white hover:bg-gray-100 flex items-center gap-1 text-sm font-medium"
                   style={{ minHeight: 40 }}
-                  title="Export CSV"
+                  title={t('audience.csv_export')}
                 >
                   <svg width="16" height="16" fill="none" viewBox="0 0 20 20">
                     <path
@@ -178,7 +181,7 @@ export default function Audience() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                  CSV Export
+                  {t('audience.csv_export')}
                 </button>
               </div>
               <div className="flex items-center gap-2">
@@ -192,7 +195,7 @@ export default function Audience() {
                     }`}
                     style={{ minHeight: 40 }}
                   >
-                    Followers
+                    {t('audience.followers')}
                   </button>
                   <button
                     onClick={() => setMode("likers")}
@@ -203,7 +206,7 @@ export default function Audience() {
                     }`}
                     style={{ minHeight: 40 }}
                   >
-                    Likers
+                    {t('audience.likers')}
                   </button>
                 </div>
                 <InlineDateRangePicker />
@@ -215,10 +218,7 @@ export default function Audience() {
                   setSelectedSocial={setSelectedSocial}
                 />
                 <div className="text-sm text-gray-500">
-                  The audience data is based on{" "}
-                  <span className="font-medium text-cyan-600">
-                    {selectedSocial || allSocialOption.name}
-                  </span>
+                  {t('audience.audience_data_based', { source: selectedSocial || allSocialOption.name })}
                 </div>
               </div>
             </div>

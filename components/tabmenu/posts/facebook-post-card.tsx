@@ -1,19 +1,19 @@
 import React from "react";
-import { FaRegHeart, FaRegComment, FaRegEye } from "react-icons/fa";
+import { FaRegHeart, FaRegComment, FaRegEye, FaFacebookF } from "react-icons/fa";
 
-interface SnapchatPostCardProps {
+interface FacebookPostCardProps {
   username: string;
   userAvatar: string;
   postDate: string;
   postImage: string;
   postText: string;
-  views: string;
+  views: string; // keep same prop names for compatibility; this can represent reach/views/shares
   likes: string;
   comments: string;
   postUrl?: string;
 }
 
-export default function SnapchatPostCard({
+export default function FacebookPostCard({
   username,
   userAvatar,
   postDate,
@@ -23,7 +23,7 @@ export default function SnapchatPostCard({
   likes,
   comments,
   postUrl,
-}: SnapchatPostCardProps) {
+}: FacebookPostCardProps) {
   return (
     <div className="bg-white rounded-xl p-4 shadow-sm border w-full max-w-xs">
       <div className="flex items-center justify-between mb-2">
@@ -34,19 +34,19 @@ export default function SnapchatPostCard({
             alt={username}
             className="w-8 h-8 rounded-full object-cover"
           />
-          <span className="font-semibold text-gray-800 text-sm">@{username}</span>
+          <span className="font-semibold text-gray-800 text-sm">{username}</span>
         </div>
-        {/* Right group: Snapchat icon + label + postUrl icon */}
+        {/* Right group: Facebook icon + label + postUrl icon */}
         <div className="flex items-center gap-2">
-          <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/snapchat.svg" alt="Snapchat" className="w-5 h-5" />
-          <span className="text-xs text-gray-400">Snap</span>
+          <FaFacebookF className="w-5 h-5 text-blue-600" />
+          <span className="text-xs text-gray-400">Facebook</span>
           {postUrl && (
             <a
               href={postUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-indigo-500"
-              title="Open in Snapchat"
+              title="Open on Facebook"
             >
               <svg width="18" height="18" fill="none" viewBox="0 0 20 20">
                 <path
@@ -71,7 +71,7 @@ export default function SnapchatPostCard({
       <div className="rounded-lg overflow-hidden mb-3">
         <img
           src={postImage}
-          alt="Snapchat post"
+          alt="Facebook post"
           className="w-full h-64 object-cover"
         />
       </div>

@@ -5,7 +5,7 @@ import TikTokPostCard from './posts/tiktok-post-card';
 import YouTubePostCard from './posts/youtube-post-card';
 import XPostCard from './posts/x-post-card';
 import LinkedInPostCard from './posts/linkedin-post-card';
-import SnapchatPostCard from './posts/snapchat-post-card';
+import FacebookPostCard from './posts/facebook-post-card';
 import SocialDropdown, { SocialPlatform } from "../ui/SocialDropdown";
 import SocialPostsTable from "../SocialPostsTable";
 
@@ -34,8 +34,7 @@ type PostsData = {
   YouTube: YouTubePost[];
   X: XPost[];
   LinkedIn: LinkedInPost[];
-  Snapchat: SnapchatPost[];
-  Facebook: InstagramPost[];
+  Facebook: FacebookPost[];
 };
 
 export default function Posts() {
@@ -166,19 +165,6 @@ export default function Posts() {
         postUrl: 'https://linkedin.com/posts/xyz',
       },
     ],
-    Snapchat: [
-      {
-        username: 'snapstar',
-        userAvatar: 'https://i.pravatar.cc/150?img=62',
-        postDate: '2 Oct 25',
-        postImage: 'https://picsum.photos/seed/snapchat1/600/400',
-        postText: 'Check out my latest Snap!',
-        views: '1.2M',
-        likes: '12K',
-        comments: '1.1K',
-        postUrl: 'https://snapchat.com/add/snapstar',
-      },
-    ],
     Facebook: [
       {
         username: 'selenagomez',
@@ -287,7 +273,9 @@ export default function Posts() {
               case 'LinkedIn':
                 return <LinkedInPostCard key={idx} {...post as LinkedInPost} />;
               case 'Snapchat':
-                return <SnapchatPostCard key={idx} {...post as SnapchatPost} />;
+                return <FacebookPostCard key={idx} {...post as SnapchatPost} />;
+              case 'Facebook':
+                return <FacebookPostCard key={idx} {...post as any} />;
               default:
                 return null;
             }
@@ -305,8 +293,8 @@ export default function Posts() {
                   return <XPostCard key={platform + idx} {...post as XPost} />;
                 case 'LinkedIn':
                   return <LinkedInPostCard key={platform + idx} {...post as LinkedInPost} />;
-                case 'Snapchat':
-                  return <SnapchatPostCard key={platform + idx} {...post as SnapchatPost} />;
+                case 'Facebook':
+                  return <FacebookPostCard key={platform + idx} {...post as any} />;
                 default:
                   return null;
               }
