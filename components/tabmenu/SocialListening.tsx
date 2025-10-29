@@ -34,13 +34,12 @@ export default function SocialListening() {
 
             {/* Overview metrics (tiles + small charts) */}
             {/* Filters */}
-            <section aria-label={t('social_listening.filters.label')} className="flex flex-wrap items-center gap-3">
+            <section aria-label={t('social_listening.filters.label')} className="flex flex-wrap items-center gap-3 w-full">
                 <PeriodFilter />
                 <SourceFilter />
                 <SentimentFilter />
                 <AuthorsFilter />
                 <LocationFilter />
-                {/* <KeywordFilter /> */}
                 <FormatFilter />
                 <LanguageFilter />
             </section>

@@ -18,17 +18,12 @@ import AiInsightSection from '@/components/AiInsightSection';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 const data = [
-    { source: 'News', Acceleration: 10, EV_Battery_Life: 5, Driving_Range: 7, Autonomous_Driving: 3, Charging_Speed: 8 },
-    { source: 'X', Acceleration: 2, EV_Battery_Life: 1, Driving_Range: 5, Autonomous_Driving: 4, Charging_Speed: 3 },
-    { source: 'Broadcast', Acceleration: 6, EV_Battery_Life: 4, Driving_Range: 8, Autonomous_Driving: 6, Charging_Speed: 5 },
-    { source: 'Reddit', Acceleration: 4, EV_Battery_Life: 3, Driving_Range: 6, Autonomous_Driving: 2, Charging_Speed: 4 },
-    { source: 'Podcasts', Acceleration: 3, EV_Battery_Life: 2, Driving_Range: 3, Autonomous_Driving: 1, Charging_Speed: 2 },
-    { source: 'Forums', Acceleration: 5, EV_Battery_Life: 2, Driving_Range: 4, Autonomous_Driving: 2, Charging_Speed: 3 },
-    { source: 'Blogs', Acceleration: 7, EV_Battery_Life: 6, Driving_Range: 5, Autonomous_Driving: 3, Charging_Speed: 6 },
-    { source: 'WeChat', Acceleration: 8, EV_Battery_Life: 7, Driving_Range: 6, Autonomous_Driving: 5, Charging_Speed: 9 },
-    { source: 'Comments', Acceleration: 4, EV_Battery_Life: 3, Driving_Range: 4, Autonomous_Driving: 2, Charging_Speed: 3 },
-    { source: 'Sina Weibo', Acceleration: 6, EV_Battery_Life: 5, Driving_Range: 7, Autonomous_Driving: 4, Charging_Speed: 8 },
-    { source: 'Pinterest', Acceleration: 9, EV_Battery_Life: 8, Driving_Range: 8, Autonomous_Driving: 6, Charging_Speed: 10 },
+    { source: 'Instagram', Acceleration: 4, EV_Battery_Life: 3, Driving_Range: 5, Autonomous_Driving: 2, Charging_Speed: 3 },
+    { source: 'Facebook', Acceleration: 3, EV_Battery_Life: 2, Driving_Range: 4, Autonomous_Driving: 1, Charging_Speed: 2 },
+    { source: 'X', Acceleration: 6, EV_Battery_Life: 5, Driving_Range: 7, Autonomous_Driving: 4, Charging_Speed: 6 },
+    { source: 'TikTok', Acceleration: 5, EV_Battery_Life: 3, Driving_Range: 6, Autonomous_Driving: 2, Charging_Speed: 4 },
+    { source: 'YouTube', Acceleration: 8, EV_Battery_Life: 7, Driving_Range: 9, Autonomous_Driving: 6, Charging_Speed: 8 },
+    { source: 'LinkedIn', Acceleration: 2, EV_Battery_Life: 1, Driving_Range: 3, Autonomous_Driving: 1, Charging_Speed: 2 },
 ];
 
 export default function ShareOfVoiceBySourceType() {

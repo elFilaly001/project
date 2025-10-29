@@ -47,7 +47,7 @@ export default function LocationFilter() {
                         <div className="text-sm font-medium">{t('social_listening.filters.location.by_city')}</div>
                         <p className="text-xs text-slate-500 dark:text-slate-400">{t('social_listening.filters.location.description')}</p>
 
-                        <div className="flex flex-col divide-y rounded-md border bg-white dark:bg-slate-800">
+                        <div className="flex flex-col divide-y rounded-md border bg-white dark:bg-slate-800 max-h-60 overflow-y-auto">
                             {[
                                 { v: 'all', labelKey: 'social_listening.filters.location.all' },
                                 { v: 'casablanca', labelKey: 'social_listening.filters.location.cities.casablanca' },
@@ -55,6 +55,17 @@ export default function LocationFilter() {
                                 { v: 'marrakesh', labelKey: 'social_listening.filters.location.cities.marrakesh' },
                                 { v: 'tanger', labelKey: 'social_listening.filters.location.cities.tanger' },
                                 { v: 'agadir', labelKey: 'social_listening.filters.location.cities.agadir' },
+                                { v: 'fes', labelKey: 'social_listening.filters.location.cities.fes' },
+                                { v: 'meknes', labelKey: 'social_listening.filters.location.cities.meknes' },
+                                { v: 'oujda', labelKey: 'social_listening.filters.location.cities.oujda' },
+                                { v: 'tetouan', labelKey: 'social_listening.filters.location.cities.tetouan' },
+                                { v: 'kenitra', labelKey: 'social_listening.filters.location.cities.kenitra' },
+                                { v: 'nador', labelKey: 'social_listening.filters.location.cities.nador' },
+                                { v: 'mohammedia', labelKey: 'social_listening.filters.location.cities.mohammedia' },
+                                { v: 'sale', labelKey: 'social_listening.filters.location.cities.sale' },
+                                { v: 'safi', labelKey: 'social_listening.filters.location.cities.safi' },
+                                { v: 'essaouira', labelKey: 'social_listening.filters.location.cities.essaouira' },
+                                { v: 'ouarzazate', labelKey: 'social_listening.filters.location.cities.ouarzazate' },
                             ].map((opt) => (
                                 <button
                                     key={opt.v}
