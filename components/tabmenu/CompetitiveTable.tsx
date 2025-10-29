@@ -134,7 +134,7 @@ export default function CompetitiveTable() {
                                     <button
                                         type="button"
                                         onClick={() => setOpen(o => !o)}
-                                        className="flex items-center gap-2 text-sm font-medium text-gray-600 bg-transparent px-0 py-0"
+                                        className="flex items-center justify-between gap-2 text-sm font-medium text-gray-600 bg-transparent px-3 py-2 w-48"
                                         aria-haspopup="listbox"
                                         aria-expanded={open}
                                     >
@@ -159,7 +159,7 @@ export default function CompetitiveTable() {
                                             })()}
                                         </span>
                                         {/* label beside the icon */}
-                                        <span className="text-sm font-medium text-gray-600">{selectedPlatform}</span>
+                                        <span className="flex-1 text-sm font-medium text-gray-600 truncate text-left">{selectedPlatform}</span>
                                         <FiChevronDown className="w-4 h-4 text-gray-400" />
                                     </button>
 
@@ -167,7 +167,7 @@ export default function CompetitiveTable() {
                                         <ul
                                             role="listbox"
                                             aria-label="Select social media for table"
-                                            className="absolute z-10 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-md py-1"
+                                            className="absolute z-10 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-md py-1"
                                         >
                                             {options.map(opt => (
                                                 <li
@@ -199,7 +199,7 @@ export default function CompetitiveTable() {
                                                             return null
                                                         })()}
                                                     </span>
-                                                    <span>{opt.label}</span>
+                                                    <span className="truncate">{opt.label}</span>
                                                 </li>
                                             ))}
                                         </ul>
