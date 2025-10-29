@@ -2,7 +2,7 @@
     "sidebar": {
         "dashboard": "Dashboard",
         "ranking": "Ranking",
-        "reports": "Reports",
+        "reports": "reports",
         "data_api": "Data & API Integration",
         "digital_ad_monitoring": "Digital ad monitoring",
         "tutorial": "Tutorial",
@@ -357,5 +357,28 @@
             "pro": "Pro",
             "enterprise": "Enterprise"
         }
+    },
+    "reports": {
+        "overview": {
+            "title": "Overview Report",
+            "description": "Get a complete view of your brand’s digital presence — mentions, reach, sentiment, and engagement, all in one dashboard."
+        },
+        "mentions": {
+            "title": "Mentions Report",
+            "description": "Track total and daily mentions across channels to understand visibility peaks and audience activity trends."
+        },
+        "sentiment": {
+            "title": "Sentiment Report",
+            "description": "Analyze the tone of conversations to identify positive, neutral, and negative trends shaping your brand’s reputation."
+        },
+        "keyword": {
+            "title": "Keyword Report",
+            "description": "Discover top keywords and topics driving discussions around your brand or industry to uncover what really matters to your audience."
+        },
+        "competitive": {
+            "title": "Competitive Intelligence Report",
+            "description": "Compare your brand’s performance with competitors through mentions, share of voice, and sentiment to spot opportunities and threats."
+        },
+        "createButton": "Create"
     }
 }

@@ -357,5 +357,28 @@
       "pro": "Pro",
       "enterprise": "Entreprise"
     }
+  },
+  "reports": {
+    "overview": {
+      "title": "Rapport de synthèse",
+      "description": "Obtenez une vue complète de la présence numérique de votre marque — mentions, portée, sentiment et engagement, tout dans un tableau de bord."
+    },
+    "mentions": {
+      "title": "Rapport des mentions",
+      "description": "Suivez les mentions totales et quotidiennes sur les canaux pour comprendre les pics de visibilité et les tendances d'activité du public."
+    },
+    "sentiment": {
+      "title": "Rapport de sentiment",
+      "description": "Analysez le ton des conversations pour identifier les tendances positives, neutres et négatives qui façonnent la réputation de votre marque."
+    },
+    "keyword": {
+      "title": "Rapport des mots-clés",
+      "description": "Découvrez les principaux mots-clés et sujets qui alimentent les discussions autour de votre marque ou de votre secteur pour découvrir ce qui compte vraiment pour votre audience."
+    },
+    "competitive": {
+      "title": "Rapport d'intelligence concurrentielle",
+      "description": "Comparez les performances de votre marque avec celles des concurrents grâce aux mentions, à la part de voix et au sentiment pour repérer les opportunités et les menaces."
+    },
+    "createButton": "Créer"
   }
 }
