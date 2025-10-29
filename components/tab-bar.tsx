@@ -40,7 +40,9 @@ export default function TabBar({ tabs = defaultTabs, initialActiveId }: { tabs?:
                                 : 'text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
-                            {typeof tab.label === 'string' ? t(tab.label) : tab.label}
+                            {typeof tab.label === 'string'
+                                ? (tab.label.includes('.') ? t(tab.label) : tab.label)
+                                : tab.label}
                         </button>
                     ))}
                 </nav>

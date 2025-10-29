@@ -41,6 +41,32 @@ export default function CompetitiveTable() {
             avgEng: '226.9K',
             avgViews: '8.4M',
             posting: 'once a week at 10PM'
+        },
+        {
+            platform: 'X',
+            handle: 'Speed⭐',
+            score: '96.8/100',
+            followers: '3.7M',
+            growth: '+0.69%',
+            lastActivity: 'This week',
+            activity: '1.3 Tweets / week',
+            engRate: '6.06%',
+            avgEng: '226.9K',
+            avgViews: '8.4M',
+            posting: 'once a week at 10PM'
+        },
+        {
+            platform: 'X',
+            handle: 'Speed⭐',
+            score: '96.8/100',
+            followers: '3.7M',
+            growth: '+0.69%',
+            lastActivity: 'This week',
+            activity: '1.3 Tweets / week',
+            engRate: '6.06%',
+            avgEng: '226.9K',
+            avgViews: '8.4M',
+            posting: 'once a week at 10PM'
         }
     ])
 
@@ -140,7 +166,7 @@ export default function CompetitiveTable() {
                                     )}
                                 </div>
                             </th>
-                            <th className="px-4 py-3 text-left font-medium text-gray-600">Score</th>
+                          
                             <th className="px-4 py-3 text-left font-medium text-gray-600">Followers</th>
                             <th className="px-4 py-3 text-left font-medium text-gray-600">Growth (30 days)</th>
                             <th className="px-4 py-3 text-left font-medium text-gray-600">Last Activity</th>
@@ -180,7 +206,7 @@ export default function CompetitiveTable() {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="px-4 py-4 text-green-600 font-medium">{r.score}</td>
+                                
                                 <td className="px-4 py-4 text-gray-700">{r.followers}</td>
                                 <td className="px-4 py-4 text-green-500">{r.growth}</td>
                                 <td className="px-4 py-4 text-sm text-gray-600">{r.lastActivity}</td>

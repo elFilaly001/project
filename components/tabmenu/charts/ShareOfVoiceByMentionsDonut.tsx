@@ -14,12 +14,13 @@ import ExplainButton from '@/components/ui/ExplainButton';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// Replace topic labels with generic competitor labels per request
 const sample = [
-    { label: 'EV & Acceleration', value: 7.9, color: '#0ea5a4' },
-    { label: 'EV Autonomous Driving', value: 29.9, color: '#f59e0b' },
-    { label: 'EV Battery Life', value: 8.6, color: '#f02cb9' },
-    { label: 'EV Charging Speed', value: 27.8, color: '#06b6d4' },
-    { label: 'EV Driving Range', value: 25.7, color: '#ef4444' },
+    { label: 'Competitor A', value: 7.9, color: '#0ea5a4' },
+    { label: 'Competitor B', value: 29.9, color: '#f59e0b' },
+    { label: 'Competitor C', value: 8.6, color: '#f02cb9' },
+    { label: 'Competitor D', value: 27.8, color: '#06b6d4' },
+    { label: 'Competitor E', value: 25.7, color: '#ef4444' },
 ];
 
 export default function ShareOfVoiceByMentionsDonut() {

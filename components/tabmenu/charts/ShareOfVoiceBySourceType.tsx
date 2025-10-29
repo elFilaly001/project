@@ -35,12 +35,13 @@ export default function ShareOfVoiceBySourceType() {
     const t = useTranslations();
 
     const labels = data.map((d) => d.source);
+    // Use generic competitor labels instead of topic-specific labels
     const datasets = [
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.acceleration', { default: 'EV & Acceleration' }), data: data.map((d) => d.Acceleration), backgroundColor: '#0ea5a4' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.battery', { default: 'EV Battery Life' }), data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#f02cb9' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.range', { default: 'EV Driving Range' }), data: data.map((d) => d.Driving_Range), backgroundColor: '#ef4444' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.autonomous', { default: 'EV Autonomous Driving' }), data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#f59e0b' },
-        { label: t('social_listening.charts.share_of_voice_by_source.topics.charging', { default: 'EV Charging Speed' }), data: data.map((d) => d.Charging_Speed), backgroundColor: '#06b6d4' },
+        { label: 'Competitor A', data: data.map((d) => d.Acceleration), backgroundColor: '#0ea5a4' },
+        { label: 'Competitor B', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#f02cb9' },
+        { label: 'Competitor C', data: data.map((d) => d.Driving_Range), backgroundColor: '#ef4444' },
+        { label: 'Competitor D', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#f59e0b' },
+        { label: 'Competitor E', data: data.map((d) => d.Charging_Speed), backgroundColor: '#06b6d4' },
     ];
 
     const chartData = { labels, datasets };
