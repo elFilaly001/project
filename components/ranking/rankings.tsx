@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import DataTable, { TableColumn } from "react-data-table-component";
 import { Button } from "../ui/button";
+import { staticInfluencers } from "../Brandwatch/cercle";
 
 // Local Account type (keeps this component self-contained and avoids
 // depending on a missing '@/app/types' path). Matches the fields used
@@ -43,47 +44,21 @@ const DataTableInfluencersRanking = () => {
     const [perPage, setPerPage] = useState<number>(10);
     const [page, setPage] = useState<number>(1);
 
-    // Static competitor data (replaces remote fetch)
-    const competitors: Account[] = [
-        {
-            id: "jumia-food",
-            name: "Jumia Food",
-            picture: "https://logo.clearbit.com/jumia.com?size=128",
-            title: "Online Food Delivery",
-            description: "One of the largest food delivery platforms in the region.",
+    // generate top-N random companies for demo/testing
+    const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+    const competitors: Account[] = React.useMemo(() =>
+        staticInfluencers.slice(0, 10).map((s: any, i: number) => ({
+            id: s.id ?? `company-${i}`,
+            name: s.name ?? s.handle ?? `Company ${i + 1}`,
+            title: "",
+            description: s.handle ?? "",
+            picture: s.profilePic,
+            categories: [{ name: "Company" }],
             networks: [
-                { network: "facebook", followers: "120000", score: 88 },
-                { network: "instagram", followers: "82000", score: 78 },
-                { network: "twitter", followers: "15000", score: 64 },
+                { network: "facebook", followers: randInt(1000, 500000), score: randInt(40, 99) },
             ],
-            categories: [{ name: "Food Delivery" }, { name: "E-commerce" }],
-        } as unknown as Account,
-        {
-            id: "yassir",
-            name: "Yassir",
-            picture: "https://cdn.aptoide.com/imgs/4/6/4/4647976c17c3b7518223d660f99d16c0_icon.jpg?w=128",
-            title: "Mobility & Delivery Super App",
-            description: "Yassir provides ride-hailing, delivery and financial services across several countries.",
-            networks: [
-                { network: "facebook", followers: "30000", score: 74 },
-                { network: "instagram", followers: "22000", score: 70 },
-            ],
-            categories: [{ name: "Mobility" }, { name: "Delivery" }],
-        } as unknown as Account,
-        {
-            id: "kool",
-            name: "Kool",
-            picture: "https://play-lh.googleusercontent.com/iT7fPfobm4I1fv56GEvWxdgx41FX24dYQaP37XWE82-4hkSQPHt3mf0JPlPz9IV407KX=w480-h960-rw",
-            title: "Fast city deliveries",
-            description: "On-demand deliveries and courier services.",
-            networks: [
-                { network: "instagram", followers: "18000", score: 69 },
-                { network: "facebook", followers: "11000", score: 62 },
-            ],
-            categories: [{ name: "Courier" }, { name: "Delivery" }],
-        } as unknown as Account,
-    ];
-
+        } as Account)), [staticInfluencers]
+    );
     // simple helpers
     const formatNumber = (n?: number | string) => {
         if (n == null) return "0";

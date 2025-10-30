@@ -30,13 +30,13 @@ export default function ShareOfVoiceBySourceType() {
     const t = useTranslations();
 
     const labels = data.map((d) => d.source);
-    // Use generic competitor labels instead of topic-specific labels
+    // Map the five datasets to Moroccan competitors and use the 5-step gradient palette
     const datasets = [
-        { label: 'Jumia Food', data: data.map((d) => d.Acceleration), backgroundColor: '#F02CB9' },
-        { label: 'Yasser Market', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#35B9F4' },
-        { label: 'Kool', data: data.map((d) => d.Driving_Range), backgroundColor: '#7B61F9' },
-        { label: 'livery', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#eef2f7' },
-        { label: 'Kalix', data: data.map((d) => d.Charging_Speed), backgroundColor: '#1E3A8A' },
+        { label: 'Jumia Food', data: data.map((d) => d.Acceleration), backgroundColor: '#35B9F4' },
+        { label: 'Yasser Market', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#7FDFFF' },
+        { label: 'Kool', data: data.map((d) => d.Driving_Range), backgroundColor: '#9A4BF0' },
+        { label: 'Livery', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#D46BF8' },
+        { label: 'Creem Food', data: data.map((d) => d.Charging_Speed), backgroundColor: '#F02CB9' },
     ];
 
     const chartData = { labels, datasets };
