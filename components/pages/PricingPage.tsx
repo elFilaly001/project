@@ -1,16 +1,26 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import PricingCard from "../pricing/PricingCard";
+import Loader from "../Loader";
 
 export default function PricingPage() {
     const t = useTranslations();
+
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const id = setTimeout(() => setLoading(false), 600);
+        return () => clearTimeout(id);
+    }, []);
 
     const plans = [
         { key: "pricing.plans.basic", monthly: 19, yearly: 190 },
         { key: "pricing.plans.pro", monthly: 49, yearly: 490 },
         { key: "pricing.plans.enterprise", monthly: 99, yearly: 990 },
     ];
+
+    if (loading) return <Loader size={120} />;
 
     return (
         <main className="p-6">

@@ -1,11 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Loader from "../Loader";
 
 // This page is repurposed to be the "Share your API" / Developer Portal
 // for clients to integrate with THIS app (not to integrate other APIs).
 export default function ApiIntegrationsPage() {
     const [apiKey, setApiKey] = useState<string | null>(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const id = setTimeout(() => setLoading(false), 600);
+        return () => clearTimeout(id);
+    }, []);
 
     function generateApiKey() {
         // Minimal example key generator for UI/demo purposes only.
@@ -70,6 +77,8 @@ export default function ApiIntegrationsPage() {
         a.remove();
         URL.revokeObjectURL(url);
     }
+
+    if (loading) return <Loader size={120} />;
 
     return (
         <main className="px-6 md:px-12 py-6">

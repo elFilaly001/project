@@ -1,13 +1,24 @@
 "use client";
 
+import React, { useEffect, useState } from "react";
 import ReportsCard from "@/components/ReportsCard";
 import InlineDateRangePicker from "@/components/tabmenu/filter/InlineDateRangePicker";
 import { useTranslations } from "next-intl";
+import Loader from "@/components/Loader";
 
 export const dynamic = "force-dynamic";
 
 export default function ReportsPage() {
   const t = useTranslations(); // Adjusted to ensure proper type inference
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const id = setTimeout(() => setLoading(false), 600);
+    return () => clearTimeout(id);
+  }, []);
+
+  if (loading) return <Loader size={120} />;
 
   const reports = [
     {
