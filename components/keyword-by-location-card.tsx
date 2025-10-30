@@ -5,11 +5,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Example data for keyword by location
 const locationData = [
-  { label: 'Casablanca', value: 467, color: '#1E3A8A' },
-  { label: 'Rabat', value: 437, color: '#6B7280' },
-  { label: 'Marrakech', value: 53, color: '#F59E42' },
-  { label: 'Fes', value: 21, color: '#3B82F6' },
-  { label: 'Tangier', value: 18, color: '#FDE047' },
+  { label: 'Casablanca', value: 467, color: '#F02CB9' },
+  { label: 'Rabat', value: 437, color: '#35B9F4' },
+  { label: 'Marrakech', value: 53, color: '#7B61F9' },
+  { label: 'Fes', value: 21, color: '#1E3A8A' },
+  { label: 'Tangier', value: 18, color: '#eef2f7' },
 ];
 
 const total = locationData.reduce((sum, l) => sum + l.value, 0);
@@ -73,7 +73,7 @@ export default function KeywordByLocationCard() {
         <Doughnut data={data} options={options} height={220} />
         {/* Central percentage overlay for top segment */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          <span className="text-4xl font-bold text-[#1E3A8A]">{((locationData[0].value / total) * 100).toFixed(1)}%</span>
+          <span className="text-4xl font-bold text-[#F02CB9]">{((locationData[0].value / total) * 100).toFixed(1)}%</span>
         </div>
       </div>
       <div className="flex flex-wrap gap-4 justify-center mt-6">

@@ -16,10 +16,10 @@ export default function FollowerCredibilityCard() {
     mood: "Bad",
     // Use ids for breakdown so labels can be translated via i18n keys
     breakdown: [
-      { id: 'mass_followers', value: 14, color: "#F59E0B" }, // amber
-      { id: 'suspicious', value: 20, color: "#FB7185" }, // pink/red
-      { id: 'influencers', value: 4, color: "#7C3AED" }, // purple
-      { id: 'real', value: 63, color: "#10B981" }, // green
+      { id: 'mass_followers', value: 14, color: "#eef2f7" },
+      { id: 'suspicious', value: 20, color: "#35B9F4" },
+      { id: 'influencers', value: 4, color: "#7B61F9" },
+      { id: 'real', value: 63, color: "#F02CB9" },
     ],
   };
 

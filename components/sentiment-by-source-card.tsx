@@ -65,7 +65,7 @@ const data = {
     {
       label: 'Positive',
       data: sourceData.map((d) => d.positive),
-      backgroundColor: '#22C55E',
+      backgroundColor: '#F02CB9',
       stack: 'sentiment',
       barPercentage: 0.7,
       categoryPercentage: 0.7,
@@ -73,7 +73,7 @@ const data = {
     {
       label: 'Neutral',
       data: sourceData.map((d) => d.neutral),
-      backgroundColor: '#A3A3A3',
+      backgroundColor: '#35B9F4',
       stack: 'sentiment',
       barPercentage: 0.7,
       categoryPercentage: 0.7,
@@ -81,7 +81,7 @@ const data = {
     {
       label: 'Negative',
       data: sourceData.map((d) => d.negative),
-      backgroundColor: '#EF4444',
+      backgroundColor: '#7B61F9',
       stack: 'sentiment',
       barPercentage: 0.7,
       categoryPercentage: 0.7,

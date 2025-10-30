@@ -20,8 +20,8 @@ const data = {
     {
       label: 'Positive',
       data: trendData.map((d) => d.positive),
-      borderColor: '#22C55E',
-      backgroundColor: '#22C55E',
+      borderColor: '#F02CB9',
+      backgroundColor: '#F02CB9',
       pointRadius: 3,
       fill: false,
       tension: 0.3,
@@ -29,8 +29,8 @@ const data = {
     {
       label: 'Neutral',
       data: trendData.map((d) => d.neutral),
-      borderColor: '#A3A3A3',
-      backgroundColor: '#A3A3A3',
+      borderColor: '#35B9F4',
+      backgroundColor: '#35B9F4',
       pointRadius: 3,
       fill: false,
       tension: 0.3,
@@ -38,8 +38,8 @@ const data = {
     {
       label: 'Negative',
       data: trendData.map((d) => d.negative),
-      borderColor: '#EF4444',
-      backgroundColor: '#EF4444',
+      borderColor: '#7B61F9',
+      backgroundColor: '#7B61F9',
       pointRadius: 3,
       fill: false,
       tension: 0.3,

@@ -57,9 +57,9 @@ export default function KeywordsWithSentimentCard() {
             const data = {
               labels,
               datasets: [
-                { label: 'Positive', data: positives, backgroundColor: '#34D399', borderRadius: 6, barThickness: 12 },
-                { label: 'Neutral', data: neutrals, backgroundColor: '#D1D5DB', borderRadius: 6, barThickness: 12 },
-                { label: 'Negative', data: negatives, backgroundColor: '#F87171', borderRadius: 6, barThickness: 12 },
+                { label: 'Positive', data: positives, backgroundColor: '#F02CB9', borderRadius: 6, barThickness: 12 },
+                { label: 'Neutral', data: neutrals, backgroundColor: '#35B9F4', borderRadius: 6, barThickness: 12 },
+                { label: 'Negative', data: negatives, backgroundColor: '#7B61F9', borderRadius: 6, barThickness: 12 },
               ],
             };
 

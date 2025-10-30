@@ -61,9 +61,9 @@ export default function LocationWithSentimentCard() {
             const data = {
               labels,
               datasets: [
-                { label: 'Positive', data: positives, backgroundColor: '#10B981', borderRadius: 6, barThickness: 12 },
-                { label: 'Neutral', data: neutrals, backgroundColor: '#D1D5DB', borderRadius: 6, barThickness: 12 },
-                { label: 'Negative', data: negatives, backgroundColor: '#EF4444', borderRadius: 6, barThickness: 12 },
+                { label: 'Positive', data: positives, backgroundColor: '#F02CB9', borderRadius: 6, barThickness: 12 },
+                { label: 'Neutral', data: neutrals, backgroundColor: '#35B9F4', borderRadius: 6, barThickness: 12 },
+                { label: 'Negative', data: negatives, backgroundColor: '#7B61F9', borderRadius: 6, barThickness: 12 },
               ],
             };
 
@@ -98,9 +98,9 @@ export default function LocationWithSentimentCard() {
         }
       </div>
       <div className="flex items-center gap-6 mt-4 text-sm">
-        <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-green-500 inline-block"></span> Positive</span>
-        <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-gray-300 inline-block"></span> Neutral</span>
-        <span className="flex items-center gap-2"><span className="w-3 h-3 rounded bg-red-500 inline-block"></span> Negative</span>
+        <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#F02CB9' }}></span> Positive</span>
+        <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#35B9F4' }}></span> Neutral</span>
+        <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ backgroundColor: '#7B61F9' }}></span> Negative</span>
       </div>
       {/* AI interpretation */}
       <AiInsightSection sentences={interpretationSentences} />

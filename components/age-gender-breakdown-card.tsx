@@ -7,9 +7,9 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 const AGE_LABELS = ["13 - 17", "18 - 24", "25 - 34", "35 - 44", "45 - 64"];
 const GENDERS = [
-  { label: "Female", color: "#e11d48" }, // rose-600
-  { label: "Male", color: "#2563eb" },   // blue-600
-  { label: "Unknown", color: "#6b7280" }, // gray-500
+  { label: "Female", color: "#F02CB9" },
+  { label: "Male", color: "#35B9F4" },
+  { label: "Unknown", color: "#7B61F9" },
 ];
 
 // Example data: each age group has an array of [female, male, unknown] percentages

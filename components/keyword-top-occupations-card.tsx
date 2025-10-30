@@ -15,6 +15,7 @@ const occupationData = [
   { label: 'Entrepreneur', value: 5.6, color: '#F59E42' },
   { label: 'Sales', value: 5.2, color: '#FBBF24' },
   { label: 'Transportation', value: 5.1, color: '#64748B' },
+  { label: 'Other', value: 10, color: '#6B7280' },
 ];
 
 const data = {
