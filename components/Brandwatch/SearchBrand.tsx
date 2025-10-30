@@ -9,7 +9,7 @@ const SearchBrand = () => {
                 <input
                     aria-label="Search brand"
                     placeholder="Search brand"
-                    className="px-3 py-2 rounded bg-white/10 text-black w-full placeholder-gray-500"
+                    className="px-3 py-2 rounded bg-white/10 text-black w-full placeholder-gray-500 border border-gray-300 focus:border-gray-500 focus:ring-"
                 />
             </div>
         );
