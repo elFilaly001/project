@@ -5,56 +5,18 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 // Example data for sentiment by source type
 const sourceData = [
-  { source: 'X', positive: 120, neutral: 350, notRated: 800, negative: 100 },
-  { source: 'Reddit', positive: 80, neutral: 200, notRated: 400, negative: 120 },
-  { source: 'Podcasts', positive: 10, neutral: 390, notRated: 800, negative: 0 },
-  { source: 'Forums', positive: 50, neutral: 200, notRated: 400, negative: 60 },
-  { source: 'Blogs', positive: 200, neutral: 300, notRated: 100, negative: 0 },
-  { source: 'WeChat', positive: 180, neutral: 320, notRated: 0, negative: 0 },
-  { source: 'Comments', positive: 100, neutral: 200, notRated: 400, negative: 120 },
-  { source: 'Pinterest', positive: 220, neutral: 300, notRated: 100, negative: 0 },
-  { source: 'Sina Weibo', positive: 300, neutral: 0, notRated: 0, negative: 0 },
-  { source: 'News', positive: 180, neutral: 320, notRated: 0, negative: 10 },
-  { source: 'Broadcast', positive: 10, neutral: 390, notRated: 800, negative: 0 },
+  { source: 'X', positive: 120, neutral: 350, negative: 100 },
+  { source: 'Reddit', positive: 80, neutral: 200, negative: 120 },
+  { source: 'Podcasts', positive: 10, neutral: 390, negative: 0 },
+  { source: 'Forums', positive: 50, neutral: 200, negative: 60 },
+  { source: 'Blogs', positive: 200, neutral: 300, negative: 0 },
+  { source: 'WeChat', positive: 180, neutral: 320, negative: 0 },
+  { source: 'Comments', positive: 100, neutral: 200, negative: 120 },
+  { source: 'Pinterest', positive: 220, neutral: 300, negative: 0 },
+  { source: 'Sina Weibo', positive: 300, neutral: 0, negative: 0 },
+  { source: 'News', positive: 180, neutral: 320, negative: 10 },
+  { source: 'Broadcast', positive: 10, neutral: 390, negative: 0 },
 ];
-
-const data = {
-  labels: sourceData.map((d) => d.source),
-  datasets: [
-    {
-      label: 'Positive',
-      data: sourceData.map((d) => d.positive),
-      backgroundColor: '#22C55E',
-      stack: 'sentiment',
-      barPercentage: 0.7,
-      categoryPercentage: 0.7,
-    },
-    {
-      label: 'Neutral',
-      data: sourceData.map((d) => d.neutral),
-      backgroundColor: '#A3A3A3',
-      stack: 'sentiment',
-      barPercentage: 0.7,
-      categoryPercentage: 0.7,
-    },
-    {
-      label: 'Not rated',
-      data: sourceData.map((d) => d.notRated),
-      backgroundColor: '#6B7280',
-      stack: 'sentiment',
-      barPercentage: 0.7,
-      categoryPercentage: 0.7,
-    },
-    {
-      label: 'Negative',
-      data: sourceData.map((d) => d.negative),
-      backgroundColor: '#EF4444',
-      stack: 'sentiment',
-      barPercentage: 0.7,
-      categoryPercentage: 0.7,
-    },
-  ],
-};
 
 const options = {
   plugins: {
@@ -65,7 +27,7 @@ const options = {
         label: function (context: import('chart.js').TooltipItem<'bar'>) {
           const label = context.dataset.label || '';
           const value = context.parsed.y || 0;
-          const total = sourceData[context.dataIndex].positive + sourceData[context.dataIndex].neutral + sourceData[context.dataIndex].notRated + sourceData[context.dataIndex].negative;
+          const total = sourceData[context.dataIndex].positive + sourceData[context.dataIndex].neutral + sourceData[context.dataIndex].negative;
           const pct = total ? ((value / total) * 100).toFixed(1) : '0';
           return `${label}: ${value} (${pct}%)`;
         },
@@ -89,18 +51,47 @@ const options = {
         color: '#6B7280',
         font: { size: 12 },
         callback: function(tickValue: string | number) {
-          return `${tickValue}%`;
+          return `${tickValue}`; // Removed percentage formatting for clarity
         }
       },
-      max: 100,
       title: { display: true, text: 'Mentions', color: '#6B7280', font: { size: 14 } },
     },
   },
 };
 
+const data = {
+  labels: sourceData.map((d) => d.source),
+  datasets: [
+    {
+      label: 'Positive',
+      data: sourceData.map((d) => d.positive),
+      backgroundColor: '#22C55E',
+      stack: 'sentiment',
+      barPercentage: 0.7,
+      categoryPercentage: 0.7,
+    },
+    {
+      label: 'Neutral',
+      data: sourceData.map((d) => d.neutral),
+      backgroundColor: '#A3A3A3',
+      stack: 'sentiment',
+      barPercentage: 0.7,
+      categoryPercentage: 0.7,
+    },
+    {
+      label: 'Negative',
+      data: sourceData.map((d) => d.negative),
+      backgroundColor: '#EF4444',
+      stack: 'sentiment',
+      barPercentage: 0.7,
+      categoryPercentage: 0.7,
+    },
+  ],
+};
+
 const interpretationSentences = [
   `Positive sentiment is highest in Sina Weibo, Pinterest, and Blogs, while Reddit and Comments have notable negative mentions.`,
-  `Neutral and not rated mentions dominate Podcasts and Broadcast sources.`,
+  `Neutral mentions dominate Podcasts and Broadcast sources.`,
   `Focus on sources with high positive sentiment for better engagement.`
 ];
 

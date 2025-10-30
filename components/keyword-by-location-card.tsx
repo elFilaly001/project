@@ -5,16 +5,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Example data for keyword by location
 const locationData = [
-  { label: 'United States', value: 467, color: '#1E3A8A' },
-  { label: 'Other', value: 437, color: '#6B7280' },
-  { label: 'India', value: 53, color: '#F59E42' },
-  { label: 'Spain', value: 21, color: '#3B82F6' },
-  { label: 'United Kingdom', value: 18, color: '#FDE047' },
-  { label: 'Pakistan', value: 15, color: '#10B981' },
-  { label: 'Nigeria', value: 12, color: '#8B5CF6' },
-  { label: 'Mexico', value: 10, color: '#38BDF8' },
-  { label: 'Colombia', value: 8, color: '#F87171' },
-  { label: 'South Africa', value: 7, color: '#22D3EE' },
+  { label: 'Casablanca', value: 467, color: '#1E3A8A' },
+  { label: 'Rabat', value: 437, color: '#6B7280' },
+  { label: 'Marrakech', value: 53, color: '#F59E42' },
+  { label: 'Fes', value: 21, color: '#3B82F6' },
+  { label: 'Tangier', value: 18, color: '#FDE047' },
 ];
 
 const total = locationData.reduce((sum, l) => sum + l.value, 0);
@@ -51,9 +46,9 @@ const options = {
 };
 
 const interpretationSentences = [
-  `United States leads with ${(locationData[0].value / total * 100).toFixed(1)}% of keyword mentions, followed by 'Other' regions.`,
-  `Mentions are distributed across multiple countries, with India, Spain, and the UK showing notable shares.`,
-  `Focus on top locations for targeted keyword campaigns and content localization.`
+  `Casablanca leads with ${(locationData[0].value / total * 100).toFixed(1)}% of keyword mentions, followed by Rabat.`,
+  `Mentions are distributed across multiple cities, with Marrakech, Fes, and Tangier showing notable shares.`,
+  `Focus on top cities for targeted keyword campaigns and content localization.`
 ];
 
 export default function KeywordByLocationCard() {

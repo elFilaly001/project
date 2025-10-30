@@ -5,13 +5,13 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 // Example data for sentiment trend (last 7 days)
 const trendData = [
-  { date: 'Oct 16', positive: 1100, neutral: 1800, notRated: 2000, negative: 120 },
-  { date: 'Oct 17', positive: 1000, neutral: 1500, notRated: 1600, negative: 115 },
-  { date: 'Oct 18', positive: 600, neutral: 900, notRated: 800, negative: 110 },
-  { date: 'Oct 19', positive: 500, neutral: 700, notRated: 400, negative: 105 },
-  { date: 'Oct 20', positive: 550, neutral: 800, notRated: 300, negative: 110 },
-  { date: 'Oct 21', positive: 900, neutral: 1600, notRated: 1700, negative: 130 },
-  { date: 'Oct 22', positive: 200, neutral: 400, notRated: 500, negative: 100 },
+  { date: 'Oct 16', positive: 1100, neutral: 1800, negative: 120 },
+  { date: 'Oct 17', positive: 1000, neutral: 1500, negative: 115 },
+  { date: 'Oct 18', positive: 600, neutral: 900, negative: 110 },
+  { date: 'Oct 19', positive: 500, neutral: 700, negative: 105 },
+  { date: 'Oct 20', positive: 550, neutral: 800, negative: 110 },
+  { date: 'Oct 21', positive: 900, neutral: 1600, negative: 130 },
+  { date: 'Oct 22', positive: 200, neutral: 400, negative: 100 },
 ];
 
 const data = {
@@ -31,15 +31,6 @@ const data = {
       data: trendData.map((d) => d.neutral),
       borderColor: '#A3A3A3',
       backgroundColor: '#A3A3A3',
-      pointRadius: 3,
-      fill: false,
-      tension: 0.3,
-    },
-    {
-      label: 'Not rated',
-      data: trendData.map((d) => d.notRated),
-      borderColor: '#6B7280',
-      backgroundColor: '#6B7280',
       pointRadius: 3,
       fill: false,
       tension: 0.3,
@@ -87,9 +78,9 @@ const options = {
 };
 
 const interpretationSentences = [
-  `Not rated mentions are the highest, but positive sentiment shows a spike on Oct 21.`,
+  `Positive sentiment shows a spike on Oct 21.`,
   `Negative mentions remain low and stable, while neutral sentiment fluctuates.`,
-  `Monitor spikes in positive and not rated mentions to identify key events or campaigns.`
+  `Monitor spikes in positive mentions to identify key events or campaigns.`
 ];
 
 export default function SentimentTrendCard() {
