@@ -12,6 +12,7 @@ export default function CompetitiveTable() {
         {
             platform: 'App',
             handle: 'JumiaFood',
+            avatar: '/jumia.png',
             score: '90.1/100',
             followers: '480K',
             growth: '+0.55%',
@@ -25,6 +26,7 @@ export default function CompetitiveTable() {
         {
             platform: 'App',
             handle: 'CareemNow',
+            avatar: '/careem.png',
             score: '88.3/100',
             followers: '210K',
             growth: '+0.30%',
@@ -38,6 +40,7 @@ export default function CompetitiveTable() {
         {
             platform: 'App',
             handle: 'Yassir',
+            avatar: '/yassir.png',
             score: '82.0/100',
             followers: '75K',
             growth: '+0.10%',
@@ -82,6 +85,7 @@ export default function CompetitiveTable() {
         const glovo = {
             platform: 'App',
             handle: 'Glovo',
+            avatar: '/glovo.png',
             score: '89.4/100',
             followers: '390K',
             growth: '+0.75%',
@@ -169,39 +173,7 @@ export default function CompetitiveTable() {
                 ),
                 cell: row => (
                     <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-xs font-semibold text-gray-700">
-                            {(() => {
-                                const p = selectedPlatform.toLowerCase()
-                                if (p.includes('instagram')) return <SiInstagram className="text-pink-500 w-5 h-5" />
-                                if (p.includes('tiktok')) return <SiTiktok className="text-black w-5 h-5" />
-                                if (p === 'x' || p.includes('twitter'))
-                                    return (
-                                        <img
-                                            src="https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg"
-                                            alt="X logo"
-                                            className="w-5 h-5 object-contain"
-                                        />
-                                    )
-                                if (p.includes('youtube')) return <SiYoutube className="text-red-500 w-5 h-5" />
-                                if (p.includes('facebook'))
-                                    return (
-                                        <img
-                                            src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg"
-                                            alt="Facebook logo"
-                                            className="w-5 h-5 object-contain"
-                                        />
-                                    )
-                                if (p.includes('linkedin'))
-                                    return (
-                                        <img
-                                            src="https://upload.wikimedia.org/wikipedia/commons/8/81/LinkedIn_icon.svg"
-                                            alt="LinkedIn logo"
-                                            className="w-5 h-5 object-contain"
-                                        />
-                                    )
-                                return <div className="text-xs">{selectedPlatform.slice(0, 2)}</div>
-                            })()}
-                        </div>
+                        <img src={row.avatar} alt={row.handle} className="w-10 h-10 rounded-full object-cover" />
                         <div>
                             <div className="font-medium text-gray-800">{row.handle}</div>
                             <div className="text-xs text-gray-500">@{row.handle.toLowerCase()}</div>
