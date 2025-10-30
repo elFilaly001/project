@@ -16,7 +16,7 @@ interface Pagination {
 }
 
 // Static data using internet-hosted Moroccan company logos via Clearbit
-const staticInfluencers: Influencer[] = [
+export const staticInfluencers: Influencer[] = [
     { id: "1", profilePic: "https://dirigeants-entreprise.com/content/uploads/maroc-telecom.png", name: "Maroc Telecom", handle: "@maroctelecom" },
     { id: "2", profilePic: "https://logo.clearbit.com/attijariwafabank.com", name: "Attijariwafa Bank", handle: "@attijariwafa" },
     { id: "3", profilePic: "https://yt3.googleusercontent.com/ytc/AIdro_lU2FGorBPAa2D5VFAqYLEHq51KyH-mt3jt4o6ArcUgxak=s160-c-k-c0x00ffffff-no-rj", name: "Banque Populaire", handle: "@banquepopulaire" },

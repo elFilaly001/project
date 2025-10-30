@@ -14,18 +14,20 @@ import ExplainButton from '@/components/ui/ExplainButton';
 import { Smile, Frown, Meh } from 'lucide-react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-// Using actual brand counts and sentiment breakdowns to match the example image
+// Moroccan competitors of Glovo (5 brands) using the 5-step gradient palette
+// between #35B9F4 and #F02CB9 (blue -> light blue -> purple -> lavender -> pink).
 const brands = [
-    { label: 'Ryanair', value: 66504, color: '#2c7be5' },
-    { label: 'Easyjet', value: 25563, color: '#ef4444' },
-    { label: 'Vueling Airlines', value: 14710, color: '#06b6d4' },
-    { label: 'Jetblue', value: 12820, color: '#7c3aed' },
-    { label: 'Volotea', value: 4590, color: '#14b8a6' },
+    { label: 'Jumia Food', value: 35000, color: '#35B9F4' }, // blue
+    { label: 'Yasser Market', value: 25000, color: '#7FDFFF' }, // light blue
+    { label: 'Kool', value: 18000, color: '#9A4BF0' }, // purple
+    { label: 'Livery', value: 15000, color: '#D46BF8' }, // lavender/pinkish
+    { label: 'Creem Food', value: 9000, color: '#F02CB9' }, // pink
 ];
 
-const positive = [5111, 2413, 1338, 1276, 245];
-const negative = [8618, 3029, 2720, 1862, 329];
-const neutral = [45546, 18820, 9885, 9070, 3762];
+// Sentiment breakdowns for the five Moroccan competitors (positive / negative).
+const positive = [3500, 2600, 1800, 1500, 800];
+const negative = [4200, 3000, 2000, 1700, 900];
+const neutral = brands.map((b, i) => b.value - positive[i] - negative[i]);
 
 function buildData(values: number[], colors: string[]) {
     return {
