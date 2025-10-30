@@ -46,18 +46,42 @@ const DataTableInfluencersRanking = () => {
 
     // generate top-N random companies for demo/testing
     const randInt = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+    // pick 4 or 5 random indices (out of the first 10) that will have TikTok
+    const tiktokIndices = React.useMemo(() => {
+        const total = 10;
+        const pickCount = randInt(4, 5);
+        const set = new Set<number>();
+        while (set.size < pickCount) {
+            set.add(Math.floor(Math.random() * total));
+        }
+        return set;
+    }, []);
+
     const competitors: Account[] = React.useMemo(() =>
-        staticInfluencers.slice(0, 10).map((s: any, i: number) => ({
-            id: s.id ?? `company-${i}`,
-            name: s.name ?? s.handle ?? `Company ${i + 1}`,
-            title: "",
-            description: s.handle ?? "",
-            picture: s.profilePic,
-            categories: [{ name: "Company" }],
-            networks: [
+        staticInfluencers.slice(0, 10).map((s: any, i: number) => {
+            const baseNetworks: NetworkInfo[] = [
                 { network: "facebook", followers: randInt(1000, 500000), score: randInt(40, 99) },
-            ],
-        } as Account)), [staticInfluencers]
+                { network: "instagram", followers: randInt(1000, 500000), score: randInt(40, 99) },
+                { network: "x", followers: randInt(1000, 500000), score: randInt(40, 99) },
+                { network: "youtube", followers: randInt(1000, 500000), score: randInt(40, 99) },
+            ];
+
+            // only add tiktok for the selected indices
+            if (tiktokIndices.has(i)) {
+                baseNetworks.push({ network: "tiktok", followers: randInt(1000, 500000), score: randInt(40, 99) });
+            }
+
+            return ({
+                id: s.id ?? `company-${i}`,
+                name: s.name ?? s.handle ?? `Company ${i + 1}`,
+                title: "",
+                description: s.handle ?? "",
+                picture: s.profilePic,
+                categories: [{ name: "Company" }],
+                networks: baseNetworks,
+            } as Account);
+        }), [staticInfluencers, tiktokIndices]
     );
     // simple helpers
     const formatNumber = (n?: number | string) => {
@@ -71,11 +95,13 @@ const DataTableInfluencersRanking = () => {
 
     const socialIcon = (network: string) => {
         // use simpleicons CDN which returns colored SVGs when color param is provided
+        // prefer canonical names: facebook, instagram, x (new twitter), twitter, youtube
         const map: Record<string, string> = {
             facebook: "https://cdn.simpleicons.org/facebook/1877F2",
             instagram: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png",
             twitter: "https://logos-world.net/wp-content/uploads/2023/08/X-Logo.png",
             youtube: "https://cdn.simpleicons.org/youtube/FF0000",
+            tiktok: "https://cdn.simpleicons.org/tiktok/000000",
         };
         return map[network.toLowerCase()] || `https://cdn.simpleicons.org/${network}`;
     };
@@ -190,7 +216,7 @@ const DataTableInfluencersRanking = () => {
             cell(row) {
                 return (
                     <div className={`flex py-2 flex-col gap-2`}>
-                        {row.networks?.slice(0, 4).map((value, i) => (
+                        {row.networks?.slice(0, 5).map((value, i) => (
                             <div className="flex gap-2 items-center" key={i}>
                                 <img
                                     width={18}

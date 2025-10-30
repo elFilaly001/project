@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Rankings from '../ranking/rankings';
+import RankingTicker from '../ranking/RankingTicker';
 import Loader from '../Loader';
 
 export default function RankingPage() {
@@ -14,5 +15,11 @@ export default function RankingPage() {
 
     if (loading) return <Loader size={120} />;
 
-    return <Rankings />;
+    return (
+        <div>
+            {/* ticker / slider above the rankings table */}
+            <RankingTicker />
+            <Rankings />
+        </div>
+    );
 }

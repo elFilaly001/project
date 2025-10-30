@@ -42,7 +42,7 @@ const Circle = () => {
 
     return (
         <div>
-            <div className="relative mt-[53vh]">
+            <div className="relative mt-[23%]">
                 <>
                     <BoxCreators
                         className="transform rotate-[25deg]"
