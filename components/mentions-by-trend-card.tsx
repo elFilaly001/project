@@ -65,7 +65,7 @@ export default function MentionsByTrendCard() {
   return (
     <div className="bg-white rounded-xl p-5 shadow-sm border">
       <div className="flex items-center justify-between">
-        <h3 className="text-gray-700 font-semibold">Mentions by Trend</h3>
+        <h3 className="text-gray-700 font-semibold">Mentions by Source</h3>
         <div className="relative group">
           <button
             className="text-gray-400 text-xs leading-none px-2 py-1 rounded hover:bg-gray-50"

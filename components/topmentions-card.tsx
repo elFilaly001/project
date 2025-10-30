@@ -3,18 +3,18 @@ import AiInsightSection from "./AiInsightSection";
 
 // Example data for theme groups
 const emergingThemes = [
-  { name: "#CHANELFallWinter", pct: 90.4 },
-  { name: "#CHANELGroundControl", pct: 67.1 },
-  { name: "#louisvuitton", pct: 40.9 },
-  { name: "#dior", pct: 16.3 },
+  { name: "#order", pct: 90.4 },
+  { name: "توصيل", pct: 67.1 },
+  { name: "refund", pct: 40.9 },
+  { name: "livraison", pct: 16.3 },
 ];
 const decreasingThemes = [
-  { name: "#PFW", pct: 15 },
-  { name: "Whatsapp", pct: 5.7 },
+  { name: "discount", pct: 15 },
+  { name: "وقت الوصول", pct: 5.7 },
 ];
 const newThemes = [
-  { name: "Frank" },
-  { name: "Ocean" },
+  { name: "fast-food" },
+  { name: "Kool" },
 ];
 
 // Word cloud data (can reuse previous themes)

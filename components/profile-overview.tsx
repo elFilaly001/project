@@ -7,7 +7,7 @@ export default function ProfileOverview({
   name = "Glovo Maroc",
   subtitle = "Your Local Delivery Partner for Everything",
   description = `Glovo Maroc is a delivery service that connects customers with local businesses, offering a wide range of products from food to groceries. Their social media presence emphasizes partnerships with local merchants, showcasing success stories and community engagement. Content themes include Ramadan promotions, customer support, and highlighting the convenience of their service.`,
-  avatarUrl = null,
+  avatarUrl = "/glovo.png",
   followers = 111100,
   platform = "instagram" as "instagram" | "twitter" | "facebook",
   ringPercent = 75,
@@ -76,7 +76,7 @@ export default function ProfileOverview({
     <div className="w-full px-6 lg:px-12">
       <div className="bg-white border border-gray-200 rounded-2xl p-6 flex gap-6 items-start">
         {/* Left: avatar + text */}
-  <div className="flex-1 min-w-0 flex flex-col gap-6 lg:flex-[0.6]">
+        <div className="flex-1 min-w-0 flex flex-col gap-6 lg:flex-[0.6]">
           <div className="flex gap-6 items-center">
             <div className="flex-shrink-0">
               <div className="w-28 h-28 rounded-full bg-yellow-400 flex items-center justify-center text-3xl font-bold text-white">

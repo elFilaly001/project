@@ -25,16 +25,16 @@ export default function AllDataTable({ data }: { data: any[] }) {
             <tr key={idx} className="border-b hover:bg-gray-50 transition text-sm">
               <td className="py-2 px-3 flex items-center gap-3">
                 {/* Social media logo in square placeholder */}
-                <div className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-md overflow-hidden">
+                <div className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-md overflow-hidden shrink-0">
                   <img src={row.icon} alt="logo" className="w-6 h-6 object-contain" />
                 </div>
                 {/* Profile picture in rounded placeholder */}
                 {row.userAvatar && (
-                  <div className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-full overflow-hidden">
+                  <div className="w-8 h-8 flex items-center justify-center bg-gray-100 border border-gray-200 rounded-full overflow-hidden shrink-0">
                     <img src={row.userAvatar} alt={row.name} className="w-7 h-7 rounded-full object-cover" />
                   </div>
                 )}
-                <span className="break-words">{row.name}</span>
+                <span className="break-words flex-1 truncate">{row.name}</span>
               </td>
               <td className="py-2 px-3 text-left">{row.score}</td>
               <td className="py-2 px-3 text-right">{row.followers}</td>

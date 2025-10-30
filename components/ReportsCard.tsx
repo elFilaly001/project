@@ -9,6 +9,7 @@ import {
   FaSmile,
   FaKey,
   FaBalanceScale,
+  FaDownload,
 } from "react-icons/fa";
 import { useTranslations } from "next-intl";
 
@@ -72,13 +73,11 @@ const ReportsCard: React.FC<ReportsCardProps> = ({
       {/* Description Section */}
       <p className="text-gray-600 text-sm text-center mb-4">{description}</p>
 
-      {/* Create Button */}
-      <p
+      {/* Download Icon */}
+      <FaDownload
         onClick={onCreateClick}
-        className="text-blue-500 text-sm font-bold cursor-pointer hover:underline"
-      >
-        {t("reports.createButton")}
-      </p>
+        className="w-5 h-5 text-blue-500 cursor-pointer hover:text-blue-700"
+      />
     </div>
   );
 };
