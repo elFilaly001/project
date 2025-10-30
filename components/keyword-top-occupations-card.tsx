@@ -5,17 +5,17 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 // Example data for top occupations
 const occupationData = [
-  { label: 'Social Media', value: 20, color: '#F87171' },
-  { label: 'Blogger', value: 18, color: '#F59E42' },
-  { label: 'Engineer', value: 11.6, color: '#22C55E' },
-  { label: 'Student', value: 10.5, color: '#FBBF24' },
-  { label: 'Author/Writer', value: 8.7, color: '#A21CAF' },
-  { label: 'Artist/Art', value: 8.5, color: '#F472B6' },
-  { label: 'Executive manager', value: 6.9, color: '#2563EB' },
-  { label: 'Entrepreneur', value: 5.6, color: '#F59E42' },
-  { label: 'Sales', value: 5.2, color: '#FBBF24' },
-  { label: 'Transportation', value: 5.1, color: '#64748B' },
-  { label: 'Other', value: 10, color: '#6B7280' },
+  { label: 'Social Media', value: 20, color: '#F02CB9' },
+  { label: 'Blogger', value: 18, color: '#35B9F4' },
+  { label: 'Engineer', value: 11.6, color: '#7B61F9' },
+  { label: 'Student', value: 10.5, color: '#FF4081' },
+  { label: 'Author/Writer', value: 8.7, color: '#00BCD4' },
+  { label: 'Artist/Art', value: 8.5, color: '#673AB7' },
+  { label: 'Executive manager', value: 6.9, color: '#E91E63' },
+  { label: 'Entrepreneur', value: 5.6, color: '#0097A7' },
+  { label: 'Sales', value: 5.2, color: '#512DA8' },
+  { label: 'Transportation', value: 5.1, color: '#C2185B' },
+  { label: 'Other', value: 10, color: '#F48FB1' },
 ];
 
 const data = {

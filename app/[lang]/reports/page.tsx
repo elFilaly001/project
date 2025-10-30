@@ -1,6 +1,7 @@
 "use client";
 
 import ReportsCard from "@/components/ReportsCard";
+import InlineDateRangePicker from "@/components/tabmenu/filter/InlineDateRangePicker";
 import { useTranslations } from "next-intl";
 
 export const dynamic = "force-dynamic";
@@ -48,12 +49,16 @@ export default function ReportsPage() {
 
   return (
     <main className="py-12 px-6 md:px-12 lg:px-20">
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold">Reports</h1>
-        <p className="text-sm text-gray-500">
-          Allow your clients to integrate your product into their CRM,
-          Salesforce, or other systems.
-        </p>
+      <header className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-2xl font-bold">Reports</h1>
+          <p className="text-sm text-gray-500">
+            Generate and download detailed reports on your social media performance, audience insights, and more.
+          </p>
+        </div>
+        <div className="flex-shrink-0 w-64">
+          <InlineDateRangePicker />
+        </div>
       </header>
       <section className="mb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

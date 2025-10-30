@@ -61,8 +61,8 @@ export default function FollowersDispatch({ socialBreakdown, showTitle = true, s
         enabled: true,
         callbacks: {
           label: (context: TooltipItem<'pie'>) => `${context.label}: ${context.parsed}%`,
-        }
-      }
+        },
+      },
     },
     onHover: (event: ChartEvent, activeElements: ActiveElement[]) => {
       if (activeElements.length > 0) {
@@ -73,7 +73,7 @@ export default function FollowersDispatch({ socialBreakdown, showTitle = true, s
     },
     onLeave: () => {
       setHoveredIndex(null);
-    }
+    },
   };
 
   function isHexColorDark(hex: string) {
@@ -157,11 +157,8 @@ export default function FollowersDispatch({ socialBreakdown, showTitle = true, s
                   top: `calc(50% + ${y}px)`,
                   left: `calc(50% + ${x}px)`,
                   transform: "translate(-50%, -50%)",
-                  opacity:
-                    hoveredIndex === null || hoveredIndex === index
-                      ? 1
-                      : 0.6,
-                  transition: "opacity 0.2s, transform 0.12s",
+                  opacity: 1, // Remove hover opacity effect
+                  transition: "transform 0.12s",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -176,10 +173,7 @@ export default function FollowersDispatch({ socialBreakdown, showTitle = true, s
                   <div
                     style={{
                       width: `${Math.max(6, Math.round(logoSize * 0.6))}px`,
-                      height: `${Math.max(
-                        6,
-                        Math.round(logoSize * 0.6)
-                      )}px`,
+                      height: `${Math.max(6, Math.round(logoSize * 0.6))}px`,
                       borderRadius: "50%",
                       background: platform.color,
                       boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
@@ -199,23 +193,7 @@ export default function FollowersDispatch({ socialBreakdown, showTitle = true, s
                         ? "invert(1) brightness(2) drop-shadow(0 1px 1px rgba(0,0,0,0.35))"
                         : "drop-shadow(0 1px 1px rgba(0,0,0,0.12))",
                     }}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
                   />
-                )}
-                {hoveredIndex === index && (
-                  <div
-                    className="absolute bg-gray-800 text-white text-xs rounded px-2 py-1"
-                    style={{
-                      top: "-30px",
-                      left: "50%",
-                      transform: "translateX(-50%)",
-                      whiteSpace: "nowrap",
-                      pointerEvents: "none",
-                    }}
-                  >
-                    {platform.name}: {platform.percent}%
-                  </div>
                 )}
               </div>
             );

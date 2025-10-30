@@ -16,11 +16,11 @@ import { Smile, Frown, Meh } from 'lucide-react';
 ChartJS.register(ArcElement, Tooltip, Legend);
 // Using actual brand counts and sentiment breakdowns to match the example image
 const brands = [
-    { label: 'Ryanair', value: 66504, color: '#2c7be5' },
-    { label: 'Easyjet', value: 25563, color: '#ef4444' },
-    { label: 'Vueling Airlines', value: 14710, color: '#06b6d4' },
-    { label: 'Jetblue', value: 12820, color: '#7c3aed' },
-    { label: 'Volotea', value: 4590, color: '#14b8a6' },
+    { label: 'Jumia Food', value: 66504, color: '#F02CB9' },
+    { label: 'Yasser Market', value: 25563, color: '#35B9F4' },
+    { label: 'Kool', value: 14710, color: '#7B61F9' },
+    { label: 'livery', value: 12820, color: '#eef2f7' },
+    { label: 'Kalix', value: 4590, color: '#1E3A8A' },
 ];
 
 const positive = [5111, 2413, 1338, 1276, 245];

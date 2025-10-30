@@ -11,9 +11,9 @@ type Props = {
 };
 
 const defaultGroups: Record<string, string[]> = {
-    'January 2024': ['keyword A', 'keyword B', 'keyword C'],
-    'February 2024': ['keyword D', 'keyword E', 'keyword F'],
-    'March 2024': ['keyword G', 'keyword H'],
+    'January 2024': ['livraison', 'order', 'وقت الوصول'],
+    'February 2024': ['refund', 'توصيل', 'fast-food'],
+    'March 2024': ['coupon', 'discount'],
 };
 
 // Predefined positions (percentages) around a center for up to 11 surrounding words

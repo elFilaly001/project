@@ -32,11 +32,11 @@ export default function ShareOfVoiceBySourceType() {
     const labels = data.map((d) => d.source);
     // Use generic competitor labels instead of topic-specific labels
     const datasets = [
-        { label: 'Competitor A', data: data.map((d) => d.Acceleration), backgroundColor: '#0ea5a4' },
-        { label: 'Competitor B', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#f02cb9' },
-        { label: 'Competitor C', data: data.map((d) => d.Driving_Range), backgroundColor: '#ef4444' },
-        { label: 'Competitor D', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#f59e0b' },
-        { label: 'Competitor E', data: data.map((d) => d.Charging_Speed), backgroundColor: '#06b6d4' },
+        { label: 'Jumia Food', data: data.map((d) => d.Acceleration), backgroundColor: '#F02CB9' },
+        { label: 'Yasser Market', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#35B9F4' },
+        { label: 'Kool', data: data.map((d) => d.Driving_Range), backgroundColor: '#7B61F9' },
+        { label: 'livery', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#eef2f7' },
+        { label: 'Kalix', data: data.map((d) => d.Charging_Speed), backgroundColor: '#1E3A8A' },
     ];
 
     const chartData = { labels, datasets };

@@ -20,6 +20,7 @@ export default function DashboardClient() {
             <ProfileOverview
                 name={user.name}
                 subtitle={user.email}
+                
             />
             <TabBar />
         </div>

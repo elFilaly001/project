@@ -18,7 +18,7 @@ export default function ShareOfVoice() {
     const t = useTranslations();
     // Map sentiment buckets to keyword labels (positive -> Keyword A, neutral -> Keyword B, negative -> Keyword C)
     // TODO: replace these sample keywords with dynamic data or props when available
-    const keywordLabels = ['Keyword A', 'Keyword B', 'Keyword C'];
+    const keywordLabels = ['توصيل', 'discount', 'fast-food'];
 
     const dataValues = [...values];
     const dataLabels = [...keywordLabels];

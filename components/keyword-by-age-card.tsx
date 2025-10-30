@@ -5,13 +5,13 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 // Example data for keyword by age
 const ageData = [
-  { label: '13-17', value: 6.4, color: '#A3E635' },
-  { label: '18-24', value: 40, color: '#22C55E' },
-  { label: '25-34', value: 41.4, color: '#F87171' },
-  { label: '35-44', value: 11.2, color: '#2563EB' },
-  { label: '45-54', value: 0.5, color: '#FACC15' },
-  { label: '55-64', value: 0.3, color: '#F59E42' },
-  { label: '65+', value: 0.2, color: '#A3A3A3' },
+  { label: '13-17', value: 6.4, color: '#F02CB9' },
+  { label: '18-24', value: 40, color: '#35B9F4' },
+  { label: '25-34', value: 41.4, color: '#7B61F9' },
+  { label: '35-44', value: 11.2, color: '#FF4081' },
+  { label: '45-54', value: 0.5, color: '#00BCD4' },
+  { label: '55-64', value: 0.3, color: '#673AB7' },
+  { label: '65+', value: 0.2, color: '#E91E63' },
 ];
 
 const data = {
