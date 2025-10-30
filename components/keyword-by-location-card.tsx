@@ -71,11 +71,9 @@ export default function KeywordByLocationCard() {
       </div>
       <div className="relative flex items-center justify-center mt-6" style={{ minHeight: 220 }}>
         <Doughnut data={data} options={options} height={220} />
-        {/* Central percentage overlays for top segments */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+        {/* Central percentage overlay for top segment */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
           <span className="text-4xl font-bold text-[#1E3A8A]">{((locationData[0].value / total) * 100).toFixed(1)}%</span>
-          <span className="text-4xl font-bold text-[#6B7280]">{((locationData[1].value / total) * 100).toFixed(1)}%</span>
-          <span className="text-lg text-gray-500 font-semibold mt-2">Top 2 Segments</span>
         </div>
       </div>
       <div className="flex flex-wrap gap-4 justify-center mt-6">
