@@ -60,16 +60,13 @@ export default function Sidebar() {
   const topMenuItems = [
     { icon: LayoutDashboard, label: t('sidebar.dashboard'), id: 'dashboard' },
     { icon: FileText, label: t('sidebar.reports'), id: 'reports' },
-    { icon: MonitorSpeaker, label: t('sidebar.digital_ad_monitoring'), id: 'digital-ad-monitoring' },
     { icon: TrendingUp, label: t('sidebar.ranking'), id: 'ranking' },
     { icon: Eye, label: t('sidebar.brand_watch'), id: 'brand-watch' },
-    { icon: BarChart3, label: t('sidebar.stock_market'), id: 'stock-market' },
     { icon: Database, label: t('sidebar.data_api'), id: 'data-api' },
   ];
 
   // Bottom menu items that should always be pinned to the bottom
   const bottomMenuItems = [
-    { icon: BookOpen, label: t('sidebar.tutorial'), id: 'tutorial' },
     { icon: HelpCircle, label: t('sidebar.support'), id: 'support' },
   ];
 
@@ -137,6 +134,12 @@ export default function Sidebar() {
                       case 'data-api':
                         // open the API page at root /api
                         router.push(`/${lang}/api`);
+                        break;
+                      case 'brand-watch':
+                        router.push(`/${lang}/brand-watch`);
+                        break;
+                      case 'ranking':
+                        router.push(`/${lang}/ranking`);
                         break;
                       case 'reports':
                         router.push(`/${lang}/reports`);
