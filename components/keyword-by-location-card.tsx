@@ -5,16 +5,11 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 // Example data for keyword by location
 const locationData = [
-  { label: 'United States', value: 467, color: '#1E3A8A' },
-  { label: 'Other', value: 437, color: '#6B7280' },
-  { label: 'India', value: 53, color: '#F59E42' },
-  { label: 'Spain', value: 21, color: '#3B82F6' },
-  { label: 'United Kingdom', value: 18, color: '#FDE047' },
-  { label: 'Pakistan', value: 15, color: '#10B981' },
-  { label: 'Nigeria', value: 12, color: '#8B5CF6' },
-  { label: 'Mexico', value: 10, color: '#38BDF8' },
-  { label: 'Colombia', value: 8, color: '#F87171' },
-  { label: 'South Africa', value: 7, color: '#22D3EE' },
+  { label: 'Casablanca', value: 467, color: '#F02CB9' },
+  { label: 'Rabat', value: 437, color: '#35B9F4' },
+  { label: 'Marrakech', value: 53, color: '#7B61F9' },
+  { label: 'Fes', value: 21, color: '#1E3A8A' },
+  { label: 'Tangier', value: 18, color: '#eef2f7' },
 ];
 
 const total = locationData.reduce((sum, l) => sum + l.value, 0);
@@ -51,9 +46,9 @@ const options = {
 };
 
 const interpretationSentences = [
-  `United States leads with ${(locationData[0].value / total * 100).toFixed(1)}% of keyword mentions, followed by 'Other' regions.`,
-  `Mentions are distributed across multiple countries, with India, Spain, and the UK showing notable shares.`,
-  `Focus on top locations for targeted keyword campaigns and content localization.`
+  `Casablanca leads with ${(locationData[0].value / total * 100).toFixed(1)}% of keyword mentions, followed by Rabat.`,
+  `Mentions are distributed across multiple cities, with Marrakech, Fes, and Tangier showing notable shares.`,
+  `Focus on top cities for targeted keyword campaigns and content localization.`
 ];
 
 export default function KeywordByLocationCard() {
@@ -76,11 +71,9 @@ export default function KeywordByLocationCard() {
       </div>
       <div className="relative flex items-center justify-center mt-6" style={{ minHeight: 220 }}>
         <Doughnut data={data} options={options} height={220} />
-        {/* Central percentage overlays for top segments */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-4xl font-bold text-[#1E3A8A]">{((locationData[0].value / total) * 100).toFixed(1)}%</span>
-          <span className="text-4xl font-bold text-[#6B7280]">{((locationData[1].value / total) * 100).toFixed(1)}%</span>
-          <span className="text-lg text-gray-500 font-semibold mt-2">Top 2 Segments</span>
+        {/* Central percentage overlay for top segment */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="text-4xl font-bold text-[#F02CB9]">{((locationData[0].value / total) * 100).toFixed(1)}%</span>
         </div>
       </div>
       <div className="flex flex-wrap gap-4 justify-center mt-6">

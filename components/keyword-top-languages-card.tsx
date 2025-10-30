@@ -3,18 +3,12 @@ import { Doughnut } from 'react-chartjs-2';
 import AiInsightSection from './AiInsightSection';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-// Example data for keyword top languages
+// Updated data for keyword top languages
 const languageData = [
-  { label: 'English', value: 945, color: '#F97316' },
-  { label: 'Hindi', value: 10, color: '#22C55E' },
-  { label: 'Spanish', value: 8, color: '#3B82F6' },
-  { label: 'Punjabi', value: 7, color: '#A3E635' },
-  { label: 'Korean', value: 6, color: '#F59E42' },
-  { label: 'Portuguese', value: 5, color: '#A3A3A3' },
-  { label: 'Somali', value: 4, color: '#38BDF8' },
-  { label: 'Estonian', value: 3, color: '#10B981' },
-  { label: 'Japanese', value: 2, color: '#8B5CF6' },
-  { label: 'Other', value: 10, color: '#6B7280' },
+  { label: 'English', value: 945, color: '#F02CB9' },
+  { label: 'French', value: 437, color: '#35B9F4' },
+  { label: 'Arabic', value: 300, color: '#7B61F9' },
+  { label: 'Other', value: 100, color: '#1E3A8A' },
 ];
 
 const total = languageData.reduce((sum, l) => sum + l.value, 0);
@@ -51,9 +45,9 @@ const options = {
 };
 
 const interpretationSentences = [
-  `English dominates with ${(languageData[0].value / total * 100).toFixed(1)}% of keyword mentions, far surpassing other languages.`,
-  `Minority languages like Hindi, Spanish, and Punjabi show small but notable shares.`,
-  `Content strategies should prioritize English, but consider minority languages for niche engagement.`
+  `English dominates with ${(languageData[0].value / total * 100).toFixed(1)}% of keyword mentions, followed by French and Arabic.`,
+  `Other languages contribute a smaller share, highlighting the importance of focusing on the top three languages.`,
+  `Content strategies should prioritize English, French, and Arabic for maximum engagement.`
 ];
 
 export default function KeywordTopLanguagesCard() {
@@ -77,8 +71,8 @@ export default function KeywordTopLanguagesCard() {
       <div className="relative flex items-center justify-center mt-6" style={{ minHeight: 220 }}>
         <Doughnut data={data} options={options} height={220} />
         {/* Central percentage overlay for top segment */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-          <span className="text-4xl font-bold text-[#F97316]">{((languageData[0].value / total) * 100).toFixed(1)}%</span>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <span className="text-4xl font-bold text-[#F02CB9]">{((languageData[0].value / total) * 100).toFixed(1)}%</span>
         </div>
       </div>
       <div className="flex flex-wrap gap-4 justify-center mt-6">

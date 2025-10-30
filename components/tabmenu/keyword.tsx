@@ -12,9 +12,9 @@ export default function Keyword() {
                     <KeywordByLocationCard />
                     <KeywordByAgeCard />
                     <KeywordTopLanguagesCard />
-                    <div className="lg:col-span-3">
+                    {/* <div className="lg:col-span-3">
                         <KeywordTopInterestsCard />
-                    </div>
+                    </div> */}
                     <div className="lg:col-span-3">
                         <KeywordTopOccupationsCard />
                     </div>

@@ -19,7 +19,7 @@ interface ReportsCardProps {
   description: string; // Card description
   onCreateClick: () => void; // Callback for the "Create" button
 }
-
+  
 const ReportsCard: React.FC<ReportsCardProps> = ({
   image,
   titleIcon,
@@ -53,7 +53,7 @@ const ReportsCard: React.FC<ReportsCardProps> = ({
   return (
     <div className="bg-white rounded-xl shadow-md border p-4 flex flex-col items-center">
       {/* Image Section */}
-      <div className="w-full h-32 bg-gray-100 rounded-lg overflow-hidden mb-4">
+      <div className="w-full h-40 bg-gray-100 rounded-lg overflow-hidden mb-4">
         <img
           src={image}
           alt="Report Preview"

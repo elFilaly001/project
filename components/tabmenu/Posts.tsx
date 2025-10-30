@@ -237,9 +237,13 @@ export default function Posts() {
               <div className="flex items-center gap-1">
                 <span className="text-xs text-gray-500">Sort by:</span>
                 <select className="h-10 border rounded-md px-2 py-1 text-sm bg-white" style={{ minHeight: 40 }}>
+                  <option>Most popular</option>
+                  <option>Publication date</option>
+                  <option>Most liked</option>
+                  <option>Most commented</option>
+                  <option>Most shared</option>
+                  <option>Most viewed</option>
                   <option>Social media</option>
-                  <option>Name</option>
-                  <option>Followers</option>
                 </select>
               </div>
               <SocialDropdown

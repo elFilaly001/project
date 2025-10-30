@@ -11,18 +11,29 @@ export default function Mentions() {
   return (
     <div className="w-full">
       <div className="flex flex-col gap-4">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <MentionsByTrendCard />
-          <MentionsByLocationCard />
-          <TopBlogsCard />
-
-          <TopSharedLinksCard />
-          <EditorialSourcesCard />
-          <MentionsByGenderCard />
-          <div className="col-span-1 lg:col-span-3">
+        <div className="grid grid-cols-4 gap-6 items-stretch">
+          <div className="col-span-2 flex flex-col flex-grow">
+            <MentionsByTrendCard />
+          </div>
+          <div className="col-span-2 flex flex-col flex-grow">
+            <TopBlogsCard />
+          </div>
+          <div className="col-span-2 flex flex-col flex-grow">
+            <MentionsByLocationCard />
+          </div>
+          <div className="col-span-2 flex flex-col flex-grow">
+            <TopSharedLinksCard />
+          </div>
+          <div className="col-span-2 flex flex-col flex-grow">
+            <EditorialSourcesCard />
+          </div>
+          <div className="col-span-2 flex flex-col flex-grow">
+            <MentionsByGenderCard />
+          </div>
+          <div className="col-span-4">
             <TopMentionsCard />
           </div>
-          <div className="col-span-1 lg:col-span-3">
+          <div className="col-span-4">
             <MentionsBySentimentCard />
           </div>
         </div>

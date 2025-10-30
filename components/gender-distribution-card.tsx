@@ -9,9 +9,9 @@ import { useTranslations } from 'next-intl';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const genderData = [
-  { id: 'male', value: 40, color: '#2563eb' }, // blue-600
-  { id: 'female', value: 55, color: '#e11d48' }, // rose-600
-  { id: 'unknown', value: 5, color: '#6b7280' }, // gray-500
+  { id: 'male', value: 40, color: '#35B9F4' },
+  { id: 'female', value: 55, color: '#F02CB9' },
+  { id: 'unknown', value: 5, color: '#7B61F9' },
 ];
 
 export default function GenderDistributionCard() {
