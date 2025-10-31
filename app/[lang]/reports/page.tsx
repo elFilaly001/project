@@ -62,7 +62,7 @@ export default function ReportsPage() {
     <main className="py-12 px-6 md:px-12 lg:px-20">
       <header className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">Reports</h1>
+          <h1 className="text-3xl font-extrabold text-left text-purple-900">Reports</h1>
           <p className="text-sm text-gray-500">
             Generate and download detailed reports on your social media performance, audience insights, and more.
           </p>

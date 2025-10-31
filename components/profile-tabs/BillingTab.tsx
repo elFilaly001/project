@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import PaymentMethods from './common/PaymentMethods';
@@ -9,6 +10,20 @@ export default function BillingTab() {
     const savedCards = [
         { brand: 'Visa', last4: '4242', exp: '12/25' },
     ];
+    const router = useRouter();
+
+    // Get lang param from current URL
+    let lang = 'en';
+    if (typeof window !== 'undefined') {
+        const match = window.location.pathname.match(/^\/(\w{2})\//);
+        if (match && match[1]) {
+            lang = match[1];
+        }
+    }
+
+    const handleUpgrade = () => {
+        router.push(`/${lang}/pricing`);
+    };
 
     return (
         <div className="space-y-6">
@@ -34,7 +49,7 @@ export default function BillingTab() {
                     <div>
                         <label className="text-sm font-medium">Manage Subscription</label>
                         <div className="mt-2">
-                            <Button variant="gradient" className="px-4 py-2">Upgrade</Button>
+                            <Button variant="gradient" className="px-4 py-2" onClick={handleUpgrade}>Upgrade</Button>
                         </div>
                     </div>
 
