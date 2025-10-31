@@ -6,16 +6,11 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 // Example data for sentiment by source type
 const sourceData = [
   { source: 'X', positive: 120, neutral: 350, negative: 100 },
-  { source: 'Reddit', positive: 80, neutral: 200, negative: 120 },
-  { source: 'Podcasts', positive: 10, neutral: 390, negative: 0 },
-  { source: 'Forums', positive: 50, neutral: 200, negative: 60 },
-  { source: 'Blogs', positive: 200, neutral: 300, negative: 0 },
-  { source: 'WeChat', positive: 180, neutral: 320, negative: 0 },
-  { source: 'Comments', positive: 100, neutral: 200, negative: 120 },
-  { source: 'Pinterest', positive: 220, neutral: 300, negative: 0 },
-  { source: 'Sina Weibo', positive: 300, neutral: 0, negative: 0 },
-  { source: 'News', positive: 180, neutral: 320, negative: 10 },
-  { source: 'Broadcast', positive: 10, neutral: 390, negative: 0 },
+  { source: 'Instagram', positive: 80, neutral: 200, negative: 120 },
+  { source: 'TikTok', positive: 10, neutral: 390, negative: 0 },
+  { source: 'Facebook', positive: 50, neutral: 200, negative: 60 },
+  { source: 'LinkedIn', positive: 200, neutral: 300, negative: 0 },
+  { source: 'YouTube', positive: 180, neutral: 320, negative: 0 }
 ];
 
 const options = {
