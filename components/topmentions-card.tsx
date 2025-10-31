@@ -261,8 +261,23 @@ export default function TopMentionsCard() {
             });
           })()}
         </div>
-        {/* AI interpretation */}
-        <div className="flex-1">
+        {/* AI interpretation with legend on top */}
+        <div className="flex-1 flex flex-col">
+          {/* Legend for word cloud colors */}
+          <div className="flex flex-col items-start gap-4 mb-4">
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400"></div>
+              <span className="text-sm text-gray-700">Emerging themes</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-gradient-to-br from-pink-400 to-purple-500"></div>
+              <span className="text-sm text-gray-700">Decreasing themes</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-4 h-4 rounded-full bg-gray-400"></div>
+              <span className="text-sm text-gray-700">New themes</span>
+            </div>
+          </div>
           <AiInsightSection sentences={interpretationSentences} />
         </div>
       </div>

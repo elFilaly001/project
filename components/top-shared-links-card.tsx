@@ -1,13 +1,13 @@
 import AiInsightSection from "./AiInsightSection";
 
 const linksData = [
-  { rank: 1, url: "ln.pinterest.com/valuatesreports", mentions: 128 },
-  { rank: 2, url: "reports.valuates.com/", mentions: 128 },
-  { rank: 3, url: "reports.valuates.com/market-report...", mentions: 128 },
-  { rank: 4, url: "reports.valuates.com/market-report...", mentions: 128 },
-  { rank: 5, url: "reports.valuates.com/market-report...", mentions: 128 },
-  { rank: 6, url: "reports.valuates.com/market-report...", mentions: 128 },
-  { rank: 7, url: "reports.valuates.com/market-report...", mentions: 128 },
+  { rank: 1, url: "techcrunch.com/glovo-expands-into-africa", mentions: 128 },
+  { rank: 2, url: "blog.glovoapp.com/how-we-deliver-sustainably", mentions: 128 },
+  { rank: 3, url: "medium.com/startups-insider/the-glovo-model", mentions: 128 },
+  { rank: 4, url: "reuters.com/business/glovo-growth-report-2025", mentions: 128 },
+  { rank: 5, url: "linkedin.com/company/glovo/posts", mentions: 128 },
+  { rank: 6, url: "wired.co.uk/article/glovo-logistics-ai", mentions: 128 },
+  { rank: 7, url: "theguardian.com/business/glovo-expansion-news", mentions: 128 },
 ];
 
 const totalLinks = 30;

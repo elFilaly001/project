@@ -1,11 +1,11 @@
 import AiInsightSection from "./AiInsightSection";
 
 const blogsData = [
-  { rank: 1, url: "anildkotekar4sme.com", mentions: 1 },
-  { rank: 2, url: "home.blog", mentions: 1 },
-  { rank: 3, url: "websbee.blogspot.com/", mentions: 1 },
-  { rank: 4, url: "nhqjs.com/", mentions: 1 },
-  { rank: 5, url: "engadget.com/", mentions: 1 },
+  { rank: 1, url: "TechCrunch – “How Glovo Is Redefining Urban Delivery in Emerging Markets”", mentions: 1 },
+  { rank: 2, url: "TheNextWeb – “Glovo’s AI-Powered Logistics: Changing the Game for Couriers”", mentions: 1 },
+  { rank: 3, url: "EcomWorld Blog – “How Glovo Uses Data to Optimize Customer Experience”", mentions: 1 },
+  { rank: 4, url: "FoodDeliveryTrends.com – “Glovo vs Uber Eats: Who Wins the Market Battle?”", mentions: 1 },
+  { rank: 5, url: "Digital Africa Journal – “Glovo’s Impact on Local Commerce and Job Creation”", mentions: 1 },
 ];
 
 const totalBlogs = 30;

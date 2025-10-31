@@ -1,13 +1,13 @@
 import AiInsightSection from "./AiInsightSection";
 
 const sourcesData = [
-  { rank: 1, name: "Smartphone Magazine", mentions: 14, icon: "📱" },
-  { rank: 2, name: "MSN.com", mentions: 7, icon: "M" },
-  { rank: 3, name: "The Middle East North Africa Financial Net...", mentions: 6, icon: "MF" },
-  { rank: 4, name: "Research and Markets", mentions: 6, icon: "RA" },
-  { rank: 5, name: "Contify Automotive News", mentions: 5, icon: "C" },
-  { rank: 6, name: "Sigma Earth", mentions: 5, icon: "G" },
-  { rank: 7, name: "Bidsinfo News", mentions: 4, icon: "🌍" },
+  { rank: 1, name: "Forbes Business Europe", mentions: 14, icon: "📱" },
+  { rank: 2, name: "Startup Daily", mentions: 7, icon: "M" },
+  { rank: 3, name: "Food Delivery Insider", mentions: 6, icon: "MF" },
+  { rank: 4, name: "Le Business des Applications", mentions: 6, icon: "RA" },
+  { rank: 5, name: "Commerce News", mentions: 5, icon: "C" },
+  { rank: 6, name: "Food & Sens", mentions: 5, icon: "G" },
+  { rank: 7, name: "Foods", mentions: 4, icon: "🌍" },
 ];
 
 const totalSources = 30;
