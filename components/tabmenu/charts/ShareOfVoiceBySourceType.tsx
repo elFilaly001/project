@@ -26,18 +26,33 @@ const data = [
     { source: 'LinkedIn', Acceleration: 2, EV_Battery_Life: 1, Driving_Range: 3, Autonomous_Driving: 1, Charging_Speed: 2 },
 ];
 
-export default function ShareOfVoiceBySourceType() {
+type BrandRow = { label: string; followers?: string | number; color?: string }
+
+type Props = {
+    rows?: BrandRow[]
+}
+
+export default function ShareOfVoiceBySourceType({ rows }: Props) {
     const t = useTranslations();
 
     const labels = data.map((d) => d.source);
-    // Map the five datasets to Moroccan competitors and use the 5-step gradient palette
-    const datasets = [
-        { label: 'Jumia Food', data: data.map((d) => d.Acceleration), backgroundColor: '#35B9F4' },
-        { label: 'Yasser Market', data: data.map((d) => d.EV_Battery_Life), backgroundColor: '#7FDFFF' },
-        { label: 'Kool', data: data.map((d) => d.Driving_Range), backgroundColor: '#9A4BF0' },
-        { label: 'Livery', data: data.map((d) => d.Autonomous_Driving), backgroundColor: '#D46BF8' },
-        { label: 'Creem Food', data: data.map((d) => d.Charging_Speed), backgroundColor: '#F02CB9' },
-    ];
+    // metric keys used per brand (we reuse the same metric slots as before)
+    const metricKeys = ['Acceleration', 'EV_Battery_Life', 'Driving_Range', 'Autonomous_Driving', 'Charging_Speed']
+
+    // derive brand list either from rows or defaults
+    const brands = rows && rows.length > 0 ? rows.map((r) => ({ label: r.label, color: r.color || '#35B9F4' })) : [
+        { label: 'Jumia Food', color: '#35B9F4' },
+        { label: 'Yasser Market', color: '#7FDFFF' },
+        { label: 'Kool', color: '#9A4BF0' },
+        { label: 'Livery', color: '#D46BF8' },
+        { label: 'Creem Food', color: '#F02CB9' },
+    ]
+
+    const datasets = brands.map((b, i) => ({
+        label: b.label,
+        data: data.map((d) => (d as any)[metricKeys[i % metricKeys.length]]),
+        backgroundColor: b.color,
+    }))
 
     const chartData = { labels, datasets };
 

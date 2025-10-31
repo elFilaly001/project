@@ -79,7 +79,7 @@ export default function RankingTicker({ items }: { items?: Item[] }) {
                             <span className="font-semibold mr-2">{it.name}</span>
                             <span className="opacity-90 mr-2">{it.value}</span>
                             <Arrow dir={it.direction} />
-                            <span className={`ml-1 ${it.direction === 'up' ? 'text-green-800' : it.direction === 'down' ? 'text-red-800' : 'text-gray-800'}`}>{it.change}</span>
+                            <span className={`ml-1 ${it.direction === 'up' ? 'text-green-800' : it.direction === 'down' ? 'text-red-800' : 'text-gray-800'}`}>{it.change} %</span>
                         </div>
                     ))}
                 </div>

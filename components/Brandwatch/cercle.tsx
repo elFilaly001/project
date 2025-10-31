@@ -44,7 +44,7 @@ const Circle = () => {
 
     return (
         <div>
-            <div className="relative mt-[23%]">
+            <div className="relative mt-[30%]">
                 <>
                     <BoxCreators
                         className="transform rotate-[25deg]"
@@ -127,7 +127,7 @@ const MiddleElement = () => {
     return (
         <div className="inset-1/2 z-50 -translate-x-1/2 -top-[40px] -translate-y-1/2 absolute w-[340px] text-center flex flex-col gap-2">
             <h2 className=" text-xl font-semibold">Network Watch</h2>
-            <p className="text-whiteColor">Explore Creator Partnerships & Networks</p>
+            <p className="text-whiteColor">Explore Brand Partnerships & Networks</p>
 
             <SearchBrand />
             {/* <AutoCompleteFilter

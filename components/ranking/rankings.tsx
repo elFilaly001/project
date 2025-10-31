@@ -132,7 +132,7 @@ const DataTableInfluencersRanking = () => {
             },
         },
         {
-            name: "Creator",
+            name: "Brand",
             sortable: true,
             id: "name",
             selector: (row) => row.name,
