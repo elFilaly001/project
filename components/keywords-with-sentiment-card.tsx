@@ -5,18 +5,19 @@ import { Bar } from 'react-chartjs-2';
 ChartJS.register(CategoryScale, LinearScale, BarElement, Tooltip, Legend);
 
 // Example data for keywords with sentiment
+
 const keywordsData = [
-  { keyword: "market", positive: 120, neutral: 80, negative: 20 },
-  { keyword: "growth", positive: 100, neutral: 60, negative: 15 },
-  { keyword: "report", positive: 90, neutral: 70, negative: 10 },
-  { keyword: "industry", positive: 80, neutral: 50, negative: 8 },
-  { keyword: "forecast", positive: 70, neutral: 40, negative: 5 },
-  { keyword: "trends", positive: 65, neutral: 35, negative: 4 },
-  { keyword: "analysis", positive: 60, neutral: 30, negative: 3 },
+  { keyword: "Glovo Orders ", positive: 120, neutral: 80, negative: 20 },
+  { keyword: "Fast Delivery ", positive: 100, neutral: 60, negative: 15 },
+  { keyword: "Glovo Jobs ", positive: 90, neutral: 70, negative: 10 },
+  { keyword: "Online Food App ", positive: 80, neutral: 50, negative: 8 },
+  { keyword: "Livraison Rapide ", positive: 70, neutral: 40, negative: 5 },
+  { keyword: "توصيل الطلبات", positive: 65, neutral: 35, negative: 4 },
+  { keyword: "Commande en ligne ", positive: 60, neutral: 30, negative: 3 },
 ];
 
 const interpretationSentences = [
-  `"Market" and "growth" are the most positively mentioned keywords, indicating strong optimism in audience discussions.`,
+  `"Glovo Orders" and "Fast Delivery" are the most positively mentioned keywords, indicating strong optimism in audience discussions.`,
   `Negative sentiment is low across all keywords, suggesting overall positive perception.`,
   `Focus content on top keywords with high positive sentiment to maximize engagement.`
 ];
