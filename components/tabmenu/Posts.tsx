@@ -100,7 +100,7 @@ export default function Posts() {
     Instagram: [
       {
         username: 'glovoapp',
-        userAvatar: 'https://via.placeholder.com/150?text=Glovo',
+        userAvatar: 'https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg',
         postDate: '15 Oct 25',
         postImage: 'https://www.jadid-alwadifa.com/wp-content/uploads/2020/10/glovo.jpg',
         postText: 'Craving something delicious? 🍕🍔 Let Glovo deliver your favorite meals right to your door! Order now and enjoy fast, reliable delivery. #Glovo #FoodDelivery #OrderNow',
@@ -113,7 +113,7 @@ export default function Posts() {
     TikTok: [
       {
         username: 'glovoapp',
-        userAvatar: 'https://via.placeholder.com/150?text=Glovo',
+        userAvatar: 'https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg',
         postDate: '10 Oct 25',
         postImage: 'https://www.dimajadid.com/wp-content/uploads/2023/12/image-15.png',
         postText: 'Watch how easy it is to order food with Glovo! 🚀 From your favorite restaurant to your doorstep in minutes. Try it now! #Glovo #FoodDelivery #TikTokFood',
@@ -127,7 +127,7 @@ export default function Posts() {
     YouTube: [
       {
         username: 'Glovo',
-        userAvatar: 'https://via.placeholder.com/150?text=Glovo',
+        userAvatar: 'https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg',
         postDate: '5 Oct 25',
         postImage: 'https://mir-s3-cdn-cf.behance.net/projects/404/acb33c211337789.Y3JvcCw4MDgsNjMyLDAsMA.png',
         postText: 'Glovo: Revolutionizing Food Delivery | How We Make Ordering Easy',
@@ -140,7 +140,7 @@ export default function Posts() {
     X: [
       {
         username: 'glovoapp',
-        userAvatar: 'https://via.placeholder.com/150?text=Glovo',
+        userAvatar: 'https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg',
         postDate: '20 Oct 25',
         postImage: 'https://www.dreamjob.ma/wp-content/uploads/2020/10/Glovo-Emploi-Recrutement-360x180.jpg',
         postText: 'New restaurants joining Glovo every day! 🌟 Discover amazing cuisines from around the world. What are you craving today? #Glovo #Foodie #Delivery',
@@ -154,7 +154,7 @@ export default function Posts() {
     LinkedIn: [
       {
         username: 'glovo-official',
-        userAvatar: 'https://via.placeholder.com/150?text=Glovo',
+        userAvatar: 'https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg',
         postDate: '1 Oct 25',
         postImage: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXr07xPihxeE7d0X-YwuMIruKeB16ein5r1A&s',
         postText: 'At Glovo, we\'re committed to connecting people with their favorite foods while supporting local businesses. Join our mission to make food delivery sustainable and accessible for everyone. #Glovo #Sustainability #FoodTech',
@@ -168,7 +168,7 @@ export default function Posts() {
     Facebook: [
       {
         username: 'Glovo',
-        userAvatar: 'https://via.placeholder.com/150?text=Glovo',
+        userAvatar: 'https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg',
         postDate: '25 Oct 25',
         postImage: 'https://cdn.dribbble.com/userupload/42571436/file/original-3f960ada734f789e9f22bdcb3c08d67c.png?resize=400x0',
         postText: 'Weekend vibes with Glovo! 🎉 Order your favorite comfort food and relax. Use code GLOVO20 for 20% off your first order. Limited time offer! #Glovo #WeekendEats #FoodDelivery',

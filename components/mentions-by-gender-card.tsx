@@ -3,7 +3,7 @@ import { FaMale, FaFemale } from 'react-icons/fa';
 
 const genderData = [
   { label: "Male", value: 59, color: "#06B6D4", icon: (<FaMale size={48} color="#06B6D4" />) },
-  { label: "Female", value: 41, color: "#7B61F9", icon: (<FaFemale size={48} color="#7B61F9" />) },
+  { label: "Female", value: 41, color: "#f161f9ff", icon: (<FaFemale size={48} color="#f161f9ff" />) },
 ];
 
 const interpretationSentences = [
