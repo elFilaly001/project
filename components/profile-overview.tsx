@@ -7,7 +7,7 @@ export default function ProfileOverview({
   name = "Glovo Maroc",
   subtitle = "Your Local Delivery Partner for Everything",
   description = `Glovo Maroc is a delivery service that connects customers with local businesses, offering a wide range of products from food to groceries. Their social media presence emphasizes partnerships with local merchants, showcasing success stories and community engagement. Content themes include Ramadan promotions, customer support, and highlighting the convenience of their service.`,
-  avatarUrl = "/glovo.png",
+  avatarUrl = "https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg",
   followers = 111100,
   platform = "instagram" as "instagram" | "twitter" | "facebook",
   ringPercent = 75,
