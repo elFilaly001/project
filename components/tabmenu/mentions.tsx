@@ -3,6 +3,7 @@ import MentionsByGenderCard from "../mentions-by-gender-card";
 import MentionsByLocationCard from "../mentions-by-location-card";
 import MentionsBySentimentCard from "../mentions-by-sentiment-card";
 import MentionsByTrendCard from "../mentions-by-trend-card";
+import SocialMediaMentionsCard from "../SocialMediaMentionsCard";
 import TopBlogsCard from "../top-blogs-card";
 import TopSharedLinksCard from "../top-shared-links-card";
 import TopMentionsCard from "../topmentions-card";
@@ -35,6 +36,9 @@ export default function Mentions() {
           </div>
           <div className="col-span-4">
             <MentionsBySentimentCard />
+          </div>
+          <div className="col-span-4">
+            <SocialMediaMentionsCard />
           </div>
         </div>
       </div>
