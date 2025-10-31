@@ -9,6 +9,8 @@ interface Influencer {
     profilePic: string;
     name?: string;
     handle?: string;
+    // optional categories/niche label used by ranking components
+    categories?: { name: string }[];
 }
 
 interface Pagination {
@@ -17,24 +19,24 @@ interface Pagination {
 
 // Static data using internet-hosted Moroccan company logos via Clearbit
 export const staticInfluencers: Influencer[] = [
-    { id: "1", profilePic: "https://dirigeants-entreprise.com/content/uploads/maroc-telecom.png", name: "Maroc Telecom", handle: "@maroctelecom" },
-    { id: "2", profilePic: "https://logo.clearbit.com/attijariwafabank.com", name: "Attijariwafa Bank", handle: "@attijariwafa" },
-    { id: "3", profilePic: "https://yt3.googleusercontent.com/ytc/AIdro_lU2FGorBPAa2D5VFAqYLEHq51KyH-mt3jt4o6ArcUgxak=s160-c-k-c0x00ffffff-no-rj", name: "Banque Populaire", handle: "@banquepopulaire" },
-    { id: "4", profilePic: "https://logo.clearbit.com/bmcebank.ma", name: "BMCE Bank", handle: "@bmce" },
-    { id: "5", profilePic: "https://logo.clearbit.com/inwi.ma", name: "Inwi", handle: "@inwi" },
-    { id: "6", profilePic: "https://logo.clearbit.com/royalairmaroc.com", name: "Royal Air Maroc", handle: "@royalairmaroc" },
-    { id: "7", profilePic: "https://logo.clearbit.com/ocpgroup.ma", name: "OCP Group", handle: "@ocpgroup" },
-    { id: "8", profilePic: "https://logo.clearbit.com/oncf.ma", name: "ONCF", handle: "@oncf" },
-    { id: "9", profilePic: "https://logo.clearbit.com/cosumar.ma", name: "Cosumar", handle: "@cosumar" },
-    { id: "10", profilePic: "https://logo.clearbit.com/cihbank.ma", name: "CIH Bank", handle: "@cihbank" },
-    { id: "11", profilePic: "https://logo.clearbit.com/wafasalaf.com", name: "Wafasalaf", handle: "@wafasalaf" },
-    { id: "12", profilePic: "https://logo.clearbit.com/labelvie.ma", name: "Label'Vie", handle: "@labelvie" },
-    { id: "13", profilePic: "https://logo.clearbit.com/marjane.ma", name: "Marjane", handle: "@marjane" },
-    { id: "14", profilePic: "https://logo.clearbit.com/afriquia.ma", name: "Afriquia", handle: "@afriquia" },
-    { id: "15", profilePic: "https://logo.clearbit.com/bmci.ma", name: "BMCI", handle: "@bmci" },
-    { id: "16", profilePic: "https://logo.clearbit.com/somaca.ma", name: "Somaca", handle: "@somaca" },
-    { id: "17", profilePic: "https://logo.clearbit.com/lydec.ma", name: "Lydec", handle: "@lydec" },
-    { id: "18", profilePic: "https://logo.clearbit.com/hps-worldwide.com", name: "HPS", handle: "@hps" },
+    { id: "1", profilePic: "https://dirigeants-entreprise.com/content/uploads/maroc-telecom.png", name: "Maroc Telecom", handle: "@maroctelecom", categories: [{ name: 'Telecom' }] },
+    { id: "2", profilePic: "https://logo.clearbit.com/attijariwafabank.com", name: "Attijariwafa Bank", handle: "@attijariwafa", categories: [{ name: 'Banking' }] },
+    { id: "3", profilePic: "https://yt3.googleusercontent.com/ytc/AIdro_lU2FGorBPAa2D5VFAqYLEHq51KyH-mt3jt4o6ArcUgxak=s160-c-k-c0x00ffffff-no-rj", name: "Banque Populaire", handle: "@banquepopulaire", categories: [{ name: 'Banking' }] },
+    { id: "4", profilePic: "https://logo.clearbit.com/bmcebank.ma", name: "BMCE Bank", handle: "@bmce", categories: [{ name: 'Banking' }] },
+    { id: "5", profilePic: "https://logo.clearbit.com/inwi.ma", name: "Inwi", handle: "@inwi", categories: [{ name: 'Telecom' }] },
+    { id: "6", profilePic: "https://logo.clearbit.com/royalairmaroc.com", name: "Royal Air Maroc", handle: "@royalairmaroc", categories: [{ name: 'Aviation' }] },
+    { id: "7", profilePic: "https://logo.clearbit.com/ocpgroup.ma", name: "OCP Group", handle: "@ocpgroup", categories: [{ name: 'Mining & Fertilizers' }] },
+    { id: "8", profilePic: "https://logo.clearbit.com/oncf.ma", name: "ONCF", handle: "@oncf", categories: [{ name: 'Transport' }] },
+    { id: "9", profilePic: "https://logo.clearbit.com/cosumar.ma", name: "Cosumar", handle: "@cosumar", categories: [{ name: 'Food & Agriculture' }] },
+    { id: "10", profilePic: "https://logo.clearbit.com/cihbank.ma", name: "CIH Bank", handle: "@cihbank", categories: [{ name: 'Banking' }] },
+    { id: "11", profilePic: "https://logo.clearbit.com/wafasalaf.com", name: "Wafasalaf", handle: "@wafasalaf", categories: [{ name: 'Consumer Finance' }] },
+    { id: "12", profilePic: "https://logo.clearbit.com/labelvie.ma", name: "Label'Vie", handle: "@labelvie", categories: [{ name: 'Retail' }] },
+    { id: "13", profilePic: "https://logo.clearbit.com/marjane.ma", name: "Marjane", handle: "@marjane", categories: [{ name: 'Retail' }] },
+    { id: "14", profilePic: "https://logo.clearbit.com/afriquia.ma", name: "Afriquia", handle: "@afriquia", categories: [{ name: 'Energy' }] },
+    { id: "15", profilePic: "https://logo.clearbit.com/bmci.ma", name: "BMCI", handle: "@bmci", categories: [{ name: 'Banking' }] },
+    { id: "16", profilePic: "https://logo.clearbit.com/somaca.ma", name: "Somaca", handle: "@somaca", categories: [{ name: 'Automotive' }] },
+    { id: "17", profilePic: "https://logo.clearbit.com/lydec.ma", name: "Lydec", handle: "@lydec", categories: [{ name: 'Utilities' }] },
+    { id: "18", profilePic: "https://logo.clearbit.com/hps-worldwide.com", name: "HPS", handle: "@hps", categories: [{ name: 'Fintech' }] },
 ];
 
 const Circle = () => {
@@ -42,7 +44,7 @@ const Circle = () => {
 
     return (
         <div>
-            <div className="relative mt-[53vh]">
+            <div className="relative mt-[30%]">
                 <>
                     <BoxCreators
                         className="transform rotate-[25deg]"
@@ -125,7 +127,7 @@ const MiddleElement = () => {
     return (
         <div className="inset-1/2 z-50 -translate-x-1/2 -top-[40px] -translate-y-1/2 absolute w-[340px] text-center flex flex-col gap-2">
             <h2 className=" text-xl font-semibold">Network Watch</h2>
-            <p className="text-whiteColor">Explore Creator Partnerships & Networks</p>
+            <p className="text-whiteColor">Explore Brand Partnerships & Networks</p>
 
             <SearchBrand />
             {/* <AutoCompleteFilter

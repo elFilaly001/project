@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import LayoutContent from '@/components/layout-content';
 import React from 'react';
+import Loader from '@/components/Loader';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -33,7 +34,7 @@ export default async function LangLayout({ children, params }: { children: React
         <html lang={locale} className="overflow-x-hidden" suppressHydrationWarning={true}>
             <body className={`${inter.className} overflow-x-hidden`} suppressHydrationWarning={true}>
                 <NextIntlClientProvider locale={locale} messages={messages}>
-                    <React.Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+                    <React.Suspense fallback={<Loader />}>
                         <LayoutContent user={user}>
                             {children}
                         </LayoutContent>

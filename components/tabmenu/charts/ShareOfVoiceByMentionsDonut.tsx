@@ -14,9 +14,8 @@ import ExplainButton from '@/components/ui/ExplainButton';
 import { Smile, Frown, Meh } from 'lucide-react';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-// Moroccan competitors of Glovo (5 brands) using the 5-step gradient palette
-// between #35B9F4 and #F02CB9 (blue -> light blue -> purple -> lavender -> pink).
-const brands = [
+// Default brands palette (used if parent doesn't pass rows)
+const defaultBrands = [
     { label: 'Jumia Food', value: 35000, color: '#35B9F4' }, // blue
     { label: 'Yasser Market', value: 25000, color: '#7FDFFF' }, // light blue
     { label: 'Kool', value: 18000, color: '#9A4BF0' }, // purple
@@ -25,13 +24,32 @@ const brands = [
 ];
 
 // Sentiment breakdowns for the five Moroccan competitors (positive / negative).
-const positive = [3500, 2600, 1800, 1500, 800];
-const negative = [4200, 3000, 2000, 1700, 900];
-const neutral = brands.map((b, i) => b.value - positive[i] - negative[i]);
+const defaultPositive = [3500, 2600, 1800, 1500, 800];
+const defaultNegative = [4200, 3000, 2000, 1700, 900];
 
-function buildData(values: number[], colors: string[]) {
+function parseFollowersCount(s: string | number | undefined) {
+    if (typeof s === 'number') return s
+    if (!s) return 0
+    const v = String(s).trim().toUpperCase()
+    const clean = v.replace(/[,\s]/g, '')
+    const m = clean.match(/^([0-9]*\.?[0-9]+)\s*([KM]?)$/)
+    if (!m) return Number(clean) || 0
+    const num = parseFloat(m[1])
+    const suffix = m[2]
+    if (suffix === 'M') return Math.round(num * 1_000_000)
+    if (suffix === 'K') return Math.round(num * 1_000)
+    return Math.round(num)
+}
+
+type BrandRow = { label: string; followers?: string | number; color?: string }
+
+type Props = {
+    rows?: BrandRow[]
+}
+
+function buildData(labels: string[], values: number[], colors: string[]) {
     return {
-        labels: brands.map((b) => b.label),
+        labels,
         datasets: [
             {
                 data: values,
@@ -42,16 +60,23 @@ function buildData(values: number[], colors: string[]) {
     };
 }
 
-export default function ShareOfVoiceByMentionsDonut() {
+export default function ShareOfVoiceByMentionsDonut({ rows }: Props) {
     const t = useTranslations();
 
-    const brandValues = brands.map((b) => b.value);
-    const brandColors = brands.map((b) => b.color);
+    const brands = rows && rows.length > 0 ? rows.map((r, i) => ({ label: r.label, value: parseFollowersCount(r.followers), color: r.color || ['#35B9F4', '#7FDFFF', '#9A4BF0', '#D46BF8', '#F02CB9'][i % 5] })) : defaultBrands
 
-    const mainData = buildData(brandValues, brandColors);
-    const posData = buildData(positive, brandColors);
-    const negData = buildData(negative, brandColors);
-    const neuData = buildData(neutral, brandColors);
+    const positive = rows && rows.length > 0 ? brands.map((b) => Math.round(b.value * 0.1)) : defaultPositive
+    const negative = rows && rows.length > 0 ? brands.map((b) => Math.round(b.value * 0.12)) : defaultNegative
+    const neutral = brands.map((b, i) => b.value - (positive[i] || 0) - (negative[i] || 0))
+
+    const brandValues = brands.map((b) => b.value)
+    const brandColors = brands.map((b) => b.color)
+
+    const labels = brands.map((b) => b.label)
+    const mainData = buildData(labels, brandValues, brandColors)
+    const posData = buildData(labels, positive, brandColors)
+    const negData = buildData(labels, negative, brandColors)
+    const neuData = buildData(labels, neutral, brandColors)
 
     const options: any = {
         maintainAspectRatio: false,

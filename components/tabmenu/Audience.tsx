@@ -95,7 +95,7 @@ export default function Audience() {
   const mockData = [
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/2/21/Instagram_Glyph_Gradient_RGB_logo.svg",
-      userAvatar: "/glovo.png",
+      userAvatar: "https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg",
       name: "Glovo Maroc",
       username: "glovo_maroc",
       score: "98.5/100",
@@ -110,7 +110,7 @@ export default function Audience() {
     },
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/a/a6/Tiktok_icon.svg",
-      userAvatar: "/glovo.png",
+      userAvatar: "https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg",
       name: "Glovo Maroc",
       username: "glovo_maroc",
       score: "97.2/100",
@@ -125,7 +125,7 @@ export default function Audience() {
     },
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/5/53/X_logo_2023_original.svg",
-      userAvatar: "/glovo.png",
+      userAvatar: "https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg",
       name: "Glovo Maroc",
       username: "glovo_maroc",
       score: "95.9/100",
@@ -140,7 +140,7 @@ export default function Audience() {
     },
     {
       icon: "https://upload.wikimedia.org/wikipedia/commons/0/09/YouTube_full-color_icon_%282017%29.svg",
-      userAvatar: "/glovo.png",
+      userAvatar: "https://www.lenouvelliste.ma/wp-content/uploads/2025/07/GLOVO-1-1.jpg",
       name: "Glovo Maroc",
       username: "glovo_maroc",
       score: "94.7/100",
