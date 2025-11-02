@@ -57,7 +57,7 @@ function presetToRange(key: string) {
   }
 }
 
-export default function InlineDateRangePicker() {
+export default function InlineDateRangePicker({ onChange }: { onChange?: (range: { from?: Date; to?: Date }) => void }) {
   const t = useTranslations();
   const [open, setOpen] = useState(false);
   const [preset, setPreset] = useState<string>("last_30");
@@ -83,12 +83,14 @@ export default function InlineDateRangePicker() {
     const r = presetToRange(key);
     setFrom(r.from as Date | undefined);
     setTo(r.to as Date | undefined);
+    if (onChange) onChange(r);
   }
 
   function clear() {
     setFrom(undefined);
     setTo(undefined);
     setPreset("");
+    if (onChange) onChange({ from: undefined, to: undefined });
   }
 
   // show previous + current month in the calendar
@@ -150,16 +152,17 @@ export default function InlineDateRangePicker() {
           </div>
           {/* Middle: calendar (two months) */}
           <div className="col-span-2">
-            <Calendar
-              mode="range"
-              selected={{ from, to }}
-              onSelect={(r: any) => {
-                setFrom(r?.from ?? undefined);
-                setTo(r?.to ?? undefined);
-                setPreset("");
-              }}
-              numberOfMonths={2}
-            />
+              <Calendar
+                mode="range"
+                selected={{ from, to }}
+                onSelect={(r: any) => {
+                  setFrom(r?.from ?? undefined);
+                  setTo(r?.to ?? undefined);
+                  setPreset("");
+                  if (onChange) onChange(r);
+                }}
+                numberOfMonths={2}
+              />
           </div>
           {/* Right: compare checkbox + inputs */}
           <div className="col-span-1 flex flex-col gap-4"></div>
