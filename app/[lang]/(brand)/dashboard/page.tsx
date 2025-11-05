@@ -1,5 +1,5 @@
 import React from "react";
-import DashboardClient from "../../../components/pages/DashboardClient";
+import DashboardClient from "@/components/pages/DashboardClient";
 import Loader from '@/components/Loader';
 
 type Params = { lang: string };
