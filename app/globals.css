@@ -80,3 +80,12 @@
     @apply bg-background text-foreground;
   }
 }
+
+@theme {
+  --color-main: #2dbaf6;
+  --color-second: #26c3f9;
+}
+
+.bg-gradient {
+  background: linear-gradient(135deg, #2dbaf6, #26c3f9);
+}
