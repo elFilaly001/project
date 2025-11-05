@@ -6,8 +6,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import InputWithLabel from "@/components/ui/input-with-label";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-// import { signIn } from "@/auth";
-// import { signIn } from "next-auth/react"; // Import from next-auth/react instead
+import api from "@/lib/axios"; // <-- existing
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -34,25 +33,90 @@ export function LoginForm({
         .required("Mot de passe est requis"),
     }),
     onSubmit: async (values, { setErrors }) => {
-      console.log(values);
       try {
-        // const res = await signIn("credentials", {
-        //   email: values.email,
-        //   password: values.password,
-        //   redirect: false,
-        // });
+        const response = await api.post("/auth/login", {
+          email: values.email,
+          password: values.password,
+        });
 
-        // if (res.error && res.code) {
-        //   setErrors({ email: "Adresse e-mail ou mot de passe invalide." });
-        // } else {
-        router.push("/");
-        // }
-      } catch (error) {
+        if (response.status === 200) {
+          if (typeof window !== "undefined") {
+            localStorage.setItem("accessToken", response.data.token);
+          }
+          router.push("/");
+        } else {
+          setErrors({ email: "Adresse e-mail ou mot de passe invalide." });
+        }
+      } catch (error: any) {
         console.error(error);
-        setErrors({ email: "Adresse e-mail ou mot de passe invalide." });
+
+        // Prefer structured field errors from API: { error: { email: "..." } }
+        const fieldErrors = error?.response?.data?.error;
+        if (fieldErrors && typeof fieldErrors === "object") {
+          const mapped: Record<string, string> = {};
+          for (const key in fieldErrors) {
+            const val = fieldErrors[key];
+            mapped[key] = Array.isArray(val) ? val.join(" ") : String(val);
+          }
+          setErrors(mapped);
+          return;
+        }
+
+        // Fallback to message or generic text
+        const message =
+          error?.response?.data?.message ||
+          "Adresse e-mail ou mot de passe invalide.";
+        setErrors({ email: message });
       }
     },
   });
+
+  async function signIn(provider: string) {
+    if (typeof window === "undefined") return;
+
+    // Prefer next-auth if it's available in the project
+    try {
+      const nextAuth = await import("next-auth/react");
+      if (typeof nextAuth.signIn === "function") {
+        // use callbackUrl so user is returned to home after auth
+        await nextAuth.signIn(provider, { callbackUrl: "/" });
+        return;
+      }
+    } catch {
+      // ignore and fall back to popup redirect
+    }
+
+    // Fallback: open provider sign-in in a popup window.
+    // NextAuth's default provider sign-in endpoint is /api/auth/signin/[provider].
+    // Adjust the path if your backend uses a different route.
+    const callback = window.location.origin + "/";
+    const url = `/api/auth/signin/${encodeURIComponent(provider)}?callbackUrl=${encodeURIComponent(callback)}`;
+
+    const width = 600;
+    const height = 700;
+    const left = window.screenX + (window.outerWidth - width) / 2;
+    const top = window.screenY + (window.outerHeight - height) / 2;
+    const popup = window.open(
+      url,
+      "oauth_popup",
+      `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=yes,status=1`
+    );
+
+    if (!popup) {
+      // popup blocked; fall back to full redirect
+      window.location.href = url;
+      return;
+    }
+
+    // Poll the popup; when it closes, reload to pick up session/token changes.
+    const poll = setInterval(() => {
+      if (popup.closed) {
+        clearInterval(poll);
+        // Optionally: try to read token from storage/session here.
+        window.location.reload();
+      }
+    }, 500);
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -114,7 +178,7 @@ export function LoginForm({
           </div>
           <Button
             onClick={() => {
-              // signIn("google");
+              signIn("google");
             }}
             className="w-full bg-transparent border text-black border-gray-200 hover:bg-gray-200/40"
           >
