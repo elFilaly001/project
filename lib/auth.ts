@@ -3,13 +3,6 @@ import FacebookProvider from 'next-auth/providers/facebook';
 import LinkedinProvider from 'next-auth/providers/linkedin';
 import type { AuthOptions } from "next-auth";
 
-if (!process.env.NEXTAUTH_SECRET) {
-  console.error('❌ NEXTAUTH_SECRET is not set!');
-  console.error('Available env vars:', Object.keys(process.env).filter(k => k.startsWith('NEXT')));
-} else {
-  console.log('✅ NEXTAUTH_SECRET is loaded');
-}
-
 export const authOptions: AuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
@@ -18,7 +11,7 @@ export const authOptions: AuthOptions = {
             clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
             authorization: {
                 params: {
-                    prompt: "select_account", 
+                    prompt: "select_account",
                 }
             }
         }),
@@ -31,8 +24,8 @@ export const authOptions: AuthOptions = {
             clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
         }),
     ],
-    
-    session: { 
+
+    session: {
         strategy: 'jwt',
         maxAge: 30 * 24 * 60 * 60, // 30 days
     },
