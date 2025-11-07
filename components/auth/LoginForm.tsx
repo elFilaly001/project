@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { signIn } from "next-auth/react";
 
 export function LoginForm({
   className,
@@ -71,52 +72,14 @@ export function LoginForm({
     },
   });
 
-  async function signIn(provider: string) {
-    if (typeof window === "undefined") return;
-
-    // Prefer next-auth if it's available in the project
+  // Add a clear handler to call the next-auth signIn for Google
+  const handleGoogleSignIn = async () => {
     try {
-      const nextAuth = await import("next-auth/react");
-      if (typeof nextAuth.signIn === "function") {
-        // use callbackUrl so user is returned to home after auth
-        await nextAuth.signIn(provider, { callbackUrl: "/" });
-        return;
-      }
-    } catch {
-      // ignore and fall back to popup redirect
+      await signIn("google" , { callbackUrl: "/" });
+    } catch (err) {
+      console.error("Google sign-in error:", err);
     }
-
-    // Fallback: open provider sign-in in a popup window.
-    // NextAuth's default provider sign-in endpoint is /api/auth/signin/[provider].
-    // Adjust the path if your backend uses a different route.
-    const callback = window.location.origin + "/";
-    const url = `/api/auth/signin/${encodeURIComponent(provider)}?callbackUrl=${encodeURIComponent(callback)}`;
-
-    const width = 600;
-    const height = 700;
-    const left = window.screenX + (window.outerWidth - width) / 2;
-    const top = window.screenY + (window.outerHeight - height) / 2;
-    const popup = window.open(
-      url,
-      "oauth_popup",
-      `width=${width},height=${height},left=${left},top=${top},resizable,scrollbars=yes,status=1`
-    );
-
-    if (!popup) {
-      // popup blocked; fall back to full redirect
-      window.location.href = url;
-      return;
-    }
-
-    // Poll the popup; when it closes, reload to pick up session/token changes.
-    const poll = setInterval(() => {
-      if (popup.closed) {
-        clearInterval(poll);
-        // Optionally: try to read token from storage/session here.
-        window.location.reload();
-      }
-    }, 500);
-  }
+  };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -177,9 +140,7 @@ export function LoginForm({
             <span className="flex-1 bg-gray-400 rounded-xl h-[0.5px]"></span>
           </div>
           <Button
-            onClick={() => {
-              signIn("google");
-            }}
+            onClick={handleGoogleSignIn}
             className="w-full bg-transparent border text-black border-gray-200 hover:bg-gray-200/40"
           >
             <Image src={"/auth/google.png"} alt="Logo" width={20} height={20} />

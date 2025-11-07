@@ -1,35 +1,67 @@
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import LinkedinProvider from 'next-auth/providers/linkedin';
-import NextAuth from "next-auth"
 import type { AuthOptions } from "next-auth";
 
+if (!process.env.NEXTAUTH_SECRET) {
+  console.error('❌ NEXTAUTH_SECRET is not set!');
+  console.error('Available env vars:', Object.keys(process.env).filter(k => k.startsWith('NEXT')));
+} else {
+  console.log('✅ NEXTAUTH_SECRET is loaded');
+}
 
 export const authOptions: AuthOptions = {
+    secret: process.env.NEXTAUTH_SECRET,
     providers: [
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID ?? '',
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? '',
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+            authorization: {
+                params: {
+                    prompt: "select_account", 
+                }
+            }
         }),
         FacebookProvider({
-            clientId: process.env.FACEBOOK_CLIENT_ID ?? '',
-            clientSecret: process.env.FACEBOOK_CLIENT_SECRET ?? '',
+            clientId: process.env.FACEBOOK_CLIENT_ID!,
+            clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
         }),
         LinkedinProvider({
-            clientId: process.env.LINKEDIN_CLIENT_ID ?? '',
-            clientSecret: process.env.LINKEDIN_CLIENT_SECRET ?? '',
-        })
+            clientId: process.env.LINKEDIN_CLIENT_ID!,
+            clientSecret: process.env.LINKEDIN_CLIENT_SECRET!,
+        }),
     ],
-    session: { strategy: 'jwt' },
-    callbacks: {
-        async session({ session, token }: any) {
-            if (session?.user) {
-                session.user.id = token?.sub ?? '';
+    
+    session: { 
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60, // 30 days
+    },
+    cookies: {
+        sessionToken: {
+            name: `next-auth.session-token`,
+            options: {
+                httpOnly: true,
+                sameSite: 'lax',
+                path: '/',
+                secure: process.env.NODE_ENV === 'production'
             }
+        }
+    },
+    callbacks: {
+        async session({ session, token }) {
+            // if (session?.user && token?.sub) {
+            //     session.user.id = token.sub;
+            // }
             return session;
         },
+        async jwt({ token, account, profile }) {
+            // Only update on sign in
+            if (account) {
+                token.accessToken = account.access_token;
+            }
+            return token;
+        }
     },
+    // Add these for better debugging
+    debug: process.env.NODE_ENV === 'development',
 };
-
-export default NextAuth(authOptions)
-// Note: the route handler in app/api/auth/[...nextauth]/route.ts calls NextAuth(authOptions)

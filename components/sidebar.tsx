@@ -18,6 +18,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
+import { signOut } from "next-auth/react";
 
 // menu items are defined inside the component so we can translate labels with useTranslations
 
@@ -48,6 +51,7 @@ export default function Sidebar() {
     return undefined;
   };
 
+  const session = getServerSession(authOptions);
   useEffect(() => {
     try {
       const id = determineActiveFromPath(pathname);
@@ -77,9 +81,12 @@ export default function Sidebar() {
     { code: 'ar', label: 'العربية' },
   ];
 
-  const handleLogout = () => {
-    console.log("Logging out...");
-  };
+  const handleLogout = async () => {
+  await signOut({
+    redirect: true,
+    callbackUrl: `/${lang}/login` // Where to go after logout
+  });
+};
 
   return (
     // Make sidebar fixed on the left so it stays visible while scrolling
