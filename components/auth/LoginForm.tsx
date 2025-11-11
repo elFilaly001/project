@@ -81,8 +81,32 @@ export function LoginForm({
     }
   };
 
+  const handleFacebookSignIn = async () => {
+    try {
+      await signIn("facebook" , { callbackUrl: "/" });
+    } catch (err) {
+      console.error("Facebook sign-in error:", err);
+    } };
+
+  const handleInstagramSignIn = async () => {
+    try {
+      await signIn("instagram" , { callbackUrl: "/" });
+    } catch (err) {
+      console.error("Instagram sign-in error:", err);
+    }
+  };
+
+  const handleLinkedinSignIn = async () => {
+    try {
+      await signIn("linkedin" , { callbackUrl: "/" });
+    } catch (err) {
+      console.error("LinkedIn sign-in error:", err);
+    }
+  };
+
+
   return (
-    <div className={cn("flex flex-col gap-6", className)} {...props}>
+    <div className={cn("flex flex-col gap-3", className)} {...props}>
       <Card className="bg-transparent border-0 shadow-none">
         <CardHeader>
           <div className="flex flex-col py-5 ">
@@ -90,7 +114,7 @@ export function LoginForm({
             <p>Please sign-in to your account and start the adventure</p>
           </div>
         </CardHeader>
-        <CardContent className="grid gap-6">
+        <CardContent className="grid gap-3">
           <form onSubmit={formik.handleSubmit}>
             <div className="grid gap-6">
               <InputWithLabel
@@ -139,13 +163,37 @@ export function LoginForm({
             Or
             <span className="flex-1 bg-gray-400 rounded-xl h-[0.5px]"></span>
           </div>
+          <div className="flex flex-col gap-2">
           <Button
             onClick={handleGoogleSignIn}
             className="w-full bg-transparent border text-black border-gray-200 hover:bg-gray-200/40"
           >
-            <Image src={"/auth/google.png"} alt="Logo" width={20} height={20} />
+            <Image src={"/auth/google.png"} alt="Logo" width={20} height={20}  className="mr-2"/>
             Login with Google
           </Button>
+          <Button
+            onClick={handleFacebookSignIn}
+            className="w-full bg-transparent border text-black border-gray-200 hover:bg-gray-200/40"
+          >
+            <Image src={"https://upload.wikimedia.org/wikipedia/commons/6/6c/Facebook_Logo_2023.png"} alt="Logo" width={20} height={20}  className="mr-2"/>
+            Login with Facebook
+          </Button>
+          <Button
+            onClick={handleInstagramSignIn}
+            className="w-full bg-transparent border text-black border-gray-200 hover:bg-gray-200/40"
+          >
+            <Image src={"https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg"} alt="Logo" width={20} height={20}  className="mr-2"/>
+            Login with Instagram
+          </Button>
+          <Button
+            onClick={handleLinkedinSignIn}
+            className="w-full bg-transparent border text-black border-gray-200 hover:bg-gray-200/40"
+          >
+            <Image src={"https://upload.wikimedia.org/wikipedia/commons/e/e8/Linkedin-logo-blue-In-square-40px.png"} alt="Logo" width={20} height={20}  className="mr-2"/>
+            Login with LinkedIn
+          </Button>
+
+          </div>
         </CardContent>
       </Card>
       <div className="text-sm text-center flex justify-center items-center gap-1">
@@ -158,7 +206,7 @@ export function LoginForm({
           Sign up
         </Link>
       </div>
-      <div className="text-balance text-center text-xs text-gray-900">
+      <div className="text-balance text-center text-xs text-gray-900 pb-4 ">
         By clicking continue, you agree to our <a href="#">Terms of Service</a>{" "}
         and <a href="#">Privacy Policy</a>.
       </div>

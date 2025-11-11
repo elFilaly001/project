@@ -1,7 +1,9 @@
 import GoogleProvider from 'next-auth/providers/google';
 import FacebookProvider from 'next-auth/providers/facebook';
 import LinkedinProvider from 'next-auth/providers/linkedin';
+import InstagramProvider from 'next-auth/providers/instagram';
 import type { AuthOptions } from "next-auth";
+import { Instagram } from 'lucide-react';
 
 export const authOptions: AuthOptions = {
     secret: process.env.NEXTAUTH_SECRET,
@@ -18,6 +20,10 @@ export const authOptions: AuthOptions = {
         FacebookProvider({
             clientId: process.env.FACEBOOK_CLIENT_ID!,
             clientSecret: process.env.FACEBOOK_CLIENT_SECRET!,
+        }),
+        InstagramProvider({
+            clientId: process.env.INSTAGRAM_CLIENT_ID!,
+            clientSecret: process.env.INSTAGRAM_CLIENT_SECRET!,
         }),
         LinkedinProvider({
             clientId: process.env.LINKEDIN_CLIENT_ID!,
